@@ -261,7 +261,7 @@ Token登录：
         "story_id": "story_3222",
         "img_urls": [
             "http://www.xxx.xxx",
-        ]
+        ],
         "hardness": 4,
         "description": "城市中有一群漫步者，你便是其中之一，故事从此开始…",
         "tags": ["美食", "运动", "小游戏", "人物", "室外"],
@@ -274,7 +274,7 @@ Token登录：
             },
             {
                 "type": "number",
-                "description": "门口的白猫叫了三声，老板盯着锅里的鸡爪抽了口烟，门口的门牌号快掉了，写着"，
+                "description": "门口的白猫叫了三声，老板盯着锅里的鸡爪抽了口烟，门口的门牌号快掉了，写着",
                 "head_img_url": "http://xxx.xxx.xxx",
                 "question": "249",
                 "index": 1,
@@ -282,7 +282,7 @@ Token登录：
             },
             {
                 "type": "text",
-                "description": "白猫跳到了桌上，这里要填空 _"，
+                "description": "白猫跳到了桌上，这里要填空 _",
                 "img_url": "http://www.xxx.xxx",
                 "answer": "这是填空的答案",
             },
