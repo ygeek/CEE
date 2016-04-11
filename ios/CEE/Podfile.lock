@@ -18,21 +18,16 @@ PODS:
   - AVOSCloudCrashReporting (3.2.7):
     - AVOSCloud
   - RDVTabBarController (1.1.9)
-  - ReactiveCocoa (4.1.0):
-    - ReactiveCocoa/UI (= 4.1.0)
-    - Result (~> 2.0)
-  - ReactiveCocoa/Core (4.1.0):
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
     - ReactiveCocoa/no-arc
-    - Result (~> 2.0)
-  - ReactiveCocoa/no-arc (4.1.0):
-    - Result (~> 2.0)
-  - ReactiveCocoa/UI (4.1.0):
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-    - Result (~> 2.0)
   - Realm (0.98.6):
     - Realm/Headers (= 0.98.6)
   - Realm/Headers (0.98.6)
-  - Result (2.0.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -42,7 +37,7 @@ DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudCrashReporting
   - RDVTabBarController
-  - ReactiveCocoa
+  - ReactiveCocoa (~> 2.5)
   - Realm
   - SDWebImage
 
@@ -51,9 +46,8 @@ SPEC CHECKSUMS:
   AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
   AVOSCloudCrashReporting: 68b4c9096c5f465f1cbda4a1d7ea5f04efa930ab
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
-  ReactiveCocoa: d70004d7a366a7b8e87e60ce2347182c77701949
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   Realm: 44803f35418c5d89b27825a564247fcd190de37e
-  Result: 9e75e1111c774c6ac594e14907b15057053a7959
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
 COCOAPODS: 0.39.0
