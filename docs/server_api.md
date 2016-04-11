@@ -107,7 +107,7 @@ Token登录：
 
 ```json
 {
-    "mapid": "xxx"
+    "mapid": "xxx",
     // optional，根据request里的updated_at，看地图是否更新过
     "url": "http://xxx.qiniu.com/xxx",  // 考虑地图使用七牛云存储
     "width": 300,
@@ -142,7 +142,7 @@ Token登录：
 
 ```json
 {
-    "anchor_id": anchor_123,
+    "anchor_id": "anchor_123",
     "data": {
         // TODO (zhangmeng): 根据anchor触发的行为，待定
     }
