@@ -1,0 +1,78 @@
+worker_processes 1;
+
+error_log /home/nightfade/CEE/logs/nginx-error.log;
+
+events {
+  worker_connections 1024; # increase if you have lots of clients
+  accept_mutex off; # set to 'on' if nginx worker_processes > 1
+  # 'use epoll;' to enable for Linux 2.6+
+  # 'use kqueue;' to enable for FreeBSD, OSX
+}
+
+http {
+    include mime.types;
+    default_type application/octet-stream;
+
+    access_log /home/nightfade/CEE/logs/nginx-access.log;
+
+    sendfile on;
+
+    upstream wx_app_server {
+      # fail_timeout=0 means we always retry an upstream even if it failed
+      # to return a good HTTP response (in case the Unicorn master nukes a
+      # single worker for timing out).
+
+      server unix:/home/nightfade/CEE/run/gunicorn.sock fail_timeout=0;
+    }
+
+    server {
+        listen   80;
+        client_max_body_size 1G;
+
+        server_name xshuxue.com;
+
+     
+        location /static/ {
+            alias   /home/nightfade/CEE/dist/static/;
+        }
+        
+        location /media/ {
+            alias   /home/nightfade/CEE/dist/media/;
+        }
+
+        location / {
+            # an HTTP header important enough to have its own Wikipedia entry:
+            #   http://en.wikipedia.org/wiki/X-Forwarded-For
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+            # enable this if and only if you use HTTPS, this helps Rack
+            # set the proper protocol for doing redirects:
+            # proxy_set_header X-Forwarded-Proto https;
+
+            # pass the Host: header from the client right along so redirects
+            # can be set properly within the Rack application
+            proxy_set_header Host $http_host;
+
+            # we don't want nginx trying to do something clever with
+            # redirects, we set the Host: header above already.
+            proxy_redirect off;
+
+            # set "proxy_buffering off" *only* for Rainbows! when doing
+            # Comet/long-poll stuff.  It's also safe to set if you're
+            # using only serving fast clients with Unicorn + nginx.
+            # Otherwise you _want_ nginx to buffer responses to slow
+            # clients, really.
+            # proxy_buffering off;
+
+            proxy_pass http://wx_app_server;
+        }
+
+        # Error pages
+        error_page 500 502 503 504 /500.html;
+        location = /500.html {
+            root /home/nightfade/CEE/dist/static/;
+        }
+    }
+}
+
+
