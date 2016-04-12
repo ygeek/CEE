@@ -37,14 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'rest_framework',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api',
+    'cms',
 ]
 
-REST_FRAMEWORK = {
-		'DEFAULT_PERMISSION_CLASSES':[
-			'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-			]
-}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-CN'
 
 TIME_ZONE = 'UTC'
 
@@ -127,3 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
