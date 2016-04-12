@@ -13,6 +13,10 @@
 		BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5324D1CBBD0F500282D3E /* RootViewController.m */; };
 		BBA532541CBBD11100282D3E /* SDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532531CBBD11100282D3E /* SDKManager.m */; };
 		BBA532581CBBD5DB00282D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */; };
+		BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */; };
+		BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325D1CBBDA5900282D3E /* WorldViewController.m */; };
+		BBA532611CBBDA6A00282D3E /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532601CBBDA6A00282D3E /* StoryViewController.m */; };
+		BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532631CBBDA9E00282D3E /* MessageViewController.m */; };
 		DBE2B2942E7909B051221FF0 /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F33B289AB3942036A5E07CD /* Pods_CEE.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +34,14 @@
 		BBA532521CBBD11100282D3E /* SDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKManager.h; sourceTree = "<group>"; };
 		BBA532531CBBD11100282D3E /* SDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKManager.m; sourceTree = "<group>"; };
 		BBA532571CBBD5DB00282D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BBA532591CBBDA4A00282D3E /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
+		BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
+		BBA5325C1CBBDA5900282D3E /* WorldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldViewController.h; sourceTree = "<group>"; };
+		BBA5325D1CBBDA5900282D3E /* WorldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldViewController.m; sourceTree = "<group>"; };
+		BBA5325F1CBBDA6A00282D3E /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
+		BBA532601CBBDA6A00282D3E /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
+		BBA532621CBBDA9E00282D3E /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		BBA532631CBBDA9E00282D3E /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +130,14 @@
 			children = (
 				BBA5324C1CBBD0F500282D3E /* RootViewController.h */,
 				BBA5324D1CBBD0F500282D3E /* RootViewController.m */,
+				BBA532591CBBDA4A00282D3E /* DrawerViewController.h */,
+				BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */,
+				BBA5325C1CBBDA5900282D3E /* WorldViewController.h */,
+				BBA5325D1CBBDA5900282D3E /* WorldViewController.m */,
+				BBA5325F1CBBDA6A00282D3E /* StoryViewController.h */,
+				BBA532601CBBDA6A00282D3E /* StoryViewController.m */,
+				BBA532621CBBDA9E00282D3E /* MessageViewController.h */,
+				BBA532631CBBDA9E00282D3E /* MessageViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -280,9 +300,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
+				BBA532611CBBDA6A00282D3E /* StoryViewController.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
+				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
+				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
+				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
