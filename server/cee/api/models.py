@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
 class Story(models.Model):
     story_id = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
@@ -10,7 +9,7 @@ class Story(models.Model):
     time = models.IntegerField()
     good = models.IntegerField()
     distance = models.FloatField()
-    level_ids = 
+    #level_ids =
     city = models.CharField(max_length=50)
 
 class Level(models.Model):
@@ -32,8 +31,8 @@ class Item(models.Model):
 
 class Coupon(models.Model):
     coupon_id = models.CharField(max_length=50)
-    gmt_start = modules.DateField()
-    gmt_end = modules.DateField()
+    gmt_start = models.DateField()
+    gmt_end = models.DateField()
     name = models.CharField(max_length=50)
     desc = models.TextField()
     state = models.CharField(max_length=50)
@@ -63,4 +62,32 @@ class UserItem(models.Model):
     item_id = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
 
+class Map(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+    x = models.FloatField()
+    y = models.FloatField()
+    image_url = models.URLField()
 
+class Medal(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+    icon_url = models.URLField()
+    map = models.ForeignKey(Map)
+
+class Task(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+    medal = models.ForeignKey(Medal)
+
+class Choice(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+    image_url = models.URLField()
+    answer = models.SmallIntegerField()
+    task = models.ForeignKey(Task)
+
+class Option(models.Model):
+    index = models.SmallIntegerField()
+    desc = models.CharField(max_length=100)
+    choice = models.ForeignKey(Choice)
