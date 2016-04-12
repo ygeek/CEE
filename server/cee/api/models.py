@@ -40,5 +40,27 @@ class Coupon(models.Model):
     code = models.CharField(max_length=50)
     is_deleted = models.BooleanField()
 
+class UserMap(models.Model):
+    map_id = models.CharField(max_length=50)
+    user_id = models.CharField(max_length=50)
+    visited = models.BooleanField()
+    completed = models.BooleanField()
+
+class Anchor(models.Model):
+    anchor_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    desc = models.TextField()
+    dx = models.FloatField()
+    dy = models.FloatField()
+
+class UserAnchor(models.Model):
+    anchor_id = models.CharField(max_length=50)
+    user_id = models.CharField(max_length=50)
+    completed = models.BooleanField()
+
+class UserItem(models.Model):
+    user_id = models.CharField(max_length=50)
+    item_id = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
 
 
