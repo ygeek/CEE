@@ -11,5 +11,10 @@ target 'CEE' do
     pod 'RDVTabBarController'
     pod 'AVOSCloud'
     pod 'AVOSCloudCrashReporting'
+    pod 'ShareSDK3'
+    pod 'MOBFoundation'
+    pod 'ShareSDK3/ShareSDKPlatforms/QQ'
+    pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+    pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
 end
 
