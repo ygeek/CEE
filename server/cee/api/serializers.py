@@ -1,16 +1,27 @@
 from rest_framework import serializers
 
-from .models import Task, Choice, Option, Medal
+from .models import *
+
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ('id', 'name', 'desc', 'medal', 'choice_set')
 
+
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Choice
-        fields = ('task', 'id', 'name', 'desc', 'image_url', 'answer', 'option_set')
+        fields = (
+            'task',
+            'id',
+            'name'
+            'desc'
+            'image_url'
+            'answer'
+            'option_set'
+        )
+
 
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:

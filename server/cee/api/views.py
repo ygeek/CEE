@@ -9,8 +9,8 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from .forms import UserForm, User
-from .models import Task, Choice, Option, Medal
-from .serializers import TaskSerializer, ChoiceSerializer, OptionSerializer, MedalSerializer
+from .models import *
+from .serializers import *
 
 
 @api_view(['GET'])
@@ -75,6 +75,7 @@ class TaskDetail(APIView):
                 'msg': 'task not exists',
             })
 
+
 class ChoiceDetail(APIView):
     def get(self, request, choice_id):
         try:
@@ -95,6 +96,7 @@ class ChoiceDetail(APIView):
                 'code': -2,
                 'msg': 'choice not exists',
             })
+
 
 class ChoiceList(APIView):
     def get(self, request, task_id):
@@ -118,6 +120,7 @@ class ChoiceList(APIView):
                 'msg': 'task not exists',
             })
 
+
 class OptionDetail(APIView):
     def get(self, request, option_id):
         try:
@@ -138,6 +141,7 @@ class OptionDetail(APIView):
                 'code': -2,
                 'msg': 'option not exists',
             })
+
 
 class OptionList(APIView):
     def get(self, request, choice_id):
@@ -160,6 +164,7 @@ class OptionList(APIView):
                 'code': -2,
                 'msg': 'choice not exists',
             })
+
 
 class MedalDetail(APIView):
     def get(self, request, medal_id):

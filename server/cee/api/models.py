@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 class Story(models.Model):
     story_id = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
@@ -9,8 +10,9 @@ class Story(models.Model):
     time = models.IntegerField()
     good = models.IntegerField()
     distance = models.FloatField()
-    #level_ids =
+    # level_ids =
     city = models.CharField(max_length=50)
+
 
 class Level(models.Model):
     level_id = models.CharField(max_length=50)
@@ -22,12 +24,14 @@ class Level(models.Model):
     number_answer = models.CharField(max_length=50)
     h5_url = models.URLField()
 
+
 class Item(models.Model):
     item_id = models.CharField(max_length=50)
     item_type = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     desc = models.TextField()
     data = models.TextField()
+
 
 class Coupon(models.Model):
     coupon_id = models.CharField(max_length=50)
@@ -39,11 +43,13 @@ class Coupon(models.Model):
     code = models.CharField(max_length=50)
     is_deleted = models.BooleanField()
 
+
 class UserMap(models.Model):
     map_id = models.CharField(max_length=50)
     user_id = models.CharField(max_length=50)
     visited = models.BooleanField()
     completed = models.BooleanField()
+
 
 class Anchor(models.Model):
     anchor_id = models.CharField(max_length=50)
@@ -52,15 +58,18 @@ class Anchor(models.Model):
     dx = models.FloatField()
     dy = models.FloatField()
 
+
 class UserAnchor(models.Model):
     anchor_id = models.CharField(max_length=50)
     user_id = models.CharField(max_length=50)
     completed = models.BooleanField()
 
+
 class UserItem(models.Model):
     user_id = models.CharField(max_length=50)
     item_id = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
+
 
 class Map(models.Model):
     name = models.CharField(max_length=30)
@@ -69,16 +78,19 @@ class Map(models.Model):
     y = models.FloatField()
     image_url = models.URLField()
 
+
 class Medal(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     icon_url = models.URLField()
     map = models.ForeignKey(Map)
 
+
 class Task(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     medal = models.ForeignKey(Medal)
+
 
 class Choice(models.Model):
     name = models.CharField(max_length=30)
@@ -86,6 +98,7 @@ class Choice(models.Model):
     image_url = models.URLField()
     answer = models.SmallIntegerField()
     task = models.ForeignKey(Task)
+
 
 class Option(models.Model):
     index = models.SmallIntegerField()

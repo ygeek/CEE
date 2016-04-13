@@ -3,7 +3,7 @@
 from django.conf.urls import url
 from rest_framework.authtoken import views
 from .views import hello, register
-from .views import TaskDetail, ChoiceDetail, ChoiceList, OptionDetail, OptionList, MedalDetail
+from .views import *
 
 
 urlpatterns = [
