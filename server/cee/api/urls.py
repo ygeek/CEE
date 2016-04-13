@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^v1/option/(?P<option_id>\d+)/$', OptionDetail.as_view()),
 
     url(r'^v1/medal/(?P<medal_id>\d+)/$', MedalDetail.as_view()),
+    url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
 ]

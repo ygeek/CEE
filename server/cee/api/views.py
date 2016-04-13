@@ -240,3 +240,25 @@ class MedalDetail(APIView):
                 'code': -2,
                 'msg': 'medal not exists',
             })
+
+
+class StoryDetail(APIView):
+    def get(self, request, story_id):
+        try:
+            story_id = int(story_id)
+            story = Option.objects.get(id=story_id)
+            serializer = OptionSerializer(story)
+            return Response({
+                'code': 0,
+                'story': serializer.data
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid story id: %s' % story_id
+            })
+        except Option.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'story not exists',
+            })

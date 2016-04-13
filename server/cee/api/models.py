@@ -17,7 +17,6 @@ class Story(models.Model):
     time = models.IntegerField()
     good = models.IntegerField()
     distance = models.FloatField()
-    # level_ids =
     city = models.CharField(max_length=50)
 
 

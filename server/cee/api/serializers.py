@@ -33,3 +33,18 @@ class MedalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medal
         fields = ('map', 'id', 'name', 'desc', 'icon_url')
+
+
+class StorySerializer(serializers.ModelSerializer):
+    class Meta:
+        story = Story
+        fields = (
+                'story',
+                'id',
+                'name',
+                'desc',
+                'time',
+                'good',
+                'distance',
+                'city'
+            )
