@@ -32,6 +32,10 @@ Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
 
 Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
 
+## AVOSCloudIM
+
+Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
+
 ## MOBFoundation
 
 Copyright © 2012-2015 mob

@@ -17,6 +17,8 @@ PODS:
   - AVOSCloud (3.2.7)
   - AVOSCloudCrashReporting (3.2.7):
     - AVOSCloud
+  - AVOSCloudIM (3.2.7):
+    - AVOSCloud
   - MOBFoundation (1.5.1)
   - RDVTabBarController (1.1.9)
   - ReactiveCocoa (2.5):
@@ -43,6 +45,7 @@ DEPENDENCIES:
   - AFNetworking
   - AVOSCloud
   - AVOSCloudCrashReporting
+  - AVOSCloudIM
   - MOBFoundation
   - RDVTabBarController
   - ReactiveCocoa (~> 2.5)
@@ -57,6 +60,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
   AVOSCloudCrashReporting: 68b4c9096c5f465f1cbda4a1d7ea5f04efa930ab
+  AVOSCloudIM: ec08eaec4d27d732e3be93eadeb3bcf1355b5dcf
   MOBFoundation: 79efc94db961fe5a08cf32de69166f6a29a3b2b5
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
