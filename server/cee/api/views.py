@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.contrib.auth import authenticate
+from django.db.models import ObjectDoesNotExist
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -13,45 +14,88 @@ from .models import *
 from .serializers import *
 
 
-@api_view(['GET'])
-def hello(request):
-    if request.user and request.user.is_authenticated():
-        return Response({
-            'hello': 'world',
-            'user': unicode(request.user),
-            'auth': unicode(request.auth),
-        })
-    else:
-        return Response({
-            'hello': 'world'
-        })
+class Hello(APIView):
+    def get(self, request):
+        if request.user and request.user.is_authenticated():
+            return Response({
+                'hello': 'world',
+                'user': unicode(request.user),
+                'auth': unicode(request.auth),
+            })
+        else:
+            return Response({
+                'hello': 'world'
+            })
 
 
-@api_view(['POST'])
-def register(request):
-    user_form = UserForm(request.data)
-    if user_form.is_valid():
-        if User.objects.filter(username=user_form.cleaned_data['username']).count() > 0:
+class Register(APIView):
+    def post(self, request):
+        user_form = UserForm(request.data)
+        if user_form.is_valid():
+            if User.objects.filter(username=user_form.cleaned_data['username']).count() > 0:
+                return Response({
+                    'code': -1,
+                    'msg': 'username exists'
+                })
+            if User.objects.filter(email=user_form.cleaned_data['email']).count() > 0:
+                return Response({
+                    'code': -2,
+                    'msg': 'email exists'
+                })
+            user = user_form.save()
+            token = Token.objects.create(user=user)
+            return Response({
+                'code': 0,
+                'auth': unicode(token.key),
+            })
+        else:
             return Response({
                 'code': -1,
-                'msg': 'username exists'
+                'msg': unicode(user_form.errors),
             })
-        if User.objects.filter(email=user_form.cleaned_data['email']).count() > 0:
+
+
+class Login(APIView):
+    def post(self, request):
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                token = None
+                try:
+                    token = Token.objects.get(user=user)
+                except ObjectDoesNotExist:
+                    token = Token.objects.create(user=user)
+                return Response({
+                    'code': 0,
+                    'auth': token.key,
+                })
+            else:
+                return Response({
+                    'code': -2,
+                    'msg': 'The user is not active.',
+                })
+        else:
             return Response({
-                'code': -2,
-                'msg': 'email exists'
+                'code': -1,
+                'msg': 'The username and password were incorrect.',
             })
-        user = user_form.save()
-        token = Token.objects.create(user=user)
-        return Response({
-            'code': 0,
-            'auth': unicode(token.key),
-        })
-    else:
-        return Response({
-            'code': -1,
-            'msg': unicode(user_form.errors),
-        })
+
+
+# class LoginThirdParty(APIView):
+#     def post(self, request):
+#         uid = request.data['uid']
+#         platform = request.data['platform']
+#         user = None
+#         token = None
+#         try:
+#             # user = User.objects.get(uid=uid)
+#             pass
+#         except ObjectDoesNotExist:
+#             return Response({
+#
+#            })
 
 
 class TaskDetail(APIView):

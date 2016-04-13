@@ -2,13 +2,12 @@
 
 from django.conf.urls import url
 from rest_framework.authtoken import views
-from .views import hello, register
-from .views import *
+from .views import Hello, Register, TaskDetail, ChoiceDetail, ChoiceList, OptionDetail, OptionList, MedalDetail
 
 
 urlpatterns = [
-    url(r'^v1/hello/$', hello),
-    url(r'^v1/register/$', register),
+    url(r'^v1/hello/$', Hello.as_view()),
+    url(r'^v1/register/$', Register.as_view()),
     url(r'^v1/auth/$', views.obtain_auth_token),
 
     url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
