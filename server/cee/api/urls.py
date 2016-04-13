@@ -20,4 +20,6 @@ urlpatterns = [
 
     url(r'^v1/medal/(?P<medal_id>\d+)/$', MedalDetail.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
+    url(r'^v1/coupon/(?P<coupon_id>\d+)/$', CouponDetail.as_view()),
+    url(r'^v1/user/(?P<user_id>\d+)/coupon/$', CouponList.as_view()),
 ]

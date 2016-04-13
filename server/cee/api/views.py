@@ -246,8 +246,8 @@ class StoryDetail(APIView):
     def get(self, request, story_id):
         try:
             story_id = int(story_id)
-            story = Option.objects.get(id=story_id)
-            serializer = OptionSerializer(story)
+            story = Story.objects.get(story_id=story_id)
+            serializer = StorySerializer(story)
             return Response({
                 'code': 0,
                 'story': serializer.data
@@ -257,8 +257,53 @@ class StoryDetail(APIView):
                 'code': -1,
                 'msg': 'invalid story id: %s' % story_id
             })
-        except Option.DoesNotExist:
+        except Story.DoesNotExist:
             return Response({
                 'code': -2,
                 'msg': 'story not exists',
+            })
+
+
+class CouponDetail(APIView):
+    def get(self, request, coupon_id):
+        try:
+            coupon_id = int(coupon_id)
+            coupon = Coupon.objects.get(coupon_id=coupon_id)
+            serializer = CouponSerializer(coupon)
+            return Response({
+                'code': 0,
+                'coupon': serializer.data
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid coupon id: %s' % coupon_id
+            })
+        except Coupon.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'coupon not exists',
+            })
+
+
+class CouponList(APIView):
+    def get(self, request, user_id):
+        try:
+            user_id = int(user_id)
+            user = User.objects.get(user_id=user_id)
+            coupons = user.choice_set.all()
+            serializer = CouponSerializer(coupons, many=True)
+            return Response({
+                'code': 0,
+                'coupons': serializer.data
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid user id: %s' % user_id
+            })
+        except User.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'user not exists',
             })

@@ -10,8 +10,22 @@ class ThirdPartyAccount(models.Model):
     user = models.ForeignKey(User)
 
 
+class User(models.Model):
+    user_id = models.IntegerField()
+    gmt_created = models.DateField()
+    gmt_modified = models.DateField()
+    username = models.CharField(max_length=50)
+    nickname = models.CharField(max_length=50)
+    email = models.EmailField()
+    password = models.CharField(max_length=50)
+    head_url = models.URLField()
+    sex = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=50)
+    is_deleted = models.BooleanField()
+
+
 class Story(models.Model):
-    story_id = models.CharField(max_length=50)
+    story_id = models.IntegerField()
     name = models.CharField(max_length=50)
     desc = models.TextField()
     time = models.IntegerField()
@@ -21,7 +35,7 @@ class Story(models.Model):
 
 
 class Level(models.Model):
-    level_id = models.CharField(max_length=50)
+    level_id = models.IntegerField()
     level_type = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     video_url = models.URLField()
@@ -32,7 +46,7 @@ class Level(models.Model):
 
 
 class Item(models.Model):
-    item_id = models.CharField(max_length=50)
+    item_id = models.IntegerField()
     item_type = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     desc = models.TextField()
@@ -40,7 +54,7 @@ class Item(models.Model):
 
 
 class Coupon(models.Model):
-    coupon_id = models.CharField(max_length=50)
+    coupon_id = models.IntegerField()
     gmt_start = models.DateField()
     gmt_end = models.DateField()
     name = models.CharField(max_length=50)
@@ -51,14 +65,14 @@ class Coupon(models.Model):
 
 
 class UserMap(models.Model):
-    map_id = models.CharField(max_length=50)
-    user_id = models.CharField(max_length=50)
+    map_id = models.IntegerField()
+    user_id = models.IntegerField()
     visited = models.BooleanField()
     completed = models.BooleanField()
 
 
 class Anchor(models.Model):
-    anchor_id = models.CharField(max_length=50)
+    anchor_id = models.IntegerField()
     name = models.CharField(max_length=50)
     desc = models.TextField()
     dx = models.FloatField()
@@ -66,14 +80,14 @@ class Anchor(models.Model):
 
 
 class UserAnchor(models.Model):
-    anchor_id = models.CharField(max_length=50)
-    user_id = models.CharField(max_length=50)
+    anchor_id = models.IntegerField()
+    user_id = models.IntegerField()
     completed = models.BooleanField()
 
 
 class UserItem(models.Model):
-    user_id = models.CharField(max_length=50)
-    item_id = models.CharField(max_length=50)
+    user_id = models.IntegerField()
+    item_id = models.IntegerField()
     state = models.CharField(max_length=50)
 
 

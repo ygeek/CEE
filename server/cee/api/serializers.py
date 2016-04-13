@@ -39,8 +39,8 @@ class StorySerializer(serializers.ModelSerializer):
     class Meta:
         story = Story
         fields = (
-                'story',
                 'id',
+                'story_id',
                 'name',
                 'desc',
                 'time',
@@ -48,3 +48,27 @@ class StorySerializer(serializers.ModelSerializer):
                 'distance',
                 'city'
             )
+
+
+class CouponSerializer(serializers.ModelSerializer):
+    class Meta:
+        coupon = Coupon
+        fields = (
+                'id',
+                'coupon_id',
+                'gmt_start',
+                'gmt_end',
+                'name',
+                'desc',
+                'state',
+                'code'
+                )
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        user = User
+        fields = (
+                'id',
+                'user_id'
+                )
