@@ -14,4 +14,6 @@
 
 - (void)setup;
 
+- (void)loginQQ;
+
 @end
