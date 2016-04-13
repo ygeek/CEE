@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+import hashlib
+import uuid
 
 from django.contrib.auth import authenticate
 from django.db.models import ObjectDoesNotExist
@@ -55,6 +57,14 @@ class Register(APIView):
             })
 
 
+def get_token(user):
+    try:
+        token = Token.objects.get(user=user)
+    except ObjectDoesNotExist:
+        token = Token.objects.create(user=user)
+    return token
+
+
 class Login(APIView):
     def post(self, request):
         username = request.data['username']
@@ -62,11 +72,7 @@ class Login(APIView):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                token = None
-                try:
-                    token = Token.objects.get(user=user)
-                except ObjectDoesNotExist:
-                    token = Token.objects.create(user=user)
+                token = get_token(user)
                 return Response({
                     'code': 0,
                     'auth': token.key,
@@ -83,19 +89,23 @@ class Login(APIView):
             })
 
 
-# class LoginThirdParty(APIView):
-#     def post(self, request):
-#         uid = request.data['uid']
-#         platform = request.data['platform']
-#         user = None
-#         token = None
-#         try:
-#             # user = User.objects.get(uid=uid)
-#             pass
-#         except ObjectDoesNotExist:
-#             return Response({
-#
-#            })
+class LoginThirdParty(APIView):
+    def post(self, request):
+        uid = request.data['uid']
+        platform = request.data['platform']
+        try:
+            account = ThirdPartyAccount.objects.get(uid=uid, platform=platform)
+            user = account.user
+        except ObjectDoesNotExist:
+            fake_username = hashlib.sha1(uid).hexdigest()
+            fake_email = '{0}@{0}.com'.format(fake_username)
+            user = User.objects.create_user(username=fake_username, email=fake_email, password=unicode(uuid.uuid1()))
+            ThirdPartyAccount.objects.create(uid=uid, platform=platform, user=user)
+        token = get_token(user)
+        return Response({
+            'code': 0,
+            'auth': token.key,
+        })
 
 
 class TaskDetail(APIView):
