@@ -6,6 +6,9 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+#import <AVOSCloud/AVOSCloud.h>
+#import <AVOSCloudIM/AVOSCloudIM.h>
+
 #import "AppDelegate.h"
 #import "SDKManager.h"
 #import "RootViewController.h"
@@ -49,6 +52,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+    // TODO (zhangmeng): 上传 currentInstallation.deviceToken   currentInstallation.installationId
 }
 
 @end

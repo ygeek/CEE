@@ -4,6 +4,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserDeviceToken(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    device_token = models.CharField(max_length=100)
+    installation_id = models.CharField(max_length=100)
+
+
 class ThirdPartyAccount(models.Model):
     uid = models.CharField(max_length=100)
     platform = models.CharField(max_length=50)

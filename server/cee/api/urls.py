@@ -2,15 +2,18 @@
 
 from django.conf.urls import url
 from rest_framework.authtoken import views
-from .views import Hello, Register, Login, LoginThirdParty, TaskDetail, ChoiceDetail, ChoiceList, OptionDetail, OptionList, MedalDetail
+from .views import Hello, Register, UserDeviceTokenView, \
+    Login, LoginThirdParty, TaskDetail, ChoiceDetail, \
+    ChoiceList, OptionDetail, OptionList, MedalDetail
 
 
 urlpatterns = [
+    url(r'^v1/auth/$', views.obtain_auth_token),
     url(r'^v1/hello/$', Hello.as_view()),
     url(r'^v1/register/$', Register.as_view()),
     url(r'^v1/login/$', Login.as_view()),
     url(r'^v1/login/thirdparty/$', LoginThirdParty.as_view()),
-    url(r'^v1/auth/$', views.obtain_auth_token),
+    url(r'^v1/devicetoken/$', UserDeviceTokenView.as_view()),
 
     url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
     url(r'^v1/task/(?P<task_id>\d+)/choice/$', ChoiceList.as_view()),

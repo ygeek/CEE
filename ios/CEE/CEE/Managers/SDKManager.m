@@ -8,6 +8,7 @@
 
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudCrashReporting/AVOSCloudCrashReporting.h>
+#import <AVOSCloudIM/AVOSCloudIM.h>
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
@@ -48,6 +49,8 @@
     
     [AVOSCloud setApplicationId:@"zbamEfqUbNTXNwLKw8LiTPK0-gzGzoHsz"
                       clientKey:@"nWuVXVcpDSr4Eu3DHJqqSDyY"];
+    
+    [AVOSCloudIM registerForRemoteNotification];
 }
 
 - (void)setupShareSDK {

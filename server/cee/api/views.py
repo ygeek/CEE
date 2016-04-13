@@ -108,6 +108,32 @@ class LoginThirdParty(APIView):
         })
 
 
+class UserDeviceTokenView(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request):
+        user = request.user
+        print(repr(request.data))
+        device_token = request.data['device_token']
+        installation_id = request.data['installation_id']
+        try:
+            user_token = UserDeviceToken.objects.get(user=user)
+            user_token.device_token = device_token
+            user_token.installation_id = installation_id
+            code = 1
+            msg = 'device token updated'
+        except ObjectDoesNotExist:
+            UserDeviceToken.objects.create(user=user,
+                                           device_token=device_token,
+                                           installation_id=installation_id)
+            code = 0
+            msg = 'device token registered'
+        return Response({
+            'code': code,
+            'msg': msg,
+        })
+
+
 class TaskDetail(APIView):
     def get(self, request, task_id):
         try:
