@@ -114,17 +114,17 @@ class Medal(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     icon_url = models.URLField()
-    owner_set = models.ManyToManyField(User)
+    owners = models.ManyToManyField(User, related_name='medals')
 
 
 class Task(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
-    medal = models.ForeignKey(Medal)
+    medal = models.ForeignKey(Medal, related_name='tasks')
 
 
 class Choice(models.Model):
-    task = models.ForeignKey(Task)
+    task = models.ForeignKey(Task, related_name='choices')
     order = models.IntegerField()
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
@@ -133,6 +133,6 @@ class Choice(models.Model):
 
 
 class Option(models.Model):
-    choice = models.ForeignKey(Choice)
+    choice = models.ForeignKey(Choice, related_name='options')
     order = models.SmallIntegerField()
     desc = models.CharField(max_length=100)

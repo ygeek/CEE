@@ -183,7 +183,7 @@ class ChoiceList(APIView):
         try:
             task_id = int(task_id)
             task = Task.objects.get(id=task_id)
-            choices = task.choice_set.all()
+            choices = task.choices.all()
             serializer = ChoiceSerializer(choices, many=True)
             return Response({
                 'code': 0,
@@ -228,7 +228,7 @@ class OptionList(APIView):
         try:
             choice_id = int(choice_id)
             choice = Choice.objects.get(id=choice_id)
-            options = choice.option_set.all()
+            options = choice.options.all()
             serializer = OptionSerializer(options, many=True)
             return Response({
                 'code': 0,
@@ -272,7 +272,7 @@ class UserMedalList(APIView):
         try:
             user_id = int(user_id)
             user = User.objects.get(id=user_id)
-            medals = user.medal_set.all()
+            medals = user.medals.all()
             serializer = MedalSerializer(medals, many=True)
             return Response({
                 'code': 0,
@@ -339,7 +339,7 @@ class CouponList(APIView):
         try:
             user_id = int(user_id)
             user = User.objects.get(user_id=user_id)
-            coupons = user.choice_set.all()
+            coupons = user.choices.all()
             serializer = CouponSerializer(coupons, many=True)
             return Response({
                 'code': 0,
