@@ -55,10 +55,9 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class StorySerializer(serializers.ModelSerializer):
     class Meta:
-        story = Story
+        model = Story
         fields = (
                 'id',
-                'story_id',
                 'name',
                 'desc',
                 'time',
@@ -70,10 +69,9 @@ class StorySerializer(serializers.ModelSerializer):
 
 class CouponSerializer(serializers.ModelSerializer):
     class Meta:
-        coupon = Coupon
+        model = Coupon
         fields = (
                 'id',
-                'coupon_id',
                 'gmt_start',
                 'gmt_end',
                 'name',
@@ -85,7 +83,7 @@ class CouponSerializer(serializers.ModelSerializer):
 
 #class UserSerializer(serializers.ModelSerializer):
 #    class Meta:
-#        user = User
+#        model = User
 #        fields = (
 #                'id',
 #                'user_id'
