@@ -11,7 +11,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
-from .forms import UserForm, User
+from .forms import UserForm
 from .models import *
 from .serializers import *
 
@@ -113,7 +113,6 @@ class UserDeviceTokenView(APIView):
 
     def post(self, request):
         user = request.user
-        print(repr(request.data))
         device_token = request.data['device_token']
         installation_id = request.data['installation_id']
         try:

@@ -22,18 +22,14 @@ class ThirdPartyAccount(models.Model):
     user = models.ForeignKey(User)
 
 
-#class User(models.Model):
-#    user_id = models.IntegerField()
-#    gmt_created = models.DateField()
-#    gmt_modified = models.DateField()
-#    username = models.CharField(max_length=50)
-#    nickname = models.CharField(max_length=50)
-#    email = models.EmailField()
-#    password = models.CharField(max_length=50)
-#    head_url = models.URLField()
-#    sex = models.CharField(max_length=50)
-#    mobile = models.CharField(max_length=50)
-#    is_deleted = models.BooleanField()
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gmt_created = models.DateField()
+    gmt_modified = models.DateField()
+    nickname = models.CharField(max_length=50)
+    head_url = models.URLField()
+    sex = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=50)
 
 
 class Story(models.Model):
