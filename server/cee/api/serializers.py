@@ -2,10 +2,17 @@ from rest_framework import serializers
 
 from .models import *
 
+
 class UserMapSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMap
         fields = ('id', 'user', 'map', 'completed')
+
+
+class UserCouponSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCoupon
+        fields = ('id', 'user', 'coupon')
 
 
 class MedalSerializer(serializers.ModelSerializer):

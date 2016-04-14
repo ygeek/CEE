@@ -133,6 +133,7 @@ class UserDeviceTokenView(APIView):
             'msg': msg,
         })
 
+
 class UserMapList(APIView):
     def get(self, request, user_id):
         try:
@@ -154,7 +155,6 @@ class UserMapList(APIView):
                 'code': -2,
                 'msg': 'user not exists',
             })
-
 
 
 class TaskDetail(APIView):
@@ -290,6 +290,7 @@ class MedalDetail(APIView):
                 'msg': 'medal not exists',
             })
 
+
 class UserMedalList(APIView):
     def get(self, request, user_id):
         try:
@@ -317,7 +318,7 @@ class StoryDetail(APIView):
     def get(self, request, story_id):
         try:
             story_id = int(story_id)
-            story = Story.objects.get(story_id=story_id)
+            story = Story.objects.get(id=story_id)
             serializer = StorySerializer(story)
             return Response({
                 'code': 0,
@@ -339,7 +340,7 @@ class CouponDetail(APIView):
     def get(self, request, coupon_id):
         try:
             coupon_id = int(coupon_id)
-            coupon = Coupon.objects.get(coupon_id=coupon_id)
+            coupon = Coupon.objects.get(id=coupon_id)
             serializer = CouponSerializer(coupon)
             return Response({
                 'code': 0,
@@ -361,9 +362,9 @@ class CouponList(APIView):
     def get(self, request, user_id):
         try:
             user_id = int(user_id)
-            user = User.objects.get(user_id=user_id)
-            coupons = user.choices.all()
-            serializer = CouponSerializer(coupons, many=True)
+            user = User.objects.get(id=user_id)
+            user_coupons = user.user_coupons.all()
+            serializer = CouponSerializer(user_coupons, many=True)
             return Response({
                 'code': 0,
                 'coupons': serializer.data

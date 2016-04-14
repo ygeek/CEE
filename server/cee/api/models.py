@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar_url = models.URLField()
@@ -36,7 +37,6 @@ class ThirdPartyAccount(models.Model):
 
 
 class Story(models.Model):
-    story_id = models.IntegerField()
     name = models.CharField(max_length=50)
     desc = models.TextField()
     time = models.IntegerField()
@@ -46,7 +46,6 @@ class Story(models.Model):
 
 
 class Level(models.Model):
-    level_id = models.IntegerField()
     level_type = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     video_url = models.URLField()
@@ -57,7 +56,6 @@ class Level(models.Model):
 
 
 class Item(models.Model):
-    item_id = models.IntegerField()
     item_type = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     desc = models.TextField()
@@ -65,14 +63,23 @@ class Item(models.Model):
 
 
 class Coupon(models.Model):
-    coupon_id = models.IntegerField()
     gmt_start = models.DateField()
     gmt_end = models.DateField()
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=30)
     desc = models.TextField()
     state = models.CharField(max_length=50)
     code = models.CharField(max_length=50)
     is_deleted = models.BooleanField()
+
+
+class UserCoupon(models.Model):
+    user = models.ForeignKey(User, related_name='user_coupons')
+    coupon = models.ForeignKey(Coupon, related_name='user_coupons')
+
+    class Meta:
+        unique_together = (
+                ('user', 'coupon'),
+            )
 
 
 class Map(models.Model):
@@ -95,23 +102,32 @@ class UserMap(models.Model):
 
 
 class Anchor(models.Model):
-    anchor_id = models.IntegerField()
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=30)
     desc = models.TextField()
     dx = models.FloatField()
     dy = models.FloatField()
 
 
 class UserAnchor(models.Model):
-    anchor_id = models.IntegerField()
-    user_id = models.IntegerField()
+    user = models.ForeignKey(User, related_name='user_anchors')
+    anchor = models.ForeignKey(Anchor, related_name='user_anchorss')
     completed = models.BooleanField()
+
+    class Meta:
+        unique_together = (
+                ('user', 'anchor')
+            )
 
 
 class UserItem(models.Model):
-    user_id = models.IntegerField()
-    item_id = models.IntegerField()
+    user = models.ForeignKey(User, related_name='user_items')
+    item = models.ForeignKey(Item, related_name='user_items')
     state = models.CharField(max_length=50)
+
+    class Meta:
+        unique_together = (
+                ('user', 'item'),
+            )
 
 
 class Medal(models.Model):
