@@ -272,8 +272,8 @@ class MedalDetail(APIView):
     def get(self, request, medal_id):
         try:
             medal_id = int(medal_id)
-            medal = Option.objects.get(id=medal_id)
-            serializer = OptionSerializer(medal)
+            medal = Medal.objects.get(id=medal_id)
+            serializer = MedalSerializer(medal)
             return Response({
                 'code': 0,
                 'medal': serializer.data
@@ -283,10 +283,32 @@ class MedalDetail(APIView):
                 'code': -1,
                 'msg': 'invalid medal id: %s' % medal_id
             })
-        except Option.DoesNotExist:
+        except Medal.DoesNotExist:
             return Response({
                 'code': -2,
                 'msg': 'medal not exists',
+            })
+
+
+class MapDetail(APIView):
+    def get(self, request, map_id):
+        try:
+            map_id = int(map_id)
+            map = Map.objects.get(id=map_id)
+            serializer = MapSerializer(map)
+            return Response({
+                'code': 0,
+                'map': serializer.data
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid map id: %s' % map_id
+            })
+        except Map.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'map not exists',
             })
 
 

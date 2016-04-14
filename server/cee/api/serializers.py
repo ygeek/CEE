@@ -21,6 +21,14 @@ class MedalSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'desc', 'icon_url')
 
 
+class MapSerializer(serializers.ModelSerializer):
+    medal = MedalSerializer(read_only=True)
+
+    class Meta:
+        model = Map
+        fields = ('id', 'name', 'desc', 'x', 'y', 'image_url', 'medal')
+
+
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
