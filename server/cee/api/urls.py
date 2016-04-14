@@ -4,7 +4,8 @@ from django.conf.urls import url
 from rest_framework.authtoken import views
 from .views import Hello, Register, UserDeviceTokenView, \
     Login, LoginThirdParty, TaskDetail, ChoiceDetail, \
-    ChoiceList, OptionDetail, OptionList, MedalDetail
+    ChoiceList, OptionDetail, OptionList, MedalDetail, \
+    StoryDetail, CouponDetail, CouponList
 
 
 urlpatterns = [

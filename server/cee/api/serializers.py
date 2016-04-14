@@ -3,36 +3,42 @@ from rest_framework import serializers
 from .models import *
 
 
-class TaskSerializer(serializers.ModelSerializer):
+class MedalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Task
-        fields = ('id', 'name', 'desc', 'medal', 'choice_set')
-
-
-class ChoiceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Choice
-        fields = (
-            'task',
-            'id',
-            'name'
-            'desc'
-            'image_url'
-            'answer'
-            'option_set'
-        )
+        model = Medal
+        fields = ('id', 'name', 'desc', 'icon_url')
 
 
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = ('choice', 'id', 'index', 'desc')
+        fields = ('id', 'choice', 'order', 'desc')
 
 
-class MedalSerializer(serializers.ModelSerializer):
+class ChoiceSerializer(serializers.ModelSerializer):
+    option_set = OptionSerializer(many=True, read_only=True)
+
     class Meta:
-        model = Medal
-        fields = ('map', 'id', 'name', 'desc', 'icon_url')
+        model = Choice
+        fields = (
+            'id',
+            'task',
+            'order',
+            'name',
+            'desc',
+            'image_url',
+            'answer',
+            'option_set',
+        )
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    medal = MedalSerializer(read_only=True)
+    choice_set = ChoiceSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Task
+        fields = ('id', 'name', 'desc', 'medal', 'choice_set')
 
 
 class StorySerializer(serializers.ModelSerializer):

@@ -109,7 +109,6 @@ class Medal(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     icon_url = models.URLField()
-    map = models.ForeignKey(Map)
 
 
 class Task(models.Model):
@@ -119,14 +118,15 @@ class Task(models.Model):
 
 
 class Choice(models.Model):
+    task = models.ForeignKey(Task)
+    order = models.IntegerField()
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     image_url = models.URLField()
     answer = models.SmallIntegerField()
-    task = models.ForeignKey(Task)
 
 
 class Option(models.Model):
-    index = models.SmallIntegerField()
-    desc = models.CharField(max_length=100)
     choice = models.ForeignKey(Choice)
+    order = models.SmallIntegerField()
+    desc = models.CharField(max_length=100)
