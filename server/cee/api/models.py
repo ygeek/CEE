@@ -4,12 +4,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_url = models.URLField()
-    gender = models.SmallIntegerField()
-
-
 class UserDeviceToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     device_token = models.CharField(max_length=100)
@@ -78,12 +72,20 @@ class UserCoupon(models.Model):
             )
 
 
+class Medal(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+    icon_url = models.URLField()
+    owners = models.ManyToManyField(User, related_name='medals')
+
+
 class Map(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     x = models.FloatField()
     y = models.FloatField()
     image_url = models.URLField()
+    medal = models.ForeignKey(Medal, related_name='maps')
 
 
 class UserMap(models.Model):
@@ -126,17 +128,9 @@ class UserItem(models.Model):
             )
 
 
-class Medal(models.Model):
-    name = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
-    icon_url = models.URLField()
-    owners = models.ManyToManyField(User, related_name='medals')
-
-
 class Task(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
-    medal = models.ForeignKey(Medal, related_name='tasks')
 
 
 class Choice(models.Model):

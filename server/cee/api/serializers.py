@@ -45,12 +45,11 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    medal = MedalSerializer(read_only=True)
     choices = ChoiceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Task
-        fields = ('id', 'name', 'desc', 'medal', 'choices')
+        fields = ('id', 'name', 'desc', 'choices')
 
 
 class StorySerializer(serializers.ModelSerializer):
