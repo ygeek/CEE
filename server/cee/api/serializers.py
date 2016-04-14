@@ -2,6 +2,11 @@ from rest_framework import serializers
 
 from .models import *
 
+class UserMapSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserMap
+        fields = ('id', 'user', 'map', 'completed')
+
 
 class MedalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,7 +21,7 @@ class OptionSerializer(serializers.ModelSerializer):
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
-    option_set = OptionSerializer(many=True, read_only=True)
+    options = OptionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Choice
@@ -28,17 +33,17 @@ class ChoiceSerializer(serializers.ModelSerializer):
             'desc',
             'image_url',
             'answer',
-            'option_set',
+            'options',
         )
 
 
 class TaskSerializer(serializers.ModelSerializer):
     medal = MedalSerializer(read_only=True)
-    choice_set = ChoiceSerializer(many=True, read_only=True)
+    choices = ChoiceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Task
-        fields = ('id', 'name', 'desc', 'medal', 'choice_set')
+        fields = ('id', 'name', 'desc', 'medal', 'choices')
 
 
 class StorySerializer(serializers.ModelSerializer):
@@ -71,10 +76,10 @@ class CouponSerializer(serializers.ModelSerializer):
                 )
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        user = User
-        fields = (
-                'id',
-                'user_id'
-                )
+#class UserSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        user = User
+#        fields = (
+#                'id',
+#                'user_id'
+#                )

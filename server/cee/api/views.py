@@ -133,6 +133,29 @@ class UserDeviceTokenView(APIView):
             'msg': msg,
         })
 
+class UserMapList(APIView):
+    def get(self, request, user_id):
+        try:
+            user_id = int(user_id)
+            user = User.objects.get(id=user_id)
+            user_maps = user.user_maps.all()
+            serializer = UserMapSerializer(user_maps, many=True)
+            return Response({
+                'code': 0,
+                'medals': serializer.data
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid user id: %s' % user_id
+            })
+        except User.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'user not exists',
+            })
+
+
 
 class TaskDetail(APIView):
     def get(self, request, task_id):

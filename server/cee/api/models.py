@@ -75,11 +75,23 @@ class Coupon(models.Model):
     is_deleted = models.BooleanField()
 
 
+class Map(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+    x = models.FloatField()
+    y = models.FloatField()
+    image_url = models.URLField()
+
+
 class UserMap(models.Model):
-    map_id = models.IntegerField()
-    user_id = models.IntegerField()
-    visited = models.BooleanField()
+    user = models.ForeignKey(User, related_name='user_maps')
+    map = models.ForeignKey(Map, related_name='user_maps')
     completed = models.BooleanField()
+
+    class Meta:
+        unique_together = (
+            ('user', 'map'),
+        )
 
 
 class Anchor(models.Model):
@@ -102,14 +114,6 @@ class UserItem(models.Model):
     state = models.CharField(max_length=50)
 
 
-class Map(models.Model):
-    name = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
-    x = models.FloatField()
-    y = models.FloatField()
-    image_url = models.URLField()
-
-
 class Medal(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
@@ -129,6 +133,7 @@ class Choice(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     image_url = models.URLField()
+    # TODO(stareven): encrypt
     answer = models.SmallIntegerField()
 
 
