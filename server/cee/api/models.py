@@ -4,6 +4,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class City(models.Model):
+    name = models.CharField(max_length=30)
+
+
 class UserDeviceToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     device_token = models.CharField(max_length=100)
@@ -34,6 +38,15 @@ class Story(models.Model):
     distance = models.FloatField()
     city = models.CharField(max_length=50)
 
+
+class CityStory(models.Model):
+    city = models.ForeignKey(City, related_name='city_storys')
+    story = models.ForeignKey(Story, related_name='city_storys')
+
+    class Meta:
+        unique_together = (
+            ('city', 'story'),
+        )
 
 class Level(models.Model):
     level_type = models.CharField(max_length=50)
@@ -68,8 +81,8 @@ class UserCoupon(models.Model):
 
     class Meta:
         unique_together = (
-                ('user', 'coupon'),
-            )
+            ('user', 'coupon'),
+         )
 
 
 class Medal(models.Model):

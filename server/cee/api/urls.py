@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
 
     url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
+    url(r'^v1/city/(?P<city_id>\d+)/story/$', StoryList.as_view()),
     url(r'^v1/coupon/(?P<coupon_id>\d+)/$', CouponDetail.as_view()),
     url(r'^v1/user/(?P<user_id>\d+)/coupon/$', CouponList.as_view()),
 ]
