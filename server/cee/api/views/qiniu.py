@@ -7,22 +7,27 @@ import qiniu
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
-from rest_framework.status import HTTP_400_BAD_REQUEST
 from ..config import QiniuConfig
 
 
 class UploadTokenView(APIView):
     permission_classes = (IsAdminUser,)
 
-    def get(self, request, key=None):
-        if not key:
-            content = {'code': -1,
-                       'msg': 'missing parameter "key"'}
-            return Response(data=content, status=HTTP_400_BAD_REQUEST)
+    def get(self, request, key):
         q = qiniu.Auth(QiniuConfig.ACCESS_KEY, QiniuConfig.SECRET_KEY)
         token = q.upload_token(QiniuConfig.BUCKET_NAME, key)
-
         return Response({
             'code': 0,
             'upload_token': token,
+        })
+
+
+class PrivateDownloadURL(APIView):
+    def get(self, request, key):
+        q = qiniu.Auth(QiniuConfig.ACCESS_KEY, QiniuConfig.SECRET_KEY)
+        base_url = 'http://{0}/{1}'.format(QiniuConfig.BUCKET_DOMAIN, key)
+        private_url = q.private_download_url(base_url)
+        return Response({
+            'code': 0,
+            'private_url': private_url,
         })

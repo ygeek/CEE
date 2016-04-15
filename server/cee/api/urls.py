@@ -12,7 +12,9 @@ urlpatterns = [
     url(r'^v1/login/$', Login.as_view()),
     url(r'^v1/login/thirdparty/$', LoginThirdParty.as_view()),
     url(r'^v1/devicetoken/$', UserDeviceTokenView.as_view()),
+
     url(r'^v1/uploadtoken/(?P<key>\w+)/$', UploadTokenView.as_view()),
+    url(r'^v1/downloadurl/(?P<key>\w+)/$', PrivateDownloadURL.as_view()),
 
     url(r'^v1/user/(?P<user_id>\d+)/map/$', UserMapList.as_view()),
 
