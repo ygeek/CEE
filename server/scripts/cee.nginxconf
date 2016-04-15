@@ -1,6 +1,5 @@
 worker_processes 1;
 
-error_log /home/nightfade/CEE/logs/nginx-error.log;
 
 events {
   worker_connections 1024; # increase if you have lots of clients
@@ -13,31 +12,39 @@ http {
     include mime.types;
     default_type application/octet-stream;
 
-    access_log /home/nightfade/CEE/logs/nginx-access.log;
+    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                    '"$status" $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for" '
+                    '"$gzip_ratio" $request_time $bytes_sent $request_length';
+
+    access_log /home/cee/cee/logs/nginx-access.log main;
+
+    error_log /home/cee/cee/logs/nginx-error.log;
 
     sendfile on;
 
-    upstream wx_app_server {
+    upstream app_server {
       # fail_timeout=0 means we always retry an upstream even if it failed
       # to return a good HTTP response (in case the Unicorn master nukes a
       # single worker for timing out).
 
-      server unix:/home/nightfade/CEE/run/gunicorn.sock fail_timeout=0;
+      server unix:/home/cee/cee/run/gunicorn.sock fail_timeout=0;
     }
 
     server {
         listen   80;
         client_max_body_size 1G;
 
-        server_name xshuxue.com;
-
+        server_name cee-dev;
      
         location /static/ {
-            alias   /home/nightfade/CEE/dist/static/;
+            autoindex on;
+            alias /home/cee/cee/dist/cee/static/;
         }
         
         location /media/ {
-            alias   /home/nightfade/CEE/dist/media/;
+            autoindex on;
+            alias /home/cee/cee/dist/cee/media/;
         }
 
         location / {
@@ -64,13 +71,13 @@ http {
             # clients, really.
             # proxy_buffering off;
 
-            proxy_pass http://wx_app_server;
+            proxy_pass http://app_server;
         }
 
         # Error pages
         error_page 500 502 503 504 /500.html;
         location = /500.html {
-            root /home/nightfade/CEE/dist/static/;
+            root /home/cee/cee/dist/cee/static/;
         }
     }
 }

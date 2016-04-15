@@ -6,14 +6,14 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 
-NAME="CEE"                                  # Name of the application
-DJANGODIR=$HOME/CEE/dist                    # Django project directory
-SOCKFILE=$HOME/CEE/run/gunicorn.sock        # we will communicte using this unix socket
-USER=nightfade                                    # the user to run as
-GROUP=nightfade                                   # the group to run as
+NAME="cee"                                  # Name of the application
+DJANGODIR=$HOME/cee/dist/cee                # Django project directory
+SOCKFILE=$HOME/cee/run/gunicorn.sock        # we will communicte using this unix socket
+USER=cee                                    # the user to run as
+GROUP=cee                                   # the group to run as
 NUM_WORKERS=1                                     # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE=CEE.server_settings         # which settings file should Django use
-DJANGO_WSGI_MODULE=CEE.wsgi                     # WSGI module name
+DJANGO_SETTINGS_MODULE=cee.settings_server         # which settings file should Django use
+DJANGO_WSGI_MODULE=cee.wsgi                     # WSGI module name
 
 # Activate the virtual environment
 cd $DJANGODIR
@@ -35,5 +35,5 @@ exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --user=$USER --group=$GROUP \
   --bind=unix:$SOCKFILE \
   --log-level=debug \
-  --log-file=$HOME/CEE/logs/gunicorn.log \
-  --access-logfile=$HOME/CEE/logs/gunicorn_access.log
+  --log-file=$HOME/cee/logs/gunicorn.log \
+  --access-logfile=$HOME/cee/logs/gunicorn_access.log
