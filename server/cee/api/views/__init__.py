@@ -12,6 +12,7 @@ from .story import *
 from .task import *
 from .coupon import *
 from .medal import *
+from .qiniu import *
 
 
 class Hello(APIView):
