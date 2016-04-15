@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import *
+from .models import UserMap, UserCoupon, Medal, Map, Option, Choice, Task, Story, Coupon, User
 
 
 class UserMapSerializer(serializers.ModelSerializer):
@@ -64,28 +64,28 @@ class StorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
         fields = (
-                'id',
-                'name',
-                'desc',
-                'time',
-                'good',
-                'distance',
-                'city'
-            )
+            'id',
+            'name',
+            'desc',
+            'time',
+            'good',
+            'distance',
+            'city'
+        )
 
 
 class CouponSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coupon
         fields = (
-                'id',
-                'gmt_start',
-                'gmt_end',
-                'name',
-                'desc',
-                'state',
-                'code'
-                )
+            'id',
+            'gmt_start',
+            'gmt_end',
+            'name',
+            'desc',
+            'state',
+            'code'
+        )
 
 
 class UserSerializer(serializers.ModelSerializer):
