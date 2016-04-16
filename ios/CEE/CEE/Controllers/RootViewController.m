@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "DrawerViewController.h"
 
 @interface RootViewController ()
 
@@ -29,7 +30,7 @@
 }
 
 - (void)commonInit {
-    UIViewController * vc1 = [[UIViewController alloc] init];
+    UIViewController * vc1 = [[DrawerViewController alloc] init];
     vc1.view.backgroundColor = [UIColor redColor];
     
     UIViewController * vc2 = [[UIViewController alloc] init];

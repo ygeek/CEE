@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BBA532351CBBC56500282D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532341CBBC56500282D3E /* main.m */; };
 		BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532371CBBC56500282D3E /* AppDelegate.m */; };
 		BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA5323F1CBBC56500282D3E /* Assets.xcassets */; };
@@ -23,6 +24,8 @@
 /* Begin PBXFileReference section */
 		6F33B289AB3942036A5E07CD /* Pods_CEE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CEE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.debug.xcconfig"; sourceTree = "<group>"; };
+		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
+		BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScrollView.m; sourceTree = "<group>"; };
 		BBA532301CBBC56500282D3E /* CEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA532341CBBC56500282D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBA532361CBBC56500282D3E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 		BBA532501CBBD0F500282D3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */,
+				BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
+				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
 				BBA532611CBBDA6A00282D3E /* StoryViewController.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
