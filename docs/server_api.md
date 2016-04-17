@@ -419,7 +419,7 @@ Authorization: Token xxxxxxx
 ## 完成地图
 ### Request
 ```http
-POST /api/v1/map/complete/
+POST /api/v1/map/1/complete/
 Authorization: Token xxxxxxx
 
 {
@@ -595,11 +595,11 @@ Authorization: Token xxxxxxx
 ## 完成故事
 ### Request
 ```http
-POST /api/v1/story/complete/
+POST /api/v1/story/1/complete/
 Authorization: Token xxxxxxx
 
 {
-    // TODO(stareven): enctrypt
+    // TODO(stareven): encrypt
     // "key": "xxxxxxx"
 }
 ```
