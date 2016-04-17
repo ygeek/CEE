@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 from rest_framework import serializers
 
-from .models import *
+from ..models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
