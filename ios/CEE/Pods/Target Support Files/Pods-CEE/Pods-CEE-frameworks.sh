@@ -84,14 +84,18 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-CEE/ABMenuTableViewCell.framework"
   install_framework "Pods-CEE/AFNetworking.framework"
+  install_framework "Pods-CEE/Masonry.framework"
   install_framework "Pods-CEE/RDVTabBarController.framework"
   install_framework "Pods-CEE/ReactiveCocoa.framework"
   install_framework "Pods-CEE/Realm.framework"
   install_framework "Pods-CEE/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-CEE/ABMenuTableViewCell.framework"
   install_framework "Pods-CEE/AFNetworking.framework"
+  install_framework "Pods-CEE/Masonry.framework"
   install_framework "Pods-CEE/RDVTabBarController.framework"
   install_framework "Pods-CEE/ReactiveCocoa.framework"
   install_framework "Pods-CEE/Realm.framework"

@@ -7,7 +7,12 @@
 //
 
 #import "RootViewController.h"
+#import "UtilsMacros.h"
+#import "AppearanceConstants.h"
 #import "DrawerViewController.h"
+#import "WorldViewController.h"
+#import "StoriesViewController.h"
+#import "MessageViewController.h"
 
 @interface RootViewController ()
 
@@ -30,20 +35,47 @@
 }
 
 - (void)commonInit {
-    UIViewController * vc1 = [[DrawerViewController alloc] init];
-    vc1.view.backgroundColor = [UIColor redColor];
+    DrawerViewController * drawerVC = [[DrawerViewController alloc] init];
     
-    UIViewController * vc2 = [[UIViewController alloc] init];
-    vc2.view.backgroundColor = [UIColor yellowColor];
+    WorldViewController * worldVC = [[WorldViewController alloc] init];
+    
+    StoriesViewController * storyVC = [[StoriesViewController alloc] init];
+    
+    MessageViewController * messageVC = [[MessageViewController alloc] init];
+    
+    [self.tabBar setFrame:CGRectMake(CGRectGetMinX(self.tabBar.frame),
+                                     CGRectGetMinY(self.tabBar.frame),
+                                     CGRectGetWidth(self.tabBar.frame),
+                                     49)];
     
     self.tabBar.translucent = YES;
     
-    self.tabBar.backgroundView.backgroundColor = [UIColor colorWithRed:0
-                                                                 green:0
-                                                                  blue:0
-                                                                 alpha:0.7];
+    self.tabBar.backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
     
-    [self setViewControllers:@[vc1, vc2]];
+    [self setViewControllers:@[[[UINavigationController alloc] initWithRootViewController:drawerVC],
+                               [[UINavigationController alloc] initWithRootViewController:worldVC],
+                               [[UINavigationController alloc] initWithRootViewController:storyVC],
+                               [[UINavigationController alloc] initWithRootViewController:messageVC]]];
+    
+    NSArray<RDVTabBarItem *> * items = self.tabBar.items;
+    for (RDVTabBarItem * item in items) {
+        item.selectedTitleAttributes = @{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:9],
+                                         NSForegroundColorAttributeName: kCEETabBarSelectedTitleColor};
+        item.unselectedTitleAttributes = @{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:9],
+                                           NSForegroundColorAttributeName: UIColor.whiteColor};
+        item.badgeBackgroundColor = kCEETabBarBadgeBackgroundColor;
+        item.badgeTextColor = kCEETextBlackColor;
+        item.badgeTextFont = [UIFont fontWithName:kCEEFontNameRegular size:6];
+    }
+    items[0].title = _T(@"drawer");
+    items[1].title = _T(@"world");
+    items[2].title = _T(@"story");
+    items[3].title = _T(@"message");
+    
+    messageVC.view.backgroundColor = [UIColor blueColor];
+    storyVC.view.backgroundColor = [UIColor greenColor];
+    drawerVC.view.backgroundColor = [UIColor redColor];
+    worldVC.view.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)viewDidLoad {

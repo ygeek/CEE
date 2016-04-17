@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  CEE
+
+  Created by Meng on 16/4/16.
+  Copyright © 2016年 ygeek. All rights reserved.
+*/
+
+"drawer" = "抽屉";
+"world" = "世界";
+"story" = "故事";
+"message" = "消息";

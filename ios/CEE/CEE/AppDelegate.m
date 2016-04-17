@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "SDKManager.h"
 #import "RootViewController.h"
+#import "CEEUtils.h"
 
 @interface AppDelegate ()
 
@@ -28,6 +29,8 @@
     self.window.rootViewController = [[RootViewController alloc] init];
     
     [self.window makeKeyAndVisible];
+   
+    [CEEUtils printAllFontNames];
     
     return YES;
 }

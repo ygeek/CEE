@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SourceHanSansCN-Bold.otf</string>
+		<string>SourceHanSansCN-ExtraLight.otf</string>
+		<string>SourceHanSansCN-Heavy.otf</string>
+		<string>SourceHanSansCN-Light.otf</string>
+		<string>SourceHanSansCN-Medium.otf</string>
+		<string>SourceHanSansCN-Normal.otf</string>
+		<string>SourceHanSansCN-Regular.otf</string>
+		<string>Gobold-Regular.ttf</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

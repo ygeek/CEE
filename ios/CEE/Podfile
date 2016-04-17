@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'CEE' do
     pod 'Realm'
+    pod 'Masonry'
     pod 'AFNetworking'
     pod 'ReactiveCocoa', '~> 2.5'
     pod 'SDWebImage'
@@ -17,5 +18,6 @@ target 'CEE' do
     pod 'ShareSDK3/ShareSDKPlatforms/QQ'
     pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
     pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+    pod 'ABMenuTableViewCell'
 end
 
