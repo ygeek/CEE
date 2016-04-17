@@ -13,6 +13,7 @@ from rest_framework.authtoken.models import Token
 
 from ..forms import UserForm
 from ..models.auth import *
+from ..services import verify_qq_openid, verify_weibo_openid, verify_weixin_openid
 
 
 def get_token(user):
@@ -76,14 +77,33 @@ class Login(APIView):
 
 class LoginThirdParty(APIView):
     def post(self, request):
+        access_token = request.data['access_token']
         uid = request.data['uid']
         platform = request.data['platform']
         try:
             account = ThirdPartyAccount.objects.get(uid=uid, platform=platform)
             user = account.user
         except ThirdPartyAccount.DoesNotExist:
-            fake_username = hashlib.sha1(uid).hexdigest()
-            fake_email = '{0}@{0}.com'.format(fake_username)
+            auth_failed = Response({
+                'code': -1,
+                'msg': 'auth failed'
+            })
+            if platform == 'weixin':
+                if not verify_weixin_openid(access_token, uid):
+                    return auth_failed
+            elif platform == 'weibo':
+                if not verify_weibo_openid(access_token, uid):
+                    return auth_failed
+            elif platform == 'qq':
+                if not verify_qq_openid(access_token, uid):
+                    return auth_failed
+            else:
+                return Response({
+                    'code': -2,
+                    'msg': 'unknown login platform'
+                })
+            fake_username = '{0}_{1}'.format(platform, hashlib.sha1(uid).hexdigest())
+            fake_email = '{0}@cee_{1}.com'.format(fake_username, platform)
             user = User.objects.create_user(username=fake_username, email=fake_email, password=unicode(uuid.uuid1()))
             ThirdPartyAccount.objects.create(uid=uid, platform=platform, user=user)
         token = get_token(user)

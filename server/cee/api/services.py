@@ -45,7 +45,7 @@ def _post_apns_payload(payload):
     requests.post(LeanCloudConfig.PUSH_URL, data=json.dumps(payload), headers=headers)
 
 
-def verify_wexin_openid(access_token, openid):
+def verify_weixin_openid(access_token, openid):
     response = requests.get(WeixinConfig.AUTH_URL, {
         WeixinConfig.ACCESS_TOKEN_KEY: access_token,
         WeixinConfig.OPENID_KEY: openid,
