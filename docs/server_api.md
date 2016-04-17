@@ -1,6 +1,9 @@
 # 注册 & 登录
 
 ## `POST /api/v1/user/register`
+
+### 状态：已实现
+
 ### Request
 ```json
 {
@@ -21,6 +24,8 @@
 ```
 
 ## `POST /api/v1/user/login`
+
+### 状态：已实现 TODO(zhangmeng): Response待完善
 
 ### Request
 
@@ -73,6 +78,8 @@ Token登录：
 
 # 世界模块
 
+### 状态：待实现者确认&修改
+
 ## `GET /api/v1/world/mapid`
 
 ### Request
@@ -93,6 +100,8 @@ Token登录：
 ```
 
 ## `GET /api/v1/world/map`
+
+### 状态：待实现者确认&修改
 
 ### Request
 
@@ -130,6 +139,8 @@ Token登录：
 
 ## "GET /api/v1/world/anchor"
 
+### 状态：待实现者确认&修改
+
 ### Request
 
 ```json
@@ -150,6 +161,8 @@ Token登录：
 ```
 
 ## "GET /api/v1/world/acquired"
+
+### 状态：待实现者确认&修改
 
 ### Request
 
@@ -192,6 +205,8 @@ Token登录：
 # 故事模块
 
 ## `GET /api/v1/story/list`
+
+### 状态：待实现者确认&修改
 
 ### Request
 
@@ -240,6 +255,8 @@ Token登录：
 ```
 
 ## `GET /api/v1/story/detail`
+
+### 状态：待实现者确认&修改
 
 ### Request
 
