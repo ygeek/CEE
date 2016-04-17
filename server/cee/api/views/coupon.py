@@ -31,13 +31,13 @@ class CouponDetail(APIView):
             })
 
 
-class CouponList(APIView):
+class UserCouponList(APIView):
     def get(self, request, user_id):
         try:
             user_id = int(user_id)
             user = User.objects.get(id=user_id)
             user_coupons = user.user_coupons.all()
-            serializer = CouponSerializer(user_coupons, many=True)
+            serializer = UserCouponSerializer(user_coupons, many=True)
             return Response({
                 'code': 0,
                 'coupons': serializer.data

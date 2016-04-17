@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Story,City
-from ..serializers import StorySerializer, CityStorySerializer
+from ..models import Story, City, Anchor
+from ..serializers import StorySerializer, CityStorySerializer, AnchorStorySerializer
 
 
 class StoryDetail(APIView):
@@ -32,13 +32,13 @@ class StoryDetail(APIView):
             })
 
 
-class StoryList(APIView):
+class CityStoryList(APIView):
     def get(self, request, city_id):
         try:
             city_id = int(city_id)
             city = City.objects.get(id=city_id)
             city_storys = city.city_storys.all()
-            serializer = StorySerializer(city_storys, many=True)
+            serializer = CityStorySerializer(city_storys, many=True)
             return Response({
                 'code': 0,
                 'storys': serializer.data
@@ -52,4 +52,27 @@ class StoryList(APIView):
             return Response({
                 'code': -2,
                 'msg': 'city not exists',
+            })
+
+
+class AnchorStory(APIView):
+    def get(self, request, anchor_id):
+        try:
+            anchor_id = int(anchor_id)
+            anchor = Anchor.objects.get(id=anchor_id)
+            anchor_story = anchor.anchor_story.all()
+            serializer = AnchorStorySerializer(anchor_story)
+            return Response({
+                'code': 0,
+                'story': serializer.data
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid anchor id: %s' % anchor_id
+            })
+        except Anchor.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'anchor not exists',
             })

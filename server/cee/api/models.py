@@ -48,6 +48,7 @@ class CityStory(models.Model):
             ('city', 'story'),
         )
 
+
 class Level(models.Model):
     level_type = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
@@ -56,6 +57,16 @@ class Level(models.Model):
     test = models.TextField()
     number_answer = models.CharField(max_length=50)
     h5_url = models.URLField()
+
+
+class StoryLevel(models.Model):
+    story = models.ForeignKey(Story, related_name='story_levels')
+    level = models.ForeignKey(Level, related_name='story_levels')
+
+    class Meta:
+        unique_together = (
+            ('story', 'level'),
+        )
 
 
 class Item(models.Model):
@@ -92,6 +103,16 @@ class Medal(models.Model):
     owners = models.ManyToManyField(User, related_name='medals')
 
 
+class UserMedal(models.Model):
+    user = models.ForeignKey(User, related_name='user_medals')
+    medal = models.ForeignKey(Medal, related_name='user_medals')
+
+    class Meta:
+        unique_together = (
+            ('user', 'medal'),
+        )
+
+
 class Map(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
@@ -117,11 +138,47 @@ class Anchor(models.Model):
     desc = models.TextField()
     dx = models.FloatField()
     dy = models.FloatField()
+    anchor_type = models.CharField(max_length=50)
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=30)
+    desc = models.CharField(max_length=100)
+
+
+class MapAnchor(models.Model):
+    map = models.ForeignKey(Map, related_name='map_anchors')
+    anchor = models.ForeignKey(Anchor, related_name='map_anchors')
+
+    class Meta:
+        unique_together = (
+            ('map', 'anchor'),
+        )
+
+
+class AnchorTask(models.Model):
+    anchor = models.ForeignKey(Anchor, related_name='anchor_task')
+    task = models.ForeignKey(Task, related_name='anchor_task')
+
+    class Meta:
+        unique_together = (
+            ('anchor', 'task'),
+        )
+
+
+class AnchorStory(models.Model):
+    anchor = models.ForeignKey(Anchor, related_name='anchor_story')
+    story = models.ForeignKey(Story, related_name='anchor_story')
+
+    class Meta:
+        unique_together = (
+            ('anchor', 'story'),
+        )
 
 
 class UserAnchor(models.Model):
     user = models.ForeignKey(User, related_name='user_anchors')
-    anchor = models.ForeignKey(Anchor, related_name='user_anchorss')
+    anchor = models.ForeignKey(Anchor, related_name='user_anchors')
     completed = models.BooleanField()
 
     class Meta:
@@ -139,11 +196,6 @@ class UserItem(models.Model):
         unique_together = (
                 ('user', 'item'),
             )
-
-
-class Task(models.Model):
-    name = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
 
 
 class Choice(models.Model):

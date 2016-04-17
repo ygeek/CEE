@@ -3,44 +3,45 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Medal, User
-from ..serializers import MedalSerializer, UserMedalSerializer
+from ..models import Item, User
+from ..serializers import ItemSerializer, UserItemSerializer
 
 
-class MedalDetail(APIView):
-    def get(self, request, medal_id):
+class ItemDetail(APIView):
+    def get(self, request, item_id):
         try:
-            medal_id = int(medal_id)
-            medal = Medal.objects.get(id=medal_id)
-            serializer = MedalSerializer(medal)
+            item_id = int(item_id)
+            item = Item.objects.get(id=item_id)
+            serializer = ItemSerializer(item)
             return Response({
                 'code': 0,
-                'medal': serializer.data
+                'item': serializer.data
             })
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid medal id: %s' % medal_id
+                'msg': 'invalid item id: %s' % item_id
             })
-        except Medal.DoesNotExist:
+        except Item.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'medal not exists',
+                'msg': 'item not exists',
             })
 
 
-class UserMedalList(APIView):
+class UserItemList(APIView):
     def get(self, request, user_id):
         try:
             user_id = int(user_id)
             user = User.objects.get(id=user_id)
-            medals = user.medals.all()
-            serializer = UserMedalSerializer(medals, many=True)
+            user_items = user.user_items.all()
+            serializer = UserItemSerializer(user_items, many=True)
             return Response({
                 'code': 0,
-                'medals': serializer.data
+                'items': serializer.data
             })
         except ValueError:
             return Response({

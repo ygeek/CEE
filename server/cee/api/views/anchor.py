@@ -1,46 +1,46 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import absolute_import
+from __future__ import unicode_literals
+
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import User, Map
-from ..serializers import UserMapSerializer, MapSerializer
+from ..models import Anchor
+from ..serializers import AnchorSerializer, MapAnchorSerializer
 
-
-class UserMapList(APIView):
-    def get(self, request, user_id):
+class AnchorDetail(APIView):
+    def get(self, request, anchor_id):
         try:
-            user_id = int(user_id)
-            user = User.objects.get(id=user_id)
-            user_maps = user.user_maps.all()
-            serializer = UserMapSerializer(user_maps, many=True)
+            anchor_id = int(anchor_id)
+            anchor = Anchor.objects.get(id=anchor_id)
+            serializer = AnchorSerializer(anchor)
             return Response({
                 'code': 0,
-                'maps': serializer.data
+                'anchor': serializer.data
             })
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid user id: %s' % user_id
+                'msg': 'invalid anchor id: %s' % anchor_id
             })
-        except User.DoesNotExist:
+        except Anchor.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'user not exists',
+                'msg': 'anchor not exists',
             })
 
 
-class MapDetail(APIView):
+class MapAnchorList(APIView):
     def get(self, request, map_id):
         try:
             map_id = int(map_id)
             map = Map.objects.get(id=map_id)
-            serializer = MapSerializer(map)
+            map_anchors = map.map_anchors.all()
+            serializer = MapAnchorSerializer(map_anchors, many=True)
             return Response({
                 'code': 0,
-                'map': serializer.data
+                'anchors': serializer.data
             })
         except ValueError:
             return Response({

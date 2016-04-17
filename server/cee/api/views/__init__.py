@@ -13,8 +13,9 @@ from .task import *
 from .coupon import *
 from .medal import *
 from .qiniu import *
-
-
+from .anchor import *
+from .level import *
+from .item import *
 class Hello(APIView):
     """ Example view """
 

@@ -24,12 +24,24 @@ urlpatterns = [
     url(r'^v1/choice/(?P<choice_id>\d+)/option/$', OptionList.as_view()),
     url(r'^v1/option/(?P<option_id>\d+)/$', OptionDetail.as_view()),
 
-    url(r'^v1/medal/(?P<medal_id>\d+)/$', MedalDetail.as_view()),
     url(r'^v1/map/(?P<map_id>\d+)/$', MapDetail.as_view()),
     url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
 
+    url(r'^v1/item/(?P<item_id>\d+)/$', ItemDetail.as_view()),
+    url(r'^v1/user/(?P<user_id>\d+)/item/$', UserItemList.as_view()),
+
+    url(r'^v1/anchor/(?P<anchor_id>\d+)/$', AnchorDetail.as_view()),
+    url(r'^v1/anchor/(?P<anchor_id>\d+)/task/$', AnchorTask.as_view()),
+    url(r'^v1/anchor/(?P<anchor_id>\d+)/story/$', AnchorStory.as_view()),
+
+    url(r'^v1/level/(?P<level_id>\d+)/$', LevelDetail.as_view()),
+    url(r'^v1/story/(?P<story_id>\d+)/level/$', StoryLevelList.as_view()),
+
+    url(r'^v1/medal/(?P<medal_id>\d+)/$', MedalDetail.as_view()),
+    url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
+
     url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
-    url(r'^v1/city/(?P<city_id>\d+)/story/$', StoryList.as_view()),
+    url(r'^v1/city/(?P<city_id>\d+)/story/$', CityStoryList.as_view()),
     url(r'^v1/coupon/(?P<coupon_id>\d+)/$', CouponDetail.as_view()),
-    url(r'^v1/user/(?P<user_id>\d+)/coupon/$', CouponList.as_view()),
+    url(r'^v1/user/(?P<user_id>\d+)/coupon/$', UserCouponList.as_view()),
 ]

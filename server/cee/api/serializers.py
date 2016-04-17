@@ -1,11 +1,73 @@
 from rest_framework import serializers
 
-from .models import CityStory, UserMap, UserCoupon, Medal, Map, Option, Choice, Task, Story, Coupon, User, City
+from .models import CityStory, UserMap, UserCoupon, Medal, Map, Option, Choice, Task, Story, Coupon, User, City, Level, StoryLevel, Anchor, MapAnchor, AnchorStory, AnchorTask, UserMedal, UserItem, Item
+
+class AnchorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Anchor
+        fields = ('id', 'name', 'desc', 'dx', 'dy')
+
+
+class MapAnchorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MapAnchor
+        fields = ('id', 'map', 'anchor')
+
+
+class AnchorStorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnchorStory
+        fields = ('id', 'anchor', 'story')
+
+
+class AnchorTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnchorTask
+        fields = ('id', 'anchor', 'task')
+
+
+class LevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Level
+        fields = (
+            'id',
+            'type',
+            'name',
+            'video_url',
+            'img_url',
+            'text',
+            'number_answer',
+            'h5_url'
+        )
+
+
+class StoryLevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StoryLevel
+        fields = ('id', 'story', 'level')
+
 
 class CityStorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CityStory
         fields = ('id', 'city', 'story')
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ('id', 'item_type', 'title', 'desc', 'data')
+
+class UserItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserItem
+        fields = ('id', 'user', 'item')
+
+
+class UserMedalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserMedal
+        fields = ('id', 'user', 'medal')
 
 
 class UserMapSerializer(serializers.ModelSerializer):

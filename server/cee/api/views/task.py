@@ -5,9 +5,8 @@ from __future__ import absolute_import
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Task, Choice, Option
-from ..serializers import TaskSerializer, ChoiceSerializer, OptionSerializer
-
+from ..models import Task, Choice, Option, Anchor
+from ..serializers import TaskSerializer, ChoiceSerializer, OptionSerializer, AnchorTaskSerializer
 
 class TaskDetail(APIView):
     def get(self, request, task_id):
@@ -28,6 +27,29 @@ class TaskDetail(APIView):
             return Response({
                 'code': -2,
                 'msg': 'task not exists',
+            })
+
+
+class AnchorTask(APIView):
+    def get(self, request, anchor_id):
+        try:
+            anchor_id = int(anchor_id)
+            anchor = Anchor.objects.get(id=anchor_id)
+            anchor_task = anchor.anchor_task.all()
+            serializer = AnchorTaskSerializer(anchor_task, many=True)
+            return Response({
+                'code': 0,
+                'task': serializer.data,
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid anchor id: %s' % anchor_id,
+            })
+        except Anchor.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'anchor not exists',
             })
 
 
@@ -119,4 +141,3 @@ class OptionList(APIView):
                 'code': -2,
                 'msg': 'choice not exists',
             })
-
