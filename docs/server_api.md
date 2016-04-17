@@ -336,3 +336,284 @@ Token登录：
 }
 ```
 
+# Map
+
+## 获取最近未完成地图
+### Request
+```http
+GET /api/v1/map/nearest/
+Authorization: Token xxxxxxx
+
+{
+    "longitude": 114.06667,
+    "latitude": 22.61667
+}
+```
+### Response
+```http
+{
+    "code": 0,
+    "map": {
+        "id": 1,
+        "name": "Map-Name-1",
+        "desc": "Map-Desc-1",
+        "image_url": "http://example.com/map-1.png",
+        "completed": false
+    }
+}
+```
+
+## 获取用户已获得地图列表
+### Request
+```http
+GET /api/v1/map/acquired/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+    "code": 0,
+    "maps": [
+        {
+            "id": 1,
+            "name": "Map-Name-1",
+            "desc": "Map-Desc-1",
+            "image_url": "http://example.com/map-1.png",
+            "completed": false
+        }
+    ]
+}
+```
+
+## 获取地图锚点列表
+### Request
+```http
+GET /api/v1/map/1/anchor/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+    "code": 0,
+    "anchors": [
+        {
+            "id": 1,
+            "name": "Anchor-Name-1",
+            "dw": 10,
+            "dh": 20,
+            "type": "task",
+            "ref_id": 1
+        },
+        {
+            "id": 2,
+            "name": "Anchor-Name-2",
+            "dw": 50,
+            "dh": 80,
+            "type": "story",
+            "ref_id": 1
+        }
+    ]
+}
+```
+
+## 完成地图
+### Request
+```http
+POST /api/v1/map/complete/
+Authorization: Token xxxxxxx
+
+{
+    // TODO(stareven): encrypt
+    // "key": "xxxxxxx"
+}
+```
+### Response
+```http
+{
+    "code": 0,
+    "awards": [
+        {
+            "type": "medal",
+            "detail": {
+                "id": 1,
+                "name": "Medal-Name-1",
+                "desc": "Medal-Desc-1",
+                "icon_url": "http://example.com/medal-1.png"
+            }
+        }
+    ]
+}
+```
+
+# Task
+
+## 获取选择题组详情
+### Request
+```http
+GET /api/v1/task/1/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+
+{
+    "code": 0,
+    "task": {
+        "id": 1,
+        "name": "Task-Name-1",
+        "desc": "Task-Desc-1",
+        "completed": false,
+        "choices": [
+            {
+                "id": 1,
+                "task": 1,
+                "order": 1,
+                "name": "Choice-Name-1",
+                "desc": "Choice-Desc-1",
+                "image_url": "http://example.com/choice-1.png",
+                // TODO(stareven): encrypt
+                "answer": 1,
+                "options": [
+                    {
+                        "id": 1,
+                        "choice": 1,
+                        "order": 1,
+                        "desc": "Option-1"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+## 完成选择题组
+### Request
+```http
+POST /api/v1/task/1/complete/
+Authorization: Token xxxxxxx
+
+{
+    // TODO(stareven): encrypt
+    // "key": "xxxxxxx"
+}
+```
+### Response
+```http
+{
+    "code": 0,
+    "awards": [
+        {
+            "type": "coin",
+            "detail": {
+                "amount": 100
+            }
+        }
+    ]
+}
+```
+
+# Story
+
+## 获取所在城市故事列表
+### Request
+```http
+GET /api/vi/story/current_city/
+Authorization: Token xxxxxxx
+
+{
+    "longitude": 114.06667,
+    "latitude": 22.61667
+}
+```
+### Response
+```http
+{
+    "code": 0,
+    "city": "SZ",
+    "stories": [
+        {
+            "id": 1,
+            "name": "Story-Name-1",
+            "desc": "Story-Desc-1",
+            "image_urls": [
+                "http://example.com/story-1-1.png",
+                "http://example.com/story-1-2.png",
+            ],
+            "time": 120,
+            "distance": 5.1,
+            "like": 237,
+            "level_ids": [1, 4, 3, 2],
+            "city": "SZ"
+        }
+    ]
+}
+```
+
+## 获取故事详情
+### Request
+```http
+GET /api/v1/story/1/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+    "code": 0,
+    "story": {
+        // TODO(stareven): complete
+    }
+}
+```
+
+## 完成故事关卡
+### Request
+```http
+POST /api/v1/story/1/level/3/complete/
+Authorization: Token xxxxxxx
+
+{
+    // TODO(stareven): encrypt
+    // "key": "xxxxxxx"
+}
+```
+### Response
+```http
+{
+    "code": 0,
+    "awards": [
+        {
+            "type": "coupon",
+            "detail": {
+                // TODO(stareven): complete
+            }
+        }
+    ]
+}
+```
+
+## 完成故事
+### Request
+```http
+POST /api/v1/story/complete/
+Authorization: Token xxxxxxx
+
+{
+    // TODO(stareven): enctrypt
+    // "key": "xxxxxxx"
+}
+```
+### Response
+```http
+{
+    "code": 0,
+    "awards": [
+        {
+            "type": "coin",
+            "detail": {
+                "amount": 100
+            }
+        }
+    ]
+}
+```
