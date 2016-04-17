@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import CityStory, UserMap, UserCoupon, Medal, Map, Option, Choice, Task, Story, Coupon, User, City, Level, StoryLevel, Anchor, MapAnchor, AnchorStory, AnchorTask, UserMedal, UserItem, Item
 
+
 class AnchorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Anchor
@@ -57,6 +58,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'item_type', 'title', 'desc', 'data')
+
 
 class UserItemSerializer(serializers.ModelSerializer):
     class Meta:
