@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 
 from ..forms import UserForm
-from ..models import *
+from ..models.auth import *
 
 
 def get_token(user):

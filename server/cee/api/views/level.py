@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Level, Story
-from ..serializers import LevelSerializer, StoryLevelSerializer
+from ..models.story import *
+from ..serializers.story import *
 
 
 class LevelDetail(APIView):

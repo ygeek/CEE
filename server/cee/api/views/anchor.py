@@ -3,11 +3,11 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Anchor
-from ..serializers import AnchorSerializer, MapAnchorSerializer
+from ..models.anchor import *
+from ..serializers.anchor import *
+
 
 class AnchorDetail(APIView):
     def get(self, request, anchor_id):

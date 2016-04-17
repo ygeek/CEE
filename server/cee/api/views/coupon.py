@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Coupon, User
-from ..serializers import CouponSerializer, UserCouponSerializer
+from ..models.coupon import *
+from ..serializers.coupon import *
 
 
 class CouponDetail(APIView):

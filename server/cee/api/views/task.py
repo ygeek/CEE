@@ -5,8 +5,9 @@ from __future__ import absolute_import
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Task, Choice, Option, Anchor
-from ..serializers import TaskSerializer, ChoiceSerializer, OptionSerializer, AnchorTaskSerializer
+from ..models.task import *
+from ..serializers.task import *
+
 
 class TaskDetail(APIView):
     def get(self, request, task_id):

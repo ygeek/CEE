@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+
 from .auth import *
 from .map import *
 from .story import *
@@ -16,6 +17,8 @@ from .qiniu import *
 from .anchor import *
 from .level import *
 from .item import *
+
+
 class Hello(APIView):
     """ Example view """
 

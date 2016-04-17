@@ -5,50 +5,73 @@ from __future__ import absolute_import
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import User, Map
-from ..serializers import UserMapSerializer, MapSerializer
+from rest_framework.permissions import IsAuthenticated
+from ..models.map import *
+from ..serializers.map import *
 
 
-class UserMapList(APIView):
-    def get(self, request, user_id):
-        try:
-            user_id = int(user_id)
-            user = User.objects.get(id=user_id)
-            user_maps = user.user_maps.all()
-            serializer = UserMapSerializer(user_maps, many=True)
-            return Response({
-                'code': 0,
-                'maps': serializer.data
-            })
-        except ValueError:
-            return Response({
-                'code': -1,
-                'msg': 'invalid user id: %s' % user_id
-            })
-        except User.DoesNotExist:
-            return Response({
-                'code': -2,
-                'msg': 'user not exists',
-            })
+class NearestMap(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        # TODO(stareven): get nearest map
+        map_id = 1
+        map_ = Map.objects.get(id=map_id)
+        serializer = MapSerializer(map_)
+        return Response({
+            'code': 0,
+            'map': serializer.data
+        })
 
 
-class MapDetail(APIView):
-    def get(self, request, map_id):
+class AcquiredMapList(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        user_maps = request.user.user_maps.all()
+        serializer = UserMapSerializer(user_maps, many=True)
+        return Response({
+            'code': 0,
+            'user_maps': serializer.data
+        })
+
+
+class CompleteMap(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, map_id):
+        # TODO(stareven): validate
         try:
             map_id = int(map_id)
-            map = Map.objects.get(id=map_id)
-            serializer = MapSerializer(map)
+            user_map = UserMap.objects.get(user=request.user,
+                                           map_id=map_id)
+            medal = user_map.map.medal
+            serializer = MedalSerializer(medal)
+            try:
+                user_medal = UserMedal.objects.get(user=request.user,
+                                                   medal=medal)
+            except UserMedal.DoesNotExist:
+                user_medal = UserMedal.objects.create(user=request.user,
+                                                      medal=medal)
+            user_map.completed = True
+            user_map.save(update_fields=('completed',))
             return Response({
                 'code': 0,
-                'map': serializer.data
+                'awards': [
+                    {
+                        'type': 'medal',
+                        'detail': serializer.data,
+                    }
+                ]
             })
+
         except ValueError:
             return Response({
                 'code': -1,
                 'msg': 'invalid map id: %s' % map_id
             })
-        except Map.DoesNotExist:
+        except UserMap.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'map not exists',
+                'msg': 'you have not acquired this map',
             })
