@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from ..models.map import *
 from ..serializers.map import *
+from ..serializers.medal import *
 
 
 class NearestMap(APIView):
@@ -43,34 +44,31 @@ class CompleteMap(APIView):
         # TODO(stareven): validate
         try:
             map_id = int(map_id)
-            user_map = UserMap.objects.get(user=request.user,
-                                           map_id=map_id)
-            medal = user_map.map.medal
-            serializer = MedalSerializer(medal)
-            try:
-                user_medal = UserMedal.objects.get(user=request.user,
-                                                   medal=medal)
-            except UserMedal.DoesNotExist:
-                user_medal = UserMedal.objects.create(user=request.user,
-                                                      medal=medal)
-            user_map.completed = True
-            user_map.save(update_fields=('completed',))
-            return Response({
-                'code': 0,
-                'awards': [
+            map_ = Map.objects.get(id=map_id)
+            affect_rows = UserMap.objects.filter(
+                user=request.user, map=map_, completed=False).update(
+                    completed=True)
+            if affect_rows > 0:
+                serializer = MedalSerializer(map_.medal)
+                awards = [
                     {
                         'type': 'medal',
                         'detail': serializer.data,
                     }
                 ]
+            else:
+                awards = []
+            return Response({
+                'code': 0,
+                'awards': awards,
             })
         except ValueError:
             return Response({
                 'code': -1,
                 'msg': 'invalid map id: %s' % map_id
             })
-        except UserMap.DoesNotExist:
+        except Map.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'you have not acquired this map',
+                'msg': 'map not exist'
             })
