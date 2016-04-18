@@ -16,17 +16,10 @@ urlpatterns = [
     url(r'^v1/uploadtoken/(?P<key>\w+)/$', UploadTokenView.as_view()),
     url(r'^v1/downloadurl/(?P<key>\w+)/$', PrivateDownloadURL.as_view()),
 
-    url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
-    url(r'^v1/task/(?P<task_id>\d+)/choice/$', ChoiceList.as_view()),
-    url(r'^v1/choice/(?P<choice_id>\d+)/$', ChoiceDetail.as_view()),
-    url(r'^v1/choice/(?P<choice_id>\d+)/option/$', OptionList.as_view()),
-    url(r'^v1/option/(?P<option_id>\d+)/$', OptionDetail.as_view()),
-
     url(r'^v1/item/(?P<item_id>\d+)/$', ItemDetail.as_view()),
     url(r'^v1/user/(?P<user_id>\d+)/item/$', UserItemList.as_view()),
 
     url(r'^v1/anchor/(?P<anchor_id>\d+)/$', AnchorDetail.as_view()),
-    url(r'^v1/anchor/(?P<anchor_id>\d+)/task/$', AnchorTask.as_view()),
     #url(r'^v1/anchor/(?P<anchor_id>\d+)/story/$', AnchorStory.as_view()),
 
     url(r'^v1/level/(?P<level_id>\d+)/$', LevelDetail.as_view()),
@@ -47,8 +40,8 @@ urlpatterns = [
     # Anchor
     #url(r'^v1/map/(?P<map_id>\d+)/anchor/$', MapAnchorList.as_view()),
     # Task
-    #url(r'^v1/task/(?<task_id>\d+)/$', TaskDetail.as_view()),
-    #url(r'^v1/task/(?<task_id>\d+)/complete/$', CompleteTask.as_view()),
+    url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
+    url(r'^v1/task/(?P<task_id>\d+)/complete/$', CompleteTask.as_view()),
     # Story
     #url(r'^vi/story/current_city/$', CurrentCityStoryList.as_view()),
     #url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),

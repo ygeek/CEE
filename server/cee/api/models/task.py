@@ -8,16 +8,10 @@ from .anchor import Anchor
 class Task(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
-
-
-class AnchorTask(models.Model):
-    anchor = models.ForeignKey(Anchor, related_name='anchor_task')
-    task = models.ForeignKey(Task, related_name='anchor_task')
-
-    class Meta:
-        unique_together = (
-            ('anchor', 'task'),
-        )
+    completers = models.ManyToManyField(User,
+                                        through='UserTask',
+                                        related_name='tasks')
+    coin = models.IntegerField()
 
 
 class Choice(models.Model):
@@ -34,3 +28,9 @@ class Option(models.Model):
     choice = models.ForeignKey(Choice, related_name='options')
     order = models.SmallIntegerField()
     desc = models.CharField(max_length=100)
+
+
+class UserTask(models.Model):
+    user = models.ForeignKey(User, related_name='user_tasks')
+    task = models.ForeignKey(Task, related_name='user_tasks')
+    completed = models.BooleanField()

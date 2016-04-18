@@ -2,12 +2,6 @@ from rest_framework import serializers
 from ..models.task import *
 
 
-class AnchorTaskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AnchorTask
-        fields = ('id', 'anchor', 'task')
-
-
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option

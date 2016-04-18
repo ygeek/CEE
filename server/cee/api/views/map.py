@@ -64,7 +64,6 @@ class CompleteMap(APIView):
                     }
                 ]
             })
-
         except ValueError:
             return Response({
                 'code': -1,
