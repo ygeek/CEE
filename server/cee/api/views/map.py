@@ -18,6 +18,10 @@ class NearestMap(APIView):
         # TODO(stareven): get nearest map
         map_id = 1
         map_ = Map.objects.get(id=map_id)
+        user_map, created = UserMap.objects.get_or_create(
+            defaults={'completed': False},
+            user=request.user,
+            map=map_)
         serializer = MapSerializer(map_)
         return Response({
             'code': 0,
