@@ -58,6 +58,13 @@ class AnchorStory(models.Model):
         )
 
 
+class UserStory(models.Model):
+    user = models.ForeignKey(User, related_name='user_storys')
+    story = models.ForeignKey(Story, related_name='user_storys')
+    completed = models.BooleanField()
+    level_step = models.IntegerField()
+
+
 class Item(models.Model):
     item_type = models.CharField(max_length=50)
     title = models.CharField(max_length=50)

@@ -38,7 +38,8 @@ class UserItemList(APIView):
             user_id = int(user_id)
             user = User.objects.get(id=user_id)
             user_items = user.user_items.all()
-            serializer = UserItemSerializer(user_items, many=True)
+            items = [ui.item for ui in user_items]
+            serializer = ItemSerializer(items, many=True)
             return Response({
                 'code': 0,
                 'items': serializer.data
