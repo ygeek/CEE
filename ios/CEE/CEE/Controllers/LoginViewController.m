@@ -88,6 +88,10 @@
     [self.navigationController pushViewController:[[RegisterViewController alloc] init] animated:YES];
 }
 
+- (void)loginPressed:(id)sender {
+    
+}
+
 #pragma mark - Layout
 
 - (void)setupContentScrollView {
@@ -152,6 +156,10 @@
     [self.loginButton setTitle:@"登录" forState:UIControlStateNormal];
     self.loginButton.backgroundColor = kCEEThemeYellowColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:15];
+    
+    [self.loginButton addTarget:self
+                         action:@selector(loginPressed:)
+               forControlEvents:UIControlEventTouchUpInside];
     
     [self.contentView addSubview:self.loginButton];
 }
