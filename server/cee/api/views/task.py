@@ -72,6 +72,6 @@ class CompleteTask(APIView):
             })
         except Task.DoesNotExist:
             return Response({
-                'code': -2,
+               'code': -2,
                 'msg': 'task not exists',
             })

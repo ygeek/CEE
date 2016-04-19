@@ -12,6 +12,8 @@ from ..serializers.story import *
 
 
 class StoryDetail(APIView):
+    permission_classes = (IsAuthenticated, )
+
     def get(self, request, story_id):
         try:
             story_id = int(story_id)

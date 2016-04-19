@@ -29,12 +29,6 @@ class LevelSerializer(serializers.ModelSerializer):
         )
 
 
-class StoryLevelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StoryLevel
-        fields = ('id', 'story', 'level')
-
-
 class CityStorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CityStory

@@ -24,3 +24,13 @@ class UserProfile(models.Model):
     head_url = models.URLField()
     sex = models.CharField(max_length=50)
     mobile = models.CharField(max_length=50)
+
+
+class UserFriend(models.Model):
+    user = models.ForeignKey(User, related_name='user_relation')
+    friend = models.ForeignKey(User, related_name='user_relation')
+
+    class Model:
+        unique_together = (
+            'user','friend'
+        )

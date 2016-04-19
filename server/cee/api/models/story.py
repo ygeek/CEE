@@ -5,27 +5,8 @@ from django.contrib.auth.models import User
 from .anchor import Anchor
 
 
-class City(models.Model):
-    name = models.CharField(max_length=30)
-
-
-class Story(models.Model):
-    name = models.CharField(max_length=50)
-    desc = models.TextField()
-    time = models.IntegerField()
-    good = models.IntegerField()
-    distance = models.FloatField()
-    city = models.CharField(max_length=50)
-
-
-class CityStory(models.Model):
-    city = models.ForeignKey(City, related_name='city_storys')
-    story = models.ForeignKey(Story, related_name='city_storys')
-
-    class Meta:
-        unique_together = (
-            ('city', 'story'),
-        )
+class ImageUrl(models.Model):
+    image_url = models.URLField()
 
 
 class Level(models.Model):
@@ -36,15 +17,31 @@ class Level(models.Model):
     test = models.TextField()
     number_answer = models.CharField(max_length=50)
     h5_url = models.URLField()
+    coin = models.IntegerField()
 
 
-class StoryLevel(models.Model):
-    story = models.ForeignKey(Story, related_name='story_levels')
-    level = models.ForeignKey(Level, related_name='story_levels')
+class Story(models.Model):
+    name = models.CharField(max_length=50)
+    desc = models.TextField()
+    time = models.IntegerField()
+    good = models.IntegerField()
+    distance = models.FloatField()
+    city = models.CharField(max_length=50)
+    image_url = models.ManyToManyField(ImageUrl)
+    level = models.ManyToManyField(Level)
+
+
+class City(models.Model):
+    name = models.CharField(max_length=30)
+
+
+class CityStory(models.Model):
+    city = models.ForeignKey(City, related_name='city_story')
+    story = models.ForeignKey(Story, related_name='city_story')
 
     class Meta:
         unique_together = (
-            ('story', 'level'),
+            ('city', 'story'),
         )
 
 

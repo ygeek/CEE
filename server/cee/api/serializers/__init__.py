@@ -9,3 +9,4 @@ from .anchor import *
 from .task import *
 from .story import *
 from .coupon import *
+from .userInfo import *
