@@ -7,6 +7,7 @@
 //
 
 @import Masonry;
+@import AJWValidator;
 
 #import "LoginViewController.h"
 #import "UIImage+Utils.h"

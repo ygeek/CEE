@@ -14,6 +14,9 @@
 		BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A01CC5088100350809 /* RegisterViewController.m */; };
 		BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */; };
 		BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A61CC5199100350809 /* FillProfileViewController.m */; };
+		BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A91CC62AB300350809 /* ServerConfig.m */; };
+		BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */; };
+		BB6103B11CC671A400350809 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B01CC671A400350809 /* APIClient.m */; };
 		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2EB1CC21E2900A1E0F7 /* HUDBaseView.m */; };
 		BB6AD2EE1CC2287200A1E0F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */; };
@@ -63,6 +66,12 @@
 		BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationCodeViewController.m; sourceTree = "<group>"; };
 		BB6103A51CC5199100350809 /* FillProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillProfileViewController.h; sourceTree = "<group>"; };
 		BB6103A61CC5199100350809 /* FillProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillProfileViewController.m; sourceTree = "<group>"; };
+		BB6103A81CC62AB300350809 /* ServerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfig.h; sourceTree = "<group>"; };
+		BB6103A91CC62AB300350809 /* ServerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfig.m; sourceTree = "<group>"; };
+		BB6103AC1CC6336300350809 /* JSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONResponseSerializer.h; sourceTree = "<group>"; };
+		BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONResponseSerializer.m; sourceTree = "<group>"; };
+		BB6103AF1CC671A400350809 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		BB6103B01CC671A400350809 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
 		BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScrollView.m; sourceTree = "<group>"; };
 		BB6AD2EA1CC21E2900A1E0F7 /* HUDBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBaseView.h; sourceTree = "<group>"; };
@@ -144,6 +153,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BB6103AB1CC6301300350809 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BB6103AC1CC6336300350809 /* JSONResponseSerializer.h */,
+				BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */,
+				BB6103AF1CC671A400350809 /* APIClient.h */,
+				BB6103B01CC671A400350809 /* APIClient.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		BB6AD2EF1CC228C500A1E0F7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +212,7 @@
 		BBA532321CBBC56500282D3E /* CEE */ = {
 			isa = PBXGroup;
 			children = (
+				BB6103AB1CC6301300350809 /* Services */,
 				BB6AD2EF1CC228C500A1E0F7 /* Utils */,
 				BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */,
 				BBA5324A1CBBD0F500282D3E /* Constants */,
@@ -259,6 +280,8 @@
 			children = (
 				BBA532521CBBD11100282D3E /* SDKManager.h */,
 				BBA532531CBBD11100282D3E /* SDKManager.m */,
+				BB6103A81CC62AB300350809 /* ServerConfig.h */,
+				BB6103A91CC62AB300350809 /* ServerConfig.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -438,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */,
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
@@ -452,6 +476,7 @@
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
+				BB6103B11CC671A400350809 /* APIClient.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
@@ -462,6 +487,7 @@
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
 				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
+				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
