@@ -12,6 +12,9 @@ class Map(models.Model):
     y = models.FloatField()
     image_url = models.URLField()
     medal = models.ForeignKey(Medal, related_name='maps')
+    owners = models.ManyToManyField(User,
+                                    through='UserMap',
+                                    related_name='maps')
 
 
 class UserMap(models.Model):

@@ -27,7 +27,17 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True)
+    completed = serializers.SerializerMethodField()
 
     class Meta:
         model = Task
-        fields = ('id', 'name', 'desc', 'choices')
+        fields = ('id', 'name', 'desc', 'choices', 'completed')
+
+    def __init__(self, *args, **kargs):
+        if 'many' not in kargs:
+            self._user = kargs.pop('user')
+        super(TaskSerializer, self).__init__(*args, **kargs)
+
+    def get_completed(self, task):
+        user_task = UserTask.objects.get(user=self._user, task=task)
+        return user_task.completed

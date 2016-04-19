@@ -15,10 +15,7 @@ class UserMedalList(APIView):
 
     def get(self, request, user_id):
         try:
-            user_id = int(user_id)
-            user = User.objects.get(id=user_id)
-            user_medals = user.user_medals.all()
-            medals = [um.medal for um in user_medals]
+            medals = request.user.medals
             serializer = MedalSerializer(medals, many=True)
             return Response({
                 'code': 0,

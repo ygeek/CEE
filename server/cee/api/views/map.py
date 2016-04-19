@@ -22,7 +22,7 @@ class NearestMap(APIView):
             defaults={'completed': False},
             user=request.user,
             map=map_)
-        serializer = MapSerializer(map_)
+        serializer = MapSerializer(map_, user=request.user)
         return Response({
             'code': 0,
             'map': serializer.data
@@ -33,11 +33,11 @@ class AcquiredMapList(APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
-        user_maps = request.user.user_maps.all()
-        serializer = UserMapSerializer(user_maps, many=True)
+        maps = request.user.maps
+        serializer = MapSerializer(maps, user=request.user, many=True)
         return Response({
             'code': 0,
-            'user_maps': serializer.data
+            'maps': serializer.data,
         })
 
 

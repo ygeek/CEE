@@ -21,10 +21,9 @@ class TaskDetail(APIView):
                 defaults={'completed': False},
                 user=request.user,
                 task=task)
-            serializer = TaskSerializer(task)
+            serializer = TaskSerializer(task, user=request.user)
             return Response({
                 'code': 0,
-                'completed': user_task.completed,
                 'task': serializer.data,
             })
         except ValueError:

@@ -8,6 +8,9 @@ class Medal(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=100)
     icon_url = models.URLField()
+    owners = models.ManyToManyField(User,
+                                    through='UserMedal',
+                                    related_name='medals')
 
 
 class UserMedal(models.Model):
