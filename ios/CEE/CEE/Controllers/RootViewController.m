@@ -13,6 +13,7 @@
 #import "WorldViewController.h"
 #import "StoriesViewController.h"
 #import "MessageViewController.h"
+#import "LoginViewController.h"
 
 @interface RootViewController ()
 
@@ -80,6 +81,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginVC]
+                       animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

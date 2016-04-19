@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
+		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
+		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
+		BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039D1CC47B2000350809 /* ThirdPartyLoginButton.m */; };
+		BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A01CC5088100350809 /* RegisterViewController.m */; };
+		BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */; };
+		BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A61CC5199100350809 /* FillProfileViewController.m */; };
 		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2EB1CC21E2900A1E0F7 /* HUDBaseView.m */; };
 		BB6AD2EE1CC2287200A1E0F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */; };
@@ -45,6 +51,18 @@
 		7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.debug.xcconfig"; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
+		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
+		BB6103971CC46E5300350809 /* RefreshingPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingPanel.m; sourceTree = "<group>"; };
+		BB6103991CC478C200350809 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		BB61039A1CC478C200350809 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		BB61039C1CC47B2000350809 /* ThirdPartyLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdPartyLoginButton.h; sourceTree = "<group>"; };
+		BB61039D1CC47B2000350809 /* ThirdPartyLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdPartyLoginButton.m; sourceTree = "<group>"; };
+		BB61039F1CC5088100350809 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		BB6103A01CC5088100350809 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		BB6103A21CC50DB100350809 /* VerificationCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationCodeViewController.h; sourceTree = "<group>"; };
+		BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationCodeViewController.m; sourceTree = "<group>"; };
+		BB6103A51CC5199100350809 /* FillProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillProfileViewController.h; sourceTree = "<group>"; };
+		BB6103A61CC5199100350809 /* FillProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillProfileViewController.m; sourceTree = "<group>"; };
 		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
 		BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScrollView.m; sourceTree = "<group>"; };
 		BB6AD2EA1CC21E2900A1E0F7 /* HUDBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBaseView.h; sourceTree = "<group>"; };
@@ -212,6 +230,8 @@
 		BBA5324B1CBBD0F500282D3E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BB61039F1CC5088100350809 /* RegisterViewController.h */,
+				BB6103A01CC5088100350809 /* RegisterViewController.m */,
 				BBA5324C1CBBD0F500282D3E /* RootViewController.h */,
 				BBA5324D1CBBD0F500282D3E /* RootViewController.m */,
 				BBA532591CBBDA4A00282D3E /* DrawerViewController.h */,
@@ -224,6 +244,12 @@
 				BBA532631CBBDA9E00282D3E /* MessageViewController.m */,
 				BB6AD3171CC32B9300A1E0F7 /* StoryCoverViewController.h */,
 				BB6AD3181CC32B9300A1E0F7 /* StoryCoverViewController.m */,
+				BB6103991CC478C200350809 /* LoginViewController.h */,
+				BB61039A1CC478C200350809 /* LoginViewController.m */,
+				BB6103A21CC50DB100350809 /* VerificationCodeViewController.h */,
+				BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */,
+				BB6103A51CC5199100350809 /* FillProfileViewController.h */,
+				BB6103A61CC5199100350809 /* FillProfileViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -261,6 +287,10 @@
 				BB6AD31E1CC3309100A1E0F7 /* StoryTagView.m */,
 				BB4D856A1CC3502A00754484 /* StoryInfoView.h */,
 				BB4D856B1CC3502A00754484 /* StoryInfoView.m */,
+				BB6103961CC46E5300350809 /* RefreshingPanel.h */,
+				BB6103971CC46E5300350809 /* RefreshingPanel.m */,
+				BB61039C1CC47B2000350809 /* ThirdPartyLoginButton.h */,
+				BB61039D1CC47B2000350809 /* ThirdPartyLoginButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -408,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
@@ -416,15 +447,20 @@
 				BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */,
 				BB6AD3191CC32B9300A1E0F7 /* StoryCoverViewController.m in Sources */,
 				BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */,
+				BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */,
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
+				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
+				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
+				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
 			);

@@ -10,4 +10,6 @@
 
 @interface StoryDifficultyView : UIView
 
+@property (nonatomic, assign) NSInteger difficulty;
+
 @end

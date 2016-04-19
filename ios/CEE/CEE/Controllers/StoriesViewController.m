@@ -13,10 +13,13 @@
 #import "StoryCoverViewController.h"
 #import "StoryTableViewCell.h"
 #import "StoryTableViewCellMenuView.h"
+#import "RefreshingPanel.h"
 #import "UIImage+Utils.h"
+#import "AppearanceConstants.h"
 
 @interface StoriesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView * tableView;
+@property (nonatomic, strong) RefreshingPanel * refreshingPanel;
 @end
 
 
@@ -24,20 +27,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
-    
+    self.view.backgroundColor = kCEEBackgroundGrayColor;
+
     self.tableView = [[UITableView alloc] init];
-    self.tableView.backgroundColor = [UIColor blackColor];
+    self.tableView.backgroundColor = kCEEBackgroundGrayColor;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 250.0 + 1.0 / [UIScreen mainScreen].scale;
-    [self.view addSubview:self.tableView];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+    
+    [self.view addSubview:self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -47,6 +51,14 @@
            forCellReuseIdentifier:NSStringFromClass([StoryTableViewCell class])];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    
+    self.refreshingPanel = [[RefreshingPanel alloc]
+                            initWithFrame:CGRectMake(0,
+                                                     -[RefreshingPanel defaultHeight],
+                                                     [UIScreen mainScreen].bounds.size.width,
+                                                     [RefreshingPanel defaultHeight])];
+    [self.tableView addSubview:self.refreshingPanel];
     
     self.navigationItem.rightBarButtonItem
         = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(23, 23)]
@@ -67,6 +79,14 @@
 
 - (void)menuPressed:(id)sender {
     
+}
+
+- (void)refresh {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+        }];
+    });
 }
 
 #pragma mark - UITableViewDataSource
@@ -93,7 +113,17 @@
     
     StoryCoverViewController * storyCoverVC = [[StoryCoverViewController alloc] init];
     [self.navigationController pushViewController:storyCoverVC animated:YES];
-    
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (scrollView.contentOffset.y < -[RefreshingPanel defaultHeight] - 10.0f) {
+        CGPoint contentOffset = scrollView.contentOffset;
+        self.tableView.contentInset = UIEdgeInsetsMake([RefreshingPanel defaultHeight], 0, 49, 0);
+        self.tableView.contentOffset = contentOffset;
+        [self refresh];
+    }
 }
 
 @end

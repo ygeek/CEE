@@ -31,14 +31,17 @@
 
 - (void)commonInit {
     self.layer.cornerRadius = 3;
+    self.layer.masksToBounds = YES;
     self.backgroundColor = kCEETagBackgroundColor;
-
+    self.textAlignment = NSTextAlignmentCenter;
+    self.font = [UIFont fontWithName:kCEEFontNameRegular size:9];
+    self.textColor = kCEETextBlackColor;
 }
 
 - (void)setTagText:(NSString *)tagText {
     NSAttributedString* attributedString
         = [[NSAttributedString alloc]
-           initWithString:tagText
+           initWithString:[NSString stringWithFormat:@" %@", tagText]
                attributes:@{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:9],
                             NSForegroundColorAttributeName: kCEETextBlackColor,
                             NSKernAttributeName: @(5),

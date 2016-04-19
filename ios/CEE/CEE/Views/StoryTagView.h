@@ -10,4 +10,6 @@
 
 @interface StoryTagView : UILabel
 
+- (void)setTagText:(NSString *)tagText;
+
 @end
