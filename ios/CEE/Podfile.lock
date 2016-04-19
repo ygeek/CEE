@@ -21,6 +21,7 @@ PODS:
     - AVOSCloud
   - AVOSCloudIM (3.2.7):
     - AVOSCloud
+  - JSONModel (1.2.0)
   - Masonry (1.0.0)
   - MOBFoundation (1.5.1)
   - RDVTabBarController (1.1.9)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudCrashReporting
   - AVOSCloudIM
+  - JSONModel
   - Masonry
   - MOBFoundation
   - RDVTabBarController
@@ -69,6 +71,7 @@ SPEC CHECKSUMS:
   AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
   AVOSCloudCrashReporting: 68b4c9096c5f465f1cbda4a1d7ea5f04efa930ab
   AVOSCloudIM: ec08eaec4d27d732e3be93eadeb3bcf1355b5dcf
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MOBFoundation: 79efc94db961fe5a08cf32de69166f6a29a3b2b5
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a

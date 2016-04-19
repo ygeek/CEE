@@ -20,5 +20,6 @@ target 'CEE' do
     pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
     pod 'ABMenuTableViewCell'
     pod 'AJWValidator'
+    pod 'JSONModel'
 end
 
