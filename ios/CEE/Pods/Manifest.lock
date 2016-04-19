@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AJWValidator (0.0.8)
   - AVOSCloud (3.2.7)
   - AVOSCloudCrashReporting (3.2.7):
     - AVOSCloud
@@ -46,6 +47,7 @@ PODS:
 DEPENDENCIES:
   - ABMenuTableViewCell
   - AFNetworking
+  - AJWValidator
   - AVOSCloud
   - AVOSCloudCrashReporting
   - AVOSCloudIM
@@ -63,6 +65,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ABMenuTableViewCell: 51645b10264687a9af76719a6cc777c85c0cabbe
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AJWValidator: ed00557b9cdcc38a8216aa9ddbd76b4eadb73615
   AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
   AVOSCloudCrashReporting: 68b4c9096c5f465f1cbda4a1d7ea5f04efa930ab
   AVOSCloudIM: ec08eaec4d27d732e3be93eadeb3bcf1355b5dcf
