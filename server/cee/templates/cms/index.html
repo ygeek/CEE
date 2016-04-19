@@ -2,6 +2,12 @@
 
 {% load staticfiles %}
 
+{% block title %}首页{% endblock %}
+
 {% block content %}
     <h1>Hello world</h1>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'cms/sidebar.html' %}
 {% endblock %}

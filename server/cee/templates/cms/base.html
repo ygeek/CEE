@@ -9,7 +9,7 @@
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>{% block title %}CEE{% endblock %}</title>
+    <title>{% block title %}{% endblock %} - CEEADMIN</title>
     <!-- Bootstrap core CSS -->
     <link href="{% static 'cms/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'cms/css/bootstrap-reset.css' %}" rel="stylesheet">
@@ -31,39 +31,62 @@
 </head>
 
 <body>
-<!--header start-->
-<header class="header white-bg">
-    <div class="sidebar-toggle-box">
-        <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
-    </div>
-    <!--logo start-->
-    <a href="#" class="logo">Flat<span>lab</span></a>
-    <!--logo end-->
-    <div class="nav notify-row" id="top_menu">
-        <!--  notification goes here -->
-    </div>
-    <div class="top-nav ">
-        <!--search & user info goes here-->
-    </div>
-</header>
-<!--header end-->
 
-<!--sidebar start-->
-<aside>
-    <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu goes here-->
-    </div>
-</aside>
-<!--sidebar end-->
+<section id="container">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="#" class="logo"><span>CEE</span>ADMIN</a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification goes here -->
+        </div>
+        <div class="top-nav ">
+            <!--search & user info goes here-->
+        </div>
+    </header>
+    <!--header end-->
 
-<!--main content start-->
-<section id="main-content">
-    <section class="wrapper">
-        {% block content %}
-        {% endblock %}
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            {% block content %}
+            {% endblock %}
+        </section>
     </section>
+    <!--main content end-->
 </section>
-<!--main content end-->
+
+<script src="{% static 'cms/js/jquery.js' %}"></script>
+<script src="{% static 'cms/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'cms/js/jquery.dcjqaccordion.2.7.js' %}"></script>
+<script src="{% static 'cms/js/jquery.scrollTo.min.js' %}"></script>
+<script src="{% static 'cms/js/jquery.nicescroll.js' %}" type="text/javascript"></script>
+<script src="{% static 'cms/js/jquery.sparkline.js' %}" type="text/javascript"></script>
+<script src="{% static 'cms/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js' %}"></script>
+<script src="{% static 'cms/js/owl.carousel.js' %}"></script>
+<!--right slidebar-->
+<script src="{% static 'cms/js/slidebars.min.js' %}"></script>
+<!--common script for all pages-->
+<script src="{% static 'cms/js/common-scripts.js' %}"></script>
+<!--script for this page only-->
+<script src="{% static 'cms/js/sparkline-chart.js' %}"></script>
+<script src="{% static 'cms/js/easy-pie-chart.js' %}"></script>
+
+{% block scripts %}
+{% endblock %}
 
 </body>
 </html>
