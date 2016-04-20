@@ -11,6 +11,8 @@
 @import SVProgressHUD;
 @import ReactiveCocoa;
 
+#import <SMS_SDK/SMSSDK.h>
+
 #import "RegisterViewController.h"
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
@@ -108,9 +110,27 @@
         return;
     }
     
-    VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
-    vc.phoneNumber = self.phoneField.text;
-    [self.navigationController pushViewController:vc animated:YES];
+#if DEBUG
+     VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
+     vc.phoneNumber = self.phoneField.text;
+     [self.navigationController pushViewController:vc animated:YES];
+#else
+    [SVProgressHUD show];
+    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.phoneField.text
+                                   zone:@"86"
+                       customIdentifier:nil
+                                 result:
+     ^(NSError *error) {
+         if (!error) {
+             [SVProgressHUD dismiss];
+             VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
+             vc.phoneNumber = self.phoneField.text;
+             [self.navigationController pushViewController:vc animated:YES];
+         } else {
+             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+         }
+    }];
+#endif
 }
 
 - (void)hasAccountPressed:(id)sender {
