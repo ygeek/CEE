@@ -44,6 +44,7 @@ PODS:
   - ShareSDK3/ShareSDKPlatforms/QQ (3.2.5)
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.2.5)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.2.5)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - ABMenuTableViewCell
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKPlatforms/QQ
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
   - ShareSDK3/ShareSDKPlatforms/WeChat
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   ABMenuTableViewCell: 51645b10264687a9af76719a6cc777c85c0cabbe
@@ -79,5 +81,6 @@ SPEC CHECKSUMS:
   Realm: 0e293bb62999730599efc3048896bbd4f2e43bcd
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   ShareSDK3: ccdd8ec971044703e7722e19c2f3b38fb03775e2
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
 COCOAPODS: 0.39.0

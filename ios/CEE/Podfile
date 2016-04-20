@@ -21,5 +21,6 @@ target 'CEE' do
     pod 'ABMenuTableViewCell'
     pod 'AJWValidator'
     pod 'JSONModel'
+    pod 'SVProgressHUD'
 end
 
