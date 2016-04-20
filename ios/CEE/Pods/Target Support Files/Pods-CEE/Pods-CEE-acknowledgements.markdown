@@ -109,7 +109,7 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 The MIT License in plain English: http://www.touch-code-magazine.com/JSONModel/MITLicense
 
 
-## MOBFoundation
+## MOBFoundation_IDFA
 
 Copyright © 2012-2015 mob
 
@@ -474,6 +474,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+
+## SMSSDK
+
+Copyright © 2012-2015 mob.com
 
 ## SVProgressHUD
 
