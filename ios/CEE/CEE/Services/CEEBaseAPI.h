@@ -33,4 +33,6 @@
 - (Class)responseSuccessClass;
 - (Class)responseErrorClass;
 
+- (NSString *)errorMessageForResponse:(id)response;
+
 @end

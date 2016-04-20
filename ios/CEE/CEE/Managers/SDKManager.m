@@ -42,7 +42,6 @@
 - (void)setup {
     [self setupAVOS];
     [self setupShareSDK];
-    [self setupAppearance];
 }
 
 - (void)setupAVOS {
@@ -123,11 +122,6 @@
             NSLog(@"%@", error);
         }
     }];
-}
-
-- (void)setupAppearance {
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 }
 
 @end

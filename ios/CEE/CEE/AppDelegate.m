@@ -11,6 +11,7 @@
 
 #import "AppDelegate.h"
 #import "SDKManager.h"
+#import "CEEAppearanceManager.h"
 #import "RootViewController.h"
 #import "CEEUtils.h"
 
@@ -23,6 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SDKManager sharedInstance] setup];
+    [CEEAppearanceManager setup];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     

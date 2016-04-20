@@ -8,6 +8,8 @@
 
 @import Masonry;
 @import AJWValidator;
+@import SVProgressHUD;
+@import ReactiveCocoa;
 
 #import "LoginViewController.h"
 #import "UIImage+Utils.h"
@@ -91,15 +93,14 @@
 }
 
 - (void)loginPressed:(id)sender {
-    [[[[CEELoginAPI alloc] init] loginWithUsername:self.phoneField.text password:self.passwordField.text]
+    [SVProgressHUD show];
+    CEELoginAPI * loginAPI = [[CEELoginAPI alloc] init];
+    [[loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text]
      subscribeNext:^(CEELoginSuccessResponse *response) {
-         NSLog(@"%@", response);
+         [SVProgressHUD dismiss];
      }
      error:^(NSError *error) {
-         NSLog(@"%@", error);
-     }
-     completed:^{
-         NSLog(@"completed");
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
      }];
 }
 
@@ -254,7 +255,7 @@
     }];
     
     [self.phonePrefixLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(165);
+        make.top.equalTo(self.contentView.mas_top).offset(165 * verticalScale());
         make.left.equalTo(self.contentView.mas_left).offset(58);
     }];
     
@@ -277,7 +278,7 @@
         make.width.mas_equalTo(23);
         make.height.mas_equalTo(23);
         make.left.equalTo(self.contentView.mas_left).offset(62);
-        make.top.equalTo(self.phonePrefixLabel.mas_bottom).offset(25);
+        make.top.equalTo(self.phonePrefixLabel.mas_bottom).offset(25 * verticalScale());
     }];
     
     [self.passwordSeperator mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -294,20 +295,20 @@
     }];
     
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(255);
+        make.top.equalTo(self.contentView.mas_top).offset(255 * verticalScale());
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.width.mas_equalTo(270);
         make.height.mas_equalTo(40);
     }];
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147 * verticalScale());
         make.left.equalTo(self.contentView.mas_left).offset(59);
         make.height.mas_equalTo(11);
     }];
     
     [self.findPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147 * verticalScale());
         make.right.equalTo(self.contentView.mas_right).offset(-59);
         make.height.mas_equalTo(11);
     }];
@@ -331,7 +332,7 @@
     }];
     
     [self.weixinLoginButton.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-66);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-66 * verticalScale());
     }];
     
     [self.qqLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -347,7 +348,7 @@
     [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.width.mas_equalTo(30);
-        make.bottom.equalTo(self.weixinLoginButton.mas_top).offset(-16);
+        make.bottom.equalTo(self.weixinLoginButton.mas_top).offset(-16 * verticalScale());
     }];
     
     [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {

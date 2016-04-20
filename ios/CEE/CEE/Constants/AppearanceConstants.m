@@ -27,3 +27,10 @@ UIColor * rgbaColor(NSUInteger r, NSUInteger g, NSUInteger b, NSUInteger a) {
                             blue:b / 255.0
                            alpha:a / 255.0];
 }
+
+CGFloat verticalScale() {
+    CGFloat height = UIScreen.mainScreen.bounds.size.height;
+    if (height <= 480) return 0.7;
+    if (height <= 568) return 0.8;
+    return 1.0;
+}

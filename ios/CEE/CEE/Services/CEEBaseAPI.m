@@ -44,7 +44,7 @@
 }
 
 - (RACSignal *)POST:(NSString *)url withParams:(NSDictionary *)params {
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSURLSessionTask * dataTask =
         [[CEEAPIClient client] POST:url
                          parameters:params
@@ -59,6 +59,10 @@
         return [RACDisposable disposableWithBlock:^{
             [dataTask cancel];
         }];
+    }] catch:^RACSignal *(NSError * error) {
+        NSMutableDictionary * userInfo = [error.userInfo mutableCopy];
+        userInfo[NSLocalizedDescriptionKey] = @"网络错误";
+        return [RACSignal error:[NSError errorWithDomain:error.domain code:error.code userInfo: userInfo]];
     }] flattenMap:^RACStream *(id responseObject) {
         return [self responseSignalWithObject:responseObject];
     }];
@@ -89,14 +93,18 @@
             if (jsonError) {
                 return [RACSignal error:[self packJSONError:jsonError errorObject:responseObject]];
             } else {
+                NSDictionary * userInfo = @{CEE_ERROR_KEY: errorResponse,
+                                            NSLocalizedDescriptionKey: [self errorMessageForResponse: errorResponse]};
                 return [RACSignal error:[NSError errorWithDomain:CEE_API_ERROR_DOMAIN
                                                             code:baseResponse.code
-                                                        userInfo:@{CEE_ERROR_KEY: errorResponse}]];
+                                                        userInfo:userInfo]];
             }
         } else {
+            NSDictionary * userInfo = @{CEE_ERROR_KEY: responseObject,
+                                        NSLocalizedDescriptionKey: @"未知错误"};
             return [RACSignal error:[NSError errorWithDomain:CEE_API_ERROR_DOMAIN
                                                         code:baseResponse.code
-                                                    userInfo:@{CEE_ERROR_KEY: responseObject}]];
+                                                    userInfo:userInfo]];
         }
     } else {
         if (self.responseSuccessClass != nil) {
@@ -115,9 +123,14 @@
 - (NSError *)packJSONError:(NSError *)jsonError errorObject:(id)object {
     NSMutableDictionary * userInfo = [jsonError.userInfo mutableCopy];
     userInfo[CEE_ERROR_KEY] = object;
+    userInfo[NSLocalizedDescriptionKey] = @"服务器出错啦";
     return [NSError errorWithDomain:jsonError.domain
                                code:jsonError.code
                            userInfo:userInfo];
+}
+
+- (NSString *)errorMessageForResponse:(id)response {
+    return @"未知错误";
 }
 
 @end
