@@ -1,16 +1,10 @@
 # coding=utf-8
 
-from __future__ import unicode_literals, print_function
-
-from django.contrib.admin.views.decorators import staff_member_required
+from __future__ import unicode_literals
 from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
-
-
-def index(request):
-    return render(request, "cms/index.html")
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 @method_decorator(staff_member_required, name='dispatch')

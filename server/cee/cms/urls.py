@@ -6,5 +6,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='cms-index'),
     url(r'^users/$', views.UserList.as_view(), name='cms-users'),
-    url(r'^user/(?P<pk>[0-9]+)', views.UserDetail.as_view(), name='cms-user-detail')
+    url(r'^user/(?P<pk>[0-9]+)', views.UserDetail.as_view(), name='cms-user-detail'),
+    url(r'^coupons/$', views.CouponList.as_view(), name='cms-coupons')
 ]
