@@ -1,0 +1,16 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ user }} - 用户详情{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            用户详情 - {{ user.username }}
+        </header>
+        <div class="panel-body">
+            {{ user }}
+        </div>
+    </section>
+{% endblock %}
