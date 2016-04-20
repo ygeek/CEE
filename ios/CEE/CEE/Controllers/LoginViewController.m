@@ -16,7 +16,11 @@
 #import "AppearanceConstants.h"
 #import "ThirdPartyLoginButton.h"
 #import "RegisterViewController.h"
+#import "CEEUserSession.h"
+#import "CEEDatabase.h"
 #import "CEELoginAPI.h"
+#import "CEEUtils.h"
+#import "UtilsMacros.h"
 
 @interface LoginViewController ()
 
@@ -26,10 +30,12 @@
 @property (nonatomic, strong) UILabel * phonePrefixLabel;
 @property (nonatomic, strong) UIView * phoneSeperator;
 @property (nonatomic, strong) UITextField * phoneField;
+@property (nonatomic, strong) AJWValidator * phoneValidator;
 
 @property (nonatomic, strong) UIImageView * passwordIcon;
 @property (nonatomic, strong) UIView * passwordSeperator;
 @property (nonatomic, strong) UITextField * passwordField;
+@property (nonatomic, strong) AJWValidator * passwordValidator;
 
 @property (nonatomic, strong) UIButton * loginButton;
 
@@ -63,14 +69,13 @@
     [self setupFindPasswordButton];
     [self setupThirdpartyLoginButtons];
     [self setupBottomLine];
-    [self setupNavigationItems];
 
     [self setupLayout];
     
-    self.passwordIcon.backgroundColor = [UIColor grayColor];
-    self.qqLoginButton.iconView.backgroundColor = [UIColor grayColor];
-    self.weixinLoginButton.iconView.backgroundColor = [UIColor grayColor];
-    self.weiboLoginButton.iconView.backgroundColor = [UIColor grayColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChangeFrameNotification:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,12 +85,8 @@
 
 #pragma mark - Events Handling
 
-- (void)backPressed:(id)sender {
-    
-}
-
-- (void)menuPressed:(id)sender {
-    
+- (void)backgroundTapped:(id)sender {
+    [self.view endEditing:YES];
 }
 
 - (void)registerPressed:(id)sender {
@@ -93,15 +94,51 @@
 }
 
 - (void)loginPressed:(id)sender {
+    [self.phoneValidator validate:self.phoneField.text];
+    if (self.phoneValidator.state != AJWValidatorValidationStateValid) {
+        [SVProgressHUD showErrorWithStatus:[self.phoneValidator.errorMessages componentsJoinedByString:@"\n"]];
+        return;
+    }
+    
+    [self.passwordValidator validate:self.passwordField.text];
+    if (self.passwordValidator.state != AJWValidatorValidationStateValid) {
+        [SVProgressHUD showErrorWithStatus:[self.passwordValidator.errorMessages componentsJoinedByString:@"\n"]];
+        return;
+    }
     [SVProgressHUD show];
     CEELoginAPI * loginAPI = [[CEELoginAPI alloc] init];
     [[loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text]
      subscribeNext:^(CEELoginSuccessResponse *response) {
          [SVProgressHUD dismiss];
+         [[CEEDatabase db] saveAuthToken:response.auth];
+         [CEEUserSession session].authToken = response.auth;
      }
      error:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.localizedDescription];
      }];
+}
+
+- (void)keyboardWillChangeFrameNotification:(NSNotification *)notification {
+    CGRect endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSUInteger animationCurve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+    float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:animationCurve|UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         CGFloat keyboardHeight = [UIScreen mainScreen].bounds.size.height - endFrame.origin.y;
+                         self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0);
+                     }
+                     completion:nil];
+    
+    if (self.phoneField.isFirstResponder) {
+        [self.contentScrollView scrollRectToVisible:self.phoneField.frame animated:YES];
+    }
+    
+    if (self.passwordField.isFirstResponder) {
+        [self.contentScrollView scrollRectToVisible:self.passwordField.frame animated:YES];
+    }
 }
 
 #pragma mark - Layout
@@ -109,9 +146,11 @@
 - (void)setupContentScrollView {
     self.contentScrollView = [[UIScrollView alloc] init];
     self.contentScrollView.backgroundColor = [UIColor whiteColor];
-    self.contentScrollView.alwaysBounceVertical = YES;
     
     self.contentView = [[UIView alloc] init];
+    
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
+    [self.contentView addGestureRecognizer:tapRecognizer];
     
     [self.view addSubview:self.contentScrollView];
     [self.contentScrollView addSubview:self.contentView];
@@ -127,7 +166,7 @@
     self.phoneSeperator.backgroundColor = kCEETextGrayColor;
     
     self.phoneField = [[UITextField alloc] init];
-    self.phoneField.keyboardType = UIKeyboardTypeNamePhonePad;
+    self.phoneField.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneField.attributedPlaceholder =
     [[NSAttributedString alloc]
        initWithString:@"手机号"
@@ -139,10 +178,16 @@
     [self.contentView addSubview:self.phonePrefixLabel];
     [self.contentView addSubview:self.phoneSeperator];
     [self.contentView addSubview:self.phoneField];
+    
+    self.phoneValidator = [AJWValidator validatorWithType:AJWValidatorTypeString];
+    [self.phoneValidator addValidationToEnsureRegularExpressionIsMetWithPattern:kPhoneNumberRegex
+                                                                 invalidMessage:@"手机号格式有误"];
+    // [self.phoneField ajw_attachValidator:self.phoneValidator];
 }
 
 - (void)setupPasswordViews {
-    self.passwordIcon = [[UIImageView alloc] init];
+    self.passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"密码"]];
+    self.passwordIcon.contentMode = UIViewContentModeCenter;
     
     self.passwordSeperator = [[UIView alloc] init];
     self.passwordSeperator.backgroundColor = kCEETextGrayColor;
@@ -156,6 +201,12 @@
                      NSForegroundColorAttributeName: [kCEETextBlackColor colorWithAlphaComponent:0.3],}];
     self.passwordField.textColor = kCEETextBlackColor;
     self.passwordField.font = [UIFont fontWithName:kCEEFontNameRegular size:15];
+    
+    self.passwordValidator = [AJWValidator validatorWithType:AJWValidatorTypeString];
+    [self.passwordValidator addValidationToEnsureCustomConditionIsSatisfiedWithBlock:^BOOL(NSString * password) {
+        return [CEEUtils isValidPassword:password];
+    } invalidMessage:@"密码格式有误"];
+    // [self.passwordField ajw_attachValidator:self.passwordValidator];
     
     [self.contentView addSubview:self.passwordIcon];
     [self.contentView addSubview:self.passwordSeperator];
@@ -213,12 +264,15 @@
 
 - (void)setupThirdpartyLoginButtons {
     self.qqLoginButton = [[ThirdPartyLoginButton alloc] init];
+    self.qqLoginButton.iconView.image = [UIImage imageNamed:@"qq"];
     self.qqLoginButton.titleLabel.text = @"QQ 登录";
     
     self.weixinLoginButton = [[ThirdPartyLoginButton alloc] init];
+    self.weixinLoginButton.iconView.image = [UIImage imageNamed:@"微信"];
     self.weixinLoginButton.titleLabel.text = @"微信 登录";
     
     self.weiboLoginButton = [[ThirdPartyLoginButton alloc] init];
+    self.weiboLoginButton.iconView.image = [UIImage imageNamed:@"微博"];
     self.weiboLoginButton.titleLabel.text = @"微博 登录";
     
     [self.contentView addSubview:self.qqLoginButton];
@@ -255,7 +309,7 @@
     }];
     
     [self.phonePrefixLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(165 * verticalScale());
+        make.top.equalTo(self.contentView.mas_top).offset(165);
         make.left.equalTo(self.contentView.mas_left).offset(58);
     }];
     
@@ -278,7 +332,7 @@
         make.width.mas_equalTo(23);
         make.height.mas_equalTo(23);
         make.left.equalTo(self.contentView.mas_left).offset(62);
-        make.top.equalTo(self.phonePrefixLabel.mas_bottom).offset(25 * verticalScale());
+        make.top.equalTo(self.phonePrefixLabel.mas_bottom).offset(25);
     }];
     
     [self.passwordSeperator mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -295,20 +349,20 @@
     }];
     
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(255 * verticalScale());
+        make.top.equalTo(self.contentView.mas_top).offset(255);
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.width.mas_equalTo(270);
         make.height.mas_equalTo(40);
     }];
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147 * verticalScale());
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147);
         make.left.equalTo(self.contentView.mas_left).offset(59);
         make.height.mas_equalTo(11);
     }];
     
     [self.findPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147 * verticalScale());
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-147);
         make.right.equalTo(self.contentView.mas_right).offset(-59);
         make.height.mas_equalTo(11);
     }];
@@ -332,7 +386,7 @@
     }];
     
     [self.weixinLoginButton.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-66 * verticalScale());
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-66);
     }];
     
     [self.qqLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -348,7 +402,7 @@
     [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.width.mas_equalTo(30);
-        make.bottom.equalTo(self.weixinLoginButton.mas_top).offset(-16 * verticalScale());
+        make.bottom.equalTo(self.weixinLoginButton.mas_top).offset(-16);
     }];
     
     [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -358,22 +412,6 @@
         make.height.mas_equalTo(1.0 / [UIScreen mainScreen].scale);
     }];
  
-}
-
-- (void)setupNavigationItems {
-    self.navigationItem.leftBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor]
-                                                              size:CGSizeMake(23, 23)]
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(backPressed:)];
-    
-    self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor]
-                                                              size:CGSizeMake(23, 23)]
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(menuPressed:)];
 }
 
 @end

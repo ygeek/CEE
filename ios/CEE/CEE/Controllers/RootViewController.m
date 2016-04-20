@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import ReactiveCocoa;
+
 #import "RootViewController.h"
 #import "UtilsMacros.h"
 #import "AppearanceConstants.h"
@@ -14,9 +16,11 @@
 #import "StoriesViewController.h"
 #import "MessageViewController.h"
 #import "LoginViewController.h"
+#import "CEEUserSession.h"
 
 @interface RootViewController ()
-
+@property (nonatomic, assign) BOOL isAppeared;
+@property (nonatomic, assign) BOOL isPresentingLogin;
 @end
 
 @implementation RootViewController
@@ -77,22 +81,57 @@
     storyVC.view.backgroundColor = [UIColor greenColor];
     drawerVC.view.backgroundColor = [UIColor redColor];
     worldVC.view.backgroundColor = [UIColor yellowColor];
+    
+    self.isAppeared = NO;
+    self.isPresentingLogin = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    RACSignal * tokenSignal = RACObserve([CEEUserSession session], authToken);
+    RACSignal * appearedSignal = RACObserve(self, isAppeared);
+    
+    [[RACSignal combineLatest:@[tokenSignal, appearedSignal] reduce:^id(NSString * token, NSNumber * isAppeared){
+        return @((token == nil || token.length == 0) && isAppeared.boolValue);
+    }] subscribeNext:^(NSNumber * shouldLogin) {
+        if (shouldLogin.boolValue) {
+            [self presentLogin];
+        } else {
+            [self dismissLogin];
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginVC]
-                       animated:YES completion:nil];
+    self.isAppeared = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)presentLogin {
+    if (!self.isPresentingLogin) {
+        self.isPresentingLogin = YES;
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginVC]
+                           animated:YES completion:nil];
+    }
+}
+
+- (void)dismissLogin {
+    if (self.isPresentingLogin) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.isPresentingLogin = NO;
+        }];
+    }
 }
 
 @end

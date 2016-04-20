@@ -12,4 +12,6 @@
 
 + (void)printAllFontNames;
 
++ (BOOL)isValidPassword:(NSString *)password;
+
 @end

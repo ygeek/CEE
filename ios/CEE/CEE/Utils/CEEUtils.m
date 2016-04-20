@@ -20,4 +20,14 @@
     }
 }
 
++ (BOOL)isValidPassword:(NSString *)password {
+    if ( [password length]<6 || [password length]>32 ) return NO;  // too long or too short
+    NSRange rang;
+    rang = [password rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]];
+    if ( !rang.length ) return NO;  // no letter
+    rang = [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]];
+    if ( !rang.length )  return NO;  // no number;
+    return YES;
+}
+
 @end

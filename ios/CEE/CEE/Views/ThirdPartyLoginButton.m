@@ -32,6 +32,7 @@
 
 - (void)commonInit {
     self.iconView = [[UIImageView alloc] init];
+    self.iconView.contentMode = UIViewContentModeCenter;
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;

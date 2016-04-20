@@ -10,12 +10,14 @@
 
 
 #import "CEEAppearanceManager.h"
+#import "AppearanceConstants.h"
 
 @implementation CEEAppearanceManager
 
 + (void)setup {
     [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UIBarButtonItem appearance] setTintColor:kCEETextBlackColor];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD setMinimumDismissTimeInterval:1];
 }

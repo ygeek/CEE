@@ -11,4 +11,6 @@
 
 #define _T(str) NSLocalizedString(str, nil)
 
+#define kPhoneNumberRegex @"^(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$"
+
 #endif /* UtilsMacros_h */

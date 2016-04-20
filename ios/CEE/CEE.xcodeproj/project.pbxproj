@@ -20,6 +20,8 @@
 		BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B41CC67A6300350809 /* CEEBaseAPI.m */; };
 		BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B71CC68D5000350809 /* CEELoginAPI.m */; };
 		BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103BA1CC7295F00350809 /* CEEAppearanceManager.m */; };
+		BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103BD1CC7A5A100350809 /* CEEUserSession.m */; };
+		BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103C01CC7ABE700350809 /* CEEDatabase.m */; };
 		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2EB1CC21E2900A1E0F7 /* HUDBaseView.m */; };
 		BB6AD2EE1CC2287200A1E0F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */; };
@@ -81,6 +83,10 @@
 		BB6103B71CC68D5000350809 /* CEELoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELoginAPI.m; sourceTree = "<group>"; };
 		BB6103B91CC7295F00350809 /* CEEAppearanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAppearanceManager.h; sourceTree = "<group>"; };
 		BB6103BA1CC7295F00350809 /* CEEAppearanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAppearanceManager.m; sourceTree = "<group>"; };
+		BB6103BC1CC7A5A100350809 /* CEEUserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserSession.h; sourceTree = "<group>"; };
+		BB6103BD1CC7A5A100350809 /* CEEUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserSession.m; sourceTree = "<group>"; };
+		BB6103BF1CC7ABE700350809 /* CEEDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEDatabase.h; sourceTree = "<group>"; };
+		BB6103C01CC7ABE700350809 /* CEEDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEDatabase.m; sourceTree = "<group>"; };
 		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
 		BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScrollView.m; sourceTree = "<group>"; };
 		BB6AD2EA1CC21E2900A1E0F7 /* HUDBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBaseView.h; sourceTree = "<group>"; };
@@ -305,6 +311,10 @@
 				BB6103A91CC62AB300350809 /* ServerConfig.m */,
 				BB6103B91CC7295F00350809 /* CEEAppearanceManager.h */,
 				BB6103BA1CC7295F00350809 /* CEEAppearanceManager.m */,
+				BB6103BC1CC7A5A100350809 /* CEEUserSession.h */,
+				BB6103BD1CC7A5A100350809 /* CEEUserSession.m */,
+				BB6103BF1CC7ABE700350809 /* CEEDatabase.h */,
+				BB6103C01CC7ABE700350809 /* CEEDatabase.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -506,11 +516,13 @@
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
+				BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */,
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,
 				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
 				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
