@@ -52,13 +52,15 @@ Token登录：
 ```json
 {
     "code": 0,
+    "auth": "token_xxxxx",
+    /* TODO(zhangmeng): 以下字段暂未实现
+    "expired_at": 1460351229,
     "user": {
         "username": "nightfade",
         "email": "nightfade@163.com",
         // TODO (zhangmeng): 补全其他用户信息
     },
-    "token": "xxxxx",
-    "expired_at": 1460351229
+    */
 }
 ```
 
