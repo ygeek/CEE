@@ -8,7 +8,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 
-@interface APIClient : AFHTTPSessionManager
+@interface CEEAPIClient : AFHTTPSessionManager
 
 + (instancetype)client;
 

@@ -16,7 +16,9 @@
 		BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A61CC5199100350809 /* FillProfileViewController.m */; };
 		BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A91CC62AB300350809 /* ServerConfig.m */; };
 		BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */; };
-		BB6103B11CC671A400350809 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B01CC671A400350809 /* APIClient.m */; };
+		BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B01CC671A400350809 /* CEEAPIClient.m */; };
+		BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B41CC67A6300350809 /* CEEBaseAPI.m */; };
+		BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B71CC68D5000350809 /* CEELoginAPI.m */; };
 		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2EB1CC21E2900A1E0F7 /* HUDBaseView.m */; };
 		BB6AD2EE1CC2287200A1E0F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */; };
@@ -70,8 +72,12 @@
 		BB6103A91CC62AB300350809 /* ServerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfig.m; sourceTree = "<group>"; };
 		BB6103AC1CC6336300350809 /* JSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONResponseSerializer.h; sourceTree = "<group>"; };
 		BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONResponseSerializer.m; sourceTree = "<group>"; };
-		BB6103AF1CC671A400350809 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
-		BB6103B01CC671A400350809 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
+		BB6103AF1CC671A400350809 /* CEEAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAPIClient.h; sourceTree = "<group>"; };
+		BB6103B01CC671A400350809 /* CEEAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAPIClient.m; sourceTree = "<group>"; };
+		BB6103B31CC67A6300350809 /* CEEBaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEBaseAPI.h; sourceTree = "<group>"; };
+		BB6103B41CC67A6300350809 /* CEEBaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEBaseAPI.m; sourceTree = "<group>"; };
+		BB6103B61CC68D5000350809 /* CEELoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELoginAPI.h; sourceTree = "<group>"; };
+		BB6103B71CC68D5000350809 /* CEELoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELoginAPI.m; sourceTree = "<group>"; };
 		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
 		BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScrollView.m; sourceTree = "<group>"; };
 		BB6AD2EA1CC21E2900A1E0F7 /* HUDBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBaseView.h; sourceTree = "<group>"; };
@@ -156,12 +162,24 @@
 		BB6103AB1CC6301300350809 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BB6103B21CC67A1A00350809 /* API */,
 				BB6103AC1CC6336300350809 /* JSONResponseSerializer.h */,
 				BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */,
-				BB6103AF1CC671A400350809 /* APIClient.h */,
-				BB6103B01CC671A400350809 /* APIClient.m */,
+				BB6103AF1CC671A400350809 /* CEEAPIClient.h */,
+				BB6103B01CC671A400350809 /* CEEAPIClient.m */,
+				BB6103B31CC67A6300350809 /* CEEBaseAPI.h */,
+				BB6103B41CC67A6300350809 /* CEEBaseAPI.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		BB6103B21CC67A1A00350809 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BB6103B61CC68D5000350809 /* CEELoginAPI.h */,
+				BB6103B71CC68D5000350809 /* CEELoginAPI.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		BB6AD2EF1CC228C500A1E0F7 /* Utils */ = {
@@ -465,6 +483,8 @@
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
+				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
+				BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
 				BB6AD30A1CC26B5A00A1E0F7 /* StoryTableViewCell.m in Sources */,
 				BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */,
@@ -476,7 +496,7 @@
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
-				BB6103B11CC671A400350809 /* APIClient.m in Sources */,
+				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,

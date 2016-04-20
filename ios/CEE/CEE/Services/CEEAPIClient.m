@@ -6,15 +6,15 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-#import "APIClient.h"
+#import "CEEAPIClient.h"
 #import "ServerConfig.h"
 #import "JSONResponseSerializer.h"
 
-@implementation APIClient
+@implementation CEEAPIClient
 
 + (instancetype)client {
     static dispatch_once_t onceToken;
-    static APIClient * instance = nil;
+    static CEEAPIClient * instance = nil;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] initWithBaseURL:[NSURL URLWithString:[ServerConfig config].serverAddress]];
     });

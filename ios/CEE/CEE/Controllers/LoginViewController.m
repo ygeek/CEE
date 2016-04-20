@@ -14,6 +14,7 @@
 #import "AppearanceConstants.h"
 #import "ThirdPartyLoginButton.h"
 #import "RegisterViewController.h"
+#import "CEELoginAPI.h"
 
 @interface LoginViewController ()
 
@@ -90,7 +91,16 @@
 }
 
 - (void)loginPressed:(id)sender {
-    
+    [[[[CEELoginAPI alloc] init] loginWithUsername:self.phoneField.text password:self.passwordField.text]
+     subscribeNext:^(CEELoginSuccessResponse *response) {
+         NSLog(@"%@", response);
+     }
+     error:^(NSError *error) {
+         NSLog(@"%@", error);
+     }
+     completed:^{
+         NSLog(@"completed");
+     }];
 }
 
 #pragma mark - Layout
