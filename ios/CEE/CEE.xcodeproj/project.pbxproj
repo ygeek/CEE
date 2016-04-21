@@ -22,6 +22,10 @@
 		BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103BA1CC7295F00350809 /* CEEAppearanceManager.m */; };
 		BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103BD1CC7A5A100350809 /* CEEUserSession.m */; };
 		BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103C01CC7ABE700350809 /* CEEDatabase.m */; };
+		BB6103C31CC7E0FF00350809 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6103C21CC7E0FF00350809 /* CoreLocation.framework */; };
+		BB6103C51CC7E10C00350809 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6103C41CC7E10C00350809 /* MapKit.framework */; };
+		BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103C71CC7E13000350809 /* CEELocationManager.m */; };
+		BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103CC1CC8570B00350809 /* AIDatePickerController.m */; };
 		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2EB1CC21E2900A1E0F7 /* HUDBaseView.m */; };
 		BB6AD2EE1CC2287200A1E0F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */; };
@@ -87,6 +91,12 @@
 		BB6103BD1CC7A5A100350809 /* CEEUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserSession.m; sourceTree = "<group>"; };
 		BB6103BF1CC7ABE700350809 /* CEEDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEDatabase.h; sourceTree = "<group>"; };
 		BB6103C01CC7ABE700350809 /* CEEDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEDatabase.m; sourceTree = "<group>"; };
+		BB6103C21CC7E0FF00350809 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BB6103C41CC7E10C00350809 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BB6103C61CC7E13000350809 /* CEELocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELocationManager.h; sourceTree = "<group>"; };
+		BB6103C71CC7E13000350809 /* CEELocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELocationManager.m; sourceTree = "<group>"; };
+		BB6103CB1CC8570B00350809 /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIDatePickerController.h; sourceTree = "<group>"; };
+		BB6103CC1CC8570B00350809 /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIDatePickerController.m; sourceTree = "<group>"; };
 		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
 		BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScrollView.m; sourceTree = "<group>"; };
 		BB6AD2EA1CC21E2900A1E0F7 /* HUDBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBaseView.h; sourceTree = "<group>"; };
@@ -144,6 +154,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB6103C51CC7E10C00350809 /* MapKit.framework in Frameworks */,
+				BB6103C31CC7E0FF00350809 /* CoreLocation.framework in Frameworks */,
 				DBE2B2942E7909B051221FF0 /* Pods_CEE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +166,8 @@
 		776D73916CBD9193D6B0A815 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB6103C41CC7E10C00350809 /* MapKit.framework */,
+				BB6103C21CC7E0FF00350809 /* CoreLocation.framework */,
 				6F33B289AB3942036A5E07CD /* Pods_CEE.framework */,
 			);
 			name = Frameworks;
@@ -189,6 +203,23 @@
 				BB6103B71CC68D5000350809 /* CEELoginAPI.m */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		BB6103C91CC8570B00350809 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				BB6103CA1CC8570B00350809 /* AIDatePickerController */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		BB6103CA1CC8570B00350809 /* AIDatePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				BB6103CB1CC8570B00350809 /* AIDatePickerController.h */,
+				BB6103CC1CC8570B00350809 /* AIDatePickerController.m */,
+			);
+			path = AIDatePickerController;
 			sourceTree = "<group>";
 		};
 		BB6AD2EF1CC228C500A1E0F7 /* Utils */ = {
@@ -239,6 +270,7 @@
 		BBA532321CBBC56500282D3E /* CEE */ = {
 			isa = PBXGroup;
 			children = (
+				BB6103C91CC8570B00350809 /* Libs */,
 				BB6103AB1CC6301300350809 /* Services */,
 				BB6AD2EF1CC228C500A1E0F7 /* Utils */,
 				BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */,
@@ -315,6 +347,8 @@
 				BB6103BD1CC7A5A100350809 /* CEEUserSession.m */,
 				BB6103BF1CC7ABE700350809 /* CEEDatabase.h */,
 				BB6103C01CC7ABE700350809 /* CEEDatabase.m */,
+				BB6103C61CC7E13000350809 /* CEELocationManager.h */,
+				BB6103C71CC7E13000350809 /* CEELocationManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -500,6 +534,7 @@
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
 				BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */,
+				BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
 				BB6AD30A1CC26B5A00A1E0F7 /* StoryTableViewCell.m in Sources */,
 				BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */,
@@ -522,6 +557,7 @@
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,
 				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
@@ -631,6 +667,7 @@
 			baseConfigurationReference = 7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Zhang (54Z2B532B5)";
 				INFOPLIST_FILE = CEE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -644,6 +681,7 @@
 			baseConfigurationReference = F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Zhang (54Z2B532B5)";
 				INFOPLIST_FILE = CEE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

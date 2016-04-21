@@ -23,5 +23,6 @@ target 'CEE' do
     pod 'AJWValidator'
     pod 'JSONModel'
     pod 'SVProgressHUD'
+    pod 'DZNPhotoPickerController'
 end
 

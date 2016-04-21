@@ -8,10 +8,15 @@
 
 @import Masonry;
 @import ReactiveCocoa;
+@import CoreLocation;
 
 #import "FillProfileViewController.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "CEELocationManager.h"
+#import "AIDatePickerController.h"
+
+#define kLocatingText @"定位中"
 
 @interface FillProfileViewController ()
 @property (nonatomic, strong) UIScrollView * contentScrollView;
@@ -38,11 +43,12 @@
 
 @property (nonatomic, strong) UILabel * locationLabel;
 @property (nonatomic, strong) UIView * locationSeperator;
-@property (nonatomic, strong) UILabel * locationField;
+@property (nonatomic, strong) UITextField * locationField;
 
 @property (nonatomic, strong) UIButton * finishButton;
 
 @property (nonatomic, copy) NSString * sex;
+@property (nonatomic, strong) NSDate * birthday;
 
 @end
 
@@ -96,6 +102,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[[CEELocationManager manager] getLocations] subscribeNext:^(NSArray<CLPlacemark *> * placemarks) {
+        if (self.locationField.text.length != 0) {
+            return;
+        }
+        CLPlacemark * placemark = placemarks.firstObject;
+        NSString * administrativeArea = placemark.administrativeArea;        // eg. CA
+        NSString * subAdministrativeArea = placemark.subAdministrativeArea;  // eg. Santa Clara
+        NSString * locality = placemark.locality;   // eg. Cupertion
+        
+        self.locationField.text = [@[administrativeArea, subAdministrativeArea, locality] componentsJoinedByString:@""];
+    } error:^(NSError * error) {
+        if (self.locationField.text.length == 0) {
+            self.locationField.text = @"未知位置";
+        }
+    }];
+}
+
 - (void)backPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -117,11 +143,17 @@
 }
 
 - (void)birthdayPressed:(id)sender {
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    NSDate * date = self.birthday ?: [dateFormatter dateFromString:@"1990年01月01日"];
+    AIDatePickerController * datePickerViewController = [AIDatePickerController pickerWithDate:date selectedBlock:^(NSDate *date) {
+        self.birthdayField.text = [dateFormatter stringFromDate:date];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } cancelBlock:^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     
-}
-
-- (void)locationPressed:(id)sender {
-    
+    [self presentViewController:datePickerViewController animated:YES completion:nil];
 }
 
 - (void)backgroundTapped:(id)sender {
@@ -163,7 +195,7 @@
 }
 
 - (void)setupHeadView {
-    self.headView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor purpleColor] size:CGSizeMake(86, 86)]];
+    self.headView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(86, 86)]];
     self.headView.layer.masksToBounds = YES;
     self.headView.layer.cornerRadius = 43;
     
@@ -177,7 +209,7 @@
     self.headShadowView.clipsToBounds = NO;
     
     self.headEditButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.headEditButton setImage:[UIImage imageWithColor:[UIColor blueColor] size:CGSizeMake(24, 24)] forState:UIControlStateNormal];
+    [self.headEditButton setImage:[UIImage imageNamed:@"个人资料编辑"] forState:UIControlStateNormal];
     self.headEditButton.layer.masksToBounds = YES;
     self.headEditButton.layer.cornerRadius = 12;
     [self.headEditButton addTarget:self action:@selector(headEditPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -278,6 +310,7 @@
     self.birthdayField.font = [UIFont fontWithName:kCEEFontNameRegular size:15];
     self.birthdayField.text = @"未设置";
     self.birthdayField.textAlignment = NSTextAlignmentLeft;
+    self.birthdayField.userInteractionEnabled = YES;
     
     UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(birthdayPressed:)];
     [self.birthdayField addGestureRecognizer:tapRecognizer];
@@ -296,14 +329,17 @@
     self.locationSeperator = [[UIView alloc] init];
     self.locationSeperator.backgroundColor = kCEETextLightBlackColor;
     
-    self.locationField = [[UILabel alloc] init];
-    self.locationField.textColor = [kCEETextBlackColor colorWithAlphaComponent:0.3];
+    self.locationField = [[UITextField alloc] init];
+    self.locationField.textColor = kCEETextBlackColor;
     self.locationField.font = [UIFont fontWithName:kCEEFontNameRegular size:15];
-    self.locationField.text = @"湖南长沙";
+    self.locationField.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:kLocatingText
+                                    attributes:@{NSForegroundColorAttributeName:[kCEETextBlackColor colorWithAlphaComponent:0.3],
+                                                            NSFontAttributeName:[UIFont fontWithName:kCEEFontNameRegular size:15],}];
     self.locationField.textAlignment = NSTextAlignmentLeft;
     
-    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationPressed:)];
-    [self.locationField addGestureRecognizer:tapRecognizer];
+    //UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationPressed:)];
+    //[self.locationField addGestureRecognizer:tapRecognizer];
     
     [self.contentView addSubview:self.locationLabel];
     [self.contentView addSubview:self.locationSeperator];
