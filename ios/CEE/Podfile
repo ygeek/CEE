@@ -23,6 +23,6 @@ target 'CEE' do
     pod 'AJWValidator'
     pod 'JSONModel'
     pod 'SVProgressHUD'
-    pod 'DZNPhotoPickerController'
+    pod 'DZNPhotoPickerController', :git => 'https://github.com/nightfade/DZNPhotoPickerController.git'
 end
 

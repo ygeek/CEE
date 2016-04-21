@@ -1,29 +1,29 @@
 /* Title of the root navigation bar. */
-"Internet Photos" = "Internet Photos";
+"Internet Photos" = "互联网照片";
 
 /* Pleceholder text on search bar. */
-"Search" = "Search";
+"Search" = "搜索";
 
 /* Error alert view title. */
-"Error" = "Error";
+"Error" = "错误";
 
 /* Error alert view dimissing button title. */
-"OK" = "OK";
+"OK" = "确定";
 
 /* Placeholder text on table view cells for tag search when no results available. */
-"Search for \"%@\"" = "Search for \"%@\"";
+"Search for \"%@\"" = "搜索\"%@\"";
 
 /* Footer button title shown on DZNPhotoEditorViewController. */
-"Cancel" = "Cancel";
+"Cancel" = "取消";
 
 /* Footer button title shown on DZNPhotoEditorViewController. */
-"Choose" = "Choose";
+"Choose" = "选择";
 
 /* Header title shown on DZNPhotoEditorViewController. */
-"Move and Scale" = "Move and Scale";
+"Move and Scale" = "移动和缩放";
 
 /* Empty data set title when no results available. */
-"No Photos Found" = "No Photos Found";
+"No Photos Found" = "没有发现照片";
 
 /* Empty data set description when no results available. */
-"Make sure that all words are spelled correctly." = "Make sure that all words are spelled correctly.";
+"Make sure that all words are spelled correctly." = "确定所有的单词都正确拼写。";

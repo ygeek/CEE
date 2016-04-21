@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, DZNPhotoAspect) {
     self.view.backgroundColor = [UIColor blackColor];
     
     if (DZN_IS_IPAD) {
-        self.title = NSLocalizedString(@"Edit Photo", nil);
+        self.title = @"编辑照片";
     }
     else {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -224,7 +224,7 @@ typedef NS_ENUM(NSInteger, DZNPhotoAspect) {
 - (UIButton *)leftButton
 {
     if (!_leftButton) {
-        _leftButton = [self buttonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        _leftButton = [self buttonWithTitle:@"取消"];
         [_leftButton addTarget:self action:@selector(cancelEdition:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftButton;
@@ -233,7 +233,7 @@ typedef NS_ENUM(NSInteger, DZNPhotoAspect) {
 - (UIButton *)rightButton
 {
     if (!_rightButton) {
-        _rightButton = [self buttonWithTitle:NSLocalizedString(@"Choose", nil)];
+        _rightButton = [self buttonWithTitle:@"选择"];
         [_rightButton addTarget:self action:@selector(acceptEdition:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;
@@ -282,7 +282,7 @@ typedef NS_ENUM(NSInteger, DZNPhotoAspect) {
             topLabel.textColor = [UIColor whiteColor];
             topLabel.textAlignment = NSTextAlignmentCenter;
             topLabel.font = [UIFont systemFontOfSize:18.0];
-            topLabel.text = NSLocalizedString(@"Move and Scale", nil);
+            topLabel.text = @"移动或缩放";
             [self.view addSubview:topLabel];
             
             NSDictionary *labels = @{@"label" : topLabel};

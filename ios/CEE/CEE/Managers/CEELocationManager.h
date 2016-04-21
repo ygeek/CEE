@@ -13,10 +13,15 @@
 #define CEE_LOCATION_ERROR_DOMAIN @"CEE_LOCATION_ERROR_DOMAIN"
 
 
+@class TLCity;
+
+
 @interface CEELocationManager : NSObject
 
 + (instancetype)manager;
 
 - (RACSignal *)getLocations;
+
+- (TLCity *)getCityWithName:(NSString *)cityName;
 
 @end

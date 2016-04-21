@@ -65,7 +65,7 @@ DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudCrashReporting
   - AVOSCloudIM
-  - DZNPhotoPickerController
+  - DZNPhotoPickerController (from `https://github.com/nightfade/DZNPhotoPickerController.git`)
   - JSONModel
   - Masonry
   - MOBFoundation_IDFA
@@ -79,6 +79,15 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKPlatforms/WeChat
   - SMSSDK
   - SVProgressHUD
+
+EXTERNAL SOURCES:
+  DZNPhotoPickerController:
+    :git: https://github.com/nightfade/DZNPhotoPickerController.git
+
+CHECKOUT OPTIONS:
+  DZNPhotoPickerController:
+    :commit: a96715bc3577a1c7c028a41d60fcacdc0d99d661
+    :git: https://github.com/nightfade/DZNPhotoPickerController.git
 
 SPEC CHECKSUMS:
   ABMenuTableViewCell: 51645b10264687a9af76719a6cc777c85c0cabbe

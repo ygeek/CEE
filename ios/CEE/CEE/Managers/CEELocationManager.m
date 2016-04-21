@@ -10,11 +10,13 @@
 @import MapKit;
 
 #import "CEELocationManager.h"
+#import "TLCity.h"
 
 @interface CEELocationManager () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager * locationManager;
 @property (nonatomic, strong) RACSignal * currentSignal;
 @property (nonatomic, strong) id<RACSubscriber> currentSubscriber;
+@property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
 @end
 
 
@@ -34,6 +36,24 @@
     if (self) {
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager startMonitoringSignificantLocationChanges];
+        
+        self.cities = [[NSMutableArray alloc] init];
+        NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CityData" ofType:@"plist"]];
+        for (NSDictionary *groupDic in array) {
+            for (NSDictionary *dic in [groupDic objectForKey:@"citys"]) {
+                TLCity *city = [[TLCity alloc] init];
+                city.cityID = [dic objectForKey:@"city_key"];
+                city.cityName = [dic objectForKey:@"city_name"];
+                city.shortName = [dic objectForKey:@"short_name"];
+                city.pinyin = [dic objectForKey:@"pinyin"];
+                city.initials = [dic objectForKey:@"initials"];
+                [self.cities addObject:city];
+            }
+        }
     }
     return self;
 }
@@ -49,6 +69,15 @@
         }] replay];
     }
     return self.currentSignal;
+}
+
+- (TLCity *)getCityWithName:(NSString *)cityName {
+    for (TLCity * city in self.cities) {
+        if ([city.cityName isEqualToString:cityName]) {
+            return city;
+        }
+    }
+    return nil;
 }
 
 

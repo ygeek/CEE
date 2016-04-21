@@ -11,6 +11,8 @@
 @import ReactiveCocoa;
 @import DZNPhotoPickerController;
 
+#import "TLCityPickerController.h"
+
 #import "FillProfileViewController.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
@@ -19,7 +21,7 @@
 
 #define kLocatingText @"定位中"
 
-@interface FillProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface FillProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, TLCityPickerDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
 @property (nonatomic, strong) UIView * contentView;
 
@@ -44,7 +46,8 @@
 
 @property (nonatomic, strong) UILabel * locationLabel;
 @property (nonatomic, strong) UIView * locationSeperator;
-@property (nonatomic, strong) UITextField * locationField;
+@property (nonatomic, strong) UILabel * locationField;
+@property (nonatomic, strong) UIActivityIndicatorView * locatingIndicator;
 
 @property (nonatomic, strong) UIButton * finishButton;
 
@@ -97,6 +100,8 @@
             self.femaleButton.selected = NO;
         }
     }];
+    
+    RAC(self, headView.image) = [RACObserve(self, photo) ignore:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,20 +112,34 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if (self.locationField.text && self.locationField.text.length > 0) {
+        return;
+    }
+    
+    self.locationField.text = kLocatingText;
+    [self.locatingIndicator startAnimating];
     [[[CEELocationManager manager] getLocations] subscribeNext:^(NSArray<CLPlacemark *> * placemarks) {
-        if (self.locationField.text.length != 0) {
-            return;
-        }
         CLPlacemark * placemark = placemarks.firstObject;
-        NSString * administrativeArea = placemark.administrativeArea;        // eg. CA
-        NSString * subAdministrativeArea = placemark.subAdministrativeArea;  // eg. Santa Clara
-        NSString * locality = placemark.locality;   // eg. Cupertion
+        NSString * cityName = placemark.locality;
+        self.locationField.text = cityName;
+        [self.locatingIndicator stopAnimating];
         
-        self.locationField.text = [@[administrativeArea, subAdministrativeArea, locality] componentsJoinedByString:@""];
+        if (self.presentedViewController && [self.presentedViewController isKindOfClass:[UINavigationController class]]) {
+            TLCityPickerController * vc = ((UINavigationController *)self.presentedViewController).viewControllers[0];
+            if ([vc isKindOfClass:[TLCityPickerController class]]) {
+                TLCity * city = [[CEELocationManager manager] getCityWithName:cityName];
+                if (city) {
+                    [vc setLocationCityID:city.cityID];
+                    [vc.tableView reloadData];
+                }
+            }
+        }
+        
     } error:^(NSError * error) {
-        if (self.locationField.text.length == 0) {
+        if ([self.locationField.text isEqualToString:kLocatingText]) {
             self.locationField.text = @"未知位置";
         }
+        [self.locatingIndicator stopAnimating];
     }];
 }
 
@@ -139,7 +158,13 @@
 }
 
 - (void)finishPressed:(id)sender {
+    UIImage * photo = self.photo;
+    NSString * nickname = self.nicknameField.text;
+    NSString * sex = self.sex;
+    NSDate * birthday = self.birthday;
+    NSString * cityName = self.locationField.text;
     
+    // TODO (zhangmeng): call register
 }
 
 - (void)malePressed:(id)sender {
@@ -162,6 +187,19 @@
     }];
     
     [self presentViewController:datePickerViewController animated:YES completion:nil];
+}
+
+- (void)locationPressed:(id)sender {
+    TLCityPickerController * picker = [[TLCityPickerController alloc] init];
+    picker.delegate = self;
+    TLCity * city = [[CEELocationManager manager] getCityWithName:self.locationField.text];
+    if (city) {
+        picker.locationCityID = city.cityID;
+    }
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:picker];
+    [navController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [navController.navigationBar setShadowImage:[UIImage new]];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)backgroundTapped:(id)sender {
@@ -187,9 +225,22 @@
     }
 }
 
+#pragma mark - TLCityPickerDelegate
+
+- (void) cityPickerController:(TLCityPickerController *)cityPickerViewController
+                didSelectCity:(TLCity *)city {
+    self.locationField.text = city.cityName;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) cityPickerControllerDidCancel:(TLCityPickerController *)cityPickerViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    self.photo = (UIImage *)[info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -263,6 +314,8 @@
     = [[NSAttributedString alloc] initWithString:@"最多10个字符"
                                       attributes:@{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:15],
                                                    NSForegroundColorAttributeName: [kCEETextBlackColor colorWithAlphaComponent:0.3],}];
+    self.nicknameField.font = [UIFont fontWithName:kCEEFontNameRegular size:15];
+    self.nicknameField.textColor = kCEETextLightBlackColor;
     
     [self.contentView addSubview:self.nicknameLabel];
     [self.contentView addSubview:self.nicknameSeperator];
@@ -347,21 +400,22 @@
     self.locationSeperator = [[UIView alloc] init];
     self.locationSeperator.backgroundColor = kCEETextLightBlackColor;
     
-    self.locationField = [[UITextField alloc] init];
-    self.locationField.textColor = kCEETextBlackColor;
+    self.locationField = [[UILabel alloc] init];
+    self.locationField.textColor = [kCEETextBlackColor colorWithAlphaComponent:0.3];
     self.locationField.font = [UIFont fontWithName:kCEEFontNameRegular size:15];
-    self.locationField.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:kLocatingText
-                                    attributes:@{NSForegroundColorAttributeName:[kCEETextBlackColor colorWithAlphaComponent:0.3],
-                                                            NSFontAttributeName:[UIFont fontWithName:kCEEFontNameRegular size:15],}];
+    self.locationField.text = nil;
     self.locationField.textAlignment = NSTextAlignmentLeft;
+    self.locationField.userInteractionEnabled = YES;
     
-    //UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationPressed:)];
-    //[self.locationField addGestureRecognizer:tapRecognizer];
+    self.locatingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationPressed:)];
+    [self.locationField addGestureRecognizer:tapRecognizer];
     
     [self.contentView addSubview:self.locationLabel];
     [self.contentView addSubview:self.locationSeperator];
     [self.contentView addSubview:self.locationField];
+    [self.contentView addSubview:self.locatingIndicator];
 }
 
 - (void)setupLayout {
@@ -403,6 +457,7 @@
     [self.nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(245 * verticalScale());
         make.left.equalTo(self.finishButton.mas_left).offset(6);
+        make.width.mas_equalTo(30);
     }];
     
     [self.nicknameLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -418,7 +473,7 @@
         make.top.equalTo(self.nicknameLabel.mas_top);
         make.bottom.equalTo(self.nicknameLabel.mas_bottom);
         make.left.equalTo(self.nicknameSeperator.mas_right).offset(7);
-        make.right.lessThanOrEqualTo(self.finishButton.mas_right).offset(-6);
+        make.right.equalTo(self.finishButton.mas_right).offset(-6);
     }];
     
     [self.sexSeperator mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -502,7 +557,12 @@
         make.top.equalTo(self.locationSeperator.mas_top);
         make.bottom.equalTo(self.locationSeperator.mas_bottom);
         make.left.equalTo(self.locationSeperator.mas_right).offset(7);
-        make.right.lessThanOrEqualTo(self.finishButton.mas_right).offset(-6);
+        make.right.equalTo(self.locatingIndicator.mas_left);
+    }];
+    
+    [self.locatingIndicator mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.locationField.mas_centerY);
+        make.right.equalTo(self.finishButton.mas_right);
     }];
 }
 
