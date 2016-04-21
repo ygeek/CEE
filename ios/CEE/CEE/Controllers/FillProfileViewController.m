@@ -6,9 +6,10 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import CoreLocation;
 @import Masonry;
 @import ReactiveCocoa;
-@import CoreLocation;
+@import DZNPhotoPickerController;
 
 #import "FillProfileViewController.h"
 #import "AppearanceConstants.h"
@@ -18,7 +19,7 @@
 
 #define kLocatingText @"定位中"
 
-@interface FillProfileViewController ()
+@interface FillProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
 @property (nonatomic, strong) UIView * contentView;
 
@@ -49,6 +50,7 @@
 
 @property (nonatomic, copy) NSString * sex;
 @property (nonatomic, strong) NSDate * birthday;
+@property (nonatomic, strong) UIImage * photo;
 
 @end
 
@@ -127,7 +129,13 @@
 }
 
 - (void)headEditPressed:(id)sender {
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    picker.cropMode = DZNPhotoEditorViewControllerCropModeCircular;
     
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)finishPressed:(id)sender {
@@ -177,6 +185,16 @@
     if (self.nicknameField.isFirstResponder) {
         [self.contentScrollView scrollRectToVisible:self.nicknameField.frame animated:YES];
     }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Setup Layout
