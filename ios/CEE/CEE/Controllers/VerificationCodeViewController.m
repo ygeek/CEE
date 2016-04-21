@@ -40,7 +40,7 @@
     [self setupMessageLabel];
     [self setupNextButton];
     [self setupCodeField];
-    [self setupSwitchButton];
+    //[self setupSwitchButton];
     [self setupLayout];
    
     self.navigationItem.leftBarButtonItem
@@ -263,6 +263,7 @@
         make.height.mas_equalTo(1.0 / [UIScreen mainScreen].scale);
     }];
     
+    /*
     [self.switchButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-108);
@@ -275,6 +276,7 @@
         make.top.equalTo(self.switchButton.mas_bottom).offset(4);
         make.height.mas_equalTo(1.0 / [UIScreen mainScreen].scale);
     }];
+     */
 }
 
 @end
