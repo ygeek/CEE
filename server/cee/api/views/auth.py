@@ -183,6 +183,9 @@ class UserProfileView(APIView):
         try:
             user_profile = UserProfile.objects.get(user=user)
             serializer = UserProfileSerializer(user_profile)
+            data = serializer.data.copy()
+            data['username'] = user.username
+            data['token'] = get_token(user)
             return Response({
                 'code': 0,
                 'profile': serializer.data,

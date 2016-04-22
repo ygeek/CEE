@@ -19,6 +19,7 @@
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
 #import "CEELoginAPI.h"
+#import "CEEFetchUserProfileAPI.h"
 #import "CEEUtils.h"
 #import "UtilsMacros.h"
 
@@ -107,12 +108,12 @@
     }
     [SVProgressHUD show];
     CEELoginAPI * loginAPI = [[CEELoginAPI alloc] init];
-    [[loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text]
-     subscribeNext:^(CEELoginSuccessResponse *response) {
+    [[[loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text]
+      flattenMap:^(CEELoginSuccessResponse *response) {
+         return [[CEEUserSession session] loggedInWithAuth:response.auth];
+     }] subscribeNext:^(CEEFetchUserProfileSuccessResponse *response) {
          [SVProgressHUD dismiss];
-         [[CEEUserSession session] loggedInWithAuth:response.auth];
-     }
-     error:^(NSError *error) {
+     } error:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.localizedDescription];
      }];
 }

@@ -16,6 +16,7 @@
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
 #import "CEERegisterAPI.h"
+#import "CEEFetchUserProfileAPI.h"
 #import "CEEUserSession.h"
 
 @interface VerificationCodeViewController ()
@@ -99,8 +100,9 @@
 
 - (void)nextPressed:(id)sender {
 #if DEBUG
-    [[[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password] subscribeNext:^(CEERegisterSuccessResponse *response){
-        [[CEEUserSession session] loggedInWithAuth:response.auth];
+    [[[[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password] flattenMap:^(CEERegisterSuccessResponse * response) {
+        return [[CEEUserSession session] loggedInWithAuth:response.auth];
+    }] subscribeNext:^(CEEFetchUserProfileSuccessResponse *response){
         [SVProgressHUD dismiss];
     } error:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];

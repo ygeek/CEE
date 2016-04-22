@@ -22,6 +22,7 @@
 #import "AIDatePickerController.h"
 #import "CEEUploadTokenAPI.h"
 #import "CEESaveUserProfileAPI.h"
+#import "CEEUserSession.h"
 #import "UIImage+Utils.h"
 
 #define kLocatingText @"定位中"
@@ -186,8 +187,13 @@
                           }
                           request.location = self.locationField.text;
                           [[[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request] subscribeNext:^(CEESaveUserProfileSuccessResponse *response) {
-                              [SVProgressHUD dismiss];
-                              [self dismissViewControllerAnimated:YES completion:nil];
+                              
+                              [[[CEEUserSession session] loadUserProfile] subscribeNext:^(CEEUserProfile *profile) {
+                                  [SVProgressHUD dismiss];
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                              } error:^(NSError *error) {
+                                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                              }];
                           } error:^(NSError *error) {
                               [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                           }];

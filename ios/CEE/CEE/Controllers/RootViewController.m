@@ -91,6 +91,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     RACSignal * tokenSignal = RACObserve([CEEUserSession session], authToken);
+    RACSignal * profileSignal = RACObserve([CEEUserSession session], userProfile);
+    RACSignal * isFetchingProfileSignal = RACObserve([CEEUserSession session], isFetchingUserProfile);
     RACSignal * appearedSignal = RACObserve(self, isAppeared);
     
     [[RACSignal combineLatest:@[tokenSignal, appearedSignal] reduce:^id(NSString * token, NSNumber * isAppeared){
@@ -102,12 +104,23 @@
             [self dismissLogin];
         }
     }];
+    
+    [[RACSignal combineLatest:@[tokenSignal, profileSignal, isFetchingProfileSignal, appearedSignal]
+                       reduce:
+      ^id(NSString * token, CEEJSONUserProfile * profile, NSNumber *isFetchingProfile, NSNumber * isAppeared){
+        return @(token && profile == nil && !isFetchingProfile.boolValue && isAppeared.boolValue);
+    }] subscribeNext:^(NSNumber * shouldFillProfile) {
+        if (shouldFillProfile.boolValue) {
+            [self presentUserProfileForm];
+        } else {
+            [self dismissUserProfileForm];
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.isAppeared = YES;
-    [self presentLogin];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

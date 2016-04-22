@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import ReactiveCocoa;
+
 #import <Foundation/Foundation.h>
 
 #import "CEEUserProfile.h"
@@ -16,11 +18,13 @@
 + (instancetype)session;
 
 @property (nonatomic, copy) NSString * authToken;
-
 @property (nonatomic, strong) CEEJSONUserProfile * userProfile;
+@property (nonatomic, assign) BOOL isFetchingUserProfile;
 
 - (void)load;
 
-- (void)loggedInWithAuth:(NSString *)auth;
+- (RACSignal *)loggedInWithAuth:(NSString *)auth;
+
+- (RACSignal *)loadUserProfile;
 
 @end

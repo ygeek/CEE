@@ -7,10 +7,10 @@
 //
 
 #import "CEEBaseAPI.h"
-
+#import "CEEUserProfile.h"
 
 @interface CEEFetchUserProfileSuccessResponse : CEEBaseResponse
-@property (nonatomic, strong) NSDictionary * profile;
+@property (nonatomic, strong) CEEJSONUserProfile * profile;
 @end
 
 

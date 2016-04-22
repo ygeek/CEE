@@ -34,7 +34,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'nickname',
             'head_img_key',
             'sex',
-            'birtyday',
+            'birthday',
             'mobile',
             'location',
         )

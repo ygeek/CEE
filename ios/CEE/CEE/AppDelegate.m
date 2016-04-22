@@ -14,6 +14,7 @@
 #import "CEEAppearanceManager.h"
 #import "RootViewController.h"
 #import "CEEUtils.h"
+#import "CEEUserSession.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SDKManager sharedInstance] setup];
     [CEEAppearanceManager setup];
+    [[CEEUserSession session] load];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
