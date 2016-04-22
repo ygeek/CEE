@@ -2,23 +2,24 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from .story import *
 
 
 class Coupon(models.Model):
-    gmt_start = models.DateField()
-    gmt_end = models.DateField()
     name = models.CharField(max_length=30)
     desc = models.TextField()
-    state = models.CharField(max_length=50)
-    code = models.CharField(max_length=50)
+    gmt_start = models.DateField()
+    gmt_end = models.DateField()
+    code = models.CharField(max_length=10)
     is_deleted = models.BooleanField()
+    owners = models.ManyToManyField(User,
+                                    through='UserCoupon',
+                                    related_name='coupons')
 
 
 class UserCoupon(models.Model):
+    uuid = models.CharField(max_length=50, primary_key=True)
     user = models.ForeignKey(User, related_name='user_coupons')
     coupon = models.ForeignKey(Coupon, related_name='user_coupons')
-
-    class Meta:
-        unique_together = (
-            ('user', 'coupon'),
-        )
+    story = models.ForeignKey(Story, related_name='user_coupons')
+    consumed = models.BooleanField()
