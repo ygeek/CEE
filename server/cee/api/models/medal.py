@@ -2,11 +2,13 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from .map import *
 
 
 class Medal(models.Model):
+    map = models.OneToOneField(Map, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
+    desc = models.TextField()
     icon_url = models.URLField()
     owners = models.ManyToManyField(User,
                                     through='UserMedal',

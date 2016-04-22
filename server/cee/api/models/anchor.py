@@ -17,8 +17,8 @@ class Anchor(models.Model):
     map = models.ForeignKey(Map, related_name='anchors')
     name = models.CharField(max_length=30)
     desc = models.TextField()
-    dx = models.FloatField()
-    dy = models.FloatField()
+    dx = models.IntegerField()
+    dy = models.IntegerField()
     type = models.CharField(max_length=10,
                             choices=Type.Choices)
     ref_id = models.IntegerField()

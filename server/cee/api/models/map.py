@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from .medal import Medal
 
 
 class Map(models.Model):
@@ -11,7 +10,6 @@ class Map(models.Model):
     x = models.FloatField()
     y = models.FloatField()
     image_url = models.URLField()
-    medal = models.ForeignKey(Medal, related_name='maps')
     owners = models.ManyToManyField(User,
                                     through='UserMap',
                                     related_name='maps')
