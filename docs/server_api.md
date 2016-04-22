@@ -404,7 +404,8 @@ Authorization: Token xxxxxxx
             "dw": 10,
             "dh": 20,
             "type": "task",
-            "ref_id": 1
+            "ref_id": 1,
+            "completed": false
         },
         {
             "id": 2,
@@ -412,7 +413,8 @@ Authorization: Token xxxxxxx
             "dw": 50,
             "dh": 80,
             "type": "story",
-            "ref_id": 1
+            "ref_id": 1,
+            "completed": true
         }
     ]
 }
