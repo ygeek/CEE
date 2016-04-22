@@ -6,7 +6,7 @@ use_frameworks!
 target 'CEE' do
     pod 'Realm'
     pod 'Masonry'
-    pod 'AFNetworking'
+    pod 'AFNetworking', '~> 3.1.0'
     pod 'ReactiveCocoa', '~> 2.5'
     pod 'SDWebImage'
     pod 'RDVTabBarController'
@@ -23,6 +23,7 @@ target 'CEE' do
     pod 'AJWValidator'
     pod 'JSONModel'
     pod 'SVProgressHUD'
-    pod 'DZNPhotoPickerController', :git => 'https://github.com/nightfade/DZNPhotoPickerController.git'
+    pod 'DZNPhotoPickerController/Editor', :git => 'https://github.com/nightfade/DZNPhotoPickerController.git'
+    pod "Qiniu", :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetworking-3.x'
 end
 

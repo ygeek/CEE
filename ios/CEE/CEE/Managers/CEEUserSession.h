@@ -14,4 +14,6 @@
 
 @property (nonatomic, copy) NSString * authToken;
 
+- (void)loggedInWithAuth:(NSString *)auth;
+
 @end

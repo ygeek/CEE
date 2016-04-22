@@ -88,7 +88,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    /*
     RACSignal * tokenSignal = RACObserve([CEEUserSession session], authToken);
     RACSignal * appearedSignal = RACObserve(self, isAppeared);
     
@@ -101,11 +101,13 @@
             [self dismissLogin];
         }
     }];
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.isAppeared = YES;
+    [self presentLogin];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

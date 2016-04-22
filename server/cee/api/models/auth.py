@@ -18,19 +18,21 @@ class ThirdPartyAccount(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gmt_created = models.DateField()
-    gmt_modified = models.DateField()
+    gmt_created = models.DateField(auto_now_add=True)
+    gmt_modified = models.DateField(auto_now=True)
     nickname = models.CharField(max_length=50)
-    head_url = models.URLField()
-    sex = models.CharField(max_length=50)
-    mobile = models.CharField(max_length=50)
+    head_img_key = models.CharField(max_length=100, blank=True, null=True)
+    sex = models.CharField(max_length=50, blank=True, null=True)
+    birthday = models.DateField()
+    mobile = models.CharField(max_length=50, blank=True, null=True)
+    location = models.CharField(max_length=50, blank=True, null=True)
 
 
 class UserFriend(models.Model):
-    user = models.ForeignKey(User, related_name='user_relation')
+    user = models.ForeignKey(User)
     friend = models.ForeignKey(User, related_name='user_relation')
 
-    class Model:
+    class Meta:
         unique_together = (
-            'user','friend'
+            'user', 'friend'
         )

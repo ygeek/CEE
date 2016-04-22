@@ -13,6 +13,9 @@
 		BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF3A1CC90A3F001C25B6 /* TLCityHeaderView.m */; };
 		BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF3C1CC90A3F001C25B6 /* TLCityPickerController.m */; };
 		BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF3F1CC90A3F001C25B6 /* TLCityPickerSearchResultController.m */; };
+		BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF471CC9D966001C25B6 /* CEERegisterAPI.m */; };
+		BB29EF4B1CC9DF68001C25B6 /* CEEUserProfileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF4A1CC9DF68001C25B6 /* CEEUserProfileAPI.m */; };
+		BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF4D1CC9E474001C25B6 /* CEEUploadTokenAPI.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -79,6 +82,12 @@
 		BB29EF3D1CC90A3F001C25B6 /* TLCityPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCityPickerDelegate.h; sourceTree = "<group>"; };
 		BB29EF3E1CC90A3F001C25B6 /* TLCityPickerSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCityPickerSearchResultController.h; sourceTree = "<group>"; };
 		BB29EF3F1CC90A3F001C25B6 /* TLCityPickerSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCityPickerSearchResultController.m; sourceTree = "<group>"; };
+		BB29EF461CC9D966001C25B6 /* CEERegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEERegisterAPI.h; sourceTree = "<group>"; };
+		BB29EF471CC9D966001C25B6 /* CEERegisterAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEERegisterAPI.m; sourceTree = "<group>"; };
+		BB29EF491CC9DF68001C25B6 /* CEEUserProfileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserProfileAPI.h; sourceTree = "<group>"; };
+		BB29EF4A1CC9DF68001C25B6 /* CEEUserProfileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserProfileAPI.m; sourceTree = "<group>"; };
+		BB29EF4C1CC9E474001C25B6 /* CEEUploadTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUploadTokenAPI.h; sourceTree = "<group>"; };
+		BB29EF4D1CC9E474001C25B6 /* CEEUploadTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUploadTokenAPI.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -238,6 +247,12 @@
 			children = (
 				BB6103B61CC68D5000350809 /* CEELoginAPI.h */,
 				BB6103B71CC68D5000350809 /* CEELoginAPI.m */,
+				BB29EF461CC9D966001C25B6 /* CEERegisterAPI.h */,
+				BB29EF471CC9D966001C25B6 /* CEERegisterAPI.m */,
+				BB29EF491CC9DF68001C25B6 /* CEEUserProfileAPI.h */,
+				BB29EF4A1CC9DF68001C25B6 /* CEEUserProfileAPI.m */,
+				BB29EF4C1CC9E474001C25B6 /* CEEUploadTokenAPI.h */,
+				BB29EF4D1CC9E474001C25B6 /* CEEUploadTokenAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -571,9 +586,11 @@
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
+				BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
 				BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */,
 				BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */,
+				BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
 				BB6AD30A1CC26B5A00A1E0F7 /* StoryTableViewCell.m in Sources */,
 				BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */,
@@ -607,6 +624,7 @@
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
 				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
+				BB29EF4B1CC9DF68001C25B6 /* CEEUserProfileAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

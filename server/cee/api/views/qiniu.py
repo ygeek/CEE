@@ -5,17 +5,17 @@ from __future__ import absolute_import
 
 import qiniu
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from ..config import QiniuConfig
 
 
 class UploadTokenView(APIView):
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
-    def get(self, request, key):
+    def get(self, request):
         q = qiniu.Auth(QiniuConfig.ACCESS_KEY, QiniuConfig.SECRET_KEY)
-        token = q.upload_token(QiniuConfig.BUCKET_NAME, key)
+        token = q.upload_token(QiniuConfig.BUCKET_NAME)
         return Response({
             'code': 0,
             'upload_token': token,

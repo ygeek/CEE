@@ -10,6 +10,8 @@
 @import Masonry;
 @import ReactiveCocoa;
 @import DZNPhotoPickerController;
+@import Qiniu;
+@import SVProgressHUD;
 
 #import "TLCityPickerController.h"
 
@@ -18,6 +20,9 @@
 #import "UIImage+Utils.h"
 #import "CEELocationManager.h"
 #import "AIDatePickerController.h"
+#import "CEEUploadTokenAPI.h"
+#import "CEEUserProfileAPI.h"
+#import "UIImage+Utils.h"
 
 #define kLocatingText @"定位中"
 
@@ -159,12 +164,50 @@
 
 - (void)finishPressed:(id)sender {
     UIImage * photo = self.photo;
-    NSString * nickname = self.nicknameField.text;
-    NSString * sex = self.sex;
-    NSDate * birthday = self.birthday;
-    NSString * cityName = self.locationField.text;
+    [SVProgressHUD show];
+    [[[[CEEUploadTokenAPI alloc] init] requestUploadToken] subscribeNext:^(CEEUploadTokenSuccessResponse *response) {
+        if (photo) {
+            QNUploadManager *upManager = [[QNUploadManager alloc] init];
+            NSData *data = UIImagePNGRepresentation([photo imageScaleToWidth:200]);
+            [upManager putData:data
+                           key:nil
+                         token:response.upload_token
+                      complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                          if (info.error) {
+                              [SVProgressHUD showErrorWithStatus:info.error.localizedDescription];
+                              return;
+                          }
+                          CEEUserProfileRequest * request = [[CEEUserProfileRequest alloc] init];
+                          request.nickname = self.nicknameField.text;
+                          request.head_img_key = key;
+                          request.sex = self.sex;
+                          if (self.birthday) {
+                              request.birthday = @([self.birthday timeIntervalSince1970]);
+                          }
+                          request.location = self.locationField.text;
+                          [[[[CEEUserProfileAPI alloc] init] saveUserProfile:request] subscribeNext:^(CEEUserProfileSuccessResponse *response) {
+                              [SVProgressHUD dismiss];
+                              [self dismissViewControllerAnimated:YES completion:nil];
+                          } error:^(NSError *error) {
+                              [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                          }];
+                      } option:nil];
+        } else {
+            CEEUserProfileRequest * request = [[CEEUserProfileRequest alloc] init];
+            request.nickname = self.nicknameField.text;
+            request.head_img_key = nil;
+            request.sex = self.sex;
+            request.birthday = @([self.birthday timeIntervalSince1970]);
+            request.location = self.locationField.text;
+            [[[CEEUserProfileAPI alloc] init] saveUserProfile:request];
+            [SVProgressHUD dismiss];
+        }
+    } error:^(NSError * error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }];
     
-    // TODO (zhangmeng): call register
+    
+
 }
 
 - (void)malePressed:(id)sender {
@@ -180,6 +223,7 @@
     [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     NSDate * date = self.birthday ?: [dateFormatter dateFromString:@"1990年01月01日"];
     AIDatePickerController * datePickerViewController = [AIDatePickerController pickerWithDate:date selectedBlock:^(NSDate *date) {
+        self.birthday = date;
         self.birthdayField.text = [dateFormatter stringFromDate:date];
         [self dismissViewControllerAnimated:YES completion:nil];
     } cancelBlock:^{

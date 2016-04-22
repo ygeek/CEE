@@ -21,4 +21,18 @@
     return image;
 }
 
+- (UIImage *)imageScaleToWidth:(CGFloat)width {
+    CGFloat oldWidth = self.size.width;
+    CGFloat scaleFactor = width / oldWidth;
+    
+    float newHeight = self.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [self drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 @end

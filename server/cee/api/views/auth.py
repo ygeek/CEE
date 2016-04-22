@@ -4,6 +4,8 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 import hashlib
 import uuid
+import time
+import datetime
 
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
@@ -33,11 +35,6 @@ class Register(APIView):
                     'code': -1,
                     'msg': 'username exists'
                 })
-            if User.objects.filter(email=user_form.cleaned_data['email']).count() > 0:
-                return Response({
-                    'code': -2,
-                    'msg': 'email exists'
-                })
             user = user_form.save()
             token = Token.objects.create(user=user)
             return Response({
@@ -59,10 +56,29 @@ class Login(APIView):
         if user is not None:
             if user.is_active:
                 token = get_token(user)
-                return Response({
-                    'code': 0,
-                    'auth': token.key,
-                })
+                try:
+                    profile = UserProfile.objects.get(user=user)
+                    user_info = {'username': user.username}
+                    if profile.nickname:
+                        user_info['nickname'] = profile.nickname
+                    if profile.head_url:
+                        user_info['head_url'] = profile.head_url
+                    if profile.sex:
+                        user_info['sex'] = profile.sex
+                    if profile.birthday:
+                        user_info['birthday'] = time.mktime(profile.birthday.timetuple())
+                    if profile.location:
+                        user_info['location'] = profile.location
+                    return Response({
+                        'code': 0,
+                        'auth': token.key,
+                        'user': user_info,
+                    })
+                except UserProfile.DoesNotExist:
+                    return Response({
+                        'code': 0,
+                        'auth': token.key,
+                    })
             else:
                 return Response({
                     'code': -2,
@@ -106,11 +122,31 @@ class LoginThirdParty(APIView):
             fake_email = '{0}@cee_{1}.com'.format(fake_username, platform)
             user = User.objects.create_user(username=fake_username, email=fake_email, password=unicode(uuid.uuid1()))
             ThirdPartyAccount.objects.create(uid=uid, platform=platform, user=user)
+
         token = get_token(user)
-        return Response({
-            'code': 0,
-            'auth': token.key,
-        })
+        try:
+            profile = UserProfile.objects.get(user=user)
+            user_info = {'username': user.username}
+            if profile.nickname:
+                user_info['nickname'] = profile.nickname
+            if profile.head_url:
+                user_info['head_url'] = profile.head_url
+            if profile.sex:
+                user_info['sex'] = profile.sex
+            if profile.birthday:
+                user_info['birthday'] = time.mktime(profile.birthday.timetuple())
+            if profile.location:
+                user_info['location'] = profile.location
+            return Response({
+                'code': 0,
+                'auth': token.key,
+                'user': user_info,
+            })
+        except UserProfile.DoesNotExist:
+            return Response({
+                'code': 0,
+                'auth': token.key,
+            })
 
 
 class UserDeviceTokenView(APIView):
@@ -136,3 +172,45 @@ class UserDeviceTokenView(APIView):
             'code': code,
             'msg': msg,
         })
+
+
+class UserProfileView(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request):
+        birthday_ts = float(request.data.get('birthday'))
+
+        print(repr(request.data))
+
+        user = request.user
+        nickname = request.data['nickname']
+        head_img_key = request.data.get('head_img_key')
+        sex = request.data.get('sex')
+        birthday = None if birthday_ts is None else datetime.date.fromtimestamp(birthday_ts)
+        mobile = request.data.get('mobile')
+        location = request.data.get('location')
+        try:
+            user_profile = UserProfile.objects.get(user=user)
+            user_profile.nickname = nickname
+            user_profile.head_img_key = head_img_key
+            user_profile.sex = sex
+            user_profile.birthday = birthday
+            user_profile.mobile = mobile
+            user_profile.location = location
+            code = 1
+            msg = 'user profile updated'
+        except UserProfile.DoesNotExist:
+            UserProfile.objects.create(user=user,
+                                       nickname=nickname,
+                                       head_img_key=head_img_key,
+                                       sex=sex,
+                                       birthday=birthday,
+                                       mobile=mobile,
+                                       location=location)
+            code = 0
+            msg = 'user profile created'
+        return Response({
+            'code': code,
+            'msg': msg,
+        })
+

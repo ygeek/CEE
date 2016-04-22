@@ -6,8 +6,6 @@ from django.forms import ModelForm, EmailField
 
 
 class UserForm(ModelForm):
-    email = EmailField(required=True)
-
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('username', 'password')

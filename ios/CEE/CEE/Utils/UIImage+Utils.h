@@ -12,4 +12,6 @@
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
+- (UIImage *)imageScaleToWidth:(CGFloat)width;
+
 @end

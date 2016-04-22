@@ -1,82 +1,209 @@
 # 注册 & 登录
 
-## `POST /api/v1/user/register`
+## `POST /api/v1/register/`
+
+### 用户注册 （不需登录）
 
 ### 状态：已实现
 
 ### Request
-```json
+```js
 {
-    "username": "nightfade",
-    "email": "nightfade@163.com",
-    "password": "123456"
+    "username": "18008089900",
+    "password": "123456Nightfade",
+    "mobile": "18008089900", // optional
 }
 ```
 
 ### Response
-```json
+
+成功：
+
+```js
 {
     "code": 0,
-    "msg": "success",
-    "token": "xxxx",
-    "expired_at": 1460351229
+    "auth": "xxxx",
 }
 ```
 
-## `POST /api/v1/user/login`
+失败：
 
-### 状态：已实现 TODO(zhangmeng): Response待完善
+```js
+{
+	"code": -1,
+	"msg": "username exists",
+}
+```
+
+## `POST /api/v1/login/`
+
+### 用户登录 （不需登录）
+
+### 状态：已实现
 
 ### Request
 
 用户名密码登录：
 
-```json
+```js
 {
-    "email": "nightfade@163.com",
-    "password": "123456"
-}
-```
-
-Token登录：
-
-```json
-{
-    "token": "xxxx"
+    "username": "18080808080",
+    "password": "123456Nightfade"
 }
 ```
 
 ### Response
 登录成功：
 
-```json
+```js
 {
     "code": 0,
     "auth": "token_xxxxx",
-    /* TODO(zhangmeng): 以下字段暂未实现
-    "expired_at": 1460351229,
     "user": {
-        "username": "nightfade",
-        "email": "nightfade@163.com",
-        // TODO (zhangmeng): 补全其他用户信息
+    	"username": "18080808080",
+    	"email": "nightfade@163.com",
+    	"nickname": "nightfade",
+    	"head_url": "http://xxx.xxx.xxx",
+    	"sex": "男",
+    	"birthday": 1461291468,
+    	"location": "北京市"
     },
-    */
 }
 ```
 
 登录失败：
 
-```json
+```js
 {
     "code": -1,
     "msg": "密码错误"
 }
 ```
 
-## `POST /api/v1/user/oauth/login`
+## `POST /api/v1/login/thirdparty/`
 
-// TODO (zhangmeng): 待定
+### 状态：已实现
 
+### 第三方登录 （不需登录）
+
+### Request
+
+```js
+{
+	"access_token": "qq_token_xxx",
+	"uid": "qq_uid",
+	"platform": "qq",
+}
+```
+
+### Response
+
+登录成功
+
+```js
+{
+    "code": 0,
+    "auth": "token_xxxxx",
+    "user": {
+    	"username": "18080808080",
+    	"email": "nightfade@163.com",
+    	"nickname": "nightfade",
+    	"head_url": "http://xxx.xxx.xxx",
+    	"sex": "男",
+    	"birthday": 1461291468,
+    	"location": "北京市"
+    },
+}
+```
+
+登录失败
+
+```js
+{
+	"code": -1,
+	"msg": "验证失败",
+}
+```
+
+
+## `POST /api/v1/devicetoken/`
+
+### 上传设备推送Token（需要登录）
+
+### 状态：已实现
+
+### Request
+
+```js
+{
+	"device_token": "xxxx",
+	"installation_id": "xxxx",
+}
+```
+
+### Response
+
+上传成功
+
+```js
+{
+	"code": 0,
+	"msg": "上传成功",
+}
+```
+
+## `POST /api/v1/userprofile/`
+
+### 上传用户资料 （需要登录）
+
+### 状态：已实现
+
+### Request
+
+```js
+{
+	"nickname": "nightfade",
+	"head_url": "head_url",
+	"sex": "sex",
+	"birtyday": 1461254400,
+	"mobile": "180808080",
+	"location": "北京市",
+}
+```
+
+### Response
+
+成功：
+
+```js
+{
+	"code": 0,
+	"msg": "user profile created",
+}
+```
+
+## `GET /api/v1/uploadtoken/`
+
+### 获取UploadToken （需要登录）
+
+### 状态：已实现
+
+### Request
+
+```js
+{
+	// blank
+}
+```
+
+### Response
+
+```js
+{
+	"code": 0,
+	"upload_token": "xxxx",
+}
+```
 
 # 世界模块
 

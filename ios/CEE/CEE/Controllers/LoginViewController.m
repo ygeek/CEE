@@ -110,8 +110,7 @@
     [[loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text]
      subscribeNext:^(CEELoginSuccessResponse *response) {
          [SVProgressHUD dismiss];
-         [[CEEDatabase db] saveAuthToken:response.auth];
-         [CEEUserSession session].authToken = response.auth;
+         [[CEEUserSession session] loggedInWithAuth:response.auth];
      }
      error:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.localizedDescription];

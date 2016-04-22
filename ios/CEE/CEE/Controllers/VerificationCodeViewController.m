@@ -16,6 +16,8 @@
 #import "AppearanceConstants.h"
 #import "FillProfileViewController.h"
 #import "UIImage+Utils.h"
+#import "CEERegisterAPI.h"
+#import "CEEUserSession.h"
 
 @interface VerificationCodeViewController ()
 @property (nonatomic, strong) UIScrollView * contentScrollView;
@@ -98,8 +100,14 @@
 
 - (void)nextPressed:(id)sender {
 #if DEBUG
-    FillProfileViewController * vc = [[FillProfileViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [[[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password] subscribeNext:^(CEERegisterSuccessResponse *response){
+        [[CEEUserSession session] loggedInWithAuth:response.auth];
+        [SVProgressHUD dismiss];
+        FillProfileViewController * vc = [[FillProfileViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } error:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }];
 #else
     [SVProgressHUD show];
     [SMSSDK commitVerificationCode:self.codeField.text
@@ -108,9 +116,14 @@
                             result:
     ^(NSError *error) {
         if (!error) {
-            [SVProgressHUD dismiss];
-            FillProfileViewController * vc = [[FillProfileViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [[[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password] subscribeNext:^(CEERegisterSuccessResponse *response){
+                [[CEEUserSession session] loggedInWithAuth:response.auth];
+                [SVProgressHUD dismiss];
+                FillProfileViewController * vc = [[FillProfileViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            } error:^(NSError *error) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            }];
         } else {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }
