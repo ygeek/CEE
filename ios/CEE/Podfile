@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'CEE' do
     pod 'Realm'
+    pod 'Realm+JSON'
     pod 'Masonry'
     pod 'AFNetworking', '~> 3.1.0'
     pod 'ReactiveCocoa', '~> 2.5'

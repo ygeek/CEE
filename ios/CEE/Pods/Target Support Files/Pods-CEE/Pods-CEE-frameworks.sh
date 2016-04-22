@@ -95,6 +95,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-CEE/RDVTabBarController.framework"
   install_framework "Pods-CEE/ReactiveCocoa.framework"
   install_framework "Pods-CEE/Realm.framework"
+  install_framework "Pods-CEE/Realm_JSON.framework"
   install_framework "Pods-CEE/SDWebImage.framework"
   install_framework "Pods-CEE/SVProgressHUD.framework"
 fi
@@ -110,6 +111,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-CEE/RDVTabBarController.framework"
   install_framework "Pods-CEE/ReactiveCocoa.framework"
   install_framework "Pods-CEE/Realm.framework"
+  install_framework "Pods-CEE/Realm_JSON.framework"
   install_framework "Pods-CEE/SDWebImage.framework"
   install_framework "Pods-CEE/SVProgressHUD.framework"
 fi
