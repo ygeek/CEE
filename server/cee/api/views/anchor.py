@@ -5,39 +5,22 @@ from __future__ import unicode_literals
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from ..models.anchor import *
 from ..serializers.anchor import *
 
 
-class AnchorDetail(APIView):
-    def get(self, request, anchor_id):
-        try:
-            anchor_id = int(anchor_id)
-            anchor = Anchor.objects.get(id=anchor_id)
-            serializer = AnchorSerializer(anchor)
-            return Response({
-                'code': 0,
-                'anchor': serializer.data
-            })
-        except ValueError:
-            return Response({
-                'code': -1,
-                'msg': 'invalid anchor id: %s' % anchor_id
-            })
-        except Anchor.DoesNotExist:
-            return Response({
-                'code': -2,
-                'msg': 'anchor not exists',
-            })
-
-
 class MapAnchorList(APIView):
+    permission_classes = (IsAuthenticated, )
+
     def get(self, request, map_id):
         try:
             map_id = int(map_id)
-            map = Map.objects.get(id=map_id)
-            map_anchors = map.map_anchors.all()
-            serializer = MapAnchorSerializer(map_anchors, many=True)
+            map_ = Map.objects.get(id=map_id)
+            anchors = map_.anchors.all()
+            serializer = AnchorSerializer(anchors,
+                                          user=request.user,
+                                          many=True)
             return Response({
                 'code': 0,
                 'anchors': serializer.data

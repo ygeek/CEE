@@ -6,29 +6,37 @@ from .map import Map
 
 
 class Anchor(models.Model):
+    class Type(object):
+        Task = 'task'
+        Story = 'story'
+        Choices = (
+            (Task, Task.capitalize()),
+            (Story, Story.capitalize()),
+        )
+
+    map = models.ForeignKey(Map, related_name='anchors')
     name = models.CharField(max_length=30)
     desc = models.TextField()
     dx = models.FloatField()
     dy = models.FloatField()
-    anchor_type = models.CharField(max_length=50)
-
-
-class MapAnchor(models.Model):
-    map = models.ForeignKey(Map, related_name='map_anchors')
-    anchor = models.ForeignKey(Anchor, related_name='map_anchors')
+    type = models.CharField(max_length=10,
+                            choices=Type.Choices)
+    ref_id = models.IntegerField()
+    owners = models.ManyToManyField(User,
+                                    through='UserAnchor',
+                                    related_name='anchors')
 
     class Meta:
         unique_together = (
-            ('map', 'anchor'),
+            ('type', 'ref_id'),
         )
 
 
 class UserAnchor(models.Model):
     user = models.ForeignKey(User, related_name='user_anchors')
     anchor = models.ForeignKey(Anchor, related_name='user_anchors')
-    completed = models.BooleanField()
 
     class Meta:
         unique_together = (
-            ('user', 'anchor')
+            ('user', 'anchor'),
         )

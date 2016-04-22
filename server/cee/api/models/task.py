@@ -7,7 +7,7 @@ from .anchor import Anchor
 
 class Task(models.Model):
     name = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
+    desc = models.TextField()
     coin = models.IntegerField()
     owners = models.ManyToManyField(User,
                                     through='UserTask',
@@ -18,7 +18,7 @@ class Choice(models.Model):
     task = models.ForeignKey(Task, related_name='choices')
     order = models.IntegerField()
     name = models.CharField(max_length=30)
-    desc = models.CharField(max_length=100)
+    desc = models.TextField()
     image_url = models.URLField()
     # TODO(stareven): encrypt
     answer = models.SmallIntegerField()
@@ -27,7 +27,7 @@ class Choice(models.Model):
 class Option(models.Model):
     choice = models.ForeignKey(Choice, related_name='options')
     order = models.SmallIntegerField()
-    desc = models.CharField(max_length=100)
+    desc = models.TextField()
 
 
 class UserTask(models.Model):

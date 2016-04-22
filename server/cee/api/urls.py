@@ -19,7 +19,6 @@ urlpatterns = [
     url(r'^v1/item/(?P<item_id>\d+)/$', ItemDetail.as_view()),
     url(r'^v1/user/(?P<user_id>\d+)/item/$', UserItemList.as_view()),
 
-    url(r'^v1/anchor/(?P<anchor_id>\d+)/$', AnchorDetail.as_view()),
     #url(r'^v1/anchor/(?P<anchor_id>\d+)/story/$', AnchorStory.as_view()),
 
     url(r'^v1/level/(?P<level_id>\d+)/$', LevelDetail.as_view()),
@@ -38,7 +37,7 @@ urlpatterns = [
     url(r'^v1/map/acquired/$', AcquiredMapList.as_view()),
     url(r'^v1/map/(?P<map_id>\d+)/complete/$', CompleteMap.as_view()),
     # Anchor
-    #url(r'^v1/map/(?P<map_id>\d+)/anchor/$', MapAnchorList.as_view()),
+    url(r'^v1/map/(?P<map_id>\d+)/anchor/$', MapAnchorList.as_view()),
     # Task
     url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
     url(r'^v1/task/(?P<task_id>\d+)/complete/$', CompleteTask.as_view()),
