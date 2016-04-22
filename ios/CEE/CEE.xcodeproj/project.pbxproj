@@ -14,8 +14,12 @@
 		BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF3C1CC90A3F001C25B6 /* TLCityPickerController.m */; };
 		BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF3F1CC90A3F001C25B6 /* TLCityPickerSearchResultController.m */; };
 		BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF471CC9D966001C25B6 /* CEERegisterAPI.m */; };
-		BB29EF4B1CC9DF68001C25B6 /* CEEUserProfileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF4A1CC9DF68001C25B6 /* CEEUserProfileAPI.m */; };
+		BB29EF4B1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF4A1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m */; };
 		BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF4D1CC9E474001C25B6 /* CEEUploadTokenAPI.m */; };
+		BB29EF511CCA2B7F001C25B6 /* CEEUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF501CCA2B7F001C25B6 /* CEEUserProfile.m */; };
+		BB29EF541CCA2F5C001C25B6 /* CEEImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF531CCA2F5C001C25B6 /* CEEImageManager.m */; };
+		BB29EF571CCA4716001C25B6 /* CEEDownloadURLAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF561CCA4716001C25B6 /* CEEDownloadURLAPI.m */; };
+		BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF591CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -84,10 +88,18 @@
 		BB29EF3F1CC90A3F001C25B6 /* TLCityPickerSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCityPickerSearchResultController.m; sourceTree = "<group>"; };
 		BB29EF461CC9D966001C25B6 /* CEERegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEERegisterAPI.h; sourceTree = "<group>"; };
 		BB29EF471CC9D966001C25B6 /* CEERegisterAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEERegisterAPI.m; sourceTree = "<group>"; };
-		BB29EF491CC9DF68001C25B6 /* CEEUserProfileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserProfileAPI.h; sourceTree = "<group>"; };
-		BB29EF4A1CC9DF68001C25B6 /* CEEUserProfileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserProfileAPI.m; sourceTree = "<group>"; };
+		BB29EF491CC9DF68001C25B6 /* CEESaveUserProfileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEESaveUserProfileAPI.h; sourceTree = "<group>"; };
+		BB29EF4A1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEESaveUserProfileAPI.m; sourceTree = "<group>"; };
 		BB29EF4C1CC9E474001C25B6 /* CEEUploadTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUploadTokenAPI.h; sourceTree = "<group>"; };
 		BB29EF4D1CC9E474001C25B6 /* CEEUploadTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUploadTokenAPI.m; sourceTree = "<group>"; };
+		BB29EF4F1CCA2B7F001C25B6 /* CEEUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserProfile.h; sourceTree = "<group>"; };
+		BB29EF501CCA2B7F001C25B6 /* CEEUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserProfile.m; sourceTree = "<group>"; };
+		BB29EF521CCA2F5C001C25B6 /* CEEImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEImageManager.h; sourceTree = "<group>"; };
+		BB29EF531CCA2F5C001C25B6 /* CEEImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEImageManager.m; sourceTree = "<group>"; };
+		BB29EF551CCA4716001C25B6 /* CEEDownloadURLAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEDownloadURLAPI.h; sourceTree = "<group>"; };
+		BB29EF561CCA4716001C25B6 /* CEEDownloadURLAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEDownloadURLAPI.m; sourceTree = "<group>"; };
+		BB29EF581CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEFetchUserProfileAPI.h; sourceTree = "<group>"; };
+		BB29EF591CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEFetchUserProfileAPI.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -249,10 +261,14 @@
 				BB6103B71CC68D5000350809 /* CEELoginAPI.m */,
 				BB29EF461CC9D966001C25B6 /* CEERegisterAPI.h */,
 				BB29EF471CC9D966001C25B6 /* CEERegisterAPI.m */,
-				BB29EF491CC9DF68001C25B6 /* CEEUserProfileAPI.h */,
-				BB29EF4A1CC9DF68001C25B6 /* CEEUserProfileAPI.m */,
+				BB29EF491CC9DF68001C25B6 /* CEESaveUserProfileAPI.h */,
+				BB29EF4A1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m */,
 				BB29EF4C1CC9E474001C25B6 /* CEEUploadTokenAPI.h */,
 				BB29EF4D1CC9E474001C25B6 /* CEEUploadTokenAPI.m */,
+				BB29EF551CCA4716001C25B6 /* CEEDownloadURLAPI.h */,
+				BB29EF561CCA4716001C25B6 /* CEEDownloadURLAPI.m */,
+				BB29EF581CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.h */,
+				BB29EF591CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -402,6 +418,8 @@
 				BB6103C01CC7ABE700350809 /* CEEDatabase.m */,
 				BB6103C61CC7E13000350809 /* CEELocationManager.h */,
 				BB6103C71CC7E13000350809 /* CEELocationManager.m */,
+				BB29EF521CCA2F5C001C25B6 /* CEEImageManager.h */,
+				BB29EF531CCA2F5C001C25B6 /* CEEImageManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -409,6 +427,8 @@
 		BBA5324F1CBBD0F500282D3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BB29EF4F1CCA2B7F001C25B6 /* CEEUserProfile.h */,
+				BB29EF501CCA2B7F001C25B6 /* CEEUserProfile.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -597,9 +617,11 @@
 				BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */,
 				BB6AD3191CC32B9300A1E0F7 /* StoryCoverViewController.m in Sources */,
 				BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */,
+				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
 				BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */,
 				BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */,
 				BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */,
+				BB29EF541CCA2F5C001C25B6 /* CEEImageManager.m in Sources */,
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
 				BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
@@ -611,6 +633,7 @@
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
 				BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */,
 				BB29EF411CC90A3F001C25B6 /* TLCity.m in Sources */,
+				BB29EF571CCA4716001C25B6 /* CEEDownloadURLAPI.m in Sources */,
 				BB29EF421CC90A3F001C25B6 /* TLCityGroupCell.m in Sources */,
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
@@ -622,9 +645,10 @@
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,
 				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
+				BB29EF511CCA2B7F001C25B6 /* CEEUserProfile.m in Sources */,
 				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
-				BB29EF4B1CC9DF68001C25B6 /* CEEUserProfileAPI.m in Sources */,
+				BB29EF4B1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

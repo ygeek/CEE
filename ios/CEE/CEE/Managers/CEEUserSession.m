@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import Realm;
+
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
 #import "CEEAPIClient.h"
@@ -30,11 +32,21 @@
     return self;
 }
 
+- (void)load {
+    NSString * authToken = [[CEEDatabase db] loadAuthToken];
+    [self loggedInWithAuth:authToken];
+}
+
 - (void)loggedInWithAuth:(NSString *)auth {
     [[CEEDatabase db] saveAuthToken:auth];
-    [CEEUserSession session].authToken = auth;
+    self.authToken = auth;
     [[CEEAPIClient client].requestSerializer setValue:[NSString stringWithFormat:@"Token %@", auth]
                                    forHTTPHeaderField:@"Authorization"];
+    
+    RLMResults * result = [CEEUserProfile objectsWhere:@"token == %@", auth];
+    if (result.count > 0) {
+        self.userProfile = nil; // TODO (zhangmeng): convert Realm Model to JSON Model
+    }
 }
 
 @end

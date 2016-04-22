@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CEEUserProfile.h"
+
+
 @interface CEEUserSession : NSObject
 
 + (instancetype)session;
 
 @property (nonatomic, copy) NSString * authToken;
+
+@property (nonatomic, strong) CEEJSONUserProfile * userProfile;
+
+- (void)load;
 
 - (void)loggedInWithAuth:(NSString *)auth;
 

@@ -205,6 +205,29 @@
 }
 ```
 
+## `GET /api/v1/downloadurl/:key/`
+
+### 获取七牛资源授权下载链接
+
+### 状态：已实现
+
+### Request
+
+```js
+{
+	// blank
+}
+```
+
+### Response
+
+```js
+{
+	"code": 0,
+	"private_url": "http://xxx.xxx.xxx",
+}
+```
+
 # 世界模块
 
 ### 状态：待实现者确认&修改
@@ -531,8 +554,7 @@ Authorization: Token xxxxxxx
             "dw": 10,
             "dh": 20,
             "type": "task",
-            "ref_id": 1,
-            "completed": false
+            "ref_id": 1
         },
         {
             "id": 2,
@@ -540,8 +562,7 @@ Authorization: Token xxxxxxx
             "dw": 50,
             "dh": 80,
             "type": "story",
-            "ref_id": 1,
-            "completed": true
+            "ref_id": 1
         }
     ]
 }

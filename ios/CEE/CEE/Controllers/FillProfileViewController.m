@@ -21,7 +21,7 @@
 #import "CEELocationManager.h"
 #import "AIDatePickerController.h"
 #import "CEEUploadTokenAPI.h"
-#import "CEEUserProfileAPI.h"
+#import "CEESaveUserProfileAPI.h"
 #import "UIImage+Utils.h"
 
 #define kLocatingText @"定位中"
@@ -165,8 +165,8 @@
 - (void)finishPressed:(id)sender {
     UIImage * photo = self.photo;
     [SVProgressHUD show];
-    [[[[CEEUploadTokenAPI alloc] init] requestUploadToken] subscribeNext:^(CEEUploadTokenSuccessResponse *response) {
-        if (photo) {
+    if (photo) {
+        [[[[CEEUploadTokenAPI alloc] init] requestUploadToken] subscribeNext:^(CEEUploadTokenSuccessResponse *response) {
             QNUploadManager *upManager = [[QNUploadManager alloc] init];
             NSData *data = UIImagePNGRepresentation([photo imageScaleToWidth:200]);
             [upManager putData:data
@@ -177,37 +177,34 @@
                               [SVProgressHUD showErrorWithStatus:info.error.localizedDescription];
                               return;
                           }
-                          CEEUserProfileRequest * request = [[CEEUserProfileRequest alloc] init];
+                          CEESaveUserProfileRequest * request = [[CEESaveUserProfileRequest alloc] init];
                           request.nickname = self.nicknameField.text;
-                          request.head_img_key = key;
+                          request.head_img_key = resp[@"key"];
                           request.sex = self.sex;
                           if (self.birthday) {
                               request.birthday = @([self.birthday timeIntervalSince1970]);
                           }
                           request.location = self.locationField.text;
-                          [[[[CEEUserProfileAPI alloc] init] saveUserProfile:request] subscribeNext:^(CEEUserProfileSuccessResponse *response) {
+                          [[[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request] subscribeNext:^(CEESaveUserProfileSuccessResponse *response) {
                               [SVProgressHUD dismiss];
                               [self dismissViewControllerAnimated:YES completion:nil];
                           } error:^(NSError *error) {
                               [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                           }];
                       } option:nil];
-        } else {
-            CEEUserProfileRequest * request = [[CEEUserProfileRequest alloc] init];
-            request.nickname = self.nicknameField.text;
-            request.head_img_key = nil;
-            request.sex = self.sex;
-            request.birthday = @([self.birthday timeIntervalSince1970]);
-            request.location = self.locationField.text;
-            [[[CEEUserProfileAPI alloc] init] saveUserProfile:request];
-            [SVProgressHUD dismiss];
-        }
-    } error:^(NSError * error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
-    
-    
-
+        } error:^(NSError * error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }];
+    } else {
+        CEESaveUserProfileRequest * request = [[CEESaveUserProfileRequest alloc] init];
+        request.nickname = self.nicknameField.text;
+        request.head_img_key = nil;
+        request.sex = self.sex;
+        request.birthday = @([self.birthday timeIntervalSince1970]);
+        request.location = self.locationField.text;
+        [[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request];
+        [SVProgressHUD dismiss];
+    }
 }
 
 - (void)malePressed:(id)sender {

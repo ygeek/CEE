@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CEEUserProfile.h"
+
 @interface CEEDatabase : NSObject
 
 + (instancetype)db;

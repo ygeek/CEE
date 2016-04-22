@@ -17,10 +17,12 @@
 #import "MessageViewController.h"
 #import "LoginViewController.h"
 #import "CEEUserSession.h"
+#import "FillProfileViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, assign) BOOL isAppeared;
 @property (nonatomic, assign) BOOL isPresentingLogin;
+@property (nonatomic, assign) BOOL isPresentingUserProfile;
 @end
 
 @implementation RootViewController
@@ -88,7 +90,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /*
     RACSignal * tokenSignal = RACObserve([CEEUserSession session], authToken);
     RACSignal * appearedSignal = RACObserve(self, isAppeared);
     
@@ -101,7 +102,6 @@
             [self dismissLogin];
         }
     }];
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -132,6 +132,22 @@
     if (self.isPresentingLogin) {
         [self dismissViewControllerAnimated:YES completion:^{
             self.isPresentingLogin = NO;
+        }];
+    }
+}
+
+- (void)presentUserProfileForm {
+    if (!self.isPresentingUserProfile) {
+        self.isPresentingUserProfile = YES;
+        FillProfileViewController * vc = [[FillProfileViewController alloc] init];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+}
+
+- (void)dismissUserProfileForm {
+    if (self.isPresentingUserProfile) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.isPresentingUserProfile = NO;
         }];
     }
 }

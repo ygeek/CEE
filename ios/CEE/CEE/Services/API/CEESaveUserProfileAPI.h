@@ -6,9 +6,11 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import ReactiveCocoa;
+
 #import "CEEBaseAPI.h"
 
-@interface CEEUserProfileRequest: JSONModel
+@interface CEESaveUserProfileRequest: JSONModel
 @property (nonatomic, strong) NSString<Optional> * nickname;
 @property (nonatomic, strong) NSString<Optional> * head_img_key;
 @property (nonatomic, strong) NSString<Optional> * sex;
@@ -18,18 +20,18 @@
 @end
 
 
-@interface CEEUserProfileSuccessResponse : CEEBaseResponse
+@interface CEESaveUserProfileSuccessResponse : CEEBaseResponse
 @property (nonatomic, strong) NSString * msg;
 @end
 
 
-@interface CEEUserProfileErrorResponse : CEEBaseResponse
+@interface CEESaveUserProfileErrorResponse : CEEBaseResponse
 @property (nonatomic, strong) NSString * msg;
 @end
 
 
-@interface CEEUserProfileAPI : CEEBaseAPI
+@interface CEESaveUserProfileAPI : CEEBaseAPI
 
-- (RACSignal *)saveUserProfile:(CEEUserProfileRequest *)request;
+- (RACSignal *)saveUserProfile:(CEESaveUserProfileRequest *)request;
 
 @end

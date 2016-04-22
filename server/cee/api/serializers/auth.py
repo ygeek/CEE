@@ -25,3 +25,16 @@ class UserSerializer(serializers.ModelSerializer):
         )
         write_only_fields = ('password',)
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined')
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'nickname',
+            'head_img_key',
+            'sex',
+            'birtyday',
+            'mobile',
+            'location',
+        )

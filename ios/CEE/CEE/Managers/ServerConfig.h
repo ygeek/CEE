@@ -14,4 +14,6 @@
 
 - (NSString *)serverAddress;
 
+- (NSString *)qiniuBucketDomain;
+
 @end

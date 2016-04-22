@@ -27,4 +27,8 @@
 #endif
 }
 
+- (NSString *)qiniuBucketDomain {
+    return @"http://7xt08d.com1.z0.glb.clouddn.com/";
+}
+
 @end

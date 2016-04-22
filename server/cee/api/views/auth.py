@@ -16,6 +16,7 @@ from rest_framework.authtoken.models import Token
 from ..forms import UserForm
 from ..models.auth import *
 from ..services import verify_qq_openid, verify_weibo_openid, verify_weixin_openid
+from ..serializers import UserProfileSerializer
 
 
 def get_token(user):
@@ -177,10 +178,23 @@ class UserDeviceTokenView(APIView):
 class UserProfileView(APIView):
     permission_classes = (IsAuthenticated, )
 
+    def get(self, request):
+        user = request.user
+        try:
+            user_profile = UserProfile.objects.get(user=user)
+            serializer = UserProfileSerializer(user_profile)
+            return Response({
+                'code': 0,
+                'profile': serializer.data,
+            })
+        except UserProfile.DoesNotExist:
+            return Response({
+                'code': -1,
+                'msg': 'User Profile not Exist',
+            })
+
     def post(self, request):
         birthday_ts = float(request.data.get('birthday'))
-
-        print(repr(request.data))
 
         user = request.user
         nickname = request.data['nickname']
