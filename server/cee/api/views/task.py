@@ -3,9 +3,11 @@
 from __future__ import unicode_literals
 from __future__ import absolute_import
 
+from django.db.models import F
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from ..models.auth import *
 from ..models.task import *
 from ..serializers.task import *
 
@@ -48,8 +50,11 @@ class CompleteTask(APIView):
             affect_rows = UserTask.objects.filter(
                 user=request.user, task=task, completed=False).update(
                     completed=True)
-            if affect_rows > 0:
-                # TODO(stareven): add coin to user
+            if affect_rows > 0: # TODO(stareven): do not check affect_rows
+                # TODO(stareven): coin change log
+                UserCoin.objects.filter(user=request.user).update_or_create(
+                    defaults={'user': request.user, 'amount': task.coin},
+                    amount=F('amount') + task.coin)
                 awards = [
                     {
                         'type': 'coin',

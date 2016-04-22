@@ -28,11 +28,18 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=50, blank=True, null=True)
 
 
+class UserCoin(models.Model):
+    user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
+                                related_name='coin')
+    amount = models.IntegerField()
+
+
 class UserFriend(models.Model):
     user = models.ForeignKey(User)
     friend = models.ForeignKey(User, related_name='user_relation')
 
     class Meta:
         unique_together = (
-            'user', 'friend'
+            ('user', 'friend'),
         )
