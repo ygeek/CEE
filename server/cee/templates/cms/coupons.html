@@ -6,33 +6,34 @@
 
 {% block content %}
     <section class="panel">
-        <header class="panel-heading">
+        <header class="panel-heading clearfix">
             优惠券管理
             <div class="pull-right">
-                <a href="" class="btn btn-success btn-sm">新增优惠券</a>
+                <a href="" class="btn btn-success btn-sm">
+                    <i class="fa fa-plus-circle"></i>
+                    新增优惠券
+                </a>
             </div>
         </header>
         <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
+                    <th>#</th>
+                    <th>描述</th>
+                    <th>密码</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for coupon in coupons %}
                     <tr>
-                        <th scope="row"></th>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
+                        <th scope="row">{{ coupons.id }}</th>
+                        <td>{{ coupon.desc }}</td>
+                        <td>{{ coupon.code }}</td>
+                        <td>
+                            <a href="#" class="btn btn-danger btn-sm">删除</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

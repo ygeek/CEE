@@ -1,6 +1,6 @@
 {% extends 'cms/base.html' %}
 
-{% load staticfiles %}
+{% load staticfiles bootstrap3 %}
 
 {% block title %}{{ user }} - 用户详情{% endblock %}
 
@@ -10,7 +10,14 @@
             用户详情 - {{ user.username }}
         </header>
         <div class="panel-body">
-            {{ user }}
+            <a class="btn btn-link" href="{% url 'cms-change-user-password' pk=user.id %}">修改密码</a>
+            <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
+                {% include 'cms/form.html' %}
+                {% include 'cms/form.html' with form=profile_form %}
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="保存"/>
+                </div>
+            </form>
         </div>
     </section>
 {% endblock %}

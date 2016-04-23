@@ -1,0 +1,8 @@
+{% load bootstrap3 %}
+
+<div>
+    {{ form.non_field_errors }}
+</div>
+{% for field in form %}
+    {% bootstrap_field field layout='horizontal' %}
+{% endfor %}

@@ -6213,3 +6213,7 @@ header.blue-bg .search:focus {
     background: #fff;
     border-radius:4px;
 }
+
+.table.vertical-middle tbody>tr>td {
+    vertical-align: middle;
+}
