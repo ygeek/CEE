@@ -33,10 +33,10 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ('id', 'name', 'desc', 'choices', 'completed')
 
-    def __init__(self, *args, **kargs):
-        if 'many' not in kargs:
-            self._user = kargs.pop('user')
-        super(TaskSerializer, self).__init__(*args, **kargs)
+    def __init__(self, *args, **kwargs):
+        if 'many' not in kwargs:
+            self._user = kwargs.pop('user')
+        super(TaskSerializer, self).__init__(*args, **kwargs)
 
     def get_completed(self, task):
         user_task = UserTask.objects.get(user=self._user, task=task)

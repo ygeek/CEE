@@ -9,10 +9,10 @@ class MapSerializer(serializers.ModelSerializer):
         model = Map
         fields = ('id', 'name', 'desc', 'image_url', 'completed')
 
-    def __init__(self, *args, **kargs):
-        if 'many' not in kargs:
-            self._user = kargs.pop('user')
-        super(MapSerializer, self).__init__(*args, **kargs)
+    def __init__(self, *args, **kwargs):
+        if 'many' not in kwargs:
+            self._user = kwargs.pop('user')
+        super(MapSerializer, self).__init__(*args, **kwargs)
 
     def get_completed(self, map_):
         user_map = UserMap.objects.get(user=self._user, map=map_)

@@ -2,6 +2,38 @@ from rest_framework import serializers
 from ..models.story import *
 
 
+class StorySerializer(serializers.ModelSerializer):
+    image_urls = serializers.SerializerMethodField()
+    completed = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Story
+        fields = (
+            'id',
+            'name',
+            'desc',
+            'time',
+            'good',
+            'distance',
+            'city',
+            'image_urls',
+            'completed',
+            'levels',
+        )
+
+    def __init__(self, *args, **kwargs):
+        if 'many' not in kwargs:
+            self._user = kwargs.pop('user')
+        super(StorySerializer, self).__init__(*args, **kwargs)
+
+    def get_image_urls(self, story):
+        return story.image_urls
+
+    def get_completed(self, story):
+        user_story = UserStory.objects.get(user=self._user, story=story)
+        return user_story.completed
+
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
@@ -45,17 +77,3 @@ class UserItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserItem
         fields = ('id', 'user', 'item')
-
-
-class StorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Story
-        fields = (
-            'id',
-            'name',
-            'desc',
-            'time',
-            'good',
-            'distance',
-            'city'
-        )

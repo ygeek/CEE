@@ -20,10 +20,10 @@ class AnchorSerializer(serializers.ModelSerializer):
             'completed',
         )
 
-    def __init__(self, *args, **kargs):
-        if 'many' not in kargs:
-            self._user = kargs.pop('user')
-        super(AnchorSerializer, self).__init__(*args, **kargs)
+    def __init__(self, *args, **kwargs):
+        if 'many' not in kwargs:
+            self._user = kwargs.pop('user')
+        super(AnchorSerializer, self).__init__(*args, **kwargs)
 
     def get_completed(self, anchor):
         if anchor.type == Anchor.Type.Task:

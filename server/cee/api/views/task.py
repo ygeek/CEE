@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 from __future__ import absolute_import
 
-from django.db.models import F
+from django.db import models
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -54,7 +54,7 @@ class CompleteTask(APIView):
                 # TODO(stareven): coin change log
                 UserCoin.objects.filter(user=request.user).update_or_create(
                     defaults={'user': request.user, 'amount': task.coin},
-                    amount=F('amount') + task.coin)
+                    amount=models.F('amount') + task.coin)
                 awards = [
                     {
                         'type': 'coin',

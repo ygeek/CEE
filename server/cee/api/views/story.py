@@ -19,13 +19,12 @@ class StoryDetail(APIView):
             story_id = int(story_id)
             story = Story.objects.get(id=story_id)
             user_story, created = UserStory.objects.get_or_create(
-                defaults = {'completed': False,'level_step':0},
-                user = request.user,
-                story = story)
-            serializer = StorySerializer(story)
+                defaults={'completed': False, 'level_step': 0},
+                user=request.user,
+                story=story)
+            serializer = StorySerializer(story, user=request.user)
             return Response({
                 'code': 0,
-                'completed': user_story.completed,
                 'story': serializer.data,
             })
         except ValueError:
@@ -48,13 +47,13 @@ class CompletedStory(APIView):
             story_id = int(story_id)
             story = Story.objects.get(id=story_id)
             affect_rows = UserStory.objects.filter(
-                user=request.user, story = story, completed=False).update(
+                user=request.user, story=story, completed=False).update(
                     completed=True)
             if affect_rows > 0:
                 awards = [
                     {
                         'type': 'coin',
-                        'detail':{
+                        'detail': {
                             'amount': story.coin,
                         }
                     }
@@ -77,7 +76,6 @@ class CompletedStory(APIView):
             })
 
 
-
 class CityStoryList(APIView):
     def get(self, request, city_id):
         try:
@@ -86,9 +84,9 @@ class CityStoryList(APIView):
             city_storys = city.city_storys.all()
             for cs in city_storys:
                 user_story, created = UserStory.objects.get_or_create(
-                    defaults = {'completed': False,'level_step': 0},
-                    user = request.user,
-                    story = cs.story)
+                    defaults={'completed': False, 'level_step': 0},
+                    user=request.user,
+                    story=cs.story)
             storys = [cs.story for cs in city_storys]
             serializer = StorySerializer(storys, many=True)
             return Response({
@@ -115,9 +113,9 @@ class AnchorStory(APIView):
             anchor_story = anchor.anchor_story.all()
             for ans in anchor_story:
                 user_story, created = UserStory.objects.get_or_create(
-                    defaults = {'completed': False,'level_step': 0},
-                    user = request.user,
-                    story = ans.story)
+                    defaults={'completed': False, 'level_step': 0},
+                    user=request.user,
+                    story=ans.story)
             storys = [ans.story for ans in anchor_story]
             serializer = AnchorStorySerializer(storys)
             return Response({
