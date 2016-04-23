@@ -6214,6 +6214,6 @@ header.blue-bg .search:focus {
     border-radius:4px;
 }
 
-.table.vertical-middle tbody>tr>td {
+.table.vertical-middle tbody>tr>td, .table.vertical-middle tbody>tr>th {
     vertical-align: middle;
 }

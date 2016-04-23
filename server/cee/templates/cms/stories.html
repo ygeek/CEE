@@ -1,40 +1,45 @@
 {% extends 'cms/base.html' %}
 
-{% load staticfiles %}
+{% load story_tags %}
 
 {% block title %}故事管理{% endblock %}
 
 {% block content %}
     <section class="panel">
-        <header class="panel-heading">
+        <header class="panel-heading clearfix">
             故事管理
             <div class="pull-right">
-                <a class="btn btn-success btn-sm" href="">新增故事</a>
+                <a class="btn btn-success btn-sm" href="{% url 'cms-add-story' %}">
+                    <i class="fa fa-plus-circle"></i>
+                    新增故事
+                </a>
             </div>
         </header>
         <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
-            <table class="table table-bordered">
+            <table class="table table-bordered vertical-middle">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>#</th>
                     <th>名称</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
+                    <th>城市</th>
+                    <th>开始人数</th>
+                    <th>通关人数</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for story in stories %}
                     <tr>
-                        <th scope="row"><a href="{% url 'cms-story-detail' pk=story.id %}">详情</a></th>
+                        <th scope="row"><a href="{% url 'cms-story-detail' pk=story.id %}">{{ story.id }}</a></th>
                         <td>{{ story.name }}</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
+                        <td>{{ story.city }}</td>
+                        <td>{{ story|story_user_count }}</td>
+                        <td>{{ story|story_complete_count }}</td>
+                        <td>
+                            <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">基本信息</a>
+                            <a href="{% url 'cms-story-detail' pk=story.id %}" class="btn btn-success btn-sm">详细信息</a>
+                            <a href="{% url 'cms-delete-story' pk=story.id %}" class="btn btn-danger btn-sm">删除</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

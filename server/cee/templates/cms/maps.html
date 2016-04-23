@@ -9,11 +9,14 @@
         <header class="panel-heading">
             世界管理
             <div class="pull-right">
-                <a class="btn btn-success btn-sm" href="{% url 'cms-add-map' %}">新增地图</a>
+                <a class="btn btn-success btn-sm" href="{% url 'cms-add-map' %}">
+                    <i class="fa fa-plus-circle"></i>
+                    新增地图
+                </a>
             </div>
         </header>
         <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
-            <table class="table table-bordered">
+            <table class="table table-bordered vertical-middle">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -37,6 +40,7 @@
                         <td>
                             <a href="{% url 'cms-edit-map' pk=map.id %}" class="btn btn-info btn-sm">基本信息</a>
                             <a href="{% url 'cms-map-detail' pk=map.id %}" class="btn btn-success btn-sm">详细信息</a>
+                            <a href="{% url 'cms-delete-map' pk=map.id %}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>
                 {% endfor %}

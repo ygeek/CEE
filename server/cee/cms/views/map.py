@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse_lazy
 from django.forms import ModelForm
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Map
@@ -52,3 +52,11 @@ class EditMap(UpdateView):
     template_name = 'cms/map_form.html'
     success_url = reverse_lazy('cms-maps')
     form_class = MapForm
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class DeleteMap(DeleteView):
+    model = Map
+    context_object_name = 'map'
+    template_name = 'cms/map_confirm_delete.html'
+    success_url = reverse_lazy('cms-maps')

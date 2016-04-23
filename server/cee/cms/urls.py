@@ -15,6 +15,10 @@ urlpatterns = [
     url(r'^map/add/$', views.AddMap.as_view(), name='cms-add-map'),
     url(r'^map/(?P<pk>[0-9]+)/$', views.MapDetail.as_view(), name='cms-map-detail'),
     url(r'^map/(?P<pk>[0-9]+)/edit/$', views.EditMap.as_view(), name='cms-edit-map'),
+    url(r'^map/(?P<pk>[0-9]+)/delete/$', views.DeleteMap.as_view(), name='cms-delete-map'),
     url(r'^stories/$', views.StoryList.as_view(), name='cms-stories'),
-    url(r'^map/(?P<pk>[0-9]+)/$', views.StoryDetail.as_view(), name='cms-story-detail')
+    url(r'^story/add/$', views.AddStory.as_view(), name='cms-add-story'),
+    url(r'^story/(?P<pk>[0-9]+)/$', views.StoryDetail.as_view(), name='cms-story-detail'),
+    url(r'^story/(?P<pk>[0-9]+)/edit/$', views.EditStory.as_view(), name='cms-edit-story'),
+    url(r'^story/(?P<pk>[0-9]+)/delete/$', views.DeleteStory.as_view(), name='cms-delete-story'),
 ]
