@@ -1,5 +1,5 @@
 /*---LEFT BAR ACCORDION----*/
-$(function() {
+$(function () {
     $('#nav-accordion').dcAccordion({
         eventType: 'click',
         autoClose: true,
@@ -14,8 +14,8 @@ $(function() {
 });
 
 // right slidebar
-$(function(){
- $.slidebars();
+$(function () {
+    $.slidebars();
 });
 
 var Script = function () {
@@ -25,15 +25,15 @@ var Script = function () {
     jQuery('#sidebar .sub-menu > a').click(function () {
         var o = ($(this).offset());
         diff = 250 - o.top;
-        if(diff>0)
-            $("#sidebar").scrollTo("-="+Math.abs(diff),500);
+        if (diff > 0)
+            $("#sidebar").scrollTo("-=" + Math.abs(diff), 500);
         else
-            $("#sidebar").scrollTo("+="+Math.abs(diff),500);
+            $("#sidebar").scrollTo("+=" + Math.abs(diff), 500);
     });
 
 //    sidebar toggle
 
-    $(function() {
+    $(function () {
         function responsiveView() {
             var wSize = $(window).width();
             if (wSize <= 768) {
@@ -46,6 +46,7 @@ var Script = function () {
                 $('#sidebar > ul').show();
             }
         }
+
         $(window).on('load', responsiveView);
         $(window).on('resize', responsiveView);
     });
@@ -76,12 +77,30 @@ var Script = function () {
     });
 
 // custom scrollbar
-    $("#sidebar").niceScroll({styler:"fb",cursorcolor:"#e8403f", cursorwidth: '3', cursorborderradius: '10px', background: '#404040', spacebarenabled:false, cursorborder: '', scrollspeed: 60});
+    $("#sidebar").niceScroll({
+        styler: "fb",
+        cursorcolor: "#e8403f",
+        cursorwidth: '3',
+        cursorborderradius: '10px',
+        background: '#404040',
+        spacebarenabled: false,
+        cursorborder: '',
+        scrollspeed: 60
+    });
 
     //$("html").niceScroll({styler:"fb",cursorcolor:"#e8403f", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled:false,  cursorborder: '', zindex: '1000', scrollspeed: 100, mousescrollstep: 60});
 
-    $(".table-responsive").niceScroll({styler:"fb",cursorcolor:"#e8403f", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled:false,  cursorborder: '', zindex: '1000', horizrailenabled: true });
-
+    $(".table-responsive").niceScroll({
+        styler: "fb",
+        cursorcolor: "#e8403f",
+        cursorwidth: '6',
+        cursorborderradius: '10px',
+        background: '#404040',
+        spacebarenabled: false,
+        cursorborder: '',
+        zindex: '1000',
+        horizrailenabled: true
+    });
 
 
 // widget tools
@@ -123,7 +142,6 @@ var Script = function () {
     $('.popovers').popover();
 
 
-
 // custom bar chart
 
     if ($(".custom-bar-chart")) {
@@ -137,8 +155,10 @@ var Script = function () {
     }
 
 
-
-
-
+// date pickers
+    $('input[name="birthday"]').datepicker({
+        format: 'yyyy/mm/dd',
+        language: 'zh-CN'
+    });
 
 }();
