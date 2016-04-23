@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, CouponScrollDirection) {
 
 @protocol CouponScrollViewDataSource <NSObject>
 - (UIView *)viewAtIndex:(NSInteger)index reusingView:(UIView *)view;
+- (CGFloat)viewHeightAtIndex:(NSInteger)index;
 - (NSInteger)numberOfViews;
 - (NSInteger)numberOfVisibleViews;
 @end

@@ -57,6 +57,8 @@
     
     self.tabBar.translucent = YES;
     
+    self.tabBar.clipsToBounds = NO;
+    
     self.tabBar.backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
     
     [self setViewControllers:@[[[UINavigationController alloc] initWithRootViewController:drawerVC],
@@ -73,15 +75,23 @@
         item.badgeBackgroundColor = kCEETabBarBadgeBackgroundColor;
         item.badgeTextColor = kCEETextBlackColor;
         item.badgeTextFont = [UIFont fontWithName:kCEEFontNameRegular size:6];
+        item.itemHeight = 55;
+        item.imagePositionAdjustment = UIOffsetMake(0, 3);
+        item.titlePositionAdjustment = UIOffsetMake(0, 3);
     }
     items[0].title = _T(@"drawer");
+    [items[0] setFinishedSelectedImage:[UIImage imageNamed:@"抽屉_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"抽屉"]];
     items[1].title = _T(@"world");
+    [items[1] setFinishedSelectedImage:[UIImage imageNamed:@"世界_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"世界"]];
     items[2].title = _T(@"story");
+    [items[2] setFinishedSelectedImage:[UIImage imageNamed:@"故事_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"故事"]];
     items[3].title = _T(@"message");
+    [items[3] setFinishedSelectedImage:[UIImage imageNamed:@"消息_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"消息"]];
+    items[3].badgeValue = @"3";
+    // items[3].backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
     
     messageVC.view.backgroundColor = [UIColor blueColor];
     storyVC.view.backgroundColor = [UIColor greenColor];
-    drawerVC.view.backgroundColor = [UIColor redColor];
     worldVC.view.backgroundColor = [UIColor yellowColor];
     
     self.isAppeared = NO;

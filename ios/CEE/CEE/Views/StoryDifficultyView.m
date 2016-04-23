@@ -36,8 +36,8 @@
 - (void)commonInit {
     self.starViews = [NSMutableArray array];
     for (int i = 0; i < 5; i++) {
-        UIImageView * starView = [[UIImageView alloc] init];
-        starView.backgroundColor = [UIColor grayColor]; // TODO (zhangmeng): load image icon
+        UIImageView * starView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"星星"]];
+        //starView.backgroundColor = [UIColor grayColor]; // TODO (zhangmeng): load image icon
         [self.starViews addObject:starView];
         [self addSubview:starView];
     }

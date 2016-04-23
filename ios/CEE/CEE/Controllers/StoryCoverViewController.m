@@ -247,13 +247,13 @@
     self.contentScrollView.contentSize = self.contentView.frame.size;
     
     self.navigationItem.leftBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(23, 23)]
+    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回"]
                                      style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(backPressed:)];
     
     self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(23, 23)]
+    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"个人主页"]
                                      style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(menuPressed:)];

@@ -46,19 +46,19 @@
     self.backgroundView = [[UIView alloc] init];
     self.backgroundView.backgroundColor = kCEEThemeYellowColor;
     
-    self.timingIcon = [[UIImageView alloc] init];
+    self.timingIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"统计耗时"]];
     
     self.timingLabel = [[UILabel alloc] init];
     self.timingLabel.font = [UIFont fontWithName:kGoboldFontNameRegular size:18];
     self.timingLabel.textColor = kCEEStoryMenuTextColor;
     
-    self.heartIcon = [[UIImageView alloc] init];
+    self.heartIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"点赞"]];
     
     self.heartLabel = [[UILabel alloc] init];
     self.heartLabel.font = [UIFont fontWithName:kGoboldFontNameRegular size:18];
     self.heartLabel.textColor = kCEEStoryMenuTextColor;
     
-    self.distanceIcon = [[UIImageView alloc] init];
+    self.distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"里程数"]];
     
     self.distanceLabel = [[UILabel alloc] init];
     self.distanceLabel.font = [UIFont fontWithName:kGoboldFontNameRegular size:18];
@@ -112,11 +112,11 @@
         make.left.equalTo(self.distanceIcon.mas_right).offset(24);
     }];
     
-    self.distanceIcon.backgroundColor = [UIColor grayColor];
+    //self.distanceIcon.backgroundColor = [UIColor grayColor];
     self.distanceLabel.text = @"5.1";
-    self.timingIcon.backgroundColor = [UIColor grayColor];
+    //self.timingIcon.backgroundColor = [UIColor grayColor];
     self.timingLabel.text = @"120";
-    self.heartIcon.backgroundColor = [UIColor grayColor];
+    //self.heartIcon.backgroundColor = [UIColor grayColor];
     self.heartLabel.text = @"343";
 }
 

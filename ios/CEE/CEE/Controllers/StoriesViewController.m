@@ -61,7 +61,7 @@
     [self.tableView addSubview:self.refreshingPanel];
     
     self.navigationItem.rightBarButtonItem
-        = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(23, 23)]
+        = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"个人主页"]
                                            style:UIBarButtonItemStylePlain
                                           target:self
                                           action:@selector(menuPressed:)];

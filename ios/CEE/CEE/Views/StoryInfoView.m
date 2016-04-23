@@ -31,9 +31,10 @@
 }
 
 - (void)commonInit {
-    self.timingIcon = [[UIImageView alloc] init];
-    self.heartIcon = [[UIImageView alloc] init];
-    self.distanceIcon = [[UIImageView alloc] init];
+    self.timingIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"耗时_yellow"]];
+    self.heartIcon = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"点赞"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+    self.heartIcon.tintColor = kCEEThemeYellowColor;
+    self.distanceIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"里程数_yellow"]];
     self.timingLabel = [[UILabel alloc] init];
     self.heartLabel = [[UILabel alloc] init];
     self.distanceLabel = [[UILabel alloc] init];
@@ -116,9 +117,9 @@
         make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width / 3.0);
     }];
     
-    self.timingIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
-    self.heartIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
-    self.distanceIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
+    //self.timingIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
+    //self.heartIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
+    //self.distanceIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
     self.timingLabel.text = @"120";
     self.heartLabel.text = @"243";
     self.distanceLabel.text = @"5.1";

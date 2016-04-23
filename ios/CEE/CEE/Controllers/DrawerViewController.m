@@ -28,9 +28,12 @@
     [self.view addSubview:self.scrollView];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
-    // self.scrollView.maxScrollDistance = 3;
     
-    self.scrollView.backgroundColor = [UIColor grayColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"个人主页"]
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(menuPressed:)];
+    
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.width.equalTo(self.view.mas_width);
@@ -47,6 +50,13 @@
     [super viewDidLayoutSubviews];
     [self.scrollView reloadData];
 }
+
+#pragma mark - Event Handling
+
+- (void)menuPressed:(id)sender {
+    
+}
+
 
 #pragma mark CouponScrollViewDatasource
 
@@ -65,10 +75,14 @@
     return view;
 }
 
+- (CGFloat)viewHeightAtIndex:(NSInteger)index {
+    return 212;
+}
+
 - (UIView *)newCard {
     CGFloat width =  SCREEN_WIDTH / 10 * 7.2;
     
-    UIView *snapshot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 300)];
+    UIView *snapshot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 212)];
     snapshot.backgroundColor = [UIColor whiteColor];
     snapshot.layer.cornerRadius = 5;
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:snapshot.bounds];
@@ -76,6 +90,10 @@
     snapshot.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
     snapshot.layer.shadowOpacity = .3;
     snapshot.layer.shadowPath = shadowPath.CGPath;
+    
+    UIView * head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 55)];
+    head.backgroundColor = [UIColor yellowColor];
+    [snapshot addSubview:head];
     
     return snapshot;
 }
@@ -101,22 +119,82 @@
         [view.superview bringSubviewToFront:view];
     }
     
-    NSLog(@"progress: %f", progress);
-    
-    // view.alpha = 1 - fabs(progress) * 0.2;
+    view.alpha = [self alphaForProgress:progress];
     
     CGAffineTransform transform = CGAffineTransformIdentity;
     
     // scale
-    CGFloat scale = 1 - fabs(progress) * 0.2;
+    CGFloat scale = [self scaleForProgress:progress];
     transform = CGAffineTransformScale(transform, scale, scale);
     
     // translation
-    // CGFloat translation = progress * SCREEN_WIDTH / 5;
-    
-    //transform = CGAffineTransformTranslate(transform, 0, translation);
+    CGFloat translation = [self translationForProgress:progress];
+    transform = CGAffineTransformTranslate(transform, 0, translation);
     
     view.transform = transform;
+    
+    NSLog(@"current:%ld, progress: %f, scale: %f, trans: %f", currentIndex, progress, scale, translation);
+}
+
+- (CGFloat)alphaForProgress:(CGFloat)progress {
+    CGFloat alpha0 = 1.0;
+    CGFloat alpha1 = 0.8;
+    CGFloat alpha2 = 0.65;
+    CGFloat alpha3 = 0.0;
+    
+    progress = fabs(progress);
+    if (progress >= 3.0) {
+        return alpha3;
+    } else if (progress >= 2.0) {
+        CGFloat delta = progress - 2.0;
+        return alpha2 * (1.0 - delta) + alpha3 * delta;
+    } else if (progress >= 1.0) {
+        CGFloat delta = progress - 1.0;
+        return alpha1 * (1.0 - delta) + alpha2 * delta;
+    } else {
+        return alpha0 * (1.0 - progress) + alpha1 * progress;
+    }
+}
+
+- (CGFloat)scaleForProgress:(CGFloat)progress {
+    CGFloat scale0 = 1.0;
+    CGFloat scale1 = 0.89;
+    CGFloat scale2 = 0.76;
+    CGFloat scale3 = 0.5;
+    
+    progress = fabs(progress);
+    if (progress >= 3.0) {
+        return scale3;
+    } else if (progress >= 2.0) {
+        CGFloat delta = progress - 2.0;
+        return scale2 * (1.0 - delta) + scale3 * delta;
+    } else if (progress >= 1.0) {
+        CGFloat delta = progress - 1.0;
+        return scale1 * (1.0 - delta) + scale2 * delta;
+    } else {
+        return scale0 * (1.0 - progress) + scale1 * progress;
+    }
+}
+
+- (CGFloat)translationForProgress:(CGFloat)progress {
+    CGFloat trans0 = 0.0;
+    CGFloat trans1 = -22.0;
+    CGFloat trans2 = -55.0;
+    CGFloat trans3 = -90.0;
+    
+    CGFloat sign = progress >= 0 ? 1.0 : -1.0;
+    progress = fabs(progress);
+    if (progress >= 3.0) {
+        return sign * trans3;
+    } else if (progress >= 2.0) {
+        CGFloat delta = progress - 2.0;
+        return sign * (trans2 * (1.0 - delta) + trans3 * delta);
+    } else if (progress >= 1.0) {
+        CGFloat delta = progress - 1.0;
+        return sign * (trans1 * (1.0 - delta) + trans2 * delta);
+    } else {
+        return sign * (trans0 * (1.0 - progress) + trans1 * progress);
+    }
 }
 
 @end

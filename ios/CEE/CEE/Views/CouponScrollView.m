@@ -70,6 +70,8 @@
     
     self.scrollView.contentSize = CGSizeMake(viewWidth, [self totalHeight]);
     
+    self.scrollView.contentInset = UIEdgeInsetsMake(viewHeight * 2, 0, viewHeight * 2, 0);
+    
     self.views = [NSMutableArray array];
     
     int beginIndex = -ceil(self.dataSource.numberOfVisibleViews / 2.0f);
