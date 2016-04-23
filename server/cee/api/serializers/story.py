@@ -3,8 +3,9 @@ from ..models.story import *
 
 
 class StorySerializer(serializers.ModelSerializer):
-    image_urls = serializers.SerializerMethodField()
+    image_urls = serializers.ListField()
     completed = serializers.SerializerMethodField()
+    progress = serializers.SerializerMethodField()
 
     class Meta:
         model = Story
@@ -18,6 +19,7 @@ class StorySerializer(serializers.ModelSerializer):
             'city',
             'image_urls',
             'completed',
+            'progress',
             'levels',
         )
 
@@ -26,12 +28,30 @@ class StorySerializer(serializers.ModelSerializer):
             self._user = kwargs.pop('user')
         super(StorySerializer, self).__init__(*args, **kwargs)
 
-    def get_image_urls(self, story):
-        return story.image_urls
-
     def get_completed(self, story):
         user_story = UserStory.objects.get(user=self._user, story=story)
         return user_story.completed
+
+    def get_progress(self, story):
+        user_story = UserStory.objects.get(user=self._user, story=story)
+        return user_story.progress
+
+
+class LevelSerializer(serializers.ModelSerializer):
+    content = serializers.DictField()
+    order = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Level
+        fields = ('id', 'name', 'order', 'content')
+
+    def __init__(self, *args, **kwargs):
+        if 'many' not in kwargs:
+            self._story = kwargs.pop('story')
+        super(LevelSerializer, self).__init__(*args, **kwargs)
+
+    def get_order(self, level):
+        return StoryLevel.objects.get(story=self._story, level=level).order
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -44,21 +64,6 @@ class AnchorStorySerializer(serializers.ModelSerializer):
     class Meta:
         model = AnchorStory
         fields = ('id', 'anchor', 'story')
-
-
-class LevelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Level
-        fields = (
-            'id',
-            'type',
-            'name',
-            'video_url',
-            'img_url',
-            'text',
-            'number_answer',
-            'h5_url'
-        )
 
 
 class CityStorySerializer(serializers.ModelSerializer):

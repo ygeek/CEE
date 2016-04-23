@@ -52,8 +52,7 @@ class CompleteTask(APIView):
                     completed=True)
             if affect_rows > 0: # TODO(stareven): do not check affect_rows
                 # TODO(stareven): coin change log
-                UserCoin.objects.filter(user=request.user).update_or_create(
-                    defaults={'user': request.user, 'amount': task.coin},
+                UserCoin.objects.filter(user=request.user).update(
                     amount=models.F('amount') + task.coin)
                 awards = [
                     {
