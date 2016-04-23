@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView
 from django.contrib.admin.views.decorators import staff_member_required
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.core.urlresolvers import reverse_lazy
 from django.forms.models import modelform_factory
 
 from api.models import UserProfile
@@ -28,6 +28,7 @@ class UserDetail(DetailView, UpdateView):
     template_name = 'cms/user.html'
     context_object_name = 'user'
     fields = ['username', 'email']
+    success_url = reverse_lazy('cms-users')
     profile_form_class = modelform_factory(UserProfile,
                                            fields=[
                                                'nickname',
@@ -47,9 +48,6 @@ class UserDetail(DetailView, UpdateView):
         context = {'profile_form': self.profile_form_class(instance=self.get_profile())}
         context.update(super(UserDetail, self).get_context_data(**kwargs))
         return context
-
-    def get_success_url(self):
-        return reverse('cms-user-detail', kwargs={'pk': self.object.id})
 
     def form_valid(self, form, profile_form):
         profile_form.save()
