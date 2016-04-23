@@ -12,7 +12,9 @@ urlpatterns = [
     url(r'^user/(?P<pk>[0-9]+)/change_password/$', views.ChangeUserPassword.as_view(), name='cms-change-user-password'),
     url(r'^coupons/$', views.CouponList.as_view(), name='cms-coupons'),
     url(r'^maps/$', views.MapList.as_view(), name='cms-maps'),
+    url(r'^map/add/$', views.AddMap.as_view(), name='cms-add-map'),
     url(r'^map/(?P<pk>[0-9]+)/$', views.MapDetail.as_view(), name='cms-map-detail'),
+    url(r'^map/(?P<pk>[0-9]+)/edit/$', views.EditMap.as_view(), name='cms-edit-map'),
     url(r'^stories/$', views.StoryList.as_view(), name='cms-stories'),
     url(r'^map/(?P<pk>[0-9]+)/$', views.StoryDetail.as_view(), name='cms-story-detail')
 ]
