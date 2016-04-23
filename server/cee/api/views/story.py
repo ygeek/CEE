@@ -128,7 +128,7 @@ class StoryLevelList(APIView):
             serializer = LevelSerializer(levels, story=story, many=True)
             return Response({
                 'code': 0,
-                'maps': serializer.data,
+                'levels': serializer.data,
             })
         except ValueError:
             return Response({
@@ -181,4 +181,29 @@ class CompleteStoryLevel(APIView):
             return Response({
                 'code': -4,
                 'msg': 'level not in story',
+            })
+
+
+class StoryItemList(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request, story_id):
+        try:
+            story_id = int(story_id)
+            story = Story.objects.get(id=story_id)
+            items = story.items
+            serializer = ItemSerializer(items, many=True)
+            return Response({
+                'code': 0,
+                'items': serializer.data,
+            })
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': 'invalid story id: %s' % story_id,
+            })
+        except Story.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': 'story not exists',
             })

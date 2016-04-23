@@ -16,7 +16,7 @@ class Task(models.Model):
 
 class Choice(models.Model):
     task = models.ForeignKey(Task, related_name='choices')
-    order = models.IntegerField()
+    order = models.SmallIntegerField()
     name = models.CharField(max_length=30)
     desc = models.TextField()
     image_url = models.URLField()

@@ -54,31 +54,21 @@ class LevelSerializer(serializers.ModelSerializer):
         return StoryLevel.objects.get(story=self._story, level=level).order
 
 
+class ItemSerializer(serializers.ModelSerializer):
+    content = serializers.DictField()
+
+    class Meta:
+        model = Item
+        fields = ('id', 'name', 'activate_at', 'content')
+
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = ('id', 'name')
 
 
-class AnchorStorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AnchorStory
-        fields = ('id', 'anchor', 'story')
-
-
 class CityStorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CityStory
         fields = ('id', 'city', 'story')
-
-
-class ItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Item
-        fields = ('id', 'item_type', 'title', 'desc', 'data')
-
-
-class UserItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserItem
-        fields = ('id', 'user', 'item')

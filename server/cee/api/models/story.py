@@ -17,6 +17,13 @@ class Story(models.Model):
     image_urls = JsonField()
 
 
+class UserStory(models.Model):
+    user = models.ForeignKey(User, related_name='user_storys')
+    story = models.ForeignKey(Story, related_name='user_storys')
+    completed = models.BooleanField()
+    progress = models.IntegerField()
+
+
 class Level(models.Model):
     name = models.CharField(max_length=50)
     content = JsonField()
@@ -26,12 +33,23 @@ class Level(models.Model):
 
 
 class StoryLevel(models.Model):
-    story = models.ForeignKey(Story,
-                              related_name='story_levels')
-    level = models.ForeignKey(Level,
-                              related_name='story_levels')
+    story = models.ForeignKey(Story, related_name='story_levels')
+    level = models.ForeignKey(Level, related_name='story_levels')
     order = models.SmallIntegerField()
 
+
+class Item(models.Model):
+    name = models.CharField(max_length=50)
+    activate_at = models.SmallIntegerField()
+    content = JsonField()
+    stories = models.ManyToManyField(Story,
+                                     through='StoryItem',
+                                     related_name='items')
+
+
+class StoryItem(models.Model):
+    story = models.ForeignKey(Story, related_name='story_items')
+    item = models.ForeignKey(Item, related_name='story_items')
 
 
 class City(models.Model):
@@ -45,39 +63,4 @@ class CityStory(models.Model):
     class Meta:
         unique_together = (
             ('city', 'story'),
-        )
-
-
-class AnchorStory(models.Model):
-    anchor = models.ForeignKey(Anchor, related_name='anchor_story')
-    story = models.ForeignKey(Story, related_name='anchor_story')
-
-    class Meta:
-        unique_together = (
-            ('anchor', 'story'),
-        )
-
-
-class UserStory(models.Model):
-    user = models.ForeignKey(User, related_name='user_storys')
-    story = models.ForeignKey(Story, related_name='user_storys')
-    completed = models.BooleanField()
-    progress = models.IntegerField()
-
-
-class Item(models.Model):
-    item_type = models.CharField(max_length=50)
-    title = models.CharField(max_length=50)
-    desc = models.TextField()
-    data = models.TextField()
-
-
-class UserItem(models.Model):
-    user = models.ForeignKey(User, related_name='user_items')
-    item = models.ForeignKey(Item, related_name='user_items')
-    state = models.CharField(max_length=50)
-
-    class Meta:
-        unique_together = (
-            ('user', 'item'),
         )
