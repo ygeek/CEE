@@ -21,6 +21,6 @@
 
 @interface CEEFetchUserProfileAPI : CEEBaseAPI
 
-- (RACSignal *)fetchUserProfile;
+- (AnyPromise *)fetchUserProfile;
 
 @end

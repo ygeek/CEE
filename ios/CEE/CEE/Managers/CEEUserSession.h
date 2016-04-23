@@ -6,7 +6,7 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-@import ReactiveCocoa;
+@import PromiseKit;
 
 #import <Foundation/Foundation.h>
 
@@ -23,8 +23,8 @@
 
 - (void)load;
 
-- (RACSignal *)loggedInWithAuth:(NSString *)auth;
+- (AnyPromise *)loggedInWithAuth:(NSString *)auth;
 
-- (RACSignal *)loadUserProfile;
+- (AnyPromise *)loadUserProfile;
 
 @end

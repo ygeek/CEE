@@ -26,6 +26,25 @@ PODS:
   - JSONModel (1.2.0)
   - Masonry (1.0.0)
   - MOBFoundation_IDFA (1.5.1)
+  - OMGHTTPURLRQ (3.1.1):
+    - OMGHTTPURLRQ/RQ (= 3.1.1)
+  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
+  - OMGHTTPURLRQ/RQ (3.1.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.1.1)
+  - PromiseKit (3.1.1):
+    - PromiseKit/Foundation (= 3.1.1)
+    - PromiseKit/QuartzCore (= 3.1.1)
+    - PromiseKit/UIKit (= 3.1.1)
+  - PromiseKit/CorePromise (3.1.1)
+  - PromiseKit/Foundation (3.1.1):
+    - OMGHTTPURLRQ (~> 3.1.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.1.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.1.1):
+    - PromiseKit/CorePromise
   - Qiniu (7.0.16):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.2)
@@ -37,11 +56,11 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - Realm (0.98.8):
-    - Realm/Headers (= 0.98.8)
+  - Realm (0.99.0):
+    - Realm/Headers (= 0.99.0)
   - Realm+JSON (0.2.14):
     - Realm (~> 0.95)
-  - Realm/Headers (0.98.8)
+  - Realm/Headers (0.99.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -65,6 +84,7 @@ DEPENDENCIES:
   - JSONModel
   - Masonry
   - MOBFoundation_IDFA
+  - PromiseKit
   - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
   - RDVTabBarController
   - ReactiveCocoa (~> 2.5)
@@ -105,10 +125,12 @@ SPEC CHECKSUMS:
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MOBFoundation_IDFA: f5d3d1f89166f60c6985e34b7d90e6fb5d58fb61
+  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
+  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
   Qiniu: 340bc55a6478d89591754aa7d1fd8b5977863991
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  Realm: 0e293bb62999730599efc3048896bbd4f2e43bcd
+  Realm: cf275f109b94e5399896960c90285a043edb3d56
   Realm+JSON: 39bef066156e589b209a14e5f2d68754793f8843
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   ShareSDK3: ccdd8ec971044703e7722e19c2f3b38fb03775e2

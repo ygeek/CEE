@@ -22,8 +22,8 @@
 
 @implementation CEESaveUserProfileAPI
 
-- (RACSignal *)saveUserProfile:(CEESaveUserProfileRequest *)request {
-    return [self POST:@"/api/v1/userprofile/" withRequest:request];
+- (AnyPromise *)saveUserProfile:(CEESaveUserProfileRequest *)request {
+    return [self promisePOST:@"/api/v1/userprofile/" withRequest:request];
 }
 
 - (Class)responseSuccessClass {

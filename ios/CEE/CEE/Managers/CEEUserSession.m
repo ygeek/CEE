@@ -36,12 +36,10 @@
 
 - (void)load {
     NSString * authToken = [[CEEDatabase db] loadAuthToken];
-    [[self loggedInWithAuth:authToken] subscribeNext:^(CEEFetchUserProfileSuccessResponse *response){
-        
-    }];
+    [self loggedInWithAuth:authToken];
 }
 
-- (RACSignal *)loggedInWithAuth:(NSString *)auth {
+- (AnyPromise *)loggedInWithAuth:(NSString *)auth {
     [[CEEDatabase db] saveAuthToken:auth];
     self.authToken = auth;
     if (auth && auth.length > 0) {
@@ -50,10 +48,10 @@
 
         return [self loadUserProfile];
     }
-    return [RACSignal empty];
+    return [AnyPromise promiseWithValue:nil];
 }
 
-- (RACSignal *)loadUserProfile {
+- (AnyPromise *)loadUserProfile {
     self.isFetchingUserProfile = YES;
     RLMResults * result = [CEEUserProfile objectsWhere:@"token == %@", self.authToken];
     if (result.count > 0) {
@@ -66,12 +64,18 @@
         }
     }
     
-    return [[[[[CEEFetchUserProfileAPI alloc] init] fetchUserProfile] doNext:^(CEEFetchUserProfileSuccessResponse * response){
+    return [[[CEEFetchUserProfileAPI alloc] init] fetchUserProfile].then(^(CEEFetchUserProfileSuccessResponse * response) {
         self.userProfile = response.profile;
+        
+        RLMRealm * realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [CEEUserProfile createOrUpdateInRealm:realm
+                           withJSONDictionary:self.userProfile.toDictionary];
+        [realm commitWriteTransaction];
+        return self.userProfile;
+    }).finally(^{
         self.isFetchingUserProfile = NO;
-    }] doError:^(NSError *error) {
-        self.isFetchingUserProfile = NO;
-    }];
+    });
 }
 
 @end

@@ -10,6 +10,10 @@
 
 @implementation CEEUserProfile
 
++ (NSString *)primaryKey {
+    return @"username";
+}
+
 @end
 
 

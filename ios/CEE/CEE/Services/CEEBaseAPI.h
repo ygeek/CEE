@@ -10,6 +10,7 @@
 @import JSONModel;
 
 #import <Foundation/Foundation.h>
+#import <PromiseKit/AnyPromise.h>
 
 @class AFHTTPSessionManager;
 
@@ -27,8 +28,13 @@
 
 - (RACSignal *)GET:(NSString *)url withParams:(NSDictionary *)params;
 - (RACSignal *)GET:(NSString *)url withRequest:(JSONModel *)request;
+- (AnyPromise *)promiseGET:(NSString *)url withParams:(NSDictionary *)params;
+- (AnyPromise *)promiseGET:(NSString *)url withReqeust:(JSONModel *)request;
+
 - (RACSignal *)POST:(NSString *)url withParams:(NSDictionary *)params;
 - (RACSignal *)POST:(NSString *)url withRequest:(JSONModel *)request;
+- (AnyPromise *)promisePOST:(NSString *)url withParams:(NSDictionary *)params;
+- (AnyPromise *)promisePOST:(NSString *)url withRequest:(JSONModel *)request;
 
 - (Class)responseSuccessClass;
 - (Class)responseErrorClass;

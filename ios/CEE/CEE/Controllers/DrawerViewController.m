@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import Masonry;
+
 #import "DrawerViewController.h"
 #import "CouponScrollView.h"
 
@@ -22,11 +24,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.scrollView = [[CouponScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.scrollView = [[CouponScrollView alloc] init];
     [self.view addSubview:self.scrollView];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
-    self.scrollView.maxScrollDistance = 3;
+    // self.scrollView.maxScrollDistance = 3;
+    
+    self.scrollView.backgroundColor = [UIColor grayColor];
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.equalTo(self.view.mas_width);
+        make.height.mas_equalTo(410);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,6 +100,8 @@
         }
         [view.superview bringSubviewToFront:view];
     }
+    
+    NSLog(@"progress: %f", progress);
     
     // view.alpha = 1 - fabs(progress) * 0.2;
     

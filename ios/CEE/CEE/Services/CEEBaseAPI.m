@@ -43,6 +43,26 @@
     return [self GET:url withParams:request.toDictionary];
 }
 
+- (AnyPromise *)promiseGET:(NSString *)url withParams:(NSDictionary *)params {
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve){
+        [[CEEAPIClient client] GET:url
+                        parameters:params
+                          progress:nil
+                           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                               resolve(responseObject);
+                           }
+                           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                               resolve(error);
+                           }];
+    }].then(^(id responseObject) {
+        return [self responseWithObject:responseObject];
+    });
+}
+
+- (AnyPromise *)promiseGET:(NSString *)url withReqeust:(JSONModel *)request {
+    return [self promiseGET:url withParams:request.toDictionary];
+}
+
 - (RACSignal *)POST:(NSString *)url withParams:(NSDictionary *)params {
     return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSURLSessionTask * dataTask =
@@ -72,6 +92,26 @@
     return [self POST:url withParams:request.toDictionary];
 }
 
+- (AnyPromise *)promisePOST:(NSString *)url withParams:(NSDictionary *)params {
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
+        [[CEEAPIClient client] POST:url
+                         parameters:params
+                           progress:nil
+                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                resolve(responseObject);
+                            }
+                            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                resolve(error);
+                            }];
+    }].then(^(id responseObject) {
+        return [self responseWithObject:responseObject];
+    });
+}
+
+- (AnyPromise *)promisePOST:(NSString *)url withRequest:(JSONModel *)request {
+    return [self promisePOST:url withParams:request.toDictionary];
+}
+
 - (Class)responseSuccessClass {
     return nil;
 }
@@ -80,43 +120,56 @@
     return nil;
 }
 
-- (RACSignal *)responseSignalWithObject:(id)responseObject {
+- (id)responseWithObject:(id)responseObject {
     NSError * jsonError = nil;
-    CEEBaseResponse * baseResponse = [[CEEBaseResponse alloc] initWithDictionary:responseObject error:&jsonError];
+    CEEBaseResponse * baseResponse = [[CEEBaseResponse alloc] initWithDictionary:responseObject
+                                                                           error:&jsonError];
     if (jsonError) {
-        return [RACSignal error:[self packJSONError:jsonError errorObject:responseObject]];
+        return [self packJSONError:jsonError errorObject:responseObject];
     }
     
     if (baseResponse.code != 0) {
         if (self.responseErrorClass != nil) {
-            id errorResponse = [[self.responseErrorClass alloc] initWithDictionary:responseObject error:&jsonError];
+            id errorResponse = [[self.responseErrorClass alloc] initWithDictionary:responseObject
+                                                                             error:&jsonError];
             if (jsonError) {
-                return [RACSignal error:[self packJSONError:jsonError errorObject:responseObject]];
+                return [self packJSONError:jsonError errorObject:responseObject];
             } else {
                 NSDictionary * userInfo = @{CEE_ERROR_KEY: errorResponse,
                                             NSLocalizedDescriptionKey: [self errorMessageForResponse: errorResponse]};
-                return [RACSignal error:[NSError errorWithDomain:CEE_API_ERROR_DOMAIN
-                                                            code:baseResponse.code
-                                                        userInfo:userInfo]];
+                return [NSError errorWithDomain:CEE_API_ERROR_DOMAIN
+                                           code:baseResponse.code
+                                       userInfo:userInfo];
             }
         } else {
             NSDictionary * userInfo = @{CEE_ERROR_KEY: responseObject,
-                                        NSLocalizedDescriptionKey: @"未知错误"};
-            return [RACSignal error:[NSError errorWithDomain:CEE_API_ERROR_DOMAIN
-                                                        code:baseResponse.code
-                                                    userInfo:userInfo]];
+                                        NSLocalizedDescriptionKey: @"操作失败"};
+            return [NSError errorWithDomain:CEE_API_ERROR_DOMAIN
+                                       code:baseResponse.code
+                                   userInfo:userInfo];
         }
     } else {
         if (self.responseSuccessClass != nil) {
-            id successResponse = [[self.responseSuccessClass alloc] initWithDictionary:responseObject error:&jsonError];
+            id successResponse = [[self.responseSuccessClass alloc] initWithDictionary:responseObject
+                                                                                 error:&jsonError];
             if (jsonError) {
-                return [RACSignal error:[self packJSONError:jsonError errorObject:responseObject]];
+                return [self packJSONError:jsonError errorObject:responseObject];
             } else {
-                return [RACSignal return:successResponse];
+                return successResponse;
             }
         } else {
-            return [RACSignal return:responseObject];
+            return responseObject;
         }
+    }
+}
+
+
+- (RACSignal *)responseSignalWithObject:(id)responseObject {
+    id response = [self responseWithObject:responseObject];
+    if ([response isKindOfClass:[NSError class]]) {
+        return [RACSignal error:response];
+    } else {
+        return [RACSignal return:response];
     }
 }
 

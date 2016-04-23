@@ -108,14 +108,13 @@
     }
     [SVProgressHUD show];
     CEELoginAPI * loginAPI = [[CEELoginAPI alloc] init];
-    [[[loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text]
-      flattenMap:^(CEELoginSuccessResponse *response) {
+    [loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text].then(^(CEELoginSuccessResponse *response) {
          return [[CEEUserSession session] loggedInWithAuth:response.auth];
-     }] subscribeNext:^(CEEFetchUserProfileSuccessResponse *response) {
-         [SVProgressHUD dismiss];
-     } error:^(NSError *error) {
-         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-     }];
+    }).then(^{
+        [SVProgressHUD dismiss];
+    }).catch(^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
 }
 
 - (void)keyboardWillChangeFrameNotification:(NSNotification *)notification {

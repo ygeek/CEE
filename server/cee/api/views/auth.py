@@ -161,7 +161,7 @@ class UserDeviceTokenView(APIView):
             user_token = UserDeviceToken.objects.get(user=user)
             user_token.device_token = device_token
             user_token.installation_id = installation_id
-            code = 1
+            code = 0
             msg = 'device token updated'
         except UserDeviceToken.DoesNotExist:
             UserDeviceToken.objects.create(user=user,
@@ -185,10 +185,10 @@ class UserProfileView(APIView):
             serializer = UserProfileSerializer(user_profile)
             data = serializer.data.copy()
             data['username'] = user.username
-            data['token'] = get_token(user)
+            data['token'] = get_token(user).key
             return Response({
                 'code': 0,
-                'profile': serializer.data,
+                'profile': data,
             })
         except UserProfile.DoesNotExist:
             return Response({
@@ -214,7 +214,7 @@ class UserProfileView(APIView):
             user_profile.birthday = birthday
             user_profile.mobile = mobile
             user_profile.location = location
-            code = 1
+            code = 0
             msg = 'user profile updated'
         except UserProfile.DoesNotExist:
             UserProfile.objects.create(user=user,

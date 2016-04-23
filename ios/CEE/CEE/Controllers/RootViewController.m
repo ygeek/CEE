@@ -90,37 +90,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RACSignal * tokenSignal = RACObserve([CEEUserSession session], authToken);
-    RACSignal * profileSignal = RACObserve([CEEUserSession session], userProfile);
-    RACSignal * isFetchingProfileSignal = RACObserve([CEEUserSession session], isFetchingUserProfile);
-    RACSignal * appearedSignal = RACObserve(self, isAppeared);
-    
-    [[RACSignal combineLatest:@[tokenSignal, appearedSignal] reduce:^id(NSString * token, NSNumber * isAppeared){
-        return @((token == nil || token.length == 0) && isAppeared.boolValue);
-    }] subscribeNext:^(NSNumber * shouldLogin) {
-        if (shouldLogin.boolValue) {
-            [self presentLogin];
-        } else {
-            [self dismissLogin];
-        }
-    }];
-    
-    [[RACSignal combineLatest:@[tokenSignal, profileSignal, isFetchingProfileSignal, appearedSignal]
-                       reduce:
-      ^id(NSString * token, CEEJSONUserProfile * profile, NSNumber *isFetchingProfile, NSNumber * isAppeared){
-        return @(token && profile == nil && !isFetchingProfile.boolValue && isAppeared.boolValue);
-    }] subscribeNext:^(NSNumber * shouldFillProfile) {
-        if (shouldFillProfile.boolValue) {
-            [self presentUserProfileForm];
-        } else {
-            [self dismissUserProfileForm];
-        }
-    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.isAppeared = YES;
+    if (!self.isAppeared) {
+        self.isAppeared = YES;
+        
+        RACSignal * tokenSignal = RACObserve([CEEUserSession session], authToken);
+        RACSignal * profileSignal = RACObserve([CEEUserSession session], userProfile);
+        RACSignal * isFetchingProfileSignal = RACObserve([CEEUserSession session], isFetchingUserProfile);
+        
+        [tokenSignal subscribeNext:^(NSString *token) {
+            if (token && token.length > 0) {
+                [self dismissLogin];
+            } else {
+                [self presentLogin];
+            }
+        }];
+        
+        [[RACSignal combineLatest:@[tokenSignal, profileSignal, isFetchingProfileSignal]
+                           reduce:
+          ^id(NSString * token, CEEJSONUserProfile * profile, NSNumber *isFetchingProfile){
+              return @(token && profile == nil && !isFetchingProfile.boolValue);
+          }] subscribeNext:^(NSNumber * shouldFillProfile) {
+              if (shouldFillProfile.boolValue) {
+                  [self presentUserProfileForm];
+              } else {
+                  [self dismissUserProfileForm];
+              }
+          }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

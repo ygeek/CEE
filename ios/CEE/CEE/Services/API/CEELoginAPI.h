@@ -29,6 +29,6 @@
 
 @interface CEELoginAPI : CEEBaseAPI
 
-- (RACSignal *)loginWithUsername:(NSString *)username password:(NSString *)password;
+- (AnyPromise *)loginWithUsername:(NSString *)username password:(NSString *)password;
 
 @end

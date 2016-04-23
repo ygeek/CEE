@@ -100,13 +100,13 @@
 
 - (void)nextPressed:(id)sender {
 #if DEBUG
-    [[[[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password] flattenMap:^(CEERegisterSuccessResponse * response) {
+    [[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password].then(^(CEERegisterSuccessResponse * response) {
         return [[CEEUserSession session] loggedInWithAuth:response.auth];
-    }] subscribeNext:^(CEEFetchUserProfileSuccessResponse *response){
+    }).then(^{
         [SVProgressHUD dismiss];
-    } error:^(NSError *error) {
+    }).catch(^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
+    });
 #else
     [SVProgressHUD show];
     [SMSSDK commitVerificationCode:self.codeField.text
@@ -115,12 +115,13 @@
                             result:
     ^(NSError *error) {
         if (!error) {
-            [[[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password] subscribeNext:^(CEERegisterSuccessResponse *response){
-                [[CEEUserSession session] loggedInWithAuth:response.auth];
+            [[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password].then(^(CEERegisterSuccessResponse * response) {
+                return [[CEEUserSession session] loggedInWithAuth:response.auth];
+            }).then(^{
                 [SVProgressHUD dismiss];
-            } error:^(NSError *error) {
+            }).catch(^(NSError *error) {
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-            }];
+            });
         } else {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }

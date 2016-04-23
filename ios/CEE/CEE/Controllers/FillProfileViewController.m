@@ -186,17 +186,17 @@
                               request.birthday = @([self.birthday timeIntervalSince1970]);
                           }
                           request.location = self.locationField.text;
-                          [[[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request] subscribeNext:^(CEESaveUserProfileSuccessResponse *response) {
-                              
-                              [[[CEEUserSession session] loadUserProfile] subscribeNext:^(CEEUserProfile *profile) {
+                          [[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request].then(^(CEESaveUserProfileSuccessResponse *response) {
+                              return [CEEUserSession.session loadUserProfile].then(^(CEEJSONUserProfile *profile) {
                                   [SVProgressHUD dismiss];
                                   [self dismissViewControllerAnimated:YES completion:nil];
-                              } error:^(NSError *error) {
-                                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                              }];
-                          } error:^(NSError *error) {
+                              });
+                          }).then(^{
+                              [SVProgressHUD dismiss];
+                              [self dismissViewControllerAnimated:YES completion:nil];
+                          }).catch(^(NSError *error) {
                               [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                          }];
+                          });
                       } option:nil];
         } error:^(NSError * error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
@@ -208,8 +208,17 @@
         request.sex = self.sex;
         request.birthday = @([self.birthday timeIntervalSince1970]);
         request.location = self.locationField.text;
-        [[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request];
-        [SVProgressHUD dismiss];
+        [[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request].then(^(CEESaveUserProfileSuccessResponse *response) {
+            return [CEEUserSession.session loadUserProfile].then(^(CEEJSONUserProfile *profile) {
+                [SVProgressHUD dismiss];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        }).then(^{
+            [SVProgressHUD dismiss];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
     }
 }
 

@@ -18,8 +18,8 @@
 
 @implementation CEEFetchUserProfileAPI
 
-- (RACSignal *)fetchUserProfile {
-    return [self GET:@"/api/v1/userprofile/" withParams:nil];
+- (AnyPromise *)fetchUserProfile {
+    return [self promiseGET:@"/api/v1/userprofile/" withParams:nil];
 }
 
 - (Class)responseSuccessClass {

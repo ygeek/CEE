@@ -8,6 +8,8 @@
 
 @import JSONModel;
 
+#import <PromiseKit/AnyPromise.h>
+
 #import "CEEBaseAPI.h"
 
 
@@ -30,7 +32,7 @@
 
 @interface CEERegisterAPI : CEEBaseAPI
 
-- (RACSignal *)registerWithMobile:(NSString *)mobile
-                         password:(NSString *)password;
+- (AnyPromise *)registerWithMobile:(NSString *)mobile
+                          password:(NSString *)password;
 
 @end

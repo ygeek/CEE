@@ -22,12 +22,12 @@
 
 @implementation CEERegisterAPI
 
-- (RACSignal *)registerWithMobile:(NSString *)mobile password:(NSString *)password {
+- (AnyPromise *)registerWithMobile:(NSString *)mobile password:(NSString *)password {
     CEERegisterRequest * request = [[CEERegisterRequest alloc] init];
     request.username = mobile;
     request.password = password;
     request.mobile = mobile;
-    return [self POST:@"/api/v1/register/" withRequest:request];
+    return [self promisePOST:@"/api/v1/register/" withRequest:request];
 }
 
 - (Class)responseSuccessClass {

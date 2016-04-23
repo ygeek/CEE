@@ -6,8 +6,6 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-@import ReactiveCocoa;
-
 #import "CEEBaseAPI.h"
 
 @interface CEESaveUserProfileRequest: JSONModel
@@ -32,6 +30,6 @@
 
 @interface CEESaveUserProfileAPI : CEEBaseAPI
 
-- (RACSignal *)saveUserProfile:(CEESaveUserProfileRequest *)request;
+- (AnyPromise *)saveUserProfile:(CEESaveUserProfileRequest *)request;
 
 @end

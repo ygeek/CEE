@@ -22,11 +22,11 @@
 
 @implementation CEELoginAPI
 
-- (RACSignal *)loginWithUsername:(NSString *)username password:(NSString *)password {
+- (AnyPromise *)loginWithUsername:(NSString *)username password:(NSString *)password {
     CEELoginRequest * request = [[CEELoginRequest alloc] init];
     request.username = username;
     request.password = password;
-    return [self POST:@"/api/v1/login/" withRequest:request];
+    return [self promisePOST:@"/api/v1/login/" withRequest:request];
 }
 
 - (Class)responseSuccessClass {
