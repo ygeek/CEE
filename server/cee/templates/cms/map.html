@@ -1,0 +1,16 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ map.name }} - 世界详情{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            世界详情 - {{ map.name }}
+        </header>
+        <div class="panel-body">
+            {{ map }}
+        </div>
+    </section>
+{% endblock %}

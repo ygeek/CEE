@@ -2,49 +2,43 @@
 
 {% load staticfiles %}
 
-{% block title %}用户管理{% endblock %}
+{% block title %}世界管理{% endblock %}
 
 {% block content %}
     <section class="panel">
-        <header class="panel-heading clearfix">
-            用户管理
+        <header class="panel-heading">
+            世界管理
             <div class="pull-right">
-                <a href="{% url 'cms-add-user' %}" class="btn btn-success btn-sm">新增用户</a>
+                <a class="btn btn-success btn-sm" href="">新增地图</a>
             </div>
         </header>
         <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>用户名</th>
+                    <th></th>
+                    <th>名称</th>
                     <th>Table heading</th>
                     <th>Table heading</th>
                     <th>Table heading</th>
                     <th>Table heading</th>
-                    <th>操作</th>
+                    <th>Table heading</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for user in users %}
+                {% for map in maps %}
                     <tr>
-                        <th scope="row"><a href="{% url 'cms-user-detail' pk=user.id %}">{{ user.id }}</a></th>
-                        <td>{{ user.username }}</td>
+                        <th scope="row"><a href="{% url 'cms-map-detail' pk=map.id %}">详情</a></th>
+                        <td>{{ map.name }}</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="{% url 'cms-edit-user' pk=user.id %}">编辑</a>
-                            <a class="btn btn-danger btn-sm" href="{% url 'cms-delete-user' pk=user.id %}">删除</a>
-                        </td>
+                        <td>Table cell</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-            <div class="text-center">
-                {% include 'cms/pagninator.html' %}
-            </div>
         </div>
     </section>
 {% endblock %}

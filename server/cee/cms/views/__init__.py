@@ -6,6 +6,8 @@ from django.shortcuts import render
 
 from .user import *
 from .coupon import *
+from .map import *
+from .story import *
 
 
 def index(request):

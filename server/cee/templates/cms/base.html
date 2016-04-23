@@ -45,7 +45,24 @@
             <!--  notification goes here -->
         </div>
         <div class="top-nav ">
-            <!--search & user info goes here-->
+            <ul class="nav pull-right top-menu">
+                {% if request.user.is_anonymous %}
+                    <a href="{% url 'admin:login' %}?next={% url 'cms-index' %}" class="btn btn-default">登录</a>
+                {% else %}
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                            <span class="username">{{ request.user.username }}</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li><a href="{% url 'cms-user-detail' pk=request.user.id %}"><i class=" fa fa-suitcase"></i>用户详情</a>
+                            </li>
+                            <li><a href="{% url 'admin:logout' %}?next={% url 'cms-index' %}"><i class="fa fa-key"></i>登出</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </header>
     <!--header end-->

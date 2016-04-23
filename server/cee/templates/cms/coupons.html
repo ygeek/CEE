@@ -8,34 +8,35 @@
     <section class="panel">
         <header class="panel-heading">
             优惠券管理
-        </header>
-        <div class="panel-body">
-            <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for coupon in coupons %}
-                        <tr>
-                            <th scope="row"></th>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+            <div class="pull-right">
+                <a href="" class="btn btn-success btn-sm">新增优惠券</a>
             </div>
+        </header>
+        <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for coupon in coupons %}
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </section>
 {% endblock %}

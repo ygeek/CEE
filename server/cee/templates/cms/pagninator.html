@@ -1,0 +1,25 @@
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+        <li>
+            <a href="{% url 'cms-users' %}?page={{ page_obj.previous_page_number }}">«</a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <span>«</span>
+        </li>
+    {% endif %}
+    {% for p in paginator.page_range %}
+        <li {% if page_obj.number == p %}class="active"{% endif %}>
+            <a href="{% url 'cms-users' %}?page={{ p }}">{{ p }}</a>
+        </li>
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <li>
+            <a href="{% url 'cms-users' %}?page={{ page_obj.next_page_number }}">»</a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <span>»</span>
+        </li>
+    {% endif %}
+</ul>

@@ -1,0 +1,27 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block title %}新增/编辑用户{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            新增/编辑用户
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
+                <div>
+                    {{ form.non_field_errors }}
+                </div>
+                {% for field in form %}
+                    {% bootstrap_field field layout='horizontal' %}
+                {% endfor %}
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="保存"/>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
