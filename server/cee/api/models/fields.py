@@ -16,7 +16,7 @@ class JsonField(models.TextField):
         try:
             return json.loads(value)
         except ValueError:
-            raise ValidationError('invalid json value')
+            raise exceptions.ValidationError('invalid json value')
 
     def to_python(self, value):
         if value is None:
@@ -26,4 +26,4 @@ class JsonField(models.TextField):
         try:
             return json.loads(value)
         except ValueError:
-            raise ValidationError('invalid json value')
+            raise exceptions.ValidationError('invalid json value')
