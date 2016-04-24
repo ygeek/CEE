@@ -21,8 +21,6 @@ urlpatterns = [
     url(r'^v1/user/(?P<user_id>\d+)/item/$', UserItemList.as_view()),
 
     url(r'^v1/city/(?P<city_id>\d+)/story/$', CityStoryList.as_view()),
-    url(r'^v1/coupon/(?P<coupon_id>\d+)/$', CouponDetail.as_view()),
-    url(r'^v1/user/(?P<user_id>\d+)/coupon/$', UserCouponList.as_view()),
 
     # User(open)
     url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
@@ -44,4 +42,7 @@ urlpatterns = [
     url(r'^v1/story/(?P<story_id>\d+)/complete/$', CompleteStory.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/level/(?P<level_id>\d+)/complete/$',
         CompleteStoryLevel.as_view()),
+    # Coupon
+    url(r'^v1/coupon/$', UserCouponList.as_view()),
+    url(r'^v1/coupon/(?P<uuid_>[-a-z0-9]{36})/consume/$', ConsumeCoupon.as_view()),
 ]

@@ -10,7 +10,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from ..models.story import *
 from ..models.auth import *
+from ..models.coupon import *
 from ..serializers.story import *
+from ..serializers.coupon import *
 
 
 # TODO(stareven): city
@@ -154,10 +156,26 @@ class CompleteStoryLevel(APIView):
             level = Level.objects.get(id=level_id)
             story_level = StoryLevel.objects.get(story=story, level=level)
             progress = story_level.order
-            UserStory.objects.filter(user=request.user, story=story).update(
-                progress=progress)
-            # TODO(stareven): add coupon to user
+            affect_rows = UserStory.objects.filter(
+                user=request.user, story=story).update(
+                    progress=progress)
             awards = []
+            level_coupons = LevelCoupon.objects.select_for_update().filter(
+                story=story, level=level, remain__gt=0)
+            for level_coupon in level_coupons:
+                level_coupon.remain = models.F('remain') - 1
+                level_coupon.save(update_fields=['remain'])
+                user_coupon = UserCoupon.objects.create(
+                    user=request.user,
+                    coupon=level_coupon.coupon,
+                    story=story,
+                    level=level,
+                    consumed=False)
+                serializer = UserCouponSerializer(user_coupon)
+                awards.append({
+                    'type': 'coupon',
+                    'detail': serializer.data,
+                })
             return Response({
                 'code': 0,
                 'awards': awards,
