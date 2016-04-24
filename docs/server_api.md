@@ -841,3 +841,58 @@ Authorization: Token xxxxxxx
     ]
 }
 ```
+
+# Coupon
+
+## 获取已获得优惠券列表
+
+### Request
+```http
+GET /api/v1/coupon/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+    "code": 0,
+    "coupons": [
+        {
+            "uuid": "c105b803-6d57-4ed1-a972-1c29ff3df50d",
+            "coupon": {
+                "id": 1,
+                "name": "Coupon-1",
+                "desc": {
+                    "infos": [
+                        "info-1"
+                    ],
+                    "details": [
+                        "detail-1",
+                        "detail-2"
+                    ]
+                },
+                "gmt_start": "2016-04-01",
+                "gmt_end": "2016-04-30"
+            },
+            "consumed": false
+        }
+    ]
+}
+```
+
+## 使用优惠券
+### Request
+```http
+POST /api/v1/coupon/13b797d1-f2e2-44d6-beef-874cfff02416/consume/
+Authorization: Token xxxxxxx
+
+{
+    // TODO(stareven): encrypt
+    "code": "1234"
+}
+```
+### Response
+```http
+{
+    "code": 0
+}
+```
