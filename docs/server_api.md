@@ -510,6 +510,7 @@ Authorization: Token xxxxxxx
         "name": "Map-Name-1",
         "desc": "Map-Desc-1",
         "image_url": "http://example.com/map-1.png",
+        "city": "shenzhen",
         "completed": false
     }
 }
@@ -531,6 +532,7 @@ Authorization: Token xxxxxxx
             "name": "Map-Name-1",
             "desc": "Map-Desc-1",
             "image_url": "http://example.com/map-1.png",
+            "city": "shenzhen",
             "completed": false
         }
     ]
@@ -551,16 +553,16 @@ Authorization: Token xxxxxxx
         {
             "id": 1,
             "name": "Anchor-Name-1",
-            "dw": 10,
-            "dh": 20,
+            "dx": 10,
+            "dy": 20,
             "type": "task",
             "ref_id": 1
         },
         {
             "id": 2,
             "name": "Anchor-Name-2",
-            "dw": 50,
-            "dh": 80,
+            "dx": 50,
+            "dy": 80,
             "type": "story",
             "ref_id": 1
         }
@@ -682,7 +684,7 @@ Authorization: Token xxxxxxx
 ```http
 {
     "code": 0,
-    "city": "SZ",
+    "city": "shenzhen",
     "stories": [
         {
             "id": 1,
@@ -694,9 +696,8 @@ Authorization: Token xxxxxxx
             ],
             "time": 120,
             "distance": 5.1,
-            "like": 237,
-            "level_ids": [1, 4, 3, 2],
-            "city": "SZ"
+            "good": 237
+            "city": "shenzhen"
         }
     ]
 }
@@ -713,8 +714,66 @@ Authorization: Token xxxxxxx
 {
     "code": 0,
     "story": {
-        // TODO(stareven): complete
-    }
+        "id": 1,
+        "name": "Story-1",
+        "desc": "Story-Desc-1",
+        "time": 59,
+        "good": 237,
+        "distance": 5.1,
+        "city": "shenzhen",
+        "image_urls": [
+            "http://example.com/task-1-1.png",
+            "http://example.com/task-1-2.png"
+        ],
+        "completed": false,
+        "progress": 2
+    },
+}
+```
+
+## 获取故事关卡
+### Request
+```http
+GET /api/v1/story/1/level/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+    "code": 0,
+    "levels": [
+        {
+            "id": 1,
+            "name": "Level-1",
+            "order": 1,
+            "content": {
+                "type": "empty"
+            }
+        }
+    ]
+}
+```
+
+## 获取故事道具
+### Request
+```http
+GET /api/v1/story/1/item/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+    "code": 0,
+    "items": [
+        {
+            "id": 1,
+            "name": "Item-1",
+            "activate_at": 1,
+            "content": {
+                "type": "empty"
+            }
+        }
+    ]
 }
 ```
 
@@ -737,7 +796,20 @@ Authorization: Token xxxxxxx
         {
             "type": "coupon",
             "detail": {
-                // TODO(stareven): complete
+                "uuid": "84f83c1b-1723-442b-a366-a7d337167519",
+                "coupon": {
+                    "id": 2,
+                    "name": "Coupon-2",
+                    "desc": {
+                        "infos": [
+                            "info-2"
+                        ],
+                        "details": []
+                    },
+                    "gmt_start": "2016-04-01",
+                    "gmt_end": "2016-04-30"
+                },
+                "consumed": false
             }
         }
     ]
