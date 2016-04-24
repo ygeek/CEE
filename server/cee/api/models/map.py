@@ -10,6 +10,7 @@ class Map(models.Model):
     x = models.FloatField()
     y = models.FloatField()
     image_url = models.URLField()
+    city = models.CharField(max_length=50)
     owners = models.ManyToManyField(User,
                                     through='UserMap',
                                     related_name='maps')

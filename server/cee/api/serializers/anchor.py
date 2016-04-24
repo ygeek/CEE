@@ -12,7 +12,6 @@ class AnchorSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
-            'desc',
             'dx',
             'dy',
             'type',
@@ -27,12 +26,18 @@ class AnchorSerializer(serializers.ModelSerializer):
 
     def get_completed(self, anchor):
         if anchor.type == Anchor.Type.Task:
-            user_task = UserTask.objects.get(
-                user=self._user, task_id=anchor.ref_id)
-            return user_task.completed
-        #if anchor.type == Anchor.Type.Story:
-        #    user_story = UserStory.objects.get(
-        #        user=self._user, story_id=anchor.ref_id)
-        #    return user_story.completed
-        #assert False
+            try:
+                user_task = UserTask.objects.get(
+                    user=self._user, task_id=anchor.ref_id)
+                return user_task.completed
+            except UserTask.DoesNotExist:
+                return False
+        if anchor.type == Anchor.Type.Story:
+            try:
+                user_story = UserStory.objects.get(
+                    user=self._user, story_id=anchor.ref_id)
+                return user_story.completed
+            except UserStory.DoesNotExist:
+                return False
+        assert False
         return False

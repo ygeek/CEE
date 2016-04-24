@@ -7,7 +7,7 @@ class MapSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Map
-        fields = ('id', 'name', 'desc', 'image_url', 'completed')
+        fields = ('id', 'name', 'desc', 'image_url', 'city', 'completed')
 
     def __init__(self, *args, **kwargs):
         if 'many' not in kwargs:

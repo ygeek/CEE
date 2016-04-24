@@ -20,7 +20,6 @@ class StorySerializer(serializers.ModelSerializer):
             'image_urls',
             'completed',
             'progress',
-            'levels',
         )
 
     def __init__(self, *args, **kwargs):
