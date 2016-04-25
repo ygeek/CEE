@@ -65,6 +65,7 @@
     self.imagesScrollView = [[UIScrollView alloc] init];
     self.imagesScrollView.delegate = self;
     self.imagesScrollView.pagingEnabled = YES;
+    self.imagesScrollView.bounces = NO;
     self.imagesScrollView.showsHorizontalScrollIndicator = NO;
     self.imagesScrollView.showsVerticalScrollIndicator = NO;
     
@@ -247,13 +248,13 @@
     self.contentScrollView.contentSize = self.contentView.frame.size;
     
     self.navigationItem.leftBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回"]
+    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"弹窗返回_发光"]
                                      style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(backPressed:)];
     
     self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"个人主页"]
+    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"弹窗个人主页_发光"]
                                      style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(menuPressed:)];

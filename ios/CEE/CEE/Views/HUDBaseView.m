@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import Masonry;
+
 #import "HUDBaseView.h"
 
 NSString * const HUDDidReceiveTouchEventNotification = @"HUDDidReceiveTouchEventNotification";
@@ -23,6 +25,30 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
         [_overlayView addTarget:self action:@selector(overlayViewDidReceiveTouchEvent:forEvent:) forControlEvents:UIControlEventTouchDown];
     }
     return _overlayView;
+}
+
+- (UIView *)backgroundView {
+    if (!_backgroundView) {
+        _backgroundView = [[UIView alloc] init];
+        _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    }
+    return _backgroundView;
+}
+
+- (UIView *)hudView {
+    if (!_hudView) {
+        _hudView = [self genHUDView];
+    }
+    return _hudView;
+}
+
+- (UIView *)genHUDView {
+    return nil;
+}
+
+- (void)makeHUDConstraints {
+    
 }
 
 - (void)updateViewHierachy {
@@ -44,24 +70,20 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
     
     if (!self.superview) {
         [self.overlayView addSubview:self];
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.overlayView);
+        }];
     }
+    
+    if (!self.backgroundView.superview) {
+        [self addSubview:self.backgroundView];
+    }
+    
     if (!self.hudView.superview) {
         [self addSubview:self.hudView];
+        [self makeHUDConstraints];
     }
 }
-
-- (void)updateMask {
-    if (self.backgroundLayer) {
-        [self.backgroundLayer removeFromSuperlayer];
-        self.backgroundLayer = nil;
-    }
-    self.backgroundLayer = [CALayer layer];
-    self.backgroundLayer.frame = self.bounds;
-    self.backgroundLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4].CGColor;
-    [self.backgroundLayer setNeedsDisplay];
-    [self.layer insertSublayer:self.backgroundLayer atIndex:0];
-}
-
 
 #pragma mark - Event handling
 
@@ -87,8 +109,14 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf updateViewHierachy];
-        [strongSelf updateMask];
-        // TODO (zhangmeng): animation
+        
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             strongSelf.alpha = 1.0;
+                         }
+                         completion:nil];
     }];
 }
 
@@ -96,9 +124,16 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
     __weak typeof(self) weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        // TODO (zhangmeng): animation
-        [strongSelf.overlayView removeFromSuperview];
-        [strongSelf removeFromSuperview];
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             strongSelf.alpha = 0.0;
+                         }
+                         completion:^(BOOL finished) {
+                             [strongSelf.overlayView removeFromSuperview];
+                             [strongSelf removeFromSuperview];
+                         }];
     }];
 }
 

@@ -6,6 +6,10 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import SVProgressHUD;
+
+#import <AddressBook/AddressBook.h>
+
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudCrashReporting/AVOSCloudCrashReporting.h>
 #import <AVOSCloudIM/AVOSCloudIM.h>
@@ -53,7 +57,7 @@
     [AVOSCloud setApplicationId:@"zbamEfqUbNTXNwLKw8LiTPK0-gzGzoHsz"
                       clientKey:@"nWuVXVcpDSr4Eu3DHJqqSDyY"];
     
-    [AVOSCloudIM registerForRemoteNotification];
+    [AVOSCloud registerForRemoteNotification];
 }
 
 - (void)setupShareSDK {
@@ -124,11 +128,83 @@
             NSString * token = user.credential.token;
             NSString * icon = user.icon;
             SSDKGender * gender = user.gender;
-            // TODO (zhangmeng): login with user id
+            // TODO (zhangmeng): upload user icon
+            // TODO (zhangmeng): login with user id & token
         } else {
             NSLog(@"%@", error);
         }
     }];
+}
+
+- (void)loginWeixin {
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            NSString * uid = user.uid;
+            NSString * nickname = user.nickname;
+            SSDKCredential * credential = user.credential;
+            NSString * token = user.credential.token;
+            NSString * icon = user.icon;
+            SSDKGender * gender = user.gender;
+            // TODO (zhangmeng): upload user icon
+            // TODO (zhangmeng): login with user id & token
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
+- (void)loginWeibo {
+    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            NSString * uid = user.uid;
+            NSString * nickname = user.nickname;
+            SSDKCredential * credential = user.credential;
+            NSString * token = user.credential.token;
+            NSString * icon = user.icon;
+            SSDKGender * gender = user.gender;
+            // TODO (zhangmeng): upload user icon
+            // TODO (zhangmeng): login with user id & token
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
+- (void)addAddressBookFriends {
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error){
+            CFErrorRef *error1 = NULL;
+            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error1);
+            [self addFriendsFromAddressBook:addressBook];
+        });
+    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        CFErrorRef *error = NULL;
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+        [self addFriendsFromAddressBook:addressBook];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showErrorWithStatus:@"没有获取通讯录权限"];
+        });
+    }
+}
+
+- (void)addFriendsFromAddressBook:(ABAddressBookRef)addressBook {
+    CFIndex numberOfPeople = ABAddressBookGetPersonCount(addressBook);
+    CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(addressBook);
+    
+    for ( int i = 0; i < numberOfPeople; i++) {
+        ABRecordRef person = CFArrayGetValueAtIndex(people, i);
+       
+        //读取电话多值
+        ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        for (int k = 0; k<ABMultiValueGetCount(phone); k++) {
+            NSString * personPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phone, k);
+            NSLog(@"phone: %@", personPhone);
+            // TODO (zhangmeng): add friend with phone number
+        }
+    }
 }
 
 @end

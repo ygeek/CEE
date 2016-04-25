@@ -15,10 +15,11 @@ extern NSString * const HUDDidTouchDownInsideNotification;
 
 @interface HUDBaseView : UIView
 @property (nonatomic, strong) UIControl * overlayView;
-@property (nonatomic, strong) CALayer * backgroundLayer;
+@property (nonatomic, strong) UIView * backgroundView;
 @property (nonatomic, strong) UIView * hudView;
 - (void)show;
 - (void)dismiss;
 - (void)updateViewHierachy;
-- (void)updateMask;
+- (UIView *)genHUDView;
+- (void)makeHUDConstraints;
 @end

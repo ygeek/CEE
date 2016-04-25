@@ -27,7 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kCEEBackgroundGrayColor;
 
     self.tableView = [[UITableView alloc] init];
     self.tableView.backgroundColor = kCEEBackgroundGrayColor;
@@ -61,7 +60,7 @@
     [self.tableView addSubview:self.refreshingPanel];
     
     self.navigationItem.rightBarButtonItem
-        = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"个人主页"]
+        = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"弹窗个人主页_发光"]
                                            style:UIBarButtonItemStylePlain
                                           target:self
                                           action:@selector(menuPressed:)];

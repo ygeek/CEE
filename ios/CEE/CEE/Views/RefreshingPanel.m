@@ -39,7 +39,7 @@
 }
 
 - (void)commonInit {
-    self.iconView = [[UIImageView alloc] init];
+    self.iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"刷新中"]];
     [self addSubview:self.iconView];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,8 +49,6 @@
         make.height.mas_equalTo(23);
         make.bottom.equalTo(self.mas_bottom).offset(-15);
     }];
-    
-    self.iconView.backgroundColor = [UIColor grayColor];
 }
 
 @end

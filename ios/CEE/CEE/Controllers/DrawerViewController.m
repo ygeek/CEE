@@ -10,6 +10,7 @@
 
 #import "DrawerViewController.h"
 #import "CouponScrollView.h"
+#import "HUDCouponCodeView.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -18,6 +19,7 @@
 
 @interface DrawerViewController () <CouponScrollViewDataSource, CouponScrollViewDelegate>
 @property (nonatomic, strong) CouponScrollView * scrollView;
+@property (nonatomic, strong) HUDCouponCodeView * codeView;
 @end
 
 @implementation DrawerViewController
@@ -28,6 +30,8 @@
     [self.view addSubview:self.scrollView];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
+    
+    self.codeView = [[HUDCouponCodeView alloc] init];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"个人主页"]
                                                                               style:UIBarButtonItemStylePlain
@@ -49,6 +53,12 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self.scrollView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // [self.codeView show];
 }
 
 #pragma mark - Event Handling
@@ -132,8 +142,6 @@
     transform = CGAffineTransformTranslate(transform, 0, translation);
     
     view.transform = transform;
-    
-    NSLog(@"current:%ld, progress: %f, scale: %f, trans: %f", currentIndex, progress, scale, translation);
 }
 
 - (CGFloat)alphaForProgress:(CGFloat)progress {

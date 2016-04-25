@@ -59,7 +59,7 @@
     
     self.tabBar.clipsToBounds = NO;
     
-    self.tabBar.backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
+    self.tabBar.backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     
     [self setViewControllers:@[[[UINavigationController alloc] initWithRootViewController:drawerVC],
                                [[UINavigationController alloc] initWithRootViewController:worldVC],
@@ -88,11 +88,6 @@
     items[3].title = _T(@"message");
     [items[3] setFinishedSelectedImage:[UIImage imageNamed:@"消息_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"消息"]];
     items[3].badgeValue = @"3";
-    // items[3].backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
-    
-    messageVC.view.backgroundColor = [UIColor blueColor];
-    storyVC.view.backgroundColor = [UIColor greenColor];
-    worldVC.view.backgroundColor = [UIColor yellowColor];
     
     self.isAppeared = NO;
     self.isPresentingLogin = NO;

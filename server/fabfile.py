@@ -69,6 +69,8 @@ def deploy():
         with cd('$HOME/cee/dist/cee'):
             with shell_env(DJANGO_SETTINGS_MODULE='cee.settings_server'):
                 run('python manage.pyc makemigrations')
+                run('python manage.pyc makemigrations api')
+                run('python manage.pyc makemigrations cms')
                 run('python manage.pyc migrate')
                 run('python manage.pyc collectstatic')
 

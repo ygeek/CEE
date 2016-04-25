@@ -16,4 +16,10 @@
 
 - (void)loginQQ;
 
+- (void)loginWeixin;
+
+- (void)loginWeibo;
+
+- (void)addAddressBookFriends;
+
 @end
