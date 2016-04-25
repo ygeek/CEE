@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from .anchor import *
 from .fields import *
+from .city import *
 
 
 class Story(models.Model):
@@ -12,7 +13,7 @@ class Story(models.Model):
     time = models.IntegerField()
     good = models.IntegerField()
     distance = models.FloatField()
-    city = models.CharField(max_length=50)
+    city = models.ForeignKey(City, related_name='stories')
     coin = models.IntegerField()
     image_urls = JsonField()
 
@@ -50,17 +51,3 @@ class Item(models.Model):
 class StoryItem(models.Model):
     story = models.ForeignKey(Story, related_name='story_items')
     item = models.ForeignKey(Item, related_name='story_items')
-
-
-class City(models.Model):
-    name = models.CharField(max_length=30)
-
-
-class CityStory(models.Model):
-    city = models.ForeignKey(City, related_name='city_story')
-    story = models.ForeignKey(Story, related_name='city_story')
-
-    class Meta:
-        unique_together = (
-            ('city', 'story'),
-        )

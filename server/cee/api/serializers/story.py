@@ -3,6 +3,7 @@ from ..models.story import *
 
 
 class StorySerializer(serializers.ModelSerializer):
+    city = serializers.SlugRelatedField(read_only=True, slug_field='nl_name_2')
     image_urls = serializers.ListField()
     completed = serializers.SerializerMethodField()
     progress = serializers.SerializerMethodField()
@@ -28,12 +29,18 @@ class StorySerializer(serializers.ModelSerializer):
         super(StorySerializer, self).__init__(*args, **kwargs)
 
     def get_completed(self, story):
-        user_story = UserStory.objects.get(user=self._user, story=story)
-        return user_story.completed
+        try:
+            user_story = UserStory.objects.get(user=self._user, story=story)
+            return user_story.completed
+        except UserStory.DoesNotExist:
+            return False
 
     def get_progress(self, story):
-        user_story = UserStory.objects.get(user=self._user, story=story)
-        return user_story.progress
+        try:
+            user_story = UserStory.objects.get(user=self._user, story=story)
+            return user_story.progress
+        except UserStory.DoesNotExist:
+            return 0
 
 
 class LevelSerializer(serializers.ModelSerializer):
@@ -59,15 +66,3 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'name', 'activate_at', 'content')
-
-
-class CitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = City
-        fields = ('id', 'name')
-
-
-class CityStorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CityStory
-        fields = ('id', 'city', 'story')

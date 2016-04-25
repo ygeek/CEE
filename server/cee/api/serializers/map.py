@@ -3,6 +3,7 @@ from ..models.map import *
 
 
 class MapSerializer(serializers.ModelSerializer):
+    city = serializers.SlugRelatedField(read_only=True, slug_field='nl_name_2')
     completed = serializers.SerializerMethodField()
 
     class Meta:
@@ -15,5 +16,8 @@ class MapSerializer(serializers.ModelSerializer):
         super(MapSerializer, self).__init__(*args, **kwargs)
 
     def get_completed(self, map_):
-        user_map = UserMap.objects.get(user=self._user, map=map_)
-        return user_map.completed
+        try:
+            user_map = UserMap.objects.get(user=self._user, map=map_)
+            return user_map.completed
+        except UserMap.DoesNotExist:
+            return False

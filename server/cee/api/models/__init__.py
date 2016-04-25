@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from .city import *
 from .anchor import *
 from .auth import *
 from .coupon import *

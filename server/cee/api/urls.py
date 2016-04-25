@@ -20,8 +20,6 @@ urlpatterns = [
     url(r'^v1/item/(?P<item_id>\d+)/$', ItemDetail.as_view()),
     url(r'^v1/user/(?P<user_id>\d+)/item/$', UserItemList.as_view()),
 
-    url(r'^v1/city/(?P<city_id>\d+)/story/$', CityStoryList.as_view()),
-
     # User(open)
     url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
 
@@ -35,7 +33,8 @@ urlpatterns = [
     url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
     url(r'^v1/task/(?P<task_id>\d+)/complete/$', CompleteTask.as_view()),
     # Story
-    # url(r'^vi/story/current_city/$', CurrentCityStoryList.as_view()),
+    url(r'^v1/story/current_city/(?P<longitude>[0-9.]+),(?P<latitude>[0-9.]+)/$',
+        CurrentCityStoryList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/level/$', StoryLevelList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/item/$', StoryItemList.as_view()),
@@ -44,5 +43,6 @@ urlpatterns = [
         CompleteStoryLevel.as_view()),
     # Coupon
     url(r'^v1/coupon/$', UserCouponList.as_view()),
-    url(r'^v1/coupon/(?P<uuid_>[-a-z0-9]{36})/consume/$', ConsumeCoupon.as_view()),
+    url(r'^v1/coupon/(?P<uuid_>[-a-z0-9]{36})/consume/$',
+        ConsumeCoupon.as_view()),
 ]

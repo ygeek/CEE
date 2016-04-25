@@ -15,20 +15,17 @@ from ..serializers.story import *
 from ..serializers.coupon import *
 
 
-# TODO(stareven): city
-class CityStoryList(APIView):
-    def get(self, request, city_id):
+class CurrentCityStoryList(APIView):
+    def get(self, request, longitude, latitude):
         try:
-            city_id = int(city_id)
-            city = City.objects.get(id=city_id)
-            city_storys = city.city_storys.all()
-            for cs in city_storys:
-                user_story, created = UserStory.objects.get_or_create(
-                    defaults={'completed': False, 'level_step': 0},
-                    user=request.user,
-                    story=cs.story)
-            storys = [cs.story for cs in city_storys]
-            serializer = StorySerializer(storys, many=True)
+            print 'xxxx'
+            longitude = float(longitude)
+            latitude = float(latitude)
+            position = 'POINT(%f %f)' % (longitude, latitude)
+            city = City.objects.get(geom__contains=position)
+            serializer = StorySerializer(city.stories,
+                                         user=request.user,
+                                         many=True)
             return Response({
                 'code': 0,
                 'storys': serializer.data
@@ -36,12 +33,12 @@ class CityStoryList(APIView):
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid city id: %s' % city_id
+                'msg': 'invalid location: (%s,%s)' % (longitude, latitude)
             })
         except City.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'city not exists',
+                'msg': 'unknown location: (%s,%s)' % (longitude, latitude)
             })
 
 
