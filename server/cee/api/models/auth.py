@@ -36,8 +36,10 @@ class UserCoin(models.Model):
 
 
 class UserFriend(models.Model):
-    user = models.ForeignKey(User)
-    friend = models.ForeignKey(User, related_name='user_relation')
+    user = models.OneToOneField(User,
+                               on_delete=models.CASCADE,
+                               related_name='user_friend')
+    friend = models.ForeignKey(User, related_name='user_friend')
 
     class Meta:
         unique_together = (

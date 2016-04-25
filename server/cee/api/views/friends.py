@@ -13,10 +13,9 @@ from ..serializers.medal import *
 class UserFriendList(APIView):
     permission_classes = (IsAuthenticated, )
 
-    def get(self, request, user_id):
+    def get(self, request):
         try:
-            user_id = int(user_id)
-            user = User.objects.get(id=user_id)
+            user = request.user
             user_friend = user.user_friend.all()
             friends = [uf.friend for uf in user_friend]
             serializer = UserInfoSerializer(friends, many=True)
@@ -34,3 +33,11 @@ class UserFriendList(APIView):
                 'code': -2,
                 'msg': 'user not exists',
             })
+
+
+class addFriends(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, friendList):
+        pass
+
