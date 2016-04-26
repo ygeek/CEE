@@ -8,7 +8,7 @@ from .fields import *
 
 
 class Coupon(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
     desc = JsonField()
     gmt_start = models.DateField()
     gmt_end = models.DateField()

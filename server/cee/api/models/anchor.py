@@ -15,7 +15,7 @@ class Anchor(models.Model):
         )
 
     map = models.ForeignKey(Map, related_name='anchors')
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
     dx = models.IntegerField()
     dy = models.IntegerField()
     type = models.CharField(max_length=10,

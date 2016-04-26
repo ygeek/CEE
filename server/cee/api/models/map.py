@@ -6,13 +6,14 @@ from .city import *
 
 
 class Map(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
     desc = models.TextField()
-    x = models.FloatField()
-    y = models.FloatField()
-    geohash = models.CharField(max_length=16)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+    geohash = models.CharField(max_length=16, db_index=True)
     image_url = models.URLField()
-    city = models.ForeignKey(City, related_name='maps')
+    city = models.ForeignKey(City,
+                             related_name='maps')
     owners = models.ManyToManyField(User,
                                     through='UserMap',
                                     related_name='maps')

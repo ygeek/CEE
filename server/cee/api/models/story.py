@@ -8,7 +8,7 @@ from .city import *
 
 
 class Story(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     desc = models.TextField()
     time = models.IntegerField()
     good = models.IntegerField()
@@ -24,9 +24,14 @@ class UserStory(models.Model):
     completed = models.BooleanField()
     progress = models.IntegerField()
 
+    class Meta:
+        unique_together = (
+            ('user', 'story'),
+        )
+
 
 class Level(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     content = JsonField()
     stories = models.ManyToManyField(Story,
                                      through='StoryLevel',
@@ -38,9 +43,14 @@ class StoryLevel(models.Model):
     level = models.ForeignKey(Level, related_name='story_levels')
     order = models.SmallIntegerField()
 
+    class Meta:
+        unique_together = (
+            ('story', 'order'),
+        )
+
 
 class Item(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     activate_at = models.SmallIntegerField()
     content = JsonField()
     stories = models.ManyToManyField(Story,

@@ -63,8 +63,10 @@ class NearestMap(APIView):
                     maps.append(map_)
         if not maps: return None
         map_ = min(maps,
-                   key=lambda map_: cls._haversine(map_.x, map_.y,
-                                                   longitude, latitude))
+                   key=lambda map_: cls._haversine(map_.longitude,
+                                                   map_.latitude,
+                                                   longitude,
+                                                   latitude))
         user_map, created = UserMap.objects.get_or_create(
             defaults={'completed': False},
             user=user,
