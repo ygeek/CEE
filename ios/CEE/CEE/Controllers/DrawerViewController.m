@@ -11,6 +11,7 @@
 #import "DrawerViewController.h"
 #import "CouponScrollView.h"
 #import "HUDCouponCodeView.h"
+#import "CouponCard.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -20,6 +21,7 @@
 @interface DrawerViewController () <CouponScrollViewDataSource, CouponScrollViewDelegate>
 @property (nonatomic, strong) CouponScrollView * scrollView;
 @property (nonatomic, strong) HUDCouponCodeView * codeView;
+@property (nonatomic, assign) BOOL isReload;
 @end
 
 @implementation DrawerViewController
@@ -43,6 +45,8 @@
         make.width.equalTo(self.view.mas_width);
         make.height.mas_equalTo(410);
     }];
+    
+    self.isReload = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +56,10 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self.scrollView reloadData];
+    if (!self.isReload) {
+        self.isReload = YES;
+        [self.scrollView reloadData];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,7 +87,8 @@
 
 - (UIView *)viewAtIndex:(NSInteger)index reusingView:(UIView *)view {
     if (!view) {
-        view = [self newCard];
+        // view = [self newCard];
+        view = [[CouponCard alloc] init];
     }
     return view;
 }
@@ -129,7 +137,14 @@
         [view.superview bringSubviewToFront:view];
     }
     
-    view.alpha = [self alphaForProgress:progress];
+    ((CouponCard *)view).maskView.alpha = (1.0 - [self alphaForProgress:progress]);
+    if (labs(view.tag - currentIndex) >= self.numberOfVisibleViews / 2) {
+        view.alpha = fmax(3.0 - fabs(progress), 0.0);
+    } else {
+        view.alpha = 1.0;
+    }
+    
+    NSLog(@"%ld / %f", view.tag - currentIndex, progress);
     
     CGAffineTransform transform = CGAffineTransformIdentity;
     

@@ -23,17 +23,9 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
         _overlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _overlayView.backgroundColor = [UIColor clearColor];
         [_overlayView addTarget:self action:@selector(overlayViewDidReceiveTouchEvent:forEvent:) forControlEvents:UIControlEventTouchDown];
+        _overlayView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     }
     return _overlayView;
-}
-
-- (UIView *)backgroundView {
-    if (!_backgroundView) {
-        _backgroundView = [[UIView alloc] init];
-        _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-    }
-    return _backgroundView;
 }
 
 - (UIView *)hudView {
@@ -52,6 +44,8 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
 }
 
 - (void)updateViewHierachy {
+    self.userInteractionEnabled = NO;
+    
     if (!self.overlayView.superview) {
         NSEnumerator * frontToBackWindows = UIApplication.sharedApplication.windows.reverseObjectEnumerator;
         for (UIWindow * window in frontToBackWindows) {
@@ -74,11 +68,7 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
             make.edges.equalTo(self.overlayView);
         }];
     }
-    
-    if (!self.backgroundView.superview) {
-        [self addSubview:self.backgroundView];
-    }
-    
+   
     if (!self.hudView.superview) {
         [self addSubview:self.hudView];
         [self makeHUDConstraints];
@@ -100,6 +90,10 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
                                                             object:self
                                                           userInfo:nil];
     }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(HUDOverlayViewTouched:)]) {
+        [self.delegate HUDOverlayViewTouched:self];
+    }
 }
 
 #pragma mark - Public Methods
@@ -114,7 +108,7 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             strongSelf.alpha = 1.0;
+                             strongSelf.overlayView.alpha = 1.0;
                          }
                          completion:nil];
     }];
@@ -128,7 +122,7 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             strongSelf.alpha = 0.0;
+                             strongSelf.overlayView.alpha = 0.0;
                          }
                          completion:^(BOOL finished) {
                              [strongSelf.overlayView removeFromSuperview];

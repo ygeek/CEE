@@ -122,6 +122,8 @@
     CGFloat offset = currentCenterY - self.totalHeight / 2;
     _currentIndex = ceil((offset - self.viewSize.height / 2) / self.viewSize.height);
     
+    // NSLog(@"offset: %f, current index: %d", offset, _currentIndex);
+    
     if (self.scrollView.contentOffset.y > self.preContentOffsetY) {
         self.scrollDirection = CouponScrollDirectionUp;
     } else {
@@ -148,7 +150,7 @@
             }
         }
         
-        CGFloat progress = (view.center.y - currentCenterY) / CGRectGetHeight(self.bounds) * self.dataSource.numberOfVisibleViews;
+        CGFloat progress = (view.center.y - currentCenterY) / self.viewSize.height;
         [self.delegate updateView:view
                      withProgress:progress
                      currentIndex:self.currentIndex

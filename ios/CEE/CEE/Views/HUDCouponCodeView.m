@@ -195,4 +195,9 @@
     [self becomeFirstResponder];
 }
 
+- (void)dismiss {
+    [self resignFirstResponder];
+    [super dismiss];
+}
+
 @end
