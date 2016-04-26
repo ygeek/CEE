@@ -144,8 +144,6 @@
         view.alpha = 1.0;
     }
     
-    NSLog(@"%ld / %f", view.tag - currentIndex, progress);
-    
     CGAffineTransform transform = CGAffineTransformIdentity;
     
     // scale
