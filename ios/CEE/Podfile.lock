@@ -26,6 +26,7 @@ PODS:
   - JSONModel (1.2.0)
   - Masonry (1.0.0)
   - MOBFoundation_IDFA (1.5.1)
+  - OAStackView (1.0.1)
   - OMGHTTPURLRQ (3.1.1):
     - OMGHTTPURLRQ/RQ (= 3.1.1)
   - OMGHTTPURLRQ/FormURLEncode (3.1.1)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - JSONModel
   - Masonry
   - MOBFoundation_IDFA
+  - OAStackView
   - PromiseKit
   - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
   - RDVTabBarController
@@ -125,6 +127,7 @@ SPEC CHECKSUMS:
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MOBFoundation_IDFA: f5d3d1f89166f60c6985e34b7d90e6fb5d58fb61
+  OAStackView: 95e7cb79cbea25c2342f496a44bdbe8bd4c8d510
   OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
   PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
   Qiniu: 340bc55a6478d89591754aa7d1fd8b5977863991

@@ -25,6 +25,7 @@
 		BB29EF631CCC6E3A001C25B6 /* MapAnchorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF621CCC6E3A001C25B6 /* MapAnchorView.m */; };
 		BB29EF651CCC7098001C25B6 /* map-sample.png in Resources */ = {isa = PBXBuildFile; fileRef = BB29EF641CCC7098001C25B6 /* map-sample.png */; };
 		BB29EF681CCCB58C001C25B6 /* HUDCouponCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF671CCCB58C001C25B6 /* HUDCouponCodeView.m */; };
+		BB29EF6B1CCE7904001C25B6 /* CouponCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF6A1CCE7904001C25B6 /* CouponCard.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -114,6 +115,8 @@
 		BB29EF641CCC7098001C25B6 /* map-sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-sample.png"; sourceTree = "<group>"; };
 		BB29EF661CCCB58C001C25B6 /* HUDCouponCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDCouponCodeView.h; sourceTree = "<group>"; };
 		BB29EF671CCCB58C001C25B6 /* HUDCouponCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDCouponCodeView.m; sourceTree = "<group>"; };
+		BB29EF691CCE7904001C25B6 /* CouponCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCard.h; sourceTree = "<group>"; };
+		BB29EF6A1CCE7904001C25B6 /* CouponCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCard.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 				BB29EF621CCC6E3A001C25B6 /* MapAnchorView.m */,
 				BB29EF661CCCB58C001C25B6 /* HUDCouponCodeView.h */,
 				BB29EF671CCCB58C001C25B6 /* HUDCouponCodeView.m */,
+				BB29EF691CCE7904001C25B6 /* CouponCard.h */,
+				BB29EF6A1CCE7904001C25B6 /* CouponCard.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
 				BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */,
+				BB29EF6B1CCE7904001C25B6 /* CouponCard.m in Sources */,
 				BB29EF411CC90A3F001C25B6 /* TLCity.m in Sources */,
 				BB29EF571CCA4716001C25B6 /* CEEDownloadURLAPI.m in Sources */,
 				BB29EF421CC90A3F001C25B6 /* TLCityGroupCell.m in Sources */,
