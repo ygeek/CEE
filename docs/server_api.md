@@ -493,13 +493,8 @@
 ## 获取最近未完成地图
 ### Request
 ```http
-GET /api/v1/map/nearest/
+GET /api/v1/map/nearest/114.06667,22.61667/
 Authorization: Token xxxxxxx
-
-{
-    "longitude": 114.06667,
-    "latitude": 22.61667
-}
 ```
 ### Response
 ```http
@@ -510,7 +505,7 @@ Authorization: Token xxxxxxx
         "name": "Map-Name-1",
         "desc": "Map-Desc-1",
         "image_url": "http://example.com/map-1.png",
-        "city": "shenzhen",
+        "city": "深圳市",
         "completed": false
     }
 }
@@ -532,7 +527,7 @@ Authorization: Token xxxxxxx
             "name": "Map-Name-1",
             "desc": "Map-Desc-1",
             "image_url": "http://example.com/map-1.png",
-            "city": "shenzhen",
+            "city": "深圳市",
             "completed": false
         }
     ]
@@ -672,19 +667,14 @@ Authorization: Token xxxxxxx
 ## 获取所在城市故事列表
 ### Request
 ```http
-GET /api/vi/story/current_city/
+GET /api/vi/story/current_city/114.06667,22.61667/
 Authorization: Token xxxxxxx
-
-{
-    "longitude": 114.06667,
-    "latitude": 22.61667
-}
 ```
 ### Response
 ```http
 {
     "code": 0,
-    "city": "shenzhen",
+    "city": "深圳市",
     "stories": [
         {
             "id": 1,
@@ -697,7 +687,7 @@ Authorization: Token xxxxxxx
             "time": 120,
             "distance": 5.1,
             "good": 237
-            "city": "shenzhen"
+            "city": "深圳市"
         }
     ]
 }
@@ -720,7 +710,7 @@ Authorization: Token xxxxxxx
         "time": 59,
         "good": 237,
         "distance": 5.1,
-        "city": "shenzhen",
+        "city": "深圳市",
         "image_urls": [
             "http://example.com/task-1-1.png",
             "http://example.com/task-1-2.png"
