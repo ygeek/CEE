@@ -10,6 +10,7 @@ class Map(models.Model):
     desc = models.TextField()
     x = models.FloatField()
     y = models.FloatField()
+    geohash = models.CharField(max_length=16)
     image_url = models.URLField()
     city = models.ForeignKey(City, related_name='maps')
     owners = models.ManyToManyField(User,

@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
 
     # Map
-    url(r'^v1/map/nearest/$', NearestMap.as_view()),
+    url(r'^v1/map/nearest/(?P<longitude>[0-9.]+),(?P<latitude>[0-9.]+)/$',
+        NearestMap.as_view()),
     url(r'^v1/map/acquired/$', AcquiredMapList.as_view()),
     url(r'^v1/map/(?P<map_id>\d+)/complete/$', CompleteMap.as_view()),
     # Anchor

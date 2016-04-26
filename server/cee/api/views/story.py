@@ -18,7 +18,6 @@ from ..serializers.coupon import *
 class CurrentCityStoryList(APIView):
     def get(self, request, longitude, latitude):
         try:
-            print 'xxxx'
             longitude = float(longitude)
             latitude = float(latitude)
             position = 'POINT(%f %f)' % (longitude, latitude)
