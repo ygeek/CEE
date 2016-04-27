@@ -7,7 +7,7 @@
 {% block content %}
     <section class="panel">
         <header class="panel-heading clearfix">
-            故事管理
+            故事管理 ({{ object_list.count }})
             <div class="pull-right">
                 <a class="btn btn-success btn-sm" href="{% url 'cms-add-story' %}">
                     <i class="fa fa-plus-circle"></i>
@@ -32,7 +32,7 @@
                     <tr>
                         <th scope="row"><a href="{% url 'cms-story-detail' pk=story.id %}">{{ story.id }}</a></th>
                         <td>{{ story.name }}</td>
-                        <td>{{ story.city }}</td>
+                        <td>{{ story.city.nl_name_2 }}</td>
                         <td>{{ story|story_user_count }}</td>
                         <td>{{ story|story_complete_count }}</td>
                         <td>

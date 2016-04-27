@@ -32,12 +32,14 @@ class MapForm(ModelForm):
         fields = [
             'name',
             'longitude',
-            'latitude'
+            'latitude',
+            'city'
         ]
         labels = {
             'name': '名称',
             'longitude': '经度',
             'latitude': '纬度',
+            'city': '城市'
         }
 
 
