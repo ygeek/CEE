@@ -16,7 +16,6 @@ class StorySerializer(serializers.ModelSerializer):
             'time',
             'good',
             'distance',
-            'city',
             'image_urls',
             'completed',
             'progress',

@@ -3,12 +3,11 @@ from ..models.map import *
 
 
 class MapSerializer(serializers.ModelSerializer):
-    city = serializers.SlugRelatedField(read_only=True, slug_field='short_name')
     completed = serializers.SerializerMethodField()
 
     class Meta:
         model = Map
-        fields = ('id', 'name', 'desc', 'image_url', 'city', 'completed')
+        fields = ('id', 'name', 'desc', 'image_url', 'completed')
 
     def __init__(self, *args, **kwargs):
         if 'many' not in kwargs:
