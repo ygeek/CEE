@@ -34,8 +34,7 @@ urlpatterns = [
     url(r'^v1/task/(?P<task_id>\d+)/$', TaskDetail.as_view()),
     url(r'^v1/task/(?P<task_id>\d+)/complete/$', CompleteTask.as_view()),
     # Story
-    url(r'^v1/story/current_city/(?P<longitude>[0-9.]+),(?P<latitude>[0-9.]+)/$',
-        CurrentCityStoryList.as_view()),
+    url(r'^v1/city/(?P<city_key>\w+)/story/$', CityStoryList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/level/$', StoryLevelList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/item/$', StoryItemList.as_view()),

@@ -3,7 +3,7 @@ from ..models.map import *
 
 
 class MapSerializer(serializers.ModelSerializer):
-    city = serializers.SlugRelatedField(read_only=True, slug_field='nl_name_2')
+    city = serializers.SlugRelatedField(read_only=True, slug_field='short_name')
     completed = serializers.SerializerMethodField()
 
     class Meta:

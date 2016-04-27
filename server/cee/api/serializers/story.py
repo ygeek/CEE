@@ -3,7 +3,6 @@ from ..models.story import *
 
 
 class StorySerializer(serializers.ModelSerializer):
-    city = serializers.SlugRelatedField(read_only=True, slug_field='nl_name_2')
     image_urls = serializers.ListField()
     completed = serializers.SerializerMethodField()
     progress = serializers.SerializerMethodField()

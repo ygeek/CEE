@@ -15,13 +15,10 @@ from ..serializers.story import *
 from ..serializers.coupon import *
 
 
-class CurrentCityStoryList(APIView):
-    def get(self, request, longitude, latitude):
+class CityStoryList(APIView):
+    def get(self, request, city_key):
         try:
-            longitude = float(longitude)
-            latitude = float(latitude)
-            position = 'POINT(%f %f)' % (longitude, latitude)
-            city = City.objects.get(geom__contains=position)
+            city = City.objects.get(key=city_key)
             serializer = StorySerializer(city.stories,
                                          user=request.user,
                                          many=True)
@@ -29,15 +26,10 @@ class CurrentCityStoryList(APIView):
                 'code': 0,
                 'storys': serializer.data
             })
-        except ValueError:
-            return Response({
-                'code': -1,
-                'msg': 'invalid location: (%s,%s)' % (longitude, latitude)
-            })
         except City.DoesNotExist:
             return Response({
-                'code': -2,
-                'msg': 'unknown location: (%s,%s)' % (longitude, latitude)
+                'code': -1,
+                'msg': 'unknown city key: %s' % city_key
             })
 
 
