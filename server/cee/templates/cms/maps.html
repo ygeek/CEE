@@ -34,7 +34,7 @@
                             <a href="{% url 'cms-map-detail' pk=map.id %}">{{ map.id }}</a>
                         </th>
                         <td>{{ map.name }}</td>
-                        <td>{{ map.city.nl_name_2 }}</td>
+                        <td>{{ map.city }}</td>
                         <td>{{ map|map_user_count }}</td>
                         <td>{{ map|map_complete_count }}</td>
                         <td>

@@ -11,10 +11,10 @@ class Story(models.Model):
     name = models.CharField(max_length=50, unique=True)
     desc = models.TextField()
     time = models.IntegerField()
-    good = models.IntegerField()
+    good = models.IntegerField(default=0)
     distance = models.FloatField()
     city = models.ForeignKey(City, related_name='stories')
-    coin = models.IntegerField()
+    coin = models.IntegerField(default=0)
     image_urls = JsonField()
 
 

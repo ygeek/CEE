@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='cms-index'),
+    url(r'^uptoken/$', views.QiniuUptoken.as_view()),
+    url(r'^downtoken/$', views.QiniuDowntoken.as_view()),
     url(r'^users/$', views.UserList.as_view(), name='cms-users'),
     url(r'^user/add/$', views.AddUser.as_view(), name='cms-add-user'),
     url(r'^user/(?P<pk>[0-9]+)/$', views.UserDetail.as_view(), name='cms-user-detail'),

@@ -21,9 +21,12 @@ class JsonField(models.TextField):
     def to_python(self, value):
         if value is None:
             return None
-        if isinstance(value, dict):
+        if isinstance(value, dict) or isinstance(value, list):
             return value
         try:
             return json.loads(value)
         except ValueError:
             raise exceptions.ValidationError('invalid json value')
+
+    def get_prep_value(self, value):
+        return json.dumps(value)

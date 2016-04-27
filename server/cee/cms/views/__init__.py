@@ -8,6 +8,7 @@ from .user import *
 from .coupon import *
 from .map import *
 from .story import *
+from .qiniu import *
 
 
 def index(request):

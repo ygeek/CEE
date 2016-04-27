@@ -24,6 +24,8 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'cms/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'cms/css/style-responsive.css' %}" rel="stylesheet"/>
+    {% block styles %}
+    {% endblock %}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
     <script src="{% static 'cms/js/html5shiv.js' %}"></script>
@@ -59,7 +61,8 @@
                             <div class="log-arrow-up"></div>
                             <li><a href="{% url 'cms-user-detail' pk=request.user.id %}"><i class=" fa fa-suitcase"></i>用户详情</a>
                             </li>
-                            <li><a href="{% url 'admin:logout' %}?next={% url 'cms-index' %}"><i class="fa fa-key"></i>登出</a></li>
+                            <li><a href="{% url 'admin:logout' %}?next={% url 'cms-index' %}"><i class="fa fa-key"></i>登出</a>
+                            </li>
                         </ul>
                     </li>
                 {% endif %}
@@ -88,6 +91,7 @@
     <!--main content end-->
 </section>
 
+<script src="{% static 'cms/js/underscore-min.js' %}"></script>
 <script src="{% static 'cms/js/jquery.js' %}"></script>
 <script src="{% static 'cms/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'cms/assets/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
@@ -103,9 +107,6 @@
 <!--common script for all pages-->
 <script src="{% static 'cms/js/common-scripts.js' %}"></script>
 <!--script for this page only-->
-<script src="{% static 'cms/js/sparkline-chart.js' %}"></script>
-<script src="{% static 'cms/js/easy-pie-chart.js' %}"></script>
-
 {% block scripts %}
 {% endblock %}
 

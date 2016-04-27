@@ -1,9 +1,52 @@
 {% extends 'cms/base.html' %}
 
-{% load staticfiles %}
-{% load bootstrap3 %}
+{% load staticfiles bootstrap3 %}
 
 {% block title %}新增/编辑故事{% endblock %}
+
+{% block styles %}
+    <style>
+        #qiniu-upload-container {
+            margin: 10px 0;
+        }
+
+        #qiniu-upload-container .upload-progress {
+            margin: 10px;
+        }
+
+        #qiniu-upload-container .text-center {
+            padding: 10px 0;
+        }
+
+        #qiniu-upload-container .no-images-hint {
+            position: relative;
+            margin: 10px;
+        }
+
+        #qiniu-upload-container .images-container {
+            position: relative;
+            margin: 10px;
+        }
+
+        #qiniu-upload-container .uploading-list {
+            position: relative;
+            padding: 10px;
+        }
+
+        #qiniu-upload-container .uploading-list .progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 13px;
+            width: 0;
+            background-color: #53BEE6;
+        }
+
+        #qiniu-upload-container.has-image .no-images-hint {
+            display: none;
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
     <section class="panel">
@@ -13,10 +56,26 @@
         <div class="panel-body">
             <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
                 {% include 'cms/form.html' %}
+                <div id="qiniu-upload-container">
+                    <div class="text-center">
+                        <div class="no-images-hint">没有封面图片</div>
+                        <button id="pickfiles" class="btn btn-info btn-sm">
+                            <i class="fa fa-upload"></i> 上传封面图片
+                        </button>
+                    </div>
+                    <div class="images-container row"></div>
+                    <div class="uploading-list"></div>
+                </div>
                 <div class="text-center">
-                    <input class="btn btn-primary" type="submit" value="保存"/>
+                    <input class="btn btn-primary" type="submit" value="保存地图"/>
                 </div>
             </form>
         </div>
     </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'cms/assets/plupload-2.1.8/js/plupload.full.min.js' %}"></script>
+    <script src="{% static 'cms/assets/qiniu/qiniu.min.js' %}"></script>
+    <script src="{% static 'cms/js/story_form.js' %}"></script>
 {% endblock %}
