@@ -26,6 +26,11 @@
 		BB29EF651CCC7098001C25B6 /* map-sample.png in Resources */ = {isa = PBXBuildFile; fileRef = BB29EF641CCC7098001C25B6 /* map-sample.png */; };
 		BB29EF681CCCB58C001C25B6 /* HUDCouponCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF671CCCB58C001C25B6 /* HUDCouponCodeView.m */; };
 		BB29EF6B1CCE7904001C25B6 /* CouponCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF6A1CCE7904001C25B6 /* CouponCard.m */; };
+		BB29EF6E1CD03B2A001C25B6 /* HUDGetNewMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF6D1CD03B2A001C25B6 /* HUDGetNewMapView.m */; };
+		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
+		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
+		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
+		BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5BB1CD07682005150C3 /* EmptyMapCollectionViewCell.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -117,6 +122,16 @@
 		BB29EF671CCCB58C001C25B6 /* HUDCouponCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDCouponCodeView.m; sourceTree = "<group>"; };
 		BB29EF691CCE7904001C25B6 /* CouponCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCard.h; sourceTree = "<group>"; };
 		BB29EF6A1CCE7904001C25B6 /* CouponCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCard.m; sourceTree = "<group>"; };
+		BB29EF6C1CD03B2A001C25B6 /* HUDGetNewMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDGetNewMapView.h; sourceTree = "<group>"; };
+		BB29EF6D1CD03B2A001C25B6 /* HUDGetNewMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDGetNewMapView.m; sourceTree = "<group>"; };
+		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
+		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
+		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
+		BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquiredMapsViewController.m; sourceTree = "<group>"; };
+		BB48E5B71CD07664005150C3 /* AcquiredMapCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapCollectionViewCell.h; sourceTree = "<group>"; };
+		BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquiredMapCollectionViewCell.m; sourceTree = "<group>"; };
+		BB48E5BA1CD07682005150C3 /* EmptyMapCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyMapCollectionViewCell.h; sourceTree = "<group>"; };
+		BB48E5BB1CD07682005150C3 /* EmptyMapCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyMapCollectionViewCell.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -417,6 +432,8 @@
 				BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */,
 				BB6103A51CC5199100350809 /* FillProfileViewController.h */,
 				BB6103A61CC5199100350809 /* FillProfileViewController.m */,
+				BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */,
+				BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -482,6 +499,14 @@
 				BB29EF671CCCB58C001C25B6 /* HUDCouponCodeView.m */,
 				BB29EF691CCE7904001C25B6 /* CouponCard.h */,
 				BB29EF6A1CCE7904001C25B6 /* CouponCard.m */,
+				BB29EF6C1CD03B2A001C25B6 /* HUDGetNewMapView.h */,
+				BB29EF6D1CD03B2A001C25B6 /* HUDGetNewMapView.m */,
+				BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */,
+				BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */,
+				BB48E5B71CD07664005150C3 /* AcquiredMapCollectionViewCell.h */,
+				BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */,
+				BB48E5BA1CD07682005150C3 /* EmptyMapCollectionViewCell.h */,
+				BB48E5BB1CD07682005150C3 /* EmptyMapCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -634,6 +659,7 @@
 				BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */,
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
+				BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
 				BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
@@ -670,6 +696,7 @@
 				BB29EF421CC90A3F001C25B6 /* TLCityGroupCell.m in Sources */,
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
+				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
@@ -679,8 +706,11 @@
 				BB29EF5D1CCC5797001C25B6 /* MessageTableViewCell.m in Sources */,
 				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
+				BB29EF6E1CD03B2A001C25B6 /* HUDGetNewMapView.m in Sources */,
 				BB29EF511CCA2B7F001C25B6 /* CEEUserProfile.m in Sources */,
+				BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */,
 				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
+				BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
 				BB29EF4B1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m in Sources */,
 			);

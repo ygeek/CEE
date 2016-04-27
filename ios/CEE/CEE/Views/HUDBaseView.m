@@ -16,6 +16,26 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
 
 @implementation HUDBaseView
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.overlayAlpha = 0.5;
+}
+
 - (UIControl *)overlayView {
     if (!_overlayView) {
         CGRect windowBounds = [[[[UIApplication sharedApplication] delegate] window] bounds];
@@ -23,7 +43,7 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
         _overlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _overlayView.backgroundColor = [UIColor clearColor];
         [_overlayView addTarget:self action:@selector(overlayViewDidReceiveTouchEvent:forEvent:) forControlEvents:UIControlEventTouchDown];
-        _overlayView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        _overlayView.backgroundColor = [UIColor colorWithWhite:0 alpha:self.overlayAlpha];
     }
     return _overlayView;
 }
@@ -75,6 +95,10 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
     }
 }
 
+- (void)updateData {
+    
+}
+
 #pragma mark - Event handling
 
 - (void)overlayViewDidReceiveTouchEvent:(id)sender forEvent:(UIEvent*)event {
@@ -103,6 +127,7 @@ NSString * const HUDDidTouchDownInsideNotification = @"HUDDidTouchDownInsideNoti
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf updateViewHierachy];
+        [strongSelf updateData];
         
         [UIView animateWithDuration:0.3
                               delay:0

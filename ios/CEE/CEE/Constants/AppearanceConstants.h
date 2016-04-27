@@ -37,5 +37,6 @@ UIColor* rgbaColor(NSUInteger r, NSUInteger g, NSUInteger b, NSUInteger a);
 #define kCEETextHighlightYellowColor   hexColor(0xeec21a)
 #define kCEESelectedGrayColor          hexColor(0xcacbcb)
 #define kCEEMessageCellGrayColor       hexColor(0xcecece)
+#define kCEECircleGrayColor            hexColor(0xf2f2f2)
 
 CGFloat verticalScale();

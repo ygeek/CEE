@@ -10,6 +10,7 @@
 
 #import "MapPanelView.h"
 #import "AppearanceConstants.h"
+#import "UIImage+Utils.h"
 
 @implementation MapPanelView
 
@@ -43,10 +44,23 @@
     }
     self.mapButtons = mapButtons;
     
+    NSTextAttachment * attachment = [[NSTextAttachment alloc] init];
+    UIImage * rightArrow = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(8, 8)];
+    attachment.image = rightArrow;
+    UIFont * font = [UIFont fontWithName:kCEEFontNameRegular size:11];
+    CGFloat mid = font.descender + font.capHeight;
+    attachment.bounds = CGRectIntegral(CGRectMake(4,
+                                                  font.descender - rightArrow.size.height / 2 + mid + 2,
+                                                  rightArrow.size.width,
+                                                  rightArrow.size.height));
+    
+    NSMutableAttributedString * moreText =
+    [[NSMutableAttributedString alloc] initWithString:@"更多地图"
+                                           attributes:@{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:11],
+                                                        NSForegroundColorAttributeName: [UIColor blackColor]}];
+    [moreText appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
     self.moreMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.moreMapButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.moreMapButton setTitle:@"更多地图 >" forState:UIControlStateNormal];
-    self.moreMapButton.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:11];
+    [self.moreMapButton setAttributedTitle:moreText forState:UIControlStateNormal];
     
     [self addSubview:self.moreMapButton];
     

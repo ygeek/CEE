@@ -26,9 +26,12 @@ extern NSString * const HUDDidTouchDownInsideNotification;
 @property (nonatomic, weak) id<HUDViewDelegate> delegate;
 @property (nonatomic, strong) UIControl * overlayView;
 @property (nonatomic, strong) UIView * hudView;
+@property (nonatomic, assign) CGFloat overlayAlpha;
 - (void)show;
 - (void)dismiss;
 - (void)updateViewHierachy;
+- (void)updateData;
 - (UIView *)genHUDView;
 - (void)makeHUDConstraints;
+- (void)commonInit;
 @end

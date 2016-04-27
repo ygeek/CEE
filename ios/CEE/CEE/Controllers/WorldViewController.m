@@ -7,17 +7,25 @@
 //
 
 @import Masonry;
+@import RDVTabBarController;
 
 #import "WorldViewController.h"
+#import "AcquiredMapsViewController.h"
 #import "MapPanelView.h"
 #import "MapAnchorView.h"
+#import "HUDGetNewMapView.h"
+#import "HUDFetchingMapView.h"
 
-@interface WorldViewController ()
+
+@interface WorldViewController () <HUDViewDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
 @property (nonatomic, strong) UIImageView * mapView;
 @property (nonatomic, strong) NSMutableArray<MapAnchorView *> * anchorViews;
 @property (nonatomic, strong) MapPanelView * panelView;
+@property (nonatomic, strong) HUDGetNewMapView * getNewMapHUD;
+@property (nonatomic, strong) HUDFetchingMapView * fetchingMapHUD;
 @end
+
 
 @implementation WorldViewController
 
@@ -28,7 +36,6 @@
     
     self.contentScrollView = [[UIScrollView alloc] init];
     self.contentScrollView.bounces = NO;
-    self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     self.contentScrollView.showsVerticalScrollIndicator = NO;
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.contentScrollView];
@@ -39,8 +46,10 @@
     self.panelView = [[MapPanelView alloc] init];
     [self.view addSubview:self.panelView];
     
+    [self.panelView.moreMapButton addTarget:self action:@selector(moreMapPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, 49, 0));
     }];
     
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,8 +77,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (!self.getNewMapHUD) {
+        self.getNewMapHUD = [[HUDGetNewMapView alloc] init];
+        self.getNewMapHUD.delegate = self;
+        [self.getNewMapHUD show];
+    } else if (!self.fetchingMapHUD) {
+        self.fetchingMapHUD = [[HUDFetchingMapView alloc] init];
+        self.fetchingMapHUD.delegate = self;
+        [self.fetchingMapHUD show];
+    }
+}
+
 - (void)menuPressed:(id)sender {
     
+}
+
+- (void)moreMapPressed:(id)sender {
+    AcquiredMapsViewController * mapsVC = [[AcquiredMapsViewController alloc] init];
+    [self.navigationController pushViewController:mapsVC animated:YES];
 }
 
 - (void)setupMapImage:(UIImage *)image {
@@ -77,7 +110,15 @@
     self.contentScrollView.contentSize = self.mapView.image.size;
 }
 
+#pragma mark - HUDViewDelegate
+
+- (void)HUDOverlayViewTouched:(HUDBaseView *)view {
+    [view dismiss];
+}
+
 - (void)loadSampleData {
+    self.navigationItem.title = @"埃尔多安";
+    
     NSString * imgFile = [[NSBundle mainBundle] pathForResource:@"map-sample" ofType:@"png"];
     UIImage * img = [UIImage imageWithContentsOfFile:imgFile];
     img = [UIImage imageWithCGImage:img.CGImage

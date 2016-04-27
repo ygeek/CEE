@@ -17,6 +17,8 @@
 + (void)setup {
     [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kCEETextBlackColor,
+                                                           NSFontAttributeName: [UIFont fontWithName:kCEEFontNameBold size:16]}];
     [[UIBarButtonItem appearance] setTintColor:kCEETextBlackColor];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD setMinimumDismissTimeInterval:1];
