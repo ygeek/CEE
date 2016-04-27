@@ -30,7 +30,8 @@ class StoryDetail(DetailView):
 
 class JsonTextArea(Textarea):
     def render(self, name, value, attrs=None):
-        value = json.dumps(value)
+        if not isinstance(value, basestring):
+            value = json.dumps(value)
         return super(JsonTextArea, self).render(name, value, attrs=attrs)
 
 

@@ -26,6 +26,10 @@
         }
 
         _.each(imageList, function (key) {
+            addImage(key, '#')
+        });
+
+        _.each(imageList, function (key) {
             $.ajax({
                 url: DOWNTOKEN_URL,
                 method: 'POST',
@@ -35,9 +39,7 @@
                     domain: QINIU_DOMAIN
                 }
             }).done(function(data) {
-                addImage(key, data.url)
-            }).fail(function() {
-                addImage(key, '')
+                replaceImage(key, data.url);
             });
         });
 
@@ -61,6 +63,12 @@
         images = _.without(images, key);
         $(document.getElementById('image_' + key)).remove();
         refreshHint();
+    }
+
+    function replaceImage(key, src) {
+        $(document.getElementById('image_' + key))
+            .find('img')
+            .attr('src', src);
     }
 
     function refreshHint() {
