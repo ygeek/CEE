@@ -41,12 +41,14 @@
     self.frame = CGRectMake(0, 0, 334, 212);
     
     self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 5;
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
-    self.layer.shadowOpacity = .3;
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.bounds];
-    self.layer.shadowPath = shadowPath.CGPath;
+    // self.layer.cornerRadius = 5;
+    // self.layer.shadowColor = [UIColor blackColor].CGColor;
+    // self.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+    // self.layer.shadowOpacity = .3;
+    // UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.bounds];
+    // self.layer.shadowPath = shadowPath.CGPath;
+    
+    self.maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"优惠券-黑"]];
     
     self.photoView = [[UIImageView alloc] init];
     [self addSubview:self.photoView];
@@ -101,7 +103,7 @@
     [self.page1 addSubview:self.entryTitleLabelsContainer];
     
     self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.codeButton setImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(18, 18)]
+    [self.codeButton setImage:[UIImage imageNamed:@"商家钥匙"]
                      forState:UIControlStateNormal];
     [self.codeButton setTitle:@"商家密钥" forState:UIControlStateNormal];
     [self.codeButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
@@ -134,9 +136,9 @@
     self.entryContentLabelsContainer.alignment = OAStackViewAlignmentCenter;
     [self.page2 addSubview:self.entryContentLabelsContainer];
     
-    self.maskView = [[UIView alloc] init];
-    self.maskView.backgroundColor = [UIColor blackColor];
-    [self addSubview:self.maskView];
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor blackColor];
+    [self addSubview:self.shadowView];
     
     [self setupLayout];
     
@@ -173,7 +175,7 @@
     
     self.entryContentLabelsContainer.frame = CGRectMake(0, 13 + 14 + 10, self.page2.bounds.size.width, self.page2.bounds.size.height - 13 - 14 - 10 - 16);
     
-    self.maskView.frame = self.bounds;
+    self.shadowView.frame = self.bounds;
 }
 
 - (void)loadEntryTitles:(NSArray<NSString *> *)titles {

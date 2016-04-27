@@ -15,6 +15,7 @@
 #import "MapAnchorView.h"
 #import "HUDGetNewMapView.h"
 #import "HUDFetchingMapView.h"
+#import "TaskViewController.h"
 
 
 @interface WorldViewController () <HUDViewDelegate>
@@ -93,6 +94,9 @@
         self.fetchingMapHUD = [[HUDFetchingMapView alloc] init];
         self.fetchingMapHUD.delegate = self;
         [self.fetchingMapHUD show];
+    } else {
+        TaskViewController * vc = [[TaskViewController alloc] init];
+        [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
     }
 }
 

@@ -45,13 +45,13 @@
     self.mapButtons = mapButtons;
     
     NSTextAttachment * attachment = [[NSTextAttachment alloc] init];
-    UIImage * rightArrow = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(8, 8)];
+    UIImage * rightArrow = [UIImage imageNamed:@"更多地图箭头"];
     attachment.image = rightArrow;
     UIFont * font = [UIFont fontWithName:kCEEFontNameRegular size:11];
     CGFloat mid = font.descender + font.capHeight;
     attachment.bounds = CGRectIntegral(CGRectMake(4,
                                                   font.descender - rightArrow.size.height / 2 + mid + 2,
-                                                  rightArrow.size.width,
+                                                  rightArrow.size.width + 4,
                                                   rightArrow.size.height));
     
     NSMutableAttributedString * moreText =

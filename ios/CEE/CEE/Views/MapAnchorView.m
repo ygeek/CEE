@@ -69,7 +69,7 @@
             self.iconView.image = [UIImage imageNamed:@"地图定位_黑"];
             break;
         case MapAnchorTypeStoryFinished:
-            self.iconView.image = [UIImage imageNamed:@"地图定位_黑"];
+            self.iconView.image = [UIImage imageNamed:@"黑色story"];
             break;
         default:
             break;

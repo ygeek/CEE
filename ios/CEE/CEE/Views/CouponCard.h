@@ -36,5 +36,5 @@
 @property (nonatomic, strong) OAStackView * entryContentLabelsContainer;
 @property (nonatomic, strong) NSMutableArray<UILabel *> * entryContentLabels;
 
-@property (nonatomic, strong) UIView * maskView;
+@property (nonatomic, strong) UIView * shadowView;
 @end

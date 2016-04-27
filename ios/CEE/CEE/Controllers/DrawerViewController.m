@@ -137,7 +137,7 @@
         [view.superview bringSubviewToFront:view];
     }
     
-    ((CouponCard *)view).maskView.alpha = (1.0 - [self alphaForProgress:progress]);
+    ((CouponCard *)view).shadowView.alpha = (1.0 - [self alphaForProgress:progress]);
     if (labs(view.tag - currentIndex) >= self.numberOfVisibleViews / 2) {
         view.alpha = fmax(3.0 - fabs(progress), 0.0);
     } else {

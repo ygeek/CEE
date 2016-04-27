@@ -31,6 +31,9 @@
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
 		BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5BB1CD07682005150C3 /* EmptyMapCollectionViewCell.m */; };
+		BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5BE1CD09D91005150C3 /* TaskViewController.m */; };
+		BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */; };
+		BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -132,6 +135,12 @@
 		BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquiredMapCollectionViewCell.m; sourceTree = "<group>"; };
 		BB48E5BA1CD07682005150C3 /* EmptyMapCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyMapCollectionViewCell.h; sourceTree = "<group>"; };
 		BB48E5BB1CD07682005150C3 /* EmptyMapCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyMapCollectionViewCell.m; sourceTree = "<group>"; };
+		BB48E5BD1CD09D91005150C3 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
+		BB48E5BE1CD09D91005150C3 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
+		BB48E5C01CD09E3E005150C3 /* TaskQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQuestionView.h; sourceTree = "<group>"; };
+		BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskQuestionView.m; sourceTree = "<group>"; };
+		BB48E5C31CD0E4E3005150C3 /* TaskAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskAnswerView.h; sourceTree = "<group>"; };
+		BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAnswerView.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -434,6 +443,8 @@
 				BB6103A61CC5199100350809 /* FillProfileViewController.m */,
 				BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */,
 				BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */,
+				BB48E5BD1CD09D91005150C3 /* TaskViewController.h */,
+				BB48E5BE1CD09D91005150C3 /* TaskViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -507,6 +518,10 @@
 				BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */,
 				BB48E5BA1CD07682005150C3 /* EmptyMapCollectionViewCell.h */,
 				BB48E5BB1CD07682005150C3 /* EmptyMapCollectionViewCell.m */,
+				BB48E5C01CD09E3E005150C3 /* TaskQuestionView.h */,
+				BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */,
+				BB48E5C31CD0E4E3005150C3 /* TaskAnswerView.h */,
+				BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -683,6 +698,7 @@
 				BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
+				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
 				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
@@ -699,6 +715,7 @@
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
+				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
 				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
@@ -707,6 +724,7 @@
 				BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */,
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
 				BB29EF6E1CD03B2A001C25B6 /* HUDGetNewMapView.m in Sources */,
+				BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */,
 				BB29EF511CCA2B7F001C25B6 /* CEEUserProfile.m in Sources */,
 				BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */,
 				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
