@@ -505,7 +505,6 @@ Authorization: Token xxxxxxx
         "name": "Map-Name-1",
         "desc": "Map-Desc-1",
         "image_url": "http://example.com/map-1.png",
-        "city": "深圳市",
         "completed": false
     }
 }
@@ -527,7 +526,6 @@ Authorization: Token xxxxxxx
             "name": "Map-Name-1",
             "desc": "Map-Desc-1",
             "image_url": "http://example.com/map-1.png",
-            "city": "深圳市",
             "completed": false
         }
     ]
@@ -667,14 +665,13 @@ Authorization: Token xxxxxxx
 ## 获取所在城市故事列表
 ### Request
 ```http
-GET /api/vi/story/current_city/114.06667,22.61667/
+GET /api/vi/city/300210000/story/
 Authorization: Token xxxxxxx
 ```
 ### Response
 ```http
 {
     "code": 0,
-    "city": "深圳市",
     "stories": [
         {
             "id": 1,
@@ -687,7 +684,6 @@ Authorization: Token xxxxxxx
             "time": 120,
             "distance": 5.1,
             "good": 237
-            "city": "深圳市"
         }
     ]
 }
@@ -710,7 +706,6 @@ Authorization: Token xxxxxxx
         "time": 59,
         "good": 237,
         "distance": 5.1,
-        "city": "深圳市",
         "image_urls": [
             "http://example.com/task-1-1.png",
             "http://example.com/task-1-2.png"
