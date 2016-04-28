@@ -16,6 +16,7 @@ class Story(models.Model):
     city = models.ForeignKey(City, related_name='stories')
     coin = models.IntegerField(default=0)
     image_urls = JsonField()
+    tour_url = models.URLField()
 
 
 class UserStory(models.Model):
