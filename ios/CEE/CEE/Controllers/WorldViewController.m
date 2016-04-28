@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import AVKit;
+@import AVFoundation;
 @import Masonry;
 @import RDVTabBarController;
 
@@ -15,6 +17,7 @@
 #import "MapAnchorView.h"
 #import "HUDGetNewMapView.h"
 #import "HUDFetchingMapView.h"
+#import "HUDGetMedalView.h"
 #import "TaskViewController.h"
 
 
@@ -25,6 +28,7 @@
 @property (nonatomic, strong) MapPanelView * panelView;
 @property (nonatomic, strong) HUDGetNewMapView * getNewMapHUD;
 @property (nonatomic, strong) HUDFetchingMapView * fetchingMapHUD;
+@property (nonatomic, strong) HUDGetMedalView * getMedalHUD;
 @end
 
 
@@ -94,6 +98,10 @@
         self.fetchingMapHUD = [[HUDFetchingMapView alloc] init];
         self.fetchingMapHUD.delegate = self;
         [self.fetchingMapHUD show];
+    } else if (!self.getMedalHUD) {
+        self.getMedalHUD = [[HUDGetMedalView alloc] init];
+        self.getMedalHUD.delegate = self;
+        [self.getMedalHUD show];
     } else {
         TaskViewController * vc = [[TaskViewController alloc] init];
         [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
@@ -101,7 +109,13 @@
 }
 
 - (void)menuPressed:(id)sender {
-    
+    NSURL *videoURL = [NSURL URLWithString:@"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
+    AVPlayer *player = [AVPlayer playerWithURL:videoURL];
+    AVPlayerViewController *playerViewController = [AVPlayerViewController new];
+    playerViewController.player = player;
+    [self presentViewController:playerViewController animated:YES completion:^{
+        [player play];
+    }];
 }
 
 - (void)moreMapPressed:(id)sender {

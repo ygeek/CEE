@@ -2,28 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>privacy - location usage description</key>
-	<string>请开启定位功能</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>请开启定位功能</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>请开启定位功能</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SourceHanSansCN-Bold.otf</string>
-		<string>SourceHanSansCN-ExtraLight.otf</string>
-		<string>SourceHanSansCN-Heavy.otf</string>
-		<string>SourceHanSansCN-Light.otf</string>
-		<string>SourceHanSansCN-Medium.otf</string>
-		<string>SourceHanSansCN-Normal.otf</string>
-		<string>SourceHanSansCN-Regular.otf</string>
-		<string>Gobold-Regular.ttf</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleExecutable</key>
@@ -44,6 +22,26 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>请开启定位功能</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>请开启定位功能</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SourceHanSansCN-Bold.otf</string>
+		<string>SourceHanSansCN-ExtraLight.otf</string>
+		<string>SourceHanSansCN-Heavy.otf</string>
+		<string>SourceHanSansCN-Light.otf</string>
+		<string>SourceHanSansCN-Medium.otf</string>
+		<string>SourceHanSansCN-Normal.otf</string>
+		<string>SourceHanSansCN-Regular.otf</string>
+		<string>Gobold-Regular.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,8 +51,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -63,5 +59,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>privacy - location usage description</key>
+	<string>请开启定位功能</string>
 </dict>
 </plist>

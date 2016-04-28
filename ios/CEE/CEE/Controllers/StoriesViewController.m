@@ -16,6 +16,8 @@
 #import "RefreshingPanel.h"
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
+#import "CouponAcquiringViewController.h"
+#import "HUDMissionCompletedViewController.h"
 
 @interface StoriesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView * tableView;
@@ -77,7 +79,13 @@
 }
 
 - (void)menuPressed:(id)sender {
+    /*
+    CouponAcquiringViewController * vc = [[CouponAcquiringViewController alloc] init];
+    [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
+     */
     
+    HUDMissionCompletedViewController * vc = [[HUDMissionCompletedViewController alloc] init];
+    [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)refresh {

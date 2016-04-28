@@ -34,6 +34,9 @@
 		BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5BE1CD09D91005150C3 /* TaskViewController.m */; };
 		BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */; };
 		BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */; };
+		BB48E5C81CD19EAD005150C3 /* HUDGetMedalView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */; };
+		BB48E5CB1CD1A603005150C3 /* CouponAcquiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CA1CD1A603005150C3 /* CouponAcquiringViewController.m */; };
+		BB48E5CE1CD1B03E005150C3 /* HUDMissionCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CD1CD1B03E005150C3 /* HUDMissionCompletedViewController.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -141,6 +144,12 @@
 		BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskQuestionView.m; sourceTree = "<group>"; };
 		BB48E5C31CD0E4E3005150C3 /* TaskAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskAnswerView.h; sourceTree = "<group>"; };
 		BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAnswerView.m; sourceTree = "<group>"; };
+		BB48E5C61CD19EAD005150C3 /* HUDGetMedalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDGetMedalView.h; sourceTree = "<group>"; };
+		BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDGetMedalView.m; sourceTree = "<group>"; };
+		BB48E5C91CD1A603005150C3 /* CouponAcquiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponAcquiringViewController.h; sourceTree = "<group>"; };
+		BB48E5CA1CD1A603005150C3 /* CouponAcquiringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponAcquiringViewController.m; sourceTree = "<group>"; };
+		BB48E5CC1CD1B03E005150C3 /* HUDMissionCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDMissionCompletedViewController.h; sourceTree = "<group>"; };
+		BB48E5CD1CD1B03E005150C3 /* HUDMissionCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDMissionCompletedViewController.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -445,6 +454,10 @@
 				BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */,
 				BB48E5BD1CD09D91005150C3 /* TaskViewController.h */,
 				BB48E5BE1CD09D91005150C3 /* TaskViewController.m */,
+				BB48E5C91CD1A603005150C3 /* CouponAcquiringViewController.h */,
+				BB48E5CA1CD1A603005150C3 /* CouponAcquiringViewController.m */,
+				BB48E5CC1CD1B03E005150C3 /* HUDMissionCompletedViewController.h */,
+				BB48E5CD1CD1B03E005150C3 /* HUDMissionCompletedViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -522,6 +535,8 @@
 				BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */,
 				BB48E5C31CD0E4E3005150C3 /* TaskAnswerView.h */,
 				BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */,
+				BB48E5C61CD19EAD005150C3 /* HUDGetMedalView.h */,
+				BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -692,6 +707,7 @@
 				BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */,
 				BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */,
 				BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */,
+				BB48E5C81CD19EAD005150C3 /* HUDGetMedalView.m in Sources */,
 				BB29EF681CCCB58C001C25B6 /* HUDCouponCodeView.m in Sources */,
 				BB29EF541CCA2F5C001C25B6 /* CEEImageManager.m in Sources */,
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
@@ -704,6 +720,7 @@
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB29EF631CCC6E3A001C25B6 /* MapAnchorView.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
+				BB48E5CB1CD1A603005150C3 /* CouponAcquiringViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
 				BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */,
 				BB29EF6B1CCE7904001C25B6 /* CouponCard.m in Sources */,
@@ -718,6 +735,7 @@
 				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB48E5CE1CD1B03E005150C3 /* HUDMissionCompletedViewController.m in Sources */,
 				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,
 				BB29EF5D1CCC5797001C25B6 /* MessageTableViewCell.m in Sources */,
