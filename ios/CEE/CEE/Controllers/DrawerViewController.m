@@ -7,11 +7,13 @@
 //
 
 @import Masonry;
+@import SVProgressHUD;
 
 #import "DrawerViewController.h"
 #import "CouponScrollView.h"
 #import "HUDCouponCodeView.h"
 #import "CouponCard.h"
+#import "CEECouponListAPI.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -22,6 +24,7 @@
 @property (nonatomic, strong) CouponScrollView * scrollView;
 @property (nonatomic, strong) HUDCouponCodeView * codeView;
 @property (nonatomic, assign) BOOL isReload;
+@property (nonatomic, strong) NSArray<CEEJSONCoupon *> * coupons;
 @end
 
 @implementation DrawerViewController
@@ -65,7 +68,16 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // [self.codeView show];
+    [SVProgressHUD show];
+    if (!self.coupons) {
+        [[CEECouponListAPI api] fetchCouponList].then(^(NSArray<CEEJSONCoupon *> *coupons) {
+            self.coupons = coupons;
+            [self.scrollView reloadData];
+            [SVProgressHUD dismiss];
+        }).catch(^(NSError *error){
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    }
 }
 
 #pragma mark - Event Handling

@@ -225,7 +225,7 @@
     self.passwordValidator = [AJWValidator validatorWithType:AJWValidatorTypeString];
     [self.passwordValidator addValidationToEnsureCustomConditionIsSatisfiedWithBlock:^BOOL(NSString * password) {
         return [CEEUtils isValidPassword:password];
-    } invalidMessage:@"密码格式有误"];
+    } invalidMessage:@"密码格式有误，需要同时包含数字、大写和小写字母"];
 }
 
 - (void)setupRegisterButton {

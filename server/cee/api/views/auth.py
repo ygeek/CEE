@@ -28,6 +28,8 @@ def get_token(user):
 
 
 class Register(APIView):
+    permission_classes = ()
+
     def post(self, request):
         user_form = UserForm(request.data)
         if user_form.is_valid():
@@ -50,6 +52,8 @@ class Register(APIView):
 
 
 class Login(APIView):
+    permission_classes = ()
+
     def post(self, request):
         username = request.data['username']
         password = request.data['password']
@@ -93,6 +97,8 @@ class Login(APIView):
 
 
 class LoginThirdParty(APIView):
+    permission_classes = ()
+
     def post(self, request):
         access_token = request.data['access_token']
         uid = request.data['uid']
