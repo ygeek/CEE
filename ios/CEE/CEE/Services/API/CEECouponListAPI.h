@@ -11,7 +11,7 @@
 
 
 @interface CEECouponListResponse : CEEBaseResponse
-@property (nonatomic, strong) NSArray<CEECoupon *> * coupons;
+@property (nonatomic, strong) NSArray<CEEJSONCoupon *> * coupons;
 @end
 
 

@@ -15,8 +15,8 @@ class Story(models.Model):
     distance = models.FloatField()
     city = models.ForeignKey(City, related_name='stories')
     coin = models.IntegerField(default=0)
-    image_urls = JsonField()
-    tour_url = models.URLField()
+    image_keys = JsonField()
+    tour_img_key = models.CharField(max_length=100)
 
 
 class UserStory(models.Model):

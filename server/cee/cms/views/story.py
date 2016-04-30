@@ -38,16 +38,16 @@ class JsonTextArea(Textarea):
 class StoryForm(ModelForm):
     class Meta:
         model = Story
-        fields = ['name', 'time', 'distance', 'city', 'image_urls']
+        fields = ['name', 'time', 'distance', 'city', 'image_keys']
         labels = {
             'name': '名称',
             'city': '城市',
             'time': '预计完成时间（分钟）',
             'distance': '预计移动距离',
-            'image_urls': '封面图片'
+            'image_keys': '封面图片'
         }
         widgets = {
-            'image_urls': JsonTextArea(attrs={'rows': 4, 'readonly': 'true'})
+            'image_keys': JsonTextArea(attrs={'rows': 4, 'readonly': 'true'})
         }
 
 
