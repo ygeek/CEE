@@ -12,23 +12,12 @@ from ..serializers.coupon import *
 
 class UserCouponList(APIView):
     def get(self, request):
-        try:
-            user_coupons = request.user.user_coupons
-            serializer = UserCouponSerializer(user_coupons, many=True)
-            return Response({
-                'code': 0,
-                'coupons': serializer.data,
-            })
-        except ValueError:
-            return Response({
-                'code': -1,
-                'msg': 'invalid user id: %s' % user_id,
-            })
-        except User.DoesNotExist:
-            return Response({
-                'code': -2,
-                'msg': 'user not exists',
-            })
+        user_coupons = request.user.user_coupons
+        serializer = UserCouponSerializer(user_coupons, many=True)
+        return Response({
+            'code': 0,
+            'coupons': serializer.data,
+        })
 
 
 class ConsumeCoupon(APIView):
