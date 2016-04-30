@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from ..models.medal import *
-from ..serializers.medal import *
+from ..models.auth import *
+from ..serializers.userInfo import *
 
 
 class UserFriendList(APIView):
