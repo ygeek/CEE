@@ -38,6 +38,8 @@ PODS:
     - PromiseKit/Foundation (= 3.1.1)
     - PromiseKit/QuartzCore (= 3.1.1)
     - PromiseKit/UIKit (= 3.1.1)
+  - PromiseKit/CoreLocation (3.1.1):
+    - PromiseKit/CorePromise
   - PromiseKit/CorePromise (3.1.1)
   - PromiseKit/Foundation (3.1.1):
     - OMGHTTPURLRQ (~> 3.1.0)
@@ -57,11 +59,11 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - Realm (0.99.0):
-    - Realm/Headers (= 0.99.0)
+  - Realm (0.100.0):
+    - Realm/Headers (= 0.100.0)
   - Realm+JSON (0.2.14):
     - Realm (~> 0.95)
-  - Realm/Headers (0.99.0)
+  - Realm/Headers (0.100.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -87,6 +89,7 @@ DEPENDENCIES:
   - MOBFoundation_IDFA
   - OAStackView
   - PromiseKit
+  - PromiseKit/CoreLocation
   - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
   - RDVTabBarController
   - ReactiveCocoa (~> 2.5)
@@ -133,7 +136,7 @@ SPEC CHECKSUMS:
   Qiniu: 340bc55a6478d89591754aa7d1fd8b5977863991
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  Realm: cf275f109b94e5399896960c90285a043edb3d56
+  Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
   Realm+JSON: 39bef066156e589b209a14e5f2d68754793f8843
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   ShareSDK3: ccdd8ec971044703e7722e19c2f3b38fb03775e2

@@ -8,13 +8,13 @@
 
 @import Masonry;
 
-#import "HUDMissionCompletedViewController.h"
+#import "HUDStoryCompletedViewController.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
 
-@interface HUDMissionCompletedViewController ()
+@interface HUDStoryCompletedViewController ()
 @property (nonatomic, strong) UIView * panel;
-@property (nonatomic, strong) UIImageView * backgroundView;
+@property (nonatomic, strong) UIImageView * picView;
 @property (nonatomic, strong) UILabel * messageLabel;
 @property (nonatomic, strong) NSTextAttachment * coinAttachment;
 @property (nonatomic, strong) UILabel * moneyLabel;
@@ -22,7 +22,7 @@
 @end
 
 
-@implementation HUDMissionCompletedViewController
+@implementation HUDStoryCompletedViewController
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -49,7 +49,7 @@
     self.panel.layer.masksToBounds = YES;
     self.panel.layer.cornerRadius = 10;
     
-    self.backgroundView = [[UIImageView alloc] init];
+    self.picView = [[UIImageView alloc] init];
     
     self.messageLabel = [[UILabel alloc] init];
     self.messageLabel.textAlignment = NSTextAlignmentCenter;
@@ -78,7 +78,7 @@
     
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [self.view addSubview:self.panel];
-    [self.panel addSubview:self.backgroundView];
+    [self.panel addSubview:self.picView];
     [self.panel addSubview:self.messageLabel];
     [self.panel addSubview:self.moneyLabel];
     [self.panel addSubview:self.confirmButton];
@@ -89,7 +89,7 @@
         make.height.mas_equalTo(186 + 65 + 48);
     }];
     
-    [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.picView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.panel.mas_top);
         make.left.equalTo(self.panel.mas_left);
         make.right.equalTo(self.panel.mas_right);
@@ -98,11 +98,11 @@
     
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.panel.mas_centerX);
-        make.bottom.equalTo(self.backgroundView.mas_bottom).offset(-20);
+        make.bottom.equalTo(self.picView.mas_bottom).offset(-20);
     }];
     
     [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.backgroundView.mas_bottom);
+        make.top.equalTo(self.picView.mas_bottom);
         make.left.equalTo(self.panel.mas_left);
         make.right.equalTo(self.panel.mas_right);
         make.bottom.equalTo(self.confirmButton.mas_top);
@@ -132,7 +132,7 @@
 }
 
 - (void)loadSampleData {
-    self.backgroundView.image = [UIImage imageWithColor:[UIColor greenColor] size:CGSizeMake(232, 186)];
+    self.picView.image = [UIImage imageWithColor:[UIColor greenColor] size:CGSizeMake(232, 186)];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
     NSAttributedString * moneyAttrStr =
     [[NSAttributedString alloc] initWithString:@"+100"

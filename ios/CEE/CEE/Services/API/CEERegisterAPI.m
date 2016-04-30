@@ -12,11 +12,7 @@
 @end
 
 
-@implementation CEERegisterSuccessResponse
-@end
-
-
-@implementation CEERegisterErrorResponse
+@implementation CEERegisterResponse
 @end
 
 
@@ -27,15 +23,13 @@
     request.username = mobile;
     request.password = password;
     request.mobile = mobile;
-    return [self promisePOST:@"/api/v1/register/" withRequest:request];
+    return [self promisePOST:@"/api/v1/register/" withRequest:request].then(^(CEERegisterResponse * response) {
+        return response.auth;
+    });
 }
 
 - (Class)responseSuccessClass {
-    return [CEERegisterSuccessResponse class];
-}
-
-- (Class)responseErrorClass {
-    return [CEERegisterErrorResponse class];
+    return [CEERegisterResponse class];
 }
 
 @end

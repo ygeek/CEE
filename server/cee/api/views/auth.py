@@ -31,11 +31,6 @@ class Register(APIView):
     def post(self, request):
         user_form = UserForm(request.data)
         if user_form.is_valid():
-            if User.objects.filter(username=user_form.cleaned_data['username']).count() > 0:
-                return Response({
-                    'code': -1,
-                    'msg': 'username exists'
-                })
             user = user_form.save()
             token = Token.objects.create(user=user)
             return Response({
@@ -43,9 +38,14 @@ class Register(APIView):
                 'auth': unicode(token.key),
             })
         else:
+            msg = ''
+            for field in user_form.errors:
+                for error in user_form.errors[field]:
+                    msg += error
+                    msg += '\n'
             return Response({
                 'code': -1,
-                'msg': unicode(user_form.errors),
+                'msg': msg,
             })
 
 
@@ -83,12 +83,12 @@ class Login(APIView):
             else:
                 return Response({
                     'code': -2,
-                    'msg': 'The user is not active.',
+                    'msg': '当前帐号不可用',
                 })
         else:
             return Response({
                 'code': -1,
-                'msg': 'The username and password were incorrect.',
+                'msg': '用户名或密码不正确',
             })
 
 
@@ -103,7 +103,7 @@ class LoginThirdParty(APIView):
         except ThirdPartyAccount.DoesNotExist:
             auth_failed = Response({
                 'code': -1,
-                'msg': 'auth failed'
+                'msg': '验证失败，请重试'
             })
             if platform == 'weixin':
                 if not verify_weixin_openid(access_token, uid):
@@ -117,7 +117,7 @@ class LoginThirdParty(APIView):
             else:
                 return Response({
                     'code': -2,
-                    'msg': 'unknown login platform'
+                    'msg': '不支持该第三方帐号登录'
                 })
             fake_username = '{0}_{1}'.format(platform, hashlib.sha1(uid).hexdigest())
             fake_email = '{0}@cee_{1}.com'.format(fake_username, platform)
@@ -162,13 +162,13 @@ class UserDeviceTokenView(APIView):
             user_token.device_token = device_token
             user_token.installation_id = installation_id
             code = 0
-            msg = 'device token updated'
+            msg = 'Device Token 更新成功'
         except UserDeviceToken.DoesNotExist:
             UserDeviceToken.objects.create(user=user,
                                            device_token=device_token,
                                            installation_id=installation_id)
             code = 0
-            msg = 'device token registered'
+            msg = 'Device Token 注册成功'
         return Response({
             'code': code,
             'msg': msg,
@@ -193,7 +193,7 @@ class UserProfileView(APIView):
         except UserProfile.DoesNotExist:
             return Response({
                 'code': -1,
-                'msg': 'User Profile not Exist',
+                'msg': '个人信息尚未填写',
             })
 
     def post(self, request):
@@ -215,7 +215,7 @@ class UserProfileView(APIView):
             user_profile.mobile = mobile
             user_profile.location = location
             code = 0
-            msg = 'user profile updated'
+            msg = '个人信息更新成功'
         except UserProfile.DoesNotExist:
             UserProfile.objects.create(user=user,
                                        nickname=nickname,
@@ -225,7 +225,7 @@ class UserProfileView(APIView):
                                        mobile=mobile,
                                        location=location)
             code = 0
-            msg = 'user profile created'
+            msg = '个人信息保存成功'
         return Response({
             'code': code,
             'msg': msg,

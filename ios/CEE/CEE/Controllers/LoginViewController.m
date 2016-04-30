@@ -107,9 +107,9 @@
         return;
     }
     [SVProgressHUD show];
-    CEELoginAPI * loginAPI = [[CEELoginAPI alloc] init];
-    [loginAPI loginWithUsername:self.phoneField.text password:self.passwordField.text].then(^(CEELoginSuccessResponse *response) {
-         return [[CEEUserSession session] loggedInWithAuth:response.auth];
+    [[CEELoginAPI api] loginWithUsername:self.phoneField.text password:self.passwordField.text]
+    .then(^(NSString *authToken) {
+         return [[CEEUserSession session] loggedInWithAuth:authToken];
     }).then(^{
         [SVProgressHUD dismiss];
     }).catch(^(NSError *error) {

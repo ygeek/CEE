@@ -12,27 +12,21 @@
 @end
 
 
-@implementation CEEDownloadURLSuccessResponse
-@end
-
-
-@implementation CEEDownloadURLErrorResponse
+@implementation CEEDownloadURLResponse
 @end
 
 
 @implementation CEEDownloadURLAPI
 
-- (RACSignal *)requestURLWithKey:(NSString *)key {
+- (AnyPromise *)requestURLWithKey:(NSString *)key {
     NSString * url = [NSString stringWithFormat:@"/api/v1/downloadurl/%@/", key];
-    return [self GET:url withParams:nil];
+    return [self promiseGET:url withParams:nil].then(^(CEEDownloadURLResponse * response) {
+        return response.private_url;
+    });
 }
 
 - (Class)responseSuccessClass {
-    return [CEEDownloadURLSuccessResponse class];
-}
-
-- (Class)responseErrorClass {
-    return [CEEDownloadURLErrorResponse class];
+    return [CEEDownloadURLResponse class];
 }
 
 @end

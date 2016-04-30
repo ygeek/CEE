@@ -20,10 +20,10 @@
 #import "UIImage+Utils.h"
 #import "CEELocationManager.h"
 #import "AIDatePickerController.h"
-#import "CEEUploadTokenAPI.h"
 #import "CEESaveUserProfileAPI.h"
 #import "CEEUserSession.h"
 #import "UIImage+Utils.h"
+#import "CEEUploadManager.h"
 
 #define kLocatingText @"定位中"
 
@@ -124,9 +124,13 @@
     
     self.locationField.text = kLocatingText;
     [self.locatingIndicator startAnimating];
-    [[[CEELocationManager manager] getLocations] subscribeNext:^(NSArray<CLPlacemark *> * placemarks) {
-        CLPlacemark * placemark = placemarks.firstObject;
+    [[CEELocationManager manager] getLocation].then(^(CLPlacemark *placemark) {
         NSString * cityName = placemark.locality;
+        TLCity * city = [[CEELocationManager manager] getCityWithName:cityName];
+        if (!city) {
+            cityName = @"北京市";
+            city = [[CEELocationManager manager] getCityWithName:cityName];
+        }
         self.locationField.text = cityName;
         [self.locatingIndicator stopAnimating];
         
@@ -140,13 +144,12 @@
                 }
             }
         }
-        
-    } error:^(NSError * error) {
+    }).catch(^(NSError *error) {
         if ([self.locationField.text isEqualToString:kLocatingText]) {
-            self.locationField.text = @"未知位置";
+            self.locationField.text = @"北京市";
         }
         [self.locatingIndicator stopAnimating];
-    }];
+    });
 }
 
 - (void)backPressed:(id)sender {
@@ -167,40 +170,26 @@
     UIImage * photo = self.photo;
     [SVProgressHUD show];
     if (photo) {
-        [[[[CEEUploadTokenAPI alloc] init] requestUploadToken] subscribeNext:^(CEEUploadTokenSuccessResponse *response) {
-            QNUploadManager *upManager = [[QNUploadManager alloc] init];
-            NSData *data = UIImagePNGRepresentation([photo imageScaleToWidth:200]);
-            [upManager putData:data
-                           key:nil
-                         token:response.upload_token
-                      complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                          if (info.error) {
-                              [SVProgressHUD showErrorWithStatus:info.error.localizedDescription];
-                              return;
-                          }
-                          CEESaveUserProfileRequest * request = [[CEESaveUserProfileRequest alloc] init];
-                          request.nickname = self.nicknameField.text;
-                          request.head_img_key = resp[@"key"];
-                          request.sex = self.sex;
-                          if (self.birthday) {
-                              request.birthday = @([self.birthday timeIntervalSince1970]);
-                          }
-                          request.location = self.locationField.text;
-                          [[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request].then(^(CEESaveUserProfileSuccessResponse *response) {
-                              return [CEEUserSession.session loadUserProfile].then(^(CEEJSONUserProfile *profile) {
-                                  [SVProgressHUD dismiss];
-                                  [self dismissViewControllerAnimated:YES completion:nil];
-                              });
-                          }).then(^{
-                              [SVProgressHUD dismiss];
-                              [self dismissViewControllerAnimated:YES completion:nil];
-                          }).catch(^(NSError *error) {
-                              [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                          });
-                      } option:nil];
-        } error:^(NSError * error) {
+        [[CEEUploadManager manager] uploadPNG:[photo imageScaleToWidth:200]]
+        .then(^(NSString * key) {
+            CEESaveUserProfileRequest * request = [[CEESaveUserProfileRequest alloc] init];
+            request.nickname = self.nicknameField.text;
+            request.head_img_key = key;
+            request.sex = self.sex;
+            if (self.birthday) {
+                request.birthday = @([self.birthday timeIntervalSince1970]);
+            }
+            request.location = self.locationField.text;
+            
+            return [[CEESaveUserProfileAPI api] saveUserProfile:request];
+        }).then(^{
+            return [[CEEUserSession session] loadUserProfile];
+        }).then(^(CEEJSONUserProfile * profile) {
+            [SVProgressHUD dismiss];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }).catch(^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        }];
+        });
     } else {
         CEESaveUserProfileRequest * request = [[CEESaveUserProfileRequest alloc] init];
         request.nickname = self.nicknameField.text;
@@ -208,12 +197,10 @@
         request.sex = self.sex;
         request.birthday = @([self.birthday timeIntervalSince1970]);
         request.location = self.locationField.text;
-        [[[CEESaveUserProfileAPI alloc] init] saveUserProfile:request].then(^(CEESaveUserProfileSuccessResponse *response) {
-            return [CEEUserSession.session loadUserProfile].then(^(CEEJSONUserProfile *profile) {
-                [SVProgressHUD dismiss];
-                [self dismissViewControllerAnimated:YES completion:nil];
-            });
-        }).then(^{
+        [[CEESaveUserProfileAPI api] saveUserProfile:request]
+        .then(^{
+            return [CEEUserSession.session loadUserProfile];
+        }).then(^(CEEJSONUserProfile *profile) {
             [SVProgressHUD dismiss];
             [self dismissViewControllerAnimated:YES completion:nil];
         }).catch(^(NSError *error) {
@@ -252,6 +239,12 @@
     if (city) {
         picker.locationCityID = city.cityID;
     }
+    picker.hotCitys = @[@"100010000",
+                        @"200010000",
+                        @"300210000",
+                        @"600010000",
+                        @"300110000",
+                        @"1300020000"];
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:picker];
     [navController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [navController.navigationBar setShadowImage:[UIImage new]];

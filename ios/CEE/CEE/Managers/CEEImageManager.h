@@ -6,19 +6,16 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-@import ReactiveCocoa;
-
-#import <Foundation/Foundation.h>
+@import UIKit;
+@import PromiseKit;
 
 @interface CEEImageManager : NSObject
 
 + (instancetype)manager;
 
-- (RACSignal *)privateDownloadURLForKey:(NSString *)key;
-
 - (NSString *)imageCacheKeyForKey:(NSString *)key;
 
-- (RACSignal *)queryImageForKey:(NSString *)key;
+- (AnyPromise *)queryImageForKey:(NSString *)key;
 
 - (void)storeImage:(UIImage *)image forKey:(NSString *)key;
 

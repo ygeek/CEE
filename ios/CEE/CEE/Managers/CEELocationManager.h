@@ -6,9 +6,9 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import PromiseKit;
+@import UIKit;
 
-@import ReactiveCocoa;
 
 #define CEE_LOCATION_ERROR_DOMAIN @"CEE_LOCATION_ERROR_DOMAIN"
 
@@ -20,7 +20,7 @@
 
 + (instancetype)manager;
 
-- (RACSignal *)getLocations;
+- (AnyPromise *)getLocation;
 
 - (TLCity *)getCityWithName:(NSString *)cityName;
 

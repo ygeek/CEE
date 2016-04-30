@@ -12,11 +12,7 @@
 @end
 
 
-@implementation CEELoginSuccessResponse
-@end
-
-
-@implementation CEELoginErrorResponse
+@implementation CEELoginResponse
 @end
 
 
@@ -26,15 +22,13 @@
     CEELoginRequest * request = [[CEELoginRequest alloc] init];
     request.username = username;
     request.password = password;
-    return [self promisePOST:@"/api/v1/login/" withRequest:request];
+    return [self promisePOST:@"/api/v1/login/" withRequest:request].then(^(CEELoginResponse *response) {
+        return response.auth;
+    });
 }
 
 - (Class)responseSuccessClass {
-    return [CEELoginSuccessResponse class];
-}
-
-- (Class)responseErrorClass {
-    return [CEELoginErrorResponse class];
+    return [CEELoginResponse class];
 }
 
 @end

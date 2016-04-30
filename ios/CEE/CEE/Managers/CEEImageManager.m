@@ -42,19 +42,11 @@
     return [NSString stringWithFormat:@"%@%@", [[ServerConfig config] qiniuBucketDomain], key];
 }
 
-- (RACSignal *)privateDownloadURLForKey:(NSString *)key {
-    return [[[[CEEDownloadURLAPI alloc] init] requestURLWithKey:key] map:^(CEEDownloadURLSuccessResponse * response) {
-        return response.private_url;
-    }];
-}
-
-- (RACSignal *)queryImageForKey:(NSString *)key {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+- (AnyPromise *)queryImageForKey:(NSString *)key {
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
         [[SDImageCache sharedImageCache] queryDiskCacheForKey:[self imageCacheKeyForKey:key] done:^(UIImage *image, SDImageCacheType cacheType) {
-            [subscriber sendNext:image];
-            [subscriber sendCompleted];
+            resolve(image);
         }];
-        return nil;
     }];
 }
 

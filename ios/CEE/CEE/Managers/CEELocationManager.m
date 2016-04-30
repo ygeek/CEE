@@ -9,13 +9,12 @@
 @import CoreLocation;
 @import MapKit;
 
+#import <PromiseKit/PromiseKit.h>
+
 #import "CEELocationManager.h"
 #import "TLCity.h"
 
-@interface CEELocationManager () <CLLocationManagerDelegate>
-@property (nonatomic, strong) CLLocationManager * locationManager;
-@property (nonatomic, strong) RACSignal * currentSignal;
-@property (nonatomic, strong) id<RACSubscriber> currentSubscriber;
+@interface CEELocationManager ()
 @property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
 @end
 
@@ -34,13 +33,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
-        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager startMonitoringSignificantLocationChanges];
-        
         self.cities = [[NSMutableArray alloc] init];
         NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CityData" ofType:@"plist"]];
         for (NSDictionary *groupDic in array) {
@@ -58,17 +50,11 @@
     return self;
 }
 
-- (RACSignal *)getLocations {
-    if (!self.currentSignal) {
-        @weakify(self)
-        self.currentSignal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            @strongify(self)
-            self.currentSubscriber = subscriber;
-            [self.locationManager startUpdatingLocation];
-            return nil;
-        }] replay];
-    }
-    return self.currentSignal;
+- (AnyPromise *)getLocation {
+    return [CLLocationManager promise].then(^(CLLocation * location) {
+        CLGeocoder * geocoder = [[CLGeocoder alloc] init];
+        return [geocoder reverseGeocode:location];
+    });
 }
 
 - (TLCity *)getCityWithName:(NSString *)cityName {
@@ -79,29 +65,5 @@
     }
     return nil;
 }
-
-
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    if (locations.count == 0) {
-        return;
-    }
-    CLGeocoder * geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:locations.lastObject completionHandler:^(NSArray<CLPlacemark *> * placemarks, NSError * error) {
-        if (placemarks.count == 0 && error == nil) {
-            [self.currentSubscriber sendError:[NSError errorWithDomain:CEE_LOCATION_ERROR_DOMAIN code:0 userInfo:@{NSLocalizedDescriptionKey: @"未获取有效位置"}]];
-        } else if (error) {
-            [self.currentSubscriber sendError:error];
-        } else {
-            [self.currentSubscriber sendNext:placemarks];
-            [self.currentSubscriber sendCompleted];
-            self.currentSubscriber = nil;
-            self.currentSignal = nil;
-        }
-    }];
-    [self.locationManager stopUpdatingLocation];
-}
-
 
 @end

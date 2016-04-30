@@ -16,6 +16,8 @@
 
 - (void)saveAuthToken:(NSString *)authToken;
 
+- (void)clearAuthToken;
+
 - (NSString *)loadAuthToken;
 
 @end

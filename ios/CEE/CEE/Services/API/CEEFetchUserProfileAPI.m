@@ -8,26 +8,20 @@
 
 #import "CEEFetchUserProfileAPI.h"
 
-@implementation CEEFetchUserProfileSuccessResponse
-@end
-
-
-@implementation CEEFetchUserProfileErrorResponse
+@implementation CEEFetchUserProfileResponse
 @end
 
 
 @implementation CEEFetchUserProfileAPI
 
 - (AnyPromise *)fetchUserProfile {
-    return [self promiseGET:@"/api/v1/userprofile/" withParams:nil];
+    return [self promiseGET:@"/api/v1/userprofile/" withParams:nil].then(^(CEEFetchUserProfileResponse * response) {
+        return response.profile;
+    });
 }
 
 - (Class)responseSuccessClass {
-    return [CEEFetchUserProfileSuccessResponse class];
-}
-
-- (Class)responseErrorClass {
-    return [CEEFetchUserProfileErrorResponse class];
+    return [CEEFetchUserProfileResponse class];
 }
 
 @end

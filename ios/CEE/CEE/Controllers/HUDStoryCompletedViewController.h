@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HUDMissionCompletedViewController : UIViewController
+@interface HUDStoryCompletedViewController : UIViewController
 
 @end

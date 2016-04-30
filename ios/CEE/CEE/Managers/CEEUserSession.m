@@ -8,6 +8,7 @@
 
 @import Realm;
 @import Realm_JSON;
+@import ReactiveCocoa;
 
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
@@ -30,6 +31,21 @@
     self = [super init];
     if (self) {
         _isFetchingUserProfile = NO;
+        _authorizationFailed = NO;
+        @weakify(self)
+        [[RACSignal combineLatest:@[RACObserve(self, isFetchingUserProfile),
+                                   RACObserve(self, authorizationFailed)]
+                          reduce:^(NSNumber *isFetchingUserProfile, NSNumber * authorizationFailed) {
+                              return @(!isFetchingUserProfile.boolValue && authorizationFailed.boolValue);
+                          }] subscribeNext:^(NSNumber *shouldRelogin) {
+                              @strongify(self)
+                              if (shouldRelogin.boolValue) {
+                                  [[CEEDatabase db] clearAuthToken];
+                                  self.authToken = nil;
+                                  self.userProfile = nil;
+                                  self.authorizationFailed = NO;
+                              }
+                          }];
     }
     return self;
 }
@@ -64,8 +80,9 @@
         }
     }
     
-    return [[[CEEFetchUserProfileAPI alloc] init] fetchUserProfile].then(^(CEEFetchUserProfileSuccessResponse * response) {
-        self.userProfile = response.profile;
+    return [[[CEEFetchUserProfileAPI alloc] init] fetchUserProfile]
+    .then(^(CEEJSONUserProfile * profile) {
+        self.userProfile = profile;
         
         RLMRealm * realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -73,9 +90,15 @@
                            withJSONDictionary:self.userProfile.toDictionary];
         [realm commitWriteTransaction];
         return self.userProfile;
+    }).catch(^(NSError *error) {
+        NSLog(@"Fetch User profile Error: %@", error);
     }).finally(^{
         self.isFetchingUserProfile = NO;
     });
+}
+
+- (void)onUnauthorized {
+    self.authorizationFailed = YES;
 }
 
 @end

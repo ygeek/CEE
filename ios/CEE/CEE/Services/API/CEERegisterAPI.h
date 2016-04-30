@@ -20,13 +20,8 @@
 @end
 
 
-@interface CEERegisterSuccessResponse : CEEBaseResponse
+@interface CEERegisterResponse : CEEBaseResponse
 @property (nonatomic, strong) NSString * auth;
-@end
-
-
-@interface CEERegisterErrorResponse : CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
 @end
 
 

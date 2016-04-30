@@ -20,11 +20,14 @@
 @property (nonatomic, copy) NSString * authToken;
 @property (nonatomic, strong) CEEJSONUserProfile * userProfile;
 @property (nonatomic, assign) BOOL isFetchingUserProfile;
+@property (nonatomic, assign) BOOL authorizationFailed;
 
 - (void)load;
 
 - (AnyPromise *)loggedInWithAuth:(NSString *)auth;
 
 - (AnyPromise *)loadUserProfile;
+
+- (void)onUnauthorized;
 
 @end

@@ -17,13 +17,8 @@
 @end
 
 
-@interface CEELoginSuccessResponse : CEEBaseResponse
+@interface CEELoginResponse : CEEBaseResponse
 @property (nonatomic, strong) NSString * auth;
-@end
-
-
-@interface CEELoginErrorResponse : CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
 @end
 
 

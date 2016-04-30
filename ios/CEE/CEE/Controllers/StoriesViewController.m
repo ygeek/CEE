@@ -16,8 +16,9 @@
 #import "RefreshingPanel.h"
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
-#import "CouponAcquiringViewController.h"
-#import "HUDMissionCompletedViewController.h"
+#import "HUDCouponAcquiringViewController.h"
+#import "HUDStoryCompletedViewController.h"
+#import "HUDStoryFetchingViewController.h"
 
 @interface StoriesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView * tableView;
@@ -84,7 +85,12 @@
     [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
      */
     
-    HUDMissionCompletedViewController * vc = [[HUDMissionCompletedViewController alloc] init];
+    /*
+    HUDStoryCompletedViewController * vc = [[HUDStoryCompletedViewController alloc] init];
+    [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
+     */
+    
+    HUDStoryFetchingViewController * vc = [[HUDStoryFetchingViewController alloc] init];
     [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
 }
 

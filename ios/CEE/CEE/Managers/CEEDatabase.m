@@ -27,6 +27,10 @@ NSString * const kAuthTokenKey = @"AUTH_TOKEN";
     [[NSUserDefaults standardUserDefaults] setObject:authToken forKey:kAuthTokenKey];
 }
 
+- (void)clearAuthToken {
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kAuthTokenKey];
+}
+
 - (NSString *)loadAuthToken {
     return [[NSUserDefaults standardUserDefaults] objectForKey:kAuthTokenKey];
 }

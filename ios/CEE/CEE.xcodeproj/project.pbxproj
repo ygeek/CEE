@@ -35,8 +35,10 @@
 		BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C11CD09E3E005150C3 /* TaskQuestionView.m */; };
 		BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */; };
 		BB48E5C81CD19EAD005150C3 /* HUDGetMedalView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */; };
-		BB48E5CB1CD1A603005150C3 /* CouponAcquiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CA1CD1A603005150C3 /* CouponAcquiringViewController.m */; };
-		BB48E5CE1CD1B03E005150C3 /* HUDMissionCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CD1CD1B03E005150C3 /* HUDMissionCompletedViewController.m */; };
+		BB48E5CB1CD1A603005150C3 /* HUDCouponAcquiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CA1CD1A603005150C3 /* HUDCouponAcquiringViewController.m */; };
+		BB48E5CE1CD1B03E005150C3 /* HUDStoryCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */; };
+		BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */; };
+		BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5D41CD489C0005150C3 /* CEEUploadManager.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
@@ -146,10 +148,15 @@
 		BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAnswerView.m; sourceTree = "<group>"; };
 		BB48E5C61CD19EAD005150C3 /* HUDGetMedalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDGetMedalView.h; sourceTree = "<group>"; };
 		BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDGetMedalView.m; sourceTree = "<group>"; };
-		BB48E5C91CD1A603005150C3 /* CouponAcquiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponAcquiringViewController.h; sourceTree = "<group>"; };
-		BB48E5CA1CD1A603005150C3 /* CouponAcquiringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponAcquiringViewController.m; sourceTree = "<group>"; };
-		BB48E5CC1CD1B03E005150C3 /* HUDMissionCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDMissionCompletedViewController.h; sourceTree = "<group>"; };
-		BB48E5CD1CD1B03E005150C3 /* HUDMissionCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDMissionCompletedViewController.m; sourceTree = "<group>"; };
+		BB48E5C91CD1A603005150C3 /* HUDCouponAcquiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDCouponAcquiringViewController.h; sourceTree = "<group>"; };
+		BB48E5CA1CD1A603005150C3 /* HUDCouponAcquiringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDCouponAcquiringViewController.m; sourceTree = "<group>"; };
+		BB48E5CC1CD1B03E005150C3 /* HUDStoryCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDStoryCompletedViewController.h; sourceTree = "<group>"; };
+		BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDStoryCompletedViewController.m; sourceTree = "<group>"; };
+		BB48E5CF1CD465E3005150C3 /* HUDStoryFetchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDStoryFetchingViewController.h; sourceTree = "<group>"; };
+		BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDStoryFetchingViewController.m; sourceTree = "<group>"; };
+		BB48E5D21CD482D1005150C3 /* HTTPStatusCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStatusCodes.h; sourceTree = "<group>"; };
+		BB48E5D31CD489C0005150C3 /* CEEUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUploadManager.h; sourceTree = "<group>"; };
+		BB48E5D41CD489C0005150C3 /* CEEUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUploadManager.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
@@ -420,6 +427,7 @@
 		BBA5324A1CBBD0F500282D3E /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				BB48E5D21CD482D1005150C3 /* HTTPStatusCodes.h */,
 				BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */,
 				BB6AD3001CC2512500A1E0F7 /* AppearanceConstants.h */,
 				BB6AD3011CC2512500A1E0F7 /* AppearanceConstants.m */,
@@ -454,10 +462,12 @@
 				BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */,
 				BB48E5BD1CD09D91005150C3 /* TaskViewController.h */,
 				BB48E5BE1CD09D91005150C3 /* TaskViewController.m */,
-				BB48E5C91CD1A603005150C3 /* CouponAcquiringViewController.h */,
-				BB48E5CA1CD1A603005150C3 /* CouponAcquiringViewController.m */,
-				BB48E5CC1CD1B03E005150C3 /* HUDMissionCompletedViewController.h */,
-				BB48E5CD1CD1B03E005150C3 /* HUDMissionCompletedViewController.m */,
+				BB48E5C91CD1A603005150C3 /* HUDCouponAcquiringViewController.h */,
+				BB48E5CA1CD1A603005150C3 /* HUDCouponAcquiringViewController.m */,
+				BB48E5CC1CD1B03E005150C3 /* HUDStoryCompletedViewController.h */,
+				BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */,
+				BB48E5CF1CD465E3005150C3 /* HUDStoryFetchingViewController.h */,
+				BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -479,6 +489,8 @@
 				BB6103C71CC7E13000350809 /* CEELocationManager.m */,
 				BB29EF521CCA2F5C001C25B6 /* CEEImageManager.h */,
 				BB29EF531CCA2F5C001C25B6 /* CEEImageManager.m */,
+				BB48E5D31CD489C0005150C3 /* CEEUploadManager.h */,
+				BB48E5D41CD489C0005150C3 /* CEEUploadManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -694,6 +706,7 @@
 				BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
 				BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */,
+				BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */,
 				BB29EF601CCC6E2B001C25B6 /* MapPanelView.m in Sources */,
 				BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */,
 				BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */,
@@ -715,12 +728,13 @@
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
+				BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
 				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB29EF631CCC6E3A001C25B6 /* MapAnchorView.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
-				BB48E5CB1CD1A603005150C3 /* CouponAcquiringViewController.m in Sources */,
+				BB48E5CB1CD1A603005150C3 /* HUDCouponAcquiringViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
 				BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */,
 				BB29EF6B1CCE7904001C25B6 /* CouponCard.m in Sources */,
@@ -735,7 +749,7 @@
 				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
-				BB48E5CE1CD1B03E005150C3 /* HUDMissionCompletedViewController.m in Sources */,
+				BB48E5CE1CD1B03E005150C3 /* HUDStoryCompletedViewController.m in Sources */,
 				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,
 				BB29EF5D1CCC5797001C25B6 /* MessageTableViewCell.m in Sources */,

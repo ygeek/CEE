@@ -12,26 +12,10 @@
 @end
 
 
-@implementation CEESaveUserProfileSuccessResponse
-@end
-
-
-@implementation CEESaveUserProfileErrorResponse
-@end
-
-
 @implementation CEESaveUserProfileAPI
 
 - (AnyPromise *)saveUserProfile:(CEESaveUserProfileRequest *)request {
     return [self promisePOST:@"/api/v1/userprofile/" withRequest:request];
-}
-
-- (Class)responseSuccessClass {
-    return [CEESaveUserProfileSuccessResponse class];
-}
-
-- (Class)responseErrorClass {
-    return [CEESaveUserProfileErrorResponse class];
 }
 
 @end

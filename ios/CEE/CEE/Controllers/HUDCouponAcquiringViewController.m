@@ -8,18 +8,18 @@
 
 @import Masonry;
 
-#import "CouponAcquiringViewController.h"
+#import "HUDCouponAcquiringViewController.h"
 #import "CouponCard.h"
 #import "AppearanceConstants.h"
 
 
-@interface CouponAcquiringViewController ()
+@interface HUDCouponAcquiringViewController ()
 @property (nonatomic, strong) CouponCard * couponCard;
 @property (nonatomic, strong) UIButton * confirmButton;
 @end
 
 
-@implementation CouponAcquiringViewController
+@implementation HUDCouponAcquiringViewController
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];

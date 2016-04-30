@@ -13,18 +13,13 @@
 @end
 
 
-@interface CEEDownloadURLSuccessResponse: CEEBaseResponse
+@interface CEEDownloadURLResponse: CEEBaseResponse
 @property (nonatomic, strong) NSString * private_url;
-@end
-
-
-@interface CEEDownloadURLErrorResponse: CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
 @end
 
 
 @interface CEEDownloadURLAPI : CEEBaseAPI
 
-- (RACSignal *)requestURLWithKey:(NSString *)key;
+- (AnyPromise *)requestURLWithKey:(NSString *)key;
 
 @end

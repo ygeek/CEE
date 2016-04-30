@@ -9,13 +9,8 @@
 #import "CEEBaseAPI.h"
 #import "CEEUserProfile.h"
 
-@interface CEEFetchUserProfileSuccessResponse : CEEBaseResponse
+@interface CEEFetchUserProfileResponse : CEEBaseResponse
 @property (nonatomic, strong) CEEJSONUserProfile * profile;
-@end
-
-
-@interface CEEFetchUserProfileErrorResponse : CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
 @end
 
 

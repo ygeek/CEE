@@ -18,16 +18,6 @@
 @end
 
 
-@interface CEESaveUserProfileSuccessResponse : CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
-@end
-
-
-@interface CEESaveUserProfileErrorResponse : CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
-@end
-
-
 @interface CEESaveUserProfileAPI : CEEBaseAPI
 
 - (AnyPromise *)saveUserProfile:(CEESaveUserProfileRequest *)request;

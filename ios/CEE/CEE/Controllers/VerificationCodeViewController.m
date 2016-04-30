@@ -100,8 +100,9 @@
 
 - (void)nextPressed:(id)sender {
 #if DEBUG
-    [[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password].then(^(CEERegisterSuccessResponse * response) {
-        return [[CEEUserSession session] loggedInWithAuth:response.auth];
+    [[CEERegisterAPI api] registerWithMobile:self.phoneNumber password:self.password]
+    .then(^(NSString * authToken) {
+        return [[CEEUserSession session] loggedInWithAuth:authToken];
     }).then(^{
         [SVProgressHUD dismiss];
     }).catch(^(NSError *error) {
@@ -115,8 +116,9 @@
                             result:
     ^(NSError *error) {
         if (!error) {
-            [[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password].then(^(CEERegisterSuccessResponse * response) {
-                return [[CEEUserSession session] loggedInWithAuth:response.auth];
+            [[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password]
+            .then(^(NSString * authToken) {
+                return [[CEEUserSession session] loggedInWithAuth:authToken];
             }).then(^{
                 [SVProgressHUD dismiss];
             }).catch(^(NSError *error) {

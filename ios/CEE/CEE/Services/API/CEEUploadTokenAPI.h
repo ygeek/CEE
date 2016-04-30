@@ -8,18 +8,13 @@
 
 #import "CEEBaseAPI.h"
 
-@interface CEEUploadTokenSuccessResponse: CEEBaseResponse
+@interface CEEUploadTokenResponse: CEEBaseResponse
 @property (nonatomic, strong) NSString * upload_token;
-@end
-
-
-@interface CEEUploadTokenErrorResponse : CEEBaseResponse
-@property (nonatomic, strong) NSString * msg;
 @end
 
 
 @interface CEEUploadTokenAPI : CEEBaseAPI
 
-- (RACSignal *)requestUploadToken;
+- (AnyPromise *)requestUploadToken;
 
 @end

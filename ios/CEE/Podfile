@@ -27,6 +27,7 @@ target 'CEE' do
     pod 'DZNPhotoPickerController/Editor', :git => 'https://github.com/nightfade/DZNPhotoPickerController.git'
     pod "Qiniu", :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetworking-3.x'
     pod 'PromiseKit'
+    pod "PromiseKit/CoreLocation"
     pod 'OAStackView'
 end
 

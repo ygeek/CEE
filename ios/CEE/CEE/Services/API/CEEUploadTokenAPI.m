@@ -8,26 +8,20 @@
 
 #import "CEEUploadTokenAPI.h"
 
-@implementation CEEUploadTokenSuccessResponse
-@end
-
-
-@implementation CEEUploadTokenErrorResponse
+@implementation CEEUploadTokenResponse
 @end
 
 
 @implementation CEEUploadTokenAPI
 
-- (RACSignal *)requestUploadToken {
-    return [self GET:@"/api/v1/uploadtoken/" withParams:nil];
+- (AnyPromise *)requestUploadToken {
+    return [self promiseGET:@"/api/v1/uploadtoken/" withParams:nil].then(^(CEEUploadTokenResponse * response) {
+        return response.upload_token;
+    });
 }
 
 - (Class)responseSuccessClass {
-    return [CEEUploadTokenSuccessResponse class];
-}
-
-- (Class)responseErrorClass {
-    return [CEEUploadTokenErrorResponse class];
+    return [CEEUploadTokenResponse class];
 }
 
 @end

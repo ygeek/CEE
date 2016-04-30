@@ -164,9 +164,8 @@
 
 - (void)dismissUserProfileForm {
     if (self.isPresentingUserProfile) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            self.isPresentingUserProfile = NO;
-        }];
+        self.isPresentingUserProfile = NO;
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

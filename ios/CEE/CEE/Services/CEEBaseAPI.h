@@ -21,24 +21,22 @@
 
 @interface CEEBaseResponse : JSONModel
 @property (nonatomic, assign) NSInteger code;
+@property (nonatomic, copy) NSString<Optional> * msg;
 @end
 
 
 @interface CEEBaseAPI : NSObject
 
-- (RACSignal *)GET:(NSString *)url withParams:(NSDictionary *)params;
-- (RACSignal *)GET:(NSString *)url withRequest:(JSONModel *)request;
++ (instancetype)api;
+
 - (AnyPromise *)promiseGET:(NSString *)url withParams:(NSDictionary *)params;
 - (AnyPromise *)promiseGET:(NSString *)url withReqeust:(JSONModel *)request;
 
-- (RACSignal *)POST:(NSString *)url withParams:(NSDictionary *)params;
-- (RACSignal *)POST:(NSString *)url withRequest:(JSONModel *)request;
 - (AnyPromise *)promisePOST:(NSString *)url withParams:(NSDictionary *)params;
 - (AnyPromise *)promisePOST:(NSString *)url withRequest:(JSONModel *)request;
 
 - (Class)responseSuccessClass;
-- (Class)responseErrorClass;
 
-- (NSString *)errorMessageForResponse:(id)response;
+- (NSError *)processHttpError:(NSError *)error;
 
 @end

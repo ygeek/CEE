@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CouponAcquiringViewController : UIViewController
+@interface HUDCouponAcquiringViewController : UIViewController
 
 
 
