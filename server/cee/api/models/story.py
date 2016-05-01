@@ -20,8 +20,8 @@ class Story(models.Model):
 
 
 class UserStory(models.Model):
-    user = models.ForeignKey(User, related_name='user_storys')
-    story = models.ForeignKey(Story, related_name='user_storys')
+    user = models.ForeignKey(User, related_name='user_stories')
+    story = models.ForeignKey(Story, related_name='user_stories')
     completed = models.BooleanField()
     progress = models.IntegerField()
 

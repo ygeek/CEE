@@ -19,12 +19,14 @@ class CityStoryList(APIView):
     def get(self, request, city_key):
         try:
             city = City.objects.get(key=city_key)
-            serializer = StorySerializer(city.stories,
-                                         user=request.user,
-                                         many=True)
+            stories = city.stories.annotate(
+                completed=models.F('user_stories__completed'),
+                progress=models.F('user_stories__progress')
+            )
+            serializer = UserStorySerializer(stories, many=True)
             return Response({
                 'code': 0,
-                'storys': serializer.data
+                'stories': serializer.data
             })
         except City.DoesNotExist:
             return Response({
@@ -44,7 +46,13 @@ class StoryDetail(APIView):
                 defaults={'completed': False, 'progress': 0},
                 user=request.user,
                 story=story)
-            serializer = StorySerializer(story, user=request.user)
+            if created:
+                story.completed = False,
+                story.progress = 0
+            else:
+                story.completed = user_story.completed
+                story.progress = user_story.progress
+            serializer = UserStorySerializer(story)
             return Response({
                 'code': 0,
                 'story': serializer.data,
@@ -108,14 +116,17 @@ class StoryLevelList(APIView):
         try:
             story_id = int(story_id)
             story = Story.objects.get(id=story_id)
-            UserStory.objects.get_or_create(user=request.user, story=story,
-                                            defaults={
-                                                'user': request.user,
-                                                'story': story,
-                                                'progress': 0,
-                                                'completed': False})
-            levels = story.levels.order_by('story_levels__order')
-            serializer = LevelSerializer(levels, story=story, many=True)
+            UserStory.objects.get_or_create(
+                user=request.user, story=story,
+                defaults={
+                    'user': request.user,
+                    'story': story,
+                    'progress': 0,
+                    'completed': False})
+            levels = story.levels.annotate(
+                order=models.F('story_levels__order')
+            ).order_by('story_levels__order')
+            serializer = LevelSerializer(levels, many=True)
             return Response({
                 'code': 0,
                 'levels': serializer.data,
