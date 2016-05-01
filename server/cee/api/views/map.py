@@ -36,7 +36,7 @@ class NearestMap(APIView):
                                             latitude,
                                             precision)
                 if map_ is None: continue
-                serializer = MapSerializer(map_)
+                serializer = UserMapSerializer(map_)
                 return Response({
                     'code': 0,
                     'map': serializer.data
@@ -56,23 +56,28 @@ class NearestMap(APIView):
         hashcode = geohash.encode(latitude,
                                   longitude,
                                   precision=precision)
-        hashcodes = geohash.expand(hashcode)
-        maps = []
-        for hashcode in hashcodes:
-            # TODO(stareven): count limit
-            for map_ in Map.objects.filter(geohash__startswith=hashcode):
-                try:
-                    user_map = UserMap.objects.get(user=user, map=map_)
-                    if not user_map.completed:
-                        maps.append(map_)
-                except UserMap.DoesNotExist:
-                    maps.append(map_)
+        # TODO(stareven): count limit
+        args = {
+            'nullp': 'IFNULL',  # for sqlite(ISNULL for MySQL)
+            'user_id': user.id,
+            'geohash': hashcode,
+        }
+        sql = '''
+            SELECT api_map.id AS id,
+                   name,
+                   desc,
+                   image_url,
+                   %(nullp)s(completed, 0) AS completed
+            FROM api_map LEFT JOIN api_usermap
+            ON api_map.id=api_usermap.map_id
+            WHERE %(nullp)s(user_id, %(user_id)d)=%(user_id)d
+              AND %(nullp)s(completed, 0)=0
+              AND geohash LIKE '%(geohash)s%%'
+            LIMIT 1
+        ''' % args
+        maps = Map.objects.raw(sql)
+        map_ = maps[0]
         if not maps: return None
-        map_ = min(maps,
-                   key=lambda map_: cls._haversine(map_.longitude,
-                                                   map_.latitude,
-                                                   longitude,
-                                                   latitude))
         user_map, created = UserMap.objects.get_or_create(
             defaults={'completed': False},
             user=user,

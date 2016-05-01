@@ -1,6 +1,7 @@
 INSERT INTO api_map(`id`, `name`, `desc`, `longitude`, `latitude`, `geohash`, `image_url`, `city_id`) VALUES
 (1, 'Map-1', 'Map-Desc-1', 114.06667, 22.61667, 'ws10ethzdhcg', 'http://example.com/map-1.png', '300210000'),
-(2, 'Map-2', 'Map-Desc-2', 114.06663, 22.61667, 'ws10ethz9hgg', 'http://example.com/map-2.png', '300210000');
+(2, 'Map-2', 'Map-Desc-2', 114.06663, 22.61667, 'ws10ethz9hgg', 'http://example.com/map-2.png', '300210000'),
+(3, 'Map-3', 'Map-Desc-3', 114.06663, 22.61667, 'ws10ethz9hgg', 'http://example.com/map-3.png', '300210000');
 INSERT INTO api_medal(`id`, `name`, `desc`, `icon_url`, `map_id`) VALUES
 (1, 'Medal-1', 'Medal-Desc-1', 'http://example.com/medal-1.png', 1),
 (2, 'Medal-2', 'Medal-Desc-2', 'http://example.com/medal-2.png', 2);
