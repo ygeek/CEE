@@ -23,7 +23,11 @@ class TaskDetail(APIView):
                 defaults={'completed': False},
                 user=request.user,
                 task=task)
-            serializer = TaskSerializer(task, user=request.user)
+            if created:
+                task.completed = False
+            else:
+                task.completed = user_task.completed
+            serializer = UserTaskSerializer(task)
             return Response({
                 'code': 0,
                 'task': serializer.data,
