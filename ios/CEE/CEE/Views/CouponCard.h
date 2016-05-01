@@ -10,11 +10,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CEECoupon.h"
 
 @interface CouponCard : UIView
 @property (nonatomic, strong) UIImageView * photoView;
 
-@property (nonatomic, strong) UIImageView * titleImageView;
+@property (nonatomic, strong) UIView * titleContainer;
+@property (nonatomic, strong) UIView * titleBorderView;
 @property (nonatomic, strong) UILabel * titleLabel;
 
 @property (nonatomic, strong) UIScrollView * contentScrollView;
@@ -37,4 +39,7 @@
 @property (nonatomic, strong) NSMutableArray<UILabel *> * entryContentLabels;
 
 @property (nonatomic, strong) UIView * shadowView;
+
+- (void)loadCoupon:(CEEJSONCoupon *)coupon;
+
 @end

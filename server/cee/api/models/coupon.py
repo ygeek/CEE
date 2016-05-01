@@ -9,6 +9,8 @@ from .fields import *
 
 class Coupon(models.Model):
     name = models.CharField(max_length=30, unique=True)
+    location = models.CharField(max_length=50)
+    image_key = models.CharField(max_length=100)
     desc = JsonField()
     gmt_start = models.DateField()
     gmt_end = models.DateField()

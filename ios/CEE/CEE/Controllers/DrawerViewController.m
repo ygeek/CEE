@@ -14,6 +14,7 @@
 #import "HUDCouponCodeView.h"
 #import "CouponCard.h"
 #import "CEECouponListAPI.h"
+#import "UIImage+Utils.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -68,8 +69,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [SVProgressHUD show];
     if (!self.coupons) {
+        [SVProgressHUD showWithStatus:@"正在获取优惠券信息"];
         [[CEECouponListAPI api] fetchCouponList].then(^(NSArray<CEEJSONCoupon *> *coupons) {
             self.coupons = coupons;
             [self.scrollView reloadData];
@@ -90,7 +91,7 @@
 #pragma mark CouponScrollViewDatasource
 
 - (NSInteger)numberOfViews {
-    return 9;
+    return self.coupons.count;
 }
 
 - (NSInteger)numberOfVisibleViews {
@@ -99,9 +100,24 @@
 
 - (UIView *)viewAtIndex:(NSInteger)index reusingView:(UIView *)view {
     if (!view) {
-        // view = [self newCard];
         view = [[CouponCard alloc] init];
     }
+    
+    int beginIndex = -floor(self.numberOfViews / 2.0f);
+    int endIndex = floor(self.numberOfViews / 2.0f);
+    if (index < beginIndex || index > endIndex || self.numberOfViews == 0) {
+        view.hidden = YES;
+        return view;
+    } else {
+        view.hidden = NO;
+    }
+    
+    CouponCard * couponCard = (CouponCard *)view;
+    
+    
+    CEEJSONCoupon * coupon = self.coupons[index - beginIndex];
+    [couponCard loadCoupon:coupon];
+   
     return view;
 }
 

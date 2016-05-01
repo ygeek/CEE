@@ -7,11 +7,14 @@ import uuid
 from django.db import models
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from ..models.coupon import *
 from ..serializers.coupon import *
 
 
 class UserCouponList(APIView):
+    permission_classes = (IsAuthenticated, )
+
     def get(self, request):
         coupons = request.user.coupons.annotate(
             uuid=models.F('user_coupons__uuid'),

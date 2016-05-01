@@ -7,14 +7,17 @@
 //
 
 @import Masonry;
+@import SDWebImage;
 
 #import "CouponCard.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
 #import "HUDCouponCodeView.h"
+#import "CEEDownloadURLAPI.h"
 
 
 @interface CouponCard () <UIScrollViewDelegate, HUDViewDelegate>
+@property (nonatomic, copy) NSString * currentID;
 @property (nonatomic, strong) HUDCouponCodeView * codeView;
 @end
 
@@ -51,15 +54,24 @@
     self.maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"优惠券-黑"]];
     
     self.photoView = [[UIImageView alloc] init];
+    self.photoView.contentMode = UIViewContentModeScaleAspectFill;
+    self.photoView.clipsToBounds = YES;
     [self addSubview:self.photoView];
     
-    self.titleImageView = [[UIImageView alloc] init];
-    [self addSubview:self.titleImageView];
+    self.titleContainer = [[UIView alloc] init];
+    self.titleContainer.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.titleContainer];
+    
+    self.titleBorderView = [[UIView alloc] init];
+    self.titleBorderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"波浪"]];
+    [self.titleContainer addSubview:self.titleBorderView];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text = @"获得优惠券";
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.backgroundColor = kCEEThemeYellowColor;
+    self.titleLabel.text = @"获得优惠券！";
     self.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:16];
-    [self addSubview:self.titleLabel];
+    [self.titleContainer addSubview:self.titleLabel];
     
     self.contentScrollView = [[UIScrollView alloc] init];
     self.contentScrollView.delegate = self;
@@ -130,28 +142,32 @@
     self.contentTitleLabel.text = @"细则";
     [self.page2 addSubview:self.contentTitleLabel];
     
+    self.entryTitleLabels = [NSMutableArray array];
+    
     self.entryContentLabelsContainer = [[OAStackView alloc] init];
     self.entryContentLabelsContainer.axis = UILayoutConstraintAxisVertical;
     self.entryContentLabelsContainer.distribution = OAStackViewDistributionFillProportionally;
     self.entryContentLabelsContainer.alignment = OAStackViewAlignmentCenter;
     [self.page2 addSubview:self.entryContentLabelsContainer];
     
+    self.entryContentLabels = [NSMutableArray array];
+    
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor blackColor];
     [self addSubview:self.shadowView];
     
     [self setupLayout];
-    
-    [self loadFakeData];
 }
 
 - (void)setupLayout {
     // Because AutoLayout conflict with View Transform, use frame instead of AutoLayout
     self.photoView.frame = CGRectMake(0, 0, 91, 212);
     
-    self.titleImageView.frame = CGRectMake(91, 0, 243, 55);
+    self.titleContainer.frame = CGRectMake(91, 0, 243, 55);
     
-    self.titleLabel.center = self.titleImageView.center;
+    self.titleBorderView.frame = CGRectMake(0, 55 - 6, 243, 6);
+    
+    self.titleLabel.frame = CGRectMake(0, 0, 243, 55 - 6);
     
     self.contentScrollView.frame = CGRectMake(91, 55, 243, 212 - 55);
     self.contentScrollView.contentSize = CGSizeMake(486, 157);
@@ -186,7 +202,7 @@
     [self.entryTitleLabels removeAllObjects];
     for (NSString * entry in titles) {
         UILabel * entryView = [[UILabel alloc] init];
-        entryView.text = entry;
+        entryView.text = [NSString stringWithFormat:@"GET  %@", entry];
         entryView.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
         entryView.textColor = kCEETextBlackColor;
         [self.entryTitleLabels addObject:entryView];
@@ -241,13 +257,18 @@
     self.pageControl.currentPage = page;
 }
 
-- (void)loadFakeData {
-    self.photoView.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(91, 212)];
-    self.titleImageView.image = [UIImage imageWithColor:kCEEThemeYellowColor size:CGSizeMake(243, 55)];
+- (void)loadCoupon:(CEEJSONCoupon *)coupon {
+    NSString * currentID = [[NSUUID UUID] UUIDString];
+    self.currentID = currentID;
+    [[CEEDownloadURLAPI api] requestURLWithKey:coupon.coupon.image_key].then(^(NSString * url) {
+        if ([currentID isEqualToString:self.currentID]) {
+            [self.photoView sd_setImageWithURL:[NSURL URLWithString:url]];
+        }
+    });
     
     NSMutableAttributedString * locationString = [[NSAttributedString attributedStringWithAttachment:self.locationAttachment] mutableCopy];
     [locationString appendAttributedString:
-     [[NSAttributedString alloc] initWithString:@"万达XX餐厅"
+     [[NSAttributedString alloc] initWithString:coupon.coupon.location
                                      attributes:@{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:11],
                                                   NSForegroundColorAttributeName: kCEETextBlackColor}]];
     
@@ -255,10 +276,8 @@
     [self.locationLabel sizeToFit];
     self.locationLabel.center = CGPointMake(243 / 2.0, 8 + 23 / 2.0);
     
-    [self loadEntryTitles:@[@"GET  现金折扣 八五折", @"GET  附赠小食"]];
-    
-    [self loadEntryContents:@[@"持本券即可获得付款八五折\n优惠同事可与其他折扣同时使用",
-                              @"获得小食一碟\n具体到店酌情而定"]];
+    [self loadEntryTitles:[coupon.coupon.desc allKeys]];
+    [self loadEntryContents:[coupon.coupon.desc allValues]];
 }
 
 @end

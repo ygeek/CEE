@@ -36,7 +36,7 @@
         [[RACSignal combineLatest:@[RACObserve(self, isFetchingUserProfile),
                                    RACObserve(self, authorizationFailed)]
                           reduce:^(NSNumber *isFetchingUserProfile, NSNumber * authorizationFailed) {
-                              return @(!isFetchingUserProfile.boolValue && authorizationFailed.boolValue);
+                              return @(!(isFetchingUserProfile.boolValue) && authorizationFailed.boolValue);
                           }] subscribeNext:^(NSNumber *shouldRelogin) {
                               @strongify(self)
                               if (shouldRelogin.boolValue) {
@@ -44,6 +44,7 @@
                                   self.authToken = nil;
                                   self.userProfile = nil;
                                   self.authorizationFailed = NO;
+                                  [[CEEAPIClient client].requestSerializer clearAuthorizationHeader];
                               }
                           }];
     }
@@ -63,8 +64,10 @@
                                        forHTTPHeaderField:@"Authorization"];
 
         return [self loadUserProfile];
+    } else {
+        [[CEEAPIClient client].requestSerializer clearAuthorizationHeader];
+        return [AnyPromise promiseWithValue:nil];
     }
-    return [AnyPromise promiseWithValue:nil];
 }
 
 - (AnyPromise *)loadUserProfile {

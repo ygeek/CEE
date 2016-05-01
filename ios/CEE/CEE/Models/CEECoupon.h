@@ -19,8 +19,14 @@
 
 @interface CEEJSONCouponDetail : JSONModel
 @property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * location;
+@property (nonatomic, strong) NSString * image_key;
 @property (nonatomic, strong) NSDictionary * desc;
 @property (nonatomic, strong) NSString * code;
+@end
+
+
+@protocol CEEJSONCoupon <NSObject>
 @end
 
 

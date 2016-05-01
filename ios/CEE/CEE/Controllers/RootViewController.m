@@ -148,9 +148,8 @@
 
 - (void)dismissLogin {
     if (self.isPresentingLogin) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            self.isPresentingLogin = NO;
-        }];
+        self.isPresentingLogin = NO;
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
