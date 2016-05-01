@@ -56,7 +56,6 @@ class NearestMap(APIView):
         hashcode = geohash.encode(latitude,
                                   longitude,
                                   precision=precision)
-        # TODO(stareven): count limit
         args = {
             'nullp': 'IFNULL',  # for sqlite(ISNULL for MySQL)
             'user_id': user.id,
@@ -68,8 +67,9 @@ class NearestMap(APIView):
                    desc,
                    image_url,
                    %(nullp)s(completed, 0) AS completed
-            FROM api_map LEFT JOIN api_usermap
-            ON api_map.id=api_usermap.map_id
+            FROM api_map
+                LEFT JOIN api_usermap
+                    ON api_map.id=api_usermap.map_id
             WHERE %(nullp)s(user_id, %(user_id)d)=%(user_id)d
               AND %(nullp)s(completed, 0)=0
               AND geohash LIKE '%(geohash)s%%'
