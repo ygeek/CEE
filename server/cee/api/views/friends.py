@@ -14,25 +14,15 @@ class UserFriendList(APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
-        try:
-            user = request.user
-            user_friend = user.user_friend.all()
-            friends = [uf.friend for uf in user_friend]
-            serializer = UserInfoSerializer(friends, many=True)
-            return Response({
-                'code': 0,
-                'friends': serializer.data
-            })
-        except ValueError:
-            return Response({
-                'code': -1,
-                'msg': 'invalid user id: %s' % user_id
-            })
-        except User.DoesNotExist:
-            return Response({
-                'code': -2,
-                'msg': 'user not exists',
-            })
+        user = request.user
+        user_friend = user.user_friend.all()
+        friends = [uf.friend for uf in user_friend]
+        serializer = UserInfoSerializer(friends, many=True)
+        return Response({
+            'code': 0,
+            'num':len(serializer.data),
+            'friends': serializer.data
+        })
 
 
 class addFriends(APIView):

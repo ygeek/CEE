@@ -22,6 +22,7 @@ urlpatterns = [
 
     # User(open)
     url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
+    url(r'^v1/user/friend/$', UserFriendList.as_view()),
 
     # Map
     url(r'^v1/map/nearest/(?P<longitude>[0-9.]+),(?P<latitude>[0-9.]+)/$',
