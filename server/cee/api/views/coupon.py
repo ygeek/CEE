@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 
 import uuid
+from django.db import models
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from ..models.coupon import *
@@ -12,8 +13,10 @@ from ..serializers.coupon import *
 
 class UserCouponList(APIView):
     def get(self, request):
-        user_coupons = request.user.user_coupons
-        serializer = UserCouponSerializer(user_coupons, many=True)
+        coupons = request.user.coupons.annotate(
+            uuid=models.F('user_coupons__uuid'),
+            consumed=models.F('user_coupons__consumed'))
+        serializer = UserCouponSerializer(coupons, many=True)
         return Response({
             'code': 0,
             'coupons': serializer.data,

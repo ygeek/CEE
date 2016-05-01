@@ -5,6 +5,7 @@ from __future__ import absolute_import
 
 import math
 import geohash
+from django.db import models
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -30,11 +31,16 @@ class NearestMap(APIView):
             #   2       630km
             #   1       2500km
             for precision in [6, 5, 4]:
-                resp = self._findNearestMap(request.user,
+                map_ = self._findNearestMap(request.user,
                                             longitude,
                                             latitude,
                                             precision)
-                if resp: return resp
+                if map_ is None: continue
+                serializer = MapSerializer(map_)
+                return Response({
+                    'code': 0,
+                    'map': serializer.data
+                })
             return Response({
                 'code': -2,
                 'msg': 'no map around',
@@ -71,11 +77,7 @@ class NearestMap(APIView):
             defaults={'completed': False},
             user=user,
             map=map_)
-        serializer = MapSerializer(map_, user=user)
-        return Response({
-            'code': 0,
-            'map': serializer.data
-        })
+        return map_
 
     @staticmethod
     def _haversine(lon1, lat1, lon2, lat2):
@@ -92,8 +94,9 @@ class AcquiredMapList(APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
-        maps = request.user.maps
-        serializer = MapSerializer(maps, user=request.user, many=True)
+        maps = request.user.maps.annotate(
+            completed=models.F("user_maps__completed"))
+        serializer = UserMapSerializer(maps, many=True)
         return Response({
             'code': 0,
             'maps': serializer.data,

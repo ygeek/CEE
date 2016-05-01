@@ -10,9 +10,10 @@ class CouponSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'desc', 'gmt_start', 'gmt_end')
 
 
-class UserCouponSerializer(serializers.ModelSerializer):
-    coupon = CouponSerializer()
+class UserCouponSerializer(CouponSerializer):
+    uuid = serializers.UUIDField()
+    consumed = serializers.BooleanField()
 
     class Meta:
-        model = UserCoupon
-        fields = ('uuid', 'coupon', 'consumed')
+        model = Coupon
+        fields = CouponSerializer.Meta.fields + ('uuid', 'consumed')
