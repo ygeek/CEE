@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoryCoverViewController : UIViewController
+@class CEEJSONStory;
 
+
+@interface StoryCoverViewController : UIViewController
+@property (nonatomic, strong) CEEJSONStory * story;
 @end

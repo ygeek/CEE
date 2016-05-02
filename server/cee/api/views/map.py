@@ -30,7 +30,7 @@ class NearestMap(APIView):
             #   3       78km
             #   2       630km
             #   1       2500km
-            for precision in [6, 5, 4]:
+            for precision in [6, 5, 4, 3]:
                 map_ = self._findNearestMap(request.user,
                                             longitude,
                                             latitude,
@@ -43,12 +43,12 @@ class NearestMap(APIView):
                 })
             return Response({
                 'code': -2,
-                'msg': 'no map around',
+                'msg': '附近没有发现地图',
             })
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid location: (%s,%s)' % (longitude, latitude)
+                'msg': '经纬度有问题: (%s,%s)' % (longitude, latitude)
             })
 
     @classmethod
@@ -65,7 +65,7 @@ class NearestMap(APIView):
             SELECT api_map.id AS id,
                    name,
                    desc,
-                   image_url,
+                   image_key,
                    %(nullp)s(completed, 0) AS completed
             FROM api_map
                 LEFT JOIN api_usermap
@@ -76,8 +76,13 @@ class NearestMap(APIView):
             LIMIT 1
         ''' % args
         maps = Map.objects.raw(sql)
+        has_map = False
+        for _ in maps:
+            has_map = True
+            break
+        if not maps or not has_map:
+            return None
         map_ = maps[0]
-        if not maps: return None
         user_map, created = UserMap.objects.get_or_create(
             defaults={'completed': False},
             user=user,

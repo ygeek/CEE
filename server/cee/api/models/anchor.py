@@ -25,10 +25,10 @@ class Anchor(models.Model):
                                     through='UserAnchor',
                                     related_name='anchors')
 
-    class Meta:
-        unique_together = (
-            ('type', 'ref_id'),
-        )
+    # class Meta:
+    #     unique_together = (
+    #         ('type', 'ref_id'),
+    #     )
 
 
 class UserAnchor(models.Model):

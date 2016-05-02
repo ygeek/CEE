@@ -13,6 +13,9 @@
 
 #import "CEELocationManager.h"
 #import "TLCity.h"
+#import "CEENearestMapAPI.h"
+#import "CEEImageManager.h"
+#import "CEEAnchorsAPI.h"
 
 @interface CEELocationManager ()
 @property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
@@ -64,6 +67,23 @@
         }
     }
     return nil;
+}
+
+- (AnyPromise *)fetchNearestMap {
+    return [CLLocationManager promise]
+    .then(^(CLLocation * location) {
+        return [[CEENearestMapAPI api] queryNearestMapWithLongitude:location.coordinate.longitude
+                                                           latitude:location.coordinate.latitude];
+    }).then(^(CEEJSONMap * map) {
+        return [[CEEImageManager manager] downloadImageForKey:map.image_key].then(^(UIImage *image) {
+            return map;
+        });
+    }).then(^(CEEJSONMap * map) {
+        return [[CEEAnchorsAPI api] fetchAnchorsWithMapID:map.id]
+        .then(^(NSArray<CEEJSONAnchor *> *anchors) {
+            return PMKManifold(map, anchors);
+        });
+    });
 }
 
 @end

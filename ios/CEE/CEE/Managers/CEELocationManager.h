@@ -24,4 +24,6 @@
 
 - (TLCity *)getCityWithName:(NSString *)cityName;
 
+- (AnyPromise *)fetchNearestMap;
+
 @end

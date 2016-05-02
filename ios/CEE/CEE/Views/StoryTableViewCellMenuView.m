@@ -10,6 +10,8 @@
 
 #import "StoryTableViewCellMenuView.h"
 #import "AppearanceConstants.h"
+#import "CEEStory.h"
+
 
 @interface StoryTableViewCellMenuView ()
 @property (nonatomic, strong) UIView * backgroundView;
@@ -111,13 +113,13 @@
         make.centerY.equalTo(self.distanceIcon.mas_centerY);
         make.left.equalTo(self.distanceIcon.mas_right).offset(24);
     }];
-    
-    //self.distanceIcon.backgroundColor = [UIColor grayColor];
-    self.distanceLabel.text = @"5.1";
-    //self.timingIcon.backgroundColor = [UIColor grayColor];
-    self.timingLabel.text = @"120";
-    //self.heartIcon.backgroundColor = [UIColor grayColor];
-    self.heartLabel.text = @"343";
+
+}
+
+- (void)loadStory:(CEEJSONStory *)story {
+    self.distanceLabel.text = story.distance.stringValue;
+    self.timingLabel.text = story.time.stringValue;
+    self.heartLabel.text = story.good.stringValue;
 }
 
 @end

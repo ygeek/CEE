@@ -8,12 +8,15 @@
 
 @import Masonry;
 @import RDVTabBarController;
+@import SDWebImage;
 
 #import "StoryCoverViewController.h"
+#import "CEEStory.h"
 #import "StoryInfoView.h"
 #import "StoryDifficultyView.h"
 #import "StoryTagView.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+Utils.h"
 #import "AppearanceConstants.h"
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
@@ -91,6 +94,7 @@
     self.tagContainer = [[UIView alloc] init];
     
     self.progressIcon = [[UIImageView alloc] init];
+    self.progressIcon.contentMode = UIViewContentModeCenter;
     self.progressTitleLabel = [[UILabel alloc] init];
     self.progressTitleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:10];
     self.progressTitleLabel.textColor = kCEETextBlackColor;
@@ -99,6 +103,7 @@
     self.progressLabel.textColor = kCEETextBlackColor;
     
     self.distanceIcon = [[UIImageView alloc] init];
+    self.distanceIcon.contentMode = UIViewContentModeCenter;
     self.distanceTitleLabel = [[UILabel alloc] init];
     self.distanceTitleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:10];
     self.distanceTitleLabel.textColor = kCEETextBlackColor;
@@ -261,17 +266,23 @@
    
     [self loadCoverImages];
     
+    [self.infoView loadStory:self.story];
+    
+    [self.infoViewPinning loadStory:self.story];
+    
     [self loadTags];
     
-    self.descView.text = @"城市中有一群漫步者，你便是其中之一\n故事从此开始…";
+    self.descView.text = self.story.desc;
+    
+    self.difficultyView.difficulty = self.story.difficulty.integerValue;
     
     self.progressIcon.backgroundColor = [UIColor grayColor];
     self.progressTitleLabel.text = @"进度：";
-    self.progressLabel.text = @"68%";
+    self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.story.progress.floatValue * 100];
     
-    self.distanceIcon.backgroundColor = [UIColor grayColor];
+    [self.distanceIcon cee_setImageWithKey:self.story.tour_img_key];
     self.distanceTitleLabel.text = @"行程：";
-    self.distanceLabel.text = @"5.1KM";
+    self.distanceLabel.text = [NSString stringWithFormat:@"%.1fKM", self.story.distance.floatValue];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -321,76 +332,79 @@
 
 - (void)loadCoverImages {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    // self.imagesScrollView.pagingEnabled = YES;
-    UIImage * img1 = [UIImage imageWithColor:[UIColor greenColor]
-                                        size:CGSizeMake(screenWidth, 406)];
-    UIImage * img2 = [UIImage imageWithColor:[UIColor yellowColor]
-                                        size:CGSizeMake(screenWidth, 406)];
-    UIImage * img3 = [UIImage imageWithColor:[UIColor redColor]
-                                        size:CGSizeMake(screenWidth, 406)];
-    
-    UIImageView * img1View = [[UIImageView alloc] initWithImage:img1];
-    img1View.frame = CGRectMake(0, 0, screenWidth, 406);
-    UIImageView * img2View = [[UIImageView alloc] initWithImage:img2];
-    img2View.frame = CGRectMake(screenWidth, 0, screenWidth, 406);
-    UIImageView * img3View = [[UIImageView alloc] initWithImage:img3];
-    img3View.frame = CGRectMake(screenWidth + screenWidth, 0, screenWidth, 406);
-    
     for (UIImageView * imgView in self.imageViews) {
         [imgView removeFromSuperview];
     }
     self.imageViews = [NSMutableArray array];
+    CGFloat x = 0;
+    for (NSString * key in self.story.image_keys) {
+        UIImageView * imgView = [[UIImageView alloc] init];
+        imgView.contentMode = UIViewContentModeScaleAspectFill;
+        imgView.clipsToBounds = YES;
+        imgView.backgroundColor = kCEEBackgroundGrayColor;
+        imgView.frame = CGRectMake(x, 0, screenWidth, 406);
+        x += screenWidth;
+        [imgView cee_setImageWithKey:key];
+        [self.imagesScrollView addSubview:imgView];
+        [self.imageViews addObject:imgView];
+    }
     
-    [self.imagesScrollView addSubview:img1View];
-    [self.imageViews addObject:img1View];
-    
-    [self.imagesScrollView addSubview:img2View];
-    [self.imageViews addObject:img2View];
-    
-    [self.imagesScrollView addSubview:img3View];
-    [self.imageViews addObject:img3View];
-    
-    self.imagesScrollView.contentSize = CGSizeMake(screenWidth * 3, 406);
+    self.imagesScrollView.contentSize = CGSizeMake(screenWidth * self.imageViews.count, 406);
     
     self.pageControl.numberOfPages = self.imageViews.count;
     self.pageControl.currentPage = 0;
     
-    [self.imagesScrollView scrollRectToVisible:self.imageViews[0].frame animated:NO];
+    if (self.imageViews.count > 0) {
+        [self.imagesScrollView scrollRectToVisible:self.imageViews[0].frame animated:NO];
+    }
 }
 
 - (void)loadTags {
     for (StoryTagView * tagView in self.tagViews) {
         [tagView removeFromSuperview];
     }
+    
     self.tagViews = [NSMutableArray array];
-    
-    StoryTagView * tag1 = [[StoryTagView alloc] init];
-    tag1.tagText = @"美食";
-    [self.tagContainer addSubview:tag1];
-    [self.tagViews addObject:tag1];
-    
-    StoryTagView * tag2 = [[StoryTagView alloc] init];
-    tag2.tagText = @"运动";
-    [self.tagContainer addSubview:tag2];
-    [self.tagViews addObject:tag2];
-    
-    StoryTagView * tag3 = [[StoryTagView alloc] init];
-    tag3.tagText = @"小游戏";
-    [self.tagContainer addSubview:tag3];
-    [self.tagViews addObject:tag3];
-    
-    StoryTagView * tag4 = [[StoryTagView alloc] init];
-    tag4.tagText = @"人物";
-    [self.tagContainer addSubview:tag4];
-    [self.tagViews addObject:tag4];
-    
-    StoryTagView * tag5 = [[StoryTagView alloc] init];
-    tag5.tagText = @"室外";
-    [self.tagContainer addSubview:tag5];
-    [self.tagViews addObject:tag5];
+    for (NSString * tag in self.story.tags) {
+        StoryTagView * tagView = [[StoryTagView alloc] init];
+        tagView.tagText = tag;
+        [self.tagContainer addSubview:tagView];
+        [self.tagViews addObject:tagView];
+    }
+   
+    if (self.tagViews.count == 0) {
+        return;
+    }
     
     if (self.tagViews.count % 2 == 0) {
+        int tag_center_left = (int)(self.tagViews.count / 2) - 1;
+        int tag_center_right = tag_center_left + 1;
         
+        [self.tagViews[tag_center_left] mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.tagContainer.mas_centerY);
+            make.right.equalTo(self.tagContainer.mas_centerX).offset(-7);
+            make.bottom.equalTo(self.tagContainer.mas_bottom);
+        }];
+        
+        [self.tagViews[tag_center_right] mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.tagContainer.mas_centerY);
+            make.left.equalTo(self.tagContainer.mas_centerX).offset(7);
+            make.bottom.equalTo(self.tagContainer.mas_bottom);
+        }];
+        
+        for (int i = tag_center_left - 1; i >= 0; i--) {
+            [self.tagViews[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.tagViews[i + 1].mas_centerY);
+                make.right.equalTo(self.tagViews[i + 1].mas_left).offset(-15);
+            }];
+        }
+        
+        for (int i = tag_center_right + 1; i < self.tagViews.count; i++) {
+            [self.tagViews[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.tagViews[i - 1].mas_centerY);
+                make.left.equalTo(self.tagViews[i - 1].mas_right).offset(15);
+            }];
+        }
     } else {
         int tag_length_half = (int)(self.tagViews.count / 2);
         

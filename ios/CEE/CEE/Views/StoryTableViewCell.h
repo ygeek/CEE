@@ -8,7 +8,10 @@
 
 #import <ABMenuTableViewCell/ABMenuTableViewCell.h>
 
+@class CEEJSONStory;
 
 @interface StoryTableViewCell : ABMenuTableViewCell
+
+- (void)loadStory:(CEEJSONStory *)story;
 
 @end

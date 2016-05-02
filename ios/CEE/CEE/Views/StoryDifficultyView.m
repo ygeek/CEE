@@ -82,7 +82,12 @@
 }
 
 - (void)setDifficulty:(NSInteger)difficulty {
-    // TODO (zhangmeng): set star images according to difficulty
+    for (UIView * starView in self.starViews) {
+        starView.alpha = 0.3;
+    }
+    for (NSInteger i = 0; i < difficulty; i++) {
+        self.starViews[i].alpha = 1.0;
+    }
 }
 
 @end

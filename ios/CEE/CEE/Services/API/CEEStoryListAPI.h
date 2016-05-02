@@ -11,7 +11,7 @@
 
 
 @interface CEEStoryListResponse : CEEBaseResponse
-@property (nonatomic, strong) NSArray<CEEJSONStory *> * storys;
+@property (nonatomic, strong) NSArray<CEEJSONStory> * stories;
 @end
 
 

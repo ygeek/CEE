@@ -54,4 +54,21 @@
     [[SDImageCache sharedImageCache] storeImage:image forKey:[self imageCacheKeyForKey:key]];
 }
 
+- (AnyPromise *)downloadImageForKey:(NSString *)key {
+    return [[CEEDownloadURLAPI api] requestURLWithKey:key]
+    .then(^(NSString *url) {
+        return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
+            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url]
+                                                            options:SDWebImageRetryFailed
+                                                           progress:
+             ^(NSInteger receivedSize, NSInteger expectedSize) {
+                 NSLog(@"download image %@: %ld/%ld", key, receivedSize, expectedSize);
+             } completed:
+             ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                 resolve(image ?: error);
+             }];
+        }];
+    });
+}
+
 @end

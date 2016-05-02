@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class CEEJSONStory;
+
+
 @interface StoryInfoView : UIView
 @property (nonatomic, strong) UIImageView * timingIcon;
 @property (nonatomic, strong) UIImageView * heartIcon;
@@ -15,4 +18,6 @@
 @property (nonatomic, strong) UILabel * timingLabel;
 @property (nonatomic, strong) UILabel * heartLabel;
 @property (nonatomic, strong) UILabel * distanceLabel;
+
+- (void)loadStory:(CEEJSONStory *)story;
 @end

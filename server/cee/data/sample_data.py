@@ -4,6 +4,7 @@
 from __future__ import absolute_import
 
 import datetime
+import geohash
 from api.models import *
 
 
@@ -18,11 +19,13 @@ story = Story(name='测试故事',
               desc='这是一个测试故事，一个神奇的故事，凑一凑字数。',
               time=120,
               good=232,
+              difficulty=4,
               distance=5.1,
+              tags=['美食', '运动', '小游戏', '人物', '室外'],
               city=city,
               coin=100,
               image_keys=['sample_big1_jpg', 'sample_big2_jpg'],
-              tour_img_key='抽屉_active@2x.png')
+              tour_img_key='sample_small_png')
 story.save()
 
 
@@ -173,3 +176,48 @@ user_coupon_3 = UserCoupon(user=user,
                            level=level_text_puzzle,
                            consumed=False)
 user_coupon_3.save()
+
+
+map1 = Map(name='北京天安门',
+           desc='这里是北京天安门!',
+           longitude=116.38,
+           latitude=39.9,
+           geohash=geohash.encode(longitude=116.38, latitude=39.9),
+           image_key='sample_map',
+           city=city)
+map1.save()
+
+map2 = Map(name='北京大学',
+           desc='这里是北京大学!',
+           longitude=116.32,
+           latitude=39.99,
+           geohash=geohash.encode(longitude=116.32, latitude=39.99),
+           image_key='sample_map',
+           city=city)
+map2.save()
+
+anchor1 = Anchor(map=map1,
+                 name='天安门1',
+                 dx=100,
+                 dy=200,
+                 type=Anchor.Type.Story,
+                 ref_id=story.id)
+anchor1.save()
+
+anchor2 = Anchor(map=map1,
+                 name='北京大学1',
+                 dx=200,
+                 dy=100,
+                 type=Anchor.Type.Story,
+                 ref_id=story.id)
+anchor2.save()
+
+anchor3 = Anchor(map=map2,
+                 name='北京大学2',
+                 dx=200,
+                 dy=100,
+                 type=Anchor.Type.Story,
+                 ref_id=story.id)
+anchor3.save()
+
+

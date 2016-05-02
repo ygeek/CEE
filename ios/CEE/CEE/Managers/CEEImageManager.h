@@ -19,4 +19,6 @@
 
 - (void)storeImage:(UIImage *)image forKey:(NSString *)key;
 
+- (AnyPromise *)downloadImageForKey:(NSString *)key;
+
 @end

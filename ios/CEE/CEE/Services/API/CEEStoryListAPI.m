@@ -18,7 +18,7 @@
 - (AnyPromise *)fetchStoriesWithCityKey:(NSString *)cityKey {
     NSString * url = [NSString stringWithFormat:@"/api/v1/city/%@/story/", cityKey];
     return [self promiseGET:url withParams:nil].then(^(CEEStoryListResponse *response) {
-        return response.storys;
+        return response.stories;
     });
 }
 

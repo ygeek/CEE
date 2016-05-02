@@ -11,7 +11,7 @@ class Map(models.Model):
     longitude = models.FloatField()
     latitude = models.FloatField()
     geohash = models.CharField(max_length=16, db_index=True)
-    image_url = models.URLField()
+    image_key = models.CharField(max_length=100)
     city = models.ForeignKey(City,
                              related_name='maps')
     owners = models.ManyToManyField(User,

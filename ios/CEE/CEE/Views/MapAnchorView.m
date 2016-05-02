@@ -11,6 +11,11 @@
 #import "MapAnchorView.h"
 #import "AppearanceConstants.h"
 
+
+NSString * const kAnchorTypeNameStory = @"story";
+NSString * const kAnchorTypeNameTask = @"task";
+
+
 @interface MapAnchorView ()
 @property (nonatomic, strong) UIImageView * iconView;
 @property (nonatomic, strong) UILabel * numberLabel;

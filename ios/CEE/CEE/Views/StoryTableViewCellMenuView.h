@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class CEEJSONStory;
+
+
 @interface StoryTableViewCellMenuView : UIView
+
+- (void)loadStory:(CEEJSONStory *)story;
 
 @end

@@ -10,6 +10,9 @@
 @import AVFoundation;
 @import Masonry;
 @import RDVTabBarController;
+@import SVProgressHUD;
+
+#import <PromiseKit/PromiseKit.h>
 
 #import "WorldViewController.h"
 #import "AcquiredMapsViewController.h"
@@ -19,6 +22,11 @@
 #import "HUDFetchingMapView.h"
 #import "HUDGetMedalView.h"
 #import "TaskViewController.h"
+#import "CEEImageManager.h"
+#import "CEELocationManager.h"
+#import "CEEMap.h"
+#import "CEEAnchor.h"
+#import "UIImageView+Utils.h"
 
 
 @interface WorldViewController () <HUDViewDelegate>
@@ -29,6 +37,9 @@
 @property (nonatomic, strong) HUDGetNewMapView * getNewMapHUD;
 @property (nonatomic, strong) HUDFetchingMapView * fetchingMapHUD;
 @property (nonatomic, strong) HUDGetMedalView * getMedalHUD;
+
+@property (nonatomic, strong) CEEJSONMap * currentMap;
+@property (nonatomic, strong) NSArray<CEEJSONAnchor *> * anchors;
 @end
 
 
@@ -73,8 +84,6 @@
                                        style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(menuPressed:)];
-    
-    [self loadSampleData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,14 +99,26 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    if (!self.currentMap) {
+        [self.fetchingMapHUD show];
+        [[CEELocationManager manager] fetchNearestMap]
+        .then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
+            self.currentMap = map;
+            self.anchors = anchors;
+            [self loadMap:map];
+            [self loadAnchors:anchors];
+            [self.fetchingMapHUD dismiss];
+        }).catch(^(NSError *error) {
+            [self.fetchingMapHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    }
+    
+    /*
     if (!self.getNewMapHUD) {
         self.getNewMapHUD = [[HUDGetNewMapView alloc] init];
         self.getNewMapHUD.delegate = self;
         [self.getNewMapHUD show];
-    } else if (!self.fetchingMapHUD) {
-        self.fetchingMapHUD = [[HUDFetchingMapView alloc] init];
-        self.fetchingMapHUD.delegate = self;
-        [self.fetchingMapHUD show];
     } else if (!self.getMedalHUD) {
         self.getMedalHUD = [[HUDGetMedalView alloc] init];
         self.getMedalHUD.delegate = self;
@@ -106,6 +127,14 @@
         TaskViewController * vc = [[TaskViewController alloc] init];
         [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
     }
+     */
+}
+
+- (HUDFetchingMapView *)fetchingMapHUD {
+    if (!_fetchingMapHUD) {
+        _fetchingMapHUD = [[HUDFetchingMapView alloc] init];
+    }
+    return _fetchingMapHUD;
 }
 
 - (void)menuPressed:(id)sender {
@@ -134,38 +163,41 @@
     [view dismiss];
 }
 
-- (void)loadSampleData {
-    self.navigationItem.title = @"埃尔多安";
+- (void)loadMap:(CEEJSONMap *)map {
+    self.navigationItem.title = map.name;
     
-    NSString * imgFile = [[NSBundle mainBundle] pathForResource:@"map-sample" ofType:@"png"];
-    UIImage * img = [UIImage imageWithContentsOfFile:imgFile];
-    img = [UIImage imageWithCGImage:img.CGImage
-                              scale:[UIScreen mainScreen].scale
-                        orientation:UIImageOrientationUp];
+    [[CEEImageManager manager] queryImageForKey:map.image_key]
+    .then(^(UIImage *image) {
+        [self setupMapImage:image];
+    });
+}
+
+- (void)loadAnchors:(NSArray<CEEJSONAnchor *> *)anchors {
+    for (MapAnchorView * view in self.anchorViews) {
+        [view removeFromSuperview];
+    }
     
-    [self setupMapImage:img];
+    self.anchorViews = [NSMutableArray array];
     
-    MapAnchorView * anchor1 = [[MapAnchorView alloc] init];
-    anchor1.anchorType = MapAnchorTypeStory;
-    anchor1.number = 3;
-    anchor1.frame = CGRectMake(200, 300, 100, 100);
-    
-    MapAnchorView * anchor2 = [[MapAnchorView alloc] init];
-    anchor2.anchorType = MapAnchorTypeTask;
-    anchor2.center = CGPointMake(300, 400);
-    
-    MapAnchorView * anchor3 = [[MapAnchorView alloc] init];
-    anchor3.anchorType = MapAnchorTypeStoryFinished;
-    anchor3.center = CGPointMake(400, 200);
-    
-    MapAnchorView * anchor4 = [[MapAnchorView alloc] init];
-    anchor4.anchorType = MapAnchorTypeTaskFinished;
-    anchor4.center = CGPointMake(100, 500);
-    
-    [self.mapView addSubview:anchor1];
-    [self.mapView addSubview:anchor2];
-    [self.mapView addSubview:anchor3];
-    [self.mapView addSubview:anchor4];
+    for (CEEJSONAnchor * anchor in anchors) {
+        MapAnchorView * anchorView = [[MapAnchorView alloc] init];
+        if ([anchor.type isEqualToString:kAnchorTypeNameStory]) {
+            if (anchor.completed.boolValue) {
+                anchorView.anchorType = MapAnchorTypeStoryFinished;
+            } else {
+                anchorView.anchorType = MapAnchorTypeStory;
+            }
+        } else if ([anchor.type isEqualToString:kAnchorTypeNameTask]) {
+            if (anchor.completed.boolValue) {
+                anchorView.anchorType = MapAnchorTypeTaskFinished;
+            } else {
+                anchorView.anchorType = MapAnchorTypeTask;
+            }
+        }
+        anchorView.center = CGPointMake(anchor.dx.floatValue, anchor.dy.floatValue);
+        [self.anchorViews addObject:anchorView];
+        [self.mapView addSubview:anchorView];
+    }
 }
 
 @end

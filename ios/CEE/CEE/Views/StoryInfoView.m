@@ -11,6 +11,7 @@
 #import "StoryInfoView.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "CEEStory.h"
 
 @implementation StoryInfoView
 
@@ -116,13 +117,12 @@
         make.height.mas_equalTo(90);
         make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width / 3.0);
     }];
-    
-    //self.timingIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
-    //self.heartIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
-    //self.distanceIcon.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(25, 25)];
-    self.timingLabel.text = @"120";
-    self.heartLabel.text = @"243";
-    self.distanceLabel.text = @"5.1";
+}
+
+- (void)loadStory:(CEEJSONStory *)story {
+    self.timingLabel.text = story.time.stringValue;
+    self.heartLabel.text = story.good.stringValue;
+    self.distanceLabel.text = story.distance.stringValue;
 }
 
 @end

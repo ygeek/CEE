@@ -3,6 +3,7 @@ from ..models.story import *
 
 
 class UserStorySerializer(serializers.ModelSerializer):
+    tags = serializers.ListField()
     image_keys = serializers.ListField()
     completed = serializers.BooleanField()
     progress = serializers.IntegerField()
@@ -15,7 +16,10 @@ class UserStorySerializer(serializers.ModelSerializer):
             'desc',
             'time',
             'good',
+            'difficulty',
             'distance',
+            'tags',
+            'coin',
             'image_keys',
             'tour_img_key',
             'completed',

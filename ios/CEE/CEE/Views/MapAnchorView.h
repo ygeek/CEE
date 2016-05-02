@@ -16,6 +16,10 @@ typedef enum : NSUInteger {
 } MapAnchorType;
 
 
+extern NSString * const kAnchorTypeNameStory;
+extern NSString * const kAnchorTypeNameTask;
+
+
 @interface MapAnchorView : UIView
 @property (nonatomic, assign) MapAnchorType anchorType;
 @property (nonatomic, assign) NSInteger number;

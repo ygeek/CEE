@@ -67,10 +67,10 @@ class MapAnchorList(APIView):
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid map id: %s' % map_id
+                'msg': '无效的地图ID: %s' % map_id
             })
         except Map.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'map not exists',
+                'msg': '不存在这个地图',
             })
