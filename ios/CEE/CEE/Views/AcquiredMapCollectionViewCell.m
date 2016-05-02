@@ -12,6 +12,8 @@
 #import "AcquiredMapCollectionViewCell.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "CEEMap.h"
+#import "UIImageView+Utils.h"
 
 
 @implementation AcquiredMapCollectionViewCell
@@ -61,13 +63,12 @@
         make.top.equalTo(self.iconView.mas_bottom).offset(13);
         make.bottom.equalTo(self.containerView.mas_bottom);
     }];
-    
-    [self loadSampleData];
 }
 
-- (void)loadSampleData {
-    self.iconView.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(64, 64)];
-    self.titleLabel.text = @"埃尔多安";
+- (void)loadMap:(CEEJSONMap *)map {
+    [self.iconView cee_setImageWithKey:map.icon_key];
+    self.titleLabel.text = map.name;
 }
+
 
 @end

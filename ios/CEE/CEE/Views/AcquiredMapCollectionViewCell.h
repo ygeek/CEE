@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class CEEJSONMap;
+
 @interface AcquiredMapCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UIView * containerView;
 @property (nonatomic, strong) UIImageView * iconView;
 @property (nonatomic, strong) UILabel * titleLabel;
+
+- (void)loadMap:(CEEJSONMap *)map;
 @end

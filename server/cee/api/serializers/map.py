@@ -12,5 +12,6 @@ class UserMapSerializer(serializers.ModelSerializer):
                   'longitude',
                   'latitude',
                   'image_key',
+                  'icon_key',
                   'city',
                   'completed')

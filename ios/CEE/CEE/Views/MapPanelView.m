@@ -8,9 +8,12 @@
 
 @import Masonry;
 
+#import <PromiseKit/PromiseKit.h>
+
 #import "MapPanelView.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "CEEImageManager.h"
 
 @implementation MapPanelView
 
@@ -99,5 +102,15 @@
     
 }
 
+- (AnyPromise *)loadAcquiredMaps:(NSArray<CEEJSONMap *> *)maps {
+    NSMutableArray * loadPromises = [NSMutableArray array];
+    for (NSUInteger i = 0; i < maps.count && i < 3; i++) {
+        [loadPromises addObject:[[CEEImageManager manager] downloadImageForKey:maps[i].icon_key]
+         .then(^(UIImage *image) {
+            [self.mapButtons[i] setImage:image forState:UIControlStateNormal];
+        })];
+    }
+    return PMKJoin(loadPromises);
+}
 
 @end

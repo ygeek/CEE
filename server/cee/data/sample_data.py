@@ -137,6 +137,75 @@ story_item_2.save()
 story_item_3 = StoryItem(story=story, item=item_3)
 story_item_3.save()
 
+
+task = Task(name='测试任务',
+            desc='这是一组测试用选择题',
+            location='北京天安门',
+            coin=100)
+task.save()
+
+choice1 = Choice(task=task,
+                 order=0,
+                 name='第一道题',
+                 desc='这是第一道选择题的描述描述',
+                 image_key='sample_big1_jpg',
+                 answer=0,
+                 answer_message='答对以后就会告诉你这样的消息',
+                 answer_next='点这里跳到下一题',
+                 answer_image_key='sample_big1_jpg')
+choice1.save()
+
+option10 = Option(choice=choice1,
+                  order=0,
+                  desc='这是选项一的描述啊!')
+option10.save()
+
+option11 = Option(choice=choice1,
+                  order=1,
+                  desc='这是另外一个选项描述!')
+option11.save()
+
+option12 = Option(choice=choice1,
+                  order=2,
+                  desc='这是第三个选项!')
+option12.save()
+
+option13 = Option(choice=choice1,
+                  order=3,
+                  desc='这是最后一个选项')
+option13.save()
+
+choice2 = Choice(task=task,
+                 order=1,
+                 name='第二道题',
+                 desc='这是第二道选择题描述',
+                 image_key='sample_big2_jpg',
+                 answer=1,
+                 answer_message='答对以后就会告诉你这样的消息',
+                 answer_next='点这里跳到下一题',
+                 answer_image_key='sample_big2_jpg')
+choice2.save()
+
+option20 = Option(choice=choice2,
+                  order=0,
+                  desc='这是选项一的描述啊!')
+option20.save()
+
+option21 = Option(choice=choice2,
+                  order=1,
+                  desc='这是另外一个选项描述!')
+option21.save()
+
+option22 = Option(choice=choice2,
+                  order=2,
+                  desc='这是第三个选项!')
+option22.save()
+
+option23 = Option(choice=choice2,
+                  order=3,
+                  desc='这是最后一个选项')
+option23.save()
+
 coupon = Coupon(name='万达优惠券',
                 location='万达XX餐厅',
                 image_key='sample_big1_jpg',
@@ -184,6 +253,7 @@ map1 = Map(name='北京天安门',
            latitude=39.9,
            geohash=geohash.encode(longitude=116.38, latitude=39.9),
            image_key='sample_map',
+           icon_key='sample_small_png',
            city=city)
 map1.save()
 
@@ -193,6 +263,7 @@ map2 = Map(name='北京大学',
            latitude=39.99,
            geohash=geohash.encode(longitude=116.32, latitude=39.99),
            image_key='sample_map',
+           icon_key='sample_small_png',
            city=city)
 map2.save()
 
@@ -221,3 +292,10 @@ anchor3 = Anchor(map=map2,
 anchor3.save()
 
 
+anchor4 = Anchor(map=map1,
+                 name='便利店',
+                 dx=300,
+                 dy=150,
+                 type=Anchor.Type.Task,
+                 ref_id=task.id)
+anchor4.save()

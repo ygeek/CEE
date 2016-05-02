@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AcquiredMapsViewController : UIViewController
+#import "CEEMap.h"
 
+@interface AcquiredMapsViewController : UIViewController
+@property (nonatomic, strong) NSArray<CEEJSONMap *> * maps;
 @end

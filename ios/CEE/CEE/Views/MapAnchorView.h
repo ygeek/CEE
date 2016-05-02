@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class CEEJSONAnchor;
+
+
 typedef enum : NSUInteger {
     MapAnchorTypeStory,
     MapAnchorTypeStoryFinished,
@@ -20,7 +24,8 @@ extern NSString * const kAnchorTypeNameStory;
 extern NSString * const kAnchorTypeNameTask;
 
 
-@interface MapAnchorView : UIView
+@interface MapAnchorView : UIControl
 @property (nonatomic, assign) MapAnchorType anchorType;
 @property (nonatomic, assign) NSInteger number;
+@property (nonatomic, strong) CEEJSONAnchor * anchor;
 @end

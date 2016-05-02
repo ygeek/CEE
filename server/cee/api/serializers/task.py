@@ -19,8 +19,11 @@ class ChoiceSerializer(serializers.ModelSerializer):
             'order',
             'name',
             'desc',
-            'image_url',
+            'image_key',
             'answer',
+            'answer_message',
+            'answer_next',
+            'answer_image_key',
             'options',
         )
 
@@ -31,4 +34,9 @@ class UserTaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ('id', 'name', 'desc', 'choices', 'completed')
+        fields = ('id',
+                  'name',
+                  'desc',
+                  'location',
+                  'choices',
+                  'completed')

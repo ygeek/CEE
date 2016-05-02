@@ -11,6 +11,8 @@
 @import Masonry;
 @import RDVTabBarController;
 @import SVProgressHUD;
+@import ReactiveCocoa;
+
 
 #import <PromiseKit/PromiseKit.h>
 
@@ -27,6 +29,8 @@
 #import "CEEMap.h"
 #import "CEEAnchor.h"
 #import "UIImageView+Utils.h"
+#import "CEEAcquiredMapsAPI.h"
+#import "CEETaskAPI.h"
 
 
 @interface WorldViewController () <HUDViewDelegate>
@@ -34,12 +38,15 @@
 @property (nonatomic, strong) UIImageView * mapView;
 @property (nonatomic, strong) NSMutableArray<MapAnchorView *> * anchorViews;
 @property (nonatomic, strong) MapPanelView * panelView;
+@property (nonatomic, strong) MASConstraint * panelOffset;
+
 @property (nonatomic, strong) HUDGetNewMapView * getNewMapHUD;
 @property (nonatomic, strong) HUDFetchingMapView * fetchingMapHUD;
 @property (nonatomic, strong) HUDGetMedalView * getMedalHUD;
 
 @property (nonatomic, strong) CEEJSONMap * currentMap;
 @property (nonatomic, strong) NSArray<CEEJSONAnchor *> * anchors;
+@property (nonatomic, strong) NSArray<CEEJSONMap *> * acquiredMaps;
 @end
 
 
@@ -51,12 +58,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.contentScrollView = [[UIScrollView alloc] init];
+    self.contentScrollView.delaysContentTouches = NO;
     self.contentScrollView.bounces = NO;
     self.contentScrollView.showsVerticalScrollIndicator = NO;
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.contentScrollView];
     
     self.mapView = [[UIImageView alloc] init];
+    self.mapView.userInteractionEnabled = YES;
     [self.contentScrollView addSubview:self.mapView];
     
     self.panelView = [[MapPanelView alloc] init];
@@ -75,7 +84,7 @@
     [self.panelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-49);
+        self.panelOffset = make.bottom.equalTo(self.view.mas_bottom).offset(96);
         make.height.mas_equalTo(96);
     }];
     
@@ -84,6 +93,25 @@
                                        style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(menuPressed:)];
+    
+    @weakify(self)
+    [RACObserve(self, acquiredMaps) subscribeNext:^(NSArray<CEEJSONMap *> * maps) {
+        @strongify(self)
+        [self.view layoutIfNeeded];
+        if (!maps || maps.count == 0) {
+            self.panelOffset.offset(96);
+            self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        } else {
+            self.panelOffset.offset(-49);
+            self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, 96, 0);
+        }
+        [UIView promiseWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                         }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +141,8 @@
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         });
     }
+    
+    [self loadAcquiredMaps];
     
     /*
     if (!self.getNewMapHUD) {
@@ -149,6 +179,7 @@
 
 - (void)moreMapPressed:(id)sender {
     AcquiredMapsViewController * mapsVC = [[AcquiredMapsViewController alloc] init];
+    mapsVC.maps = self.acquiredMaps;
     [self.navigationController pushViewController:mapsVC animated:YES];
 }
 
@@ -157,11 +188,27 @@
     self.contentScrollView.contentSize = self.mapView.image.size;
 }
 
+- (void)anchorPressed:(MapAnchorView *)anchorView {
+    if ([anchorView.anchor.type isEqualToString:kAnchorTypeNameTask]) {
+        [SVProgressHUD showWithStatus:@"正在获取问题"];
+        [[CEETaskAPI api] fetchTaskWithID:anchorView.anchor.ref_id]
+        .then(^(CEEJSONTask * task) {
+            [SVProgressHUD dismiss];
+            TaskViewController * vc = [[TaskViewController alloc] init];
+            [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    }
+}
+
 #pragma mark - HUDViewDelegate
 
 - (void)HUDOverlayViewTouched:(HUDBaseView *)view {
     [view dismiss];
 }
+
+#pragma mark - Loads
 
 - (void)loadMap:(CEEJSONMap *)map {
     self.navigationItem.title = map.name;
@@ -180,7 +227,9 @@
     self.anchorViews = [NSMutableArray array];
     
     for (CEEJSONAnchor * anchor in anchors) {
-        MapAnchorView * anchorView = [[MapAnchorView alloc] init];
+        MapAnchorView * anchorView = [[MapAnchorView alloc] initWithFrame:CGRectMake(0, 0, 42, 42)];
+        [anchorView addTarget:self action:@selector(anchorPressed:) forControlEvents:UIControlEventTouchUpInside];
+        anchorView.anchor = anchor;
         if ([anchor.type isEqualToString:kAnchorTypeNameStory]) {
             if (anchor.completed.boolValue) {
                 anchorView.anchorType = MapAnchorTypeStoryFinished;
@@ -198,6 +247,17 @@
         [self.anchorViews addObject:anchorView];
         [self.mapView addSubview:anchorView];
     }
+}
+
+- (void)loadAcquiredMaps {
+    [[CEEAcquiredMapsAPI api] fetchAcquiredMaps]
+    .then(^(NSArray<CEEJSONMap *> * maps) {
+        return [self.panelView loadAcquiredMaps:maps].then(^{
+            return maps;
+        });
+    }).then(^(NSArray<CEEJSONMap *> * maps) {
+        self.acquiredMaps = maps;
+    });
 }
 
 @end

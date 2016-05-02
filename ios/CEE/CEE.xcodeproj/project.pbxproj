@@ -37,6 +37,9 @@
 		BB3209271CD72394009D1862 /* CEEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209261CD72394009D1862 /* CEEMap.m */; };
 		BB32092D1CD7490D009D1862 /* CEEAnchorsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32092C1CD7490D009D1862 /* CEEAnchorsAPI.m */; };
 		BB3209301CD74A7B009D1862 /* CEEAnchor.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32092F1CD74A7B009D1862 /* CEEAnchor.m */; };
+		BB3209331CD764A6009D1862 /* CEEAcquiredMapsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209321CD764A6009D1862 /* CEEAcquiredMapsAPI.m */; };
+		BB3209361CD78B82009D1862 /* CEETask.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209351CD78B82009D1862 /* CEETask.m */; };
+		BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209381CD78D38009D1862 /* CEETaskAPI.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -164,6 +167,12 @@
 		BB32092C1CD7490D009D1862 /* CEEAnchorsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAnchorsAPI.m; sourceTree = "<group>"; };
 		BB32092E1CD74A7B009D1862 /* CEEAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAnchor.h; sourceTree = "<group>"; };
 		BB32092F1CD74A7B009D1862 /* CEEAnchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAnchor.m; sourceTree = "<group>"; };
+		BB3209311CD764A6009D1862 /* CEEAcquiredMapsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAcquiredMapsAPI.h; sourceTree = "<group>"; };
+		BB3209321CD764A6009D1862 /* CEEAcquiredMapsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAcquiredMapsAPI.m; sourceTree = "<group>"; };
+		BB3209341CD78B82009D1862 /* CEETask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEETask.h; sourceTree = "<group>"; };
+		BB3209351CD78B82009D1862 /* CEETask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETask.m; sourceTree = "<group>"; };
+		BB3209371CD78D38009D1862 /* CEETaskAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEETaskAPI.h; sourceTree = "<group>"; };
+		BB3209381CD78D38009D1862 /* CEETaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETaskAPI.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -372,6 +381,10 @@
 				BB3209231CD72253009D1862 /* CEENearestMapAPI.m */,
 				BB32092B1CD7490D009D1862 /* CEEAnchorsAPI.h */,
 				BB32092C1CD7490D009D1862 /* CEEAnchorsAPI.m */,
+				BB3209311CD764A6009D1862 /* CEEAcquiredMapsAPI.h */,
+				BB3209321CD764A6009D1862 /* CEEAcquiredMapsAPI.m */,
+				BB3209371CD78D38009D1862 /* CEETaskAPI.h */,
+				BB3209381CD78D38009D1862 /* CEETaskAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -560,6 +573,8 @@
 				BB3209261CD72394009D1862 /* CEEMap.m */,
 				BB32092E1CD74A7B009D1862 /* CEEAnchor.h */,
 				BB32092F1CD74A7B009D1862 /* CEEAnchor.m */,
+				BB3209341CD78B82009D1862 /* CEETask.h */,
+				BB3209351CD78B82009D1862 /* CEETask.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -763,6 +778,7 @@
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
 				BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */,
+				BB3209331CD764A6009D1862 /* CEEAcquiredMapsAPI.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
 				BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
@@ -820,7 +836,9 @@
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB3209271CD72394009D1862 /* CEEMap.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,
 				BB48E5CE1CD1B03E005150C3 /* HUDStoryCompletedViewController.m in Sources */,
+				BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */,
 				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,
 				BB29EF5D1CCC5797001C25B6 /* MessageTableViewCell.m in Sources */,

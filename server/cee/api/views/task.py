@@ -35,12 +35,12 @@ class TaskDetail(APIView):
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid task id: %s' % task_id,
+                'msg': '任务id有问题: %s' % task_id,
             })
         except Task.DoesNotExist:
             return Response({
                 'code': -2,
-                'msg': 'task not exists',
+                'msg': '不存在的任务',
             })
 
 

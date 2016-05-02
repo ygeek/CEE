@@ -14,9 +14,6 @@
 #import "EmptyMapCollectionViewCell.h"
 
 
-#define kSampleDataCount 2
-
-
 @interface AcquiredMapsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView * collectionView;
 @end
@@ -72,13 +69,14 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return kSampleDataCount - kSampleDataCount % 15 + 15;
+    return self.maps.count - self.maps.count % 15 + 15;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < kSampleDataCount) {
+    if (indexPath.row < self.maps.count) {
         AcquiredMapCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([AcquiredMapCollectionViewCell class]) forIndexPath:indexPath];
+        [cell loadMap:self.maps[indexPath.row]];
         return cell;
     } else {
         EmptyMapCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyMapCollectionViewCell class]) forIndexPath:indexPath];
