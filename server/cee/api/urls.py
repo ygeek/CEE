@@ -5,6 +5,10 @@ from rest_framework.authtoken import views
 from .views import *
 
 
+def remove_space(s):
+    return ''.join(s.split())
+
+
 urlpatterns = [
     url(r'^v1/auth/$', views.obtain_auth_token),
     url(r'^v1/hello/$', Hello.as_view()),
@@ -25,7 +29,18 @@ urlpatterns = [
     url(r'^v1/user/friend/$', UserFriendList.as_view()),
 
     # Map
-    url(r'^v1/map/nearest/(?P<longitude>[0-9.]+),(?P<latitude>[0-9.]+)/$',
+    url(remove_space(
+        r'''^v1/
+        city/(?P<city_key>\w+)/
+        map/nearest/(?P<longitude>[0-9.]+),
+                    (?P<latitude>[0-9.]+)/
+        $'''),
+        NearestMap.as_view()),
+    url(remove_space(
+        r'''^v1/
+        map/nearest/(?P<longitude>[0-9.]+),
+                    (?P<latitude>[0-9.]+)/
+        $'''),
         NearestMap.as_view()),
     url(r'^v1/map/acquired/$', AcquiredMapList.as_view()),
     url(r'^v1/map/(?P<map_id>\d+)/complete/$', CompleteMap.as_view()),

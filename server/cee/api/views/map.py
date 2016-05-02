@@ -17,7 +17,7 @@ from ..serializers.medal import *
 class NearestMap(APIView):
     permission_classes = (IsAuthenticated, )
 
-    def get(self, request, longitude, latitude):
+    def get(self, request, longitude, latitude, city_key=None):
         try:
             longitude = float(longitude)
             latitude = float(latitude)
@@ -32,6 +32,7 @@ class NearestMap(APIView):
             #   1       2500km
             for precision in [6, 5, 4, 3]:
                 map_ = self._findNearestMap(request.user,
+                                            city_key,
                                             longitude,
                                             latitude,
                                             precision)
@@ -52,7 +53,9 @@ class NearestMap(APIView):
             })
 
     @classmethod
-    def _findNearestMap(cls, user, longitude, latitude, precision):
+    def _findNearestMap(cls,
+                        user, city_key,
+                        longitude, latitude, precision):
         hashcode = geohash.encode(latitude,
                                   longitude,
                                   precision=precision)
@@ -60,7 +63,10 @@ class NearestMap(APIView):
             'nullp': 'IFNULL',  # for sqlite(ISNULL for MySQL)
             'user_id': user.id,
             'geohash': hashcode,
+            'city': '',
         }
+        if city_key is not None:
+            args['city'] = 'AND city_id=%s' % city_key
         sql = '''
             SELECT api_map.id AS id,
                    name,
@@ -73,15 +79,11 @@ class NearestMap(APIView):
             WHERE %(nullp)s(user_id, %(user_id)d)=%(user_id)d
               AND %(nullp)s(completed, 0)=0
               AND geohash LIKE '%(geohash)s%%'
+              %(city)s
             LIMIT 1
         ''' % args
-        maps = Map.objects.raw(sql)
-        has_map = False
-        for _ in maps:
-            has_map = True
-            break
-        if not maps or not has_map:
-            return None
+        maps = list(Map.objects.raw(sql))
+        if not maps: return None
         map_ = maps[0]
         user_map, created = UserMap.objects.get_or_create(
             defaults={'completed': False},
