@@ -70,7 +70,8 @@
     
     self.scrollView.contentSize = CGSizeMake(viewWidth, [self totalHeight]);
     
-    self.scrollView.contentInset = UIEdgeInsetsMake(viewHeight * 2, 0, viewHeight * 2, 0);
+    NSInteger insetsCount = ceil(self.dataSource.numberOfVisibleViews / 2.0);
+    self.scrollView.contentInset = UIEdgeInsetsMake(viewHeight * insetsCount, 0, viewHeight * insetsCount, 0);
     
     self.views = [NSMutableArray array];
     
@@ -166,12 +167,14 @@
     self.dragging = NO;
     if (!self.pagingEnabled && !decelerate) {
         [self.scrollView setContentOffset:[self contentOffsetForIndex:self.currentIndex] animated:YES];
+        [self adjustScroll];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (!self.pagingEnabled) {
         [self.scrollView setContentOffset:[self contentOffsetForIndex:self.currentIndex] animated:YES];
+        [self adjustScroll];
     }
 }
 
@@ -188,6 +191,16 @@
         NSInteger currentIndex = [self currentIndex];
         NSInteger targetIndex = self.scrollDirection == CouponScrollDirectionUp ? currentIndex + distance : currentIndex - distance;
         targetContentOffset->y = [self contentOffsetForIndex:targetIndex].y;
+    }
+}
+
+- (void)adjustScroll {
+    int beginIndex = -floor(self.dataSource.numberOfViews / 2.0f) + (self.dataSource.numberOfViews % 2 == 0);
+    int endIndex = floor(self.dataSource.numberOfViews / 2.0f);
+    if (self.currentIndex < beginIndex) {
+        [self scrollToIndex:beginIndex animated:YES];
+    } else if (self.currentIndex > endIndex) {
+        [self scrollToIndex:endIndex animated:YES];
     }
 }
 

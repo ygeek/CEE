@@ -12,13 +12,11 @@
 #import "CouponCard.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
-#import "HUDCouponCodeView.h"
 #import "CEEDownloadURLAPI.h"
 
 
-@interface CouponCard () <UIScrollViewDelegate, HUDViewDelegate>
+@interface CouponCard () <UIScrollViewDelegate>
 @property (nonatomic, copy) NSString * currentID;
-@property (nonatomic, strong) HUDCouponCodeView * codeView;
 @end
 
 
@@ -236,17 +234,7 @@
 }
 
 - (void)codeButtonPressed:(id)sender {
-    if (!self.codeView) {
-        self.codeView = [[HUDCouponCodeView alloc] init];
-    }
-    self.codeView.delegate = self;
-    [self.codeView show];
-}
-
-#pragma mark - HUDViewDelegate
-
-- (void)HUDOverlayViewTouched:(HUDBaseView *)view {
-    [self.codeView dismiss];
+    [self.delegate couponCard:self consumeCoupon:self.coupon];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -258,17 +246,29 @@
 }
 
 - (void)loadCoupon:(CEEJSONCoupon *)coupon {
+    self.coupon = coupon;
+    
     NSString * currentID = [[NSUUID UUID] UUIDString];
     self.currentID = currentID;
-    [[CEEDownloadURLAPI api] requestURLWithKey:coupon.coupon.image_key].then(^(NSString * url) {
+    [[CEEDownloadURLAPI api] requestURLWithKey:coupon.image_key].then(^(NSString * url) {
         if ([currentID isEqualToString:self.currentID]) {
-            [self.photoView sd_setImageWithURL:[NSURL URLWithString:url]];
+            [self.photoView sd_setImageWithURL:[NSURL URLWithString:url]
+                              placeholderImage:[UIImage imageWithColor:kCEEBackgroundGrayColor size:self.photoView.frame.size]
+                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                         [UIView transitionWithView:self.photoView
+                                                           duration:0.5
+                                                            options:UIViewAnimationOptionTransitionCrossDissolve
+                                                         animations:^{
+                                                             self.photoView.image = image;
+                                                         }
+                                                         completion:nil];
+                                     }];
         }
     });
     
     NSMutableAttributedString * locationString = [[NSAttributedString attributedStringWithAttachment:self.locationAttachment] mutableCopy];
     [locationString appendAttributedString:
-     [[NSAttributedString alloc] initWithString:coupon.coupon.location
+     [[NSAttributedString alloc] initWithString:coupon.location
                                      attributes:@{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:11],
                                                   NSForegroundColorAttributeName: kCEETextBlackColor}]];
     
@@ -276,8 +276,8 @@
     [self.locationLabel sizeToFit];
     self.locationLabel.center = CGPointMake(243 / 2.0, 8 + 23 / 2.0);
     
-    [self loadEntryTitles:[coupon.coupon.desc allKeys]];
-    [self loadEntryContents:[coupon.coupon.desc allValues]];
+    [self loadEntryTitles:[coupon.desc allKeys]];
+    [self loadEntryContents:[coupon.desc allValues]];
 }
 
 @end

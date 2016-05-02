@@ -17,11 +17,6 @@
 @end
 
 
-@implementation CEEJSONCouponDetail
-
-@end
-
-
 @implementation CEEJSONCoupon
 
 @end

@@ -7,7 +7,7 @@ class CouponSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Coupon
-        fields = ('id', 'name', 'location', 'image_key', 'desc', 'gmt_start', 'gmt_end', 'code')
+        fields = ('id', 'name', 'location', 'image_key', 'desc', 'gmt_start', 'gmt_end')
 
 
 class UserCouponSerializer(CouponSerializer):

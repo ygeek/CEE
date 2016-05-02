@@ -15,13 +15,17 @@
 #import "CouponCard.h"
 #import "CEECouponListAPI.h"
 #import "UIImage+Utils.h"
+#import "HUDCouponCodeViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 #define NUMBER_OF_VISIBLE_VIEWS 5
 
 
-@interface DrawerViewController () <CouponScrollViewDataSource, CouponScrollViewDelegate>
+@interface DrawerViewController () <CouponScrollViewDataSource,
+                                    CouponScrollViewDelegate,
+                                    CouponCardDelegate,
+                                    HUDCouponCodeViewControllerDelegate>
 @property (nonatomic, strong) CouponScrollView * scrollView;
 @property (nonatomic, strong) HUDCouponCodeView * codeView;
 @property (nonatomic, assign) BOOL isReload;
@@ -70,15 +74,19 @@
     [super viewDidAppear:animated];
     
     if (!self.coupons) {
-        [SVProgressHUD showWithStatus:@"正在获取优惠券信息"];
-        [[CEECouponListAPI api] fetchCouponList].then(^(NSArray<CEEJSONCoupon *> *coupons) {
-            self.coupons = coupons;
-            [self.scrollView reloadData];
-            [SVProgressHUD dismiss];
-        }).catch(^(NSError *error){
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        });
+        [self reloadAll];
     }
+}
+
+- (void)reloadAll {
+    [SVProgressHUD showWithStatus:@"正在获取优惠券信息"];
+    [[CEECouponListAPI api] fetchCouponList].then(^(NSArray<CEEJSONCoupon *> *coupons) {
+        self.coupons = [coupons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"consumed == NO"]];
+        [self.scrollView reloadData];
+        [SVProgressHUD dismiss];
+    }).catch(^(NSError *error){
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
 }
 
 #pragma mark - Event Handling
@@ -86,7 +94,6 @@
 - (void)menuPressed:(id)sender {
     
 }
-
 
 #pragma mark CouponScrollViewDatasource
 
@@ -103,7 +110,7 @@
         view = [[CouponCard alloc] init];
     }
     
-    int beginIndex = -floor(self.numberOfViews / 2.0f);
+    int beginIndex = -floor(self.numberOfViews / 2.0f) + (self.numberOfViews % 2 == 0);
     int endIndex = floor(self.numberOfViews / 2.0f);
     if (index < beginIndex || index > endIndex || self.numberOfViews == 0) {
         view.hidden = YES;
@@ -113,7 +120,7 @@
     }
     
     CouponCard * couponCard = (CouponCard *)view;
-    
+    couponCard.delegate = self;
     
     CEEJSONCoupon * coupon = self.coupons[index - beginIndex];
     [couponCard loadCoupon:coupon];
@@ -142,6 +149,22 @@
     [snapshot addSubview:head];
     
     return snapshot;
+}
+
+#pragma mark - CouponCardDelegate
+
+- (void)couponCard:(CouponCard *)card consumeCoupon:(CEEJSONCoupon *)coupon {
+    HUDCouponCodeViewController * codeVC = [[HUDCouponCodeViewController alloc] init];
+    codeVC.couponUUID = coupon.uuid;
+    codeVC.delegate = self;
+    [self presentViewController:codeVC animated:YES completion:nil];
+}
+
+#pragma mark - HUDCouponCodeViewControllerDelegate
+
+- (void)couponCodeVerified:(HUDCouponCodeViewController *)controller {
+    [self reloadAll];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark CouponScrollViewDelegate

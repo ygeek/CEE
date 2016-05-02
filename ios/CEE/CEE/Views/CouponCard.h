@@ -12,6 +12,16 @@
 
 #import "CEECoupon.h"
 
+@class CouponCard;
+
+
+@protocol CouponCardDelegate <NSObject>
+
+- (void)couponCard:(CouponCard *)card consumeCoupon:(CEEJSONCoupon *)coupon;
+
+@end
+
+
 @interface CouponCard : UIView
 @property (nonatomic, strong) UIImageView * photoView;
 
@@ -40,6 +50,9 @@
 
 @property (nonatomic, strong) UIView * shadowView;
 
+@property (nonatomic, weak) id<CouponCardDelegate> delegate;
+
+@property (nonatomic, strong) CEEJSONCoupon * coupon;
 - (void)loadCoupon:(CEEJSONCoupon *)coupon;
 
 @end

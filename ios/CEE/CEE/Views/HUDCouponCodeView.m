@@ -13,7 +13,6 @@
 
 
 @interface HUDCouponCodeView () <UIKeyInput>
-@property (nonatomic, strong) UIView * container;
 @property (nonatomic, copy) NSMutableString * codeText;
 @property (nonatomic, strong) UILabel * num1Label;
 @property (nonatomic, strong) UIView * separator1;
@@ -27,105 +26,111 @@
 
 @implementation HUDCouponCodeView
 
-- (UIView *)genHUDView {
-    if (!_container) {
-        _container = [[UIView alloc] init];
-        _container.backgroundColor = [UIColor whiteColor];
-        
-        _num1Label = [[UILabel alloc] init];
-        _num1Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
-        _num1Label.textColor = kCEETextBlackColor;
-        _num1Label.textAlignment = NSTextAlignmentCenter;
-        [_container addSubview:_num1Label];
-        
-        _num2Label = [[UILabel alloc] init];
-        _num2Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
-        _num2Label.textColor = kCEETextBlackColor;
-        _num2Label.textAlignment = NSTextAlignmentCenter;
-        [_container addSubview:_num2Label];
-        
-        _num3Label = [[UILabel alloc] init];
-        _num3Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
-        _num3Label.textColor = kCEETextBlackColor;
-        _num3Label.textAlignment = NSTextAlignmentCenter;
-        [_container addSubview:_num3Label];
-        
-        _num4Label = [[UILabel alloc] init];
-        _num4Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
-        _num4Label.textColor = kCEETextBlackColor;
-        _num4Label.textAlignment = NSTextAlignmentCenter;
-        [_container addSubview:_num4Label];
-        
-        _separator1 = [[UIView alloc] init];
-        _separator1.backgroundColor = kCEETextBlackColor;
-        [_container addSubview:_separator1];
-        
-        _separator2 = [[UIView alloc] init];
-        _separator2.backgroundColor = kCEETextBlackColor;
-        [_container addSubview:_separator2];
-        
-        _separator3 = [[UIView alloc] init];
-        _separator3.backgroundColor = kCEETextBlackColor;
-        [_container addSubview:_separator3];
-        
-        [_num1Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_container.mas_top);
-            make.bottom.equalTo(_container.mas_bottom);
-            make.left.equalTo(_container.mas_left);
-            make.width.equalTo(_container.mas_width).multipliedBy(0.25);
-        }];
-        
-        [_num2Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_container.mas_top);
-            make.bottom.equalTo(_container.mas_bottom);
-            make.left.equalTo(_num1Label.mas_right);
-            make.width.equalTo(_container.mas_width).multipliedBy(0.25);
-        }];
-        
-        [_num3Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_container.mas_top);
-            make.bottom.equalTo(_container.mas_bottom);
-            make.left.equalTo(_num2Label.mas_right);
-            make.width.equalTo(_container.mas_width).multipliedBy(0.25);
-        }];
-        
-        [_num4Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_container.mas_top);
-            make.bottom.equalTo(_container.mas_bottom);
-            make.left.equalTo(_num3Label.mas_right);
-            make.width.equalTo(_container.mas_width).multipliedBy(0.25);
-        }];
-        
-        [_separator1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_container.mas_centerY);
-            make.width.mas_equalTo(1);
-            make.height.mas_equalTo(28);
-            make.left.equalTo(_num1Label.mas_right);
-        }];
-        
-        [_separator2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_container.mas_centerY);
-            make.width.mas_equalTo(1);
-            make.height.mas_equalTo(28);
-            make.left.equalTo(_num2Label.mas_right);
-        }];
-        
-        [_separator3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_container.mas_centerY);
-            make.width.mas_equalTo(1);
-            make.height.mas_equalTo(28);
-            make.left.equalTo(_num3Label.mas_right);
-        }];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
     }
-    return _container;
+    return self;
 }
 
-- (void)makeHUDConstraints {
-    [self.hudView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(230);
-        make.height.mas_equalTo(52);
-        make.center.equalTo(self.hudView.superview);
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.backgroundColor = [UIColor whiteColor];
+    
+    _num1Label = [[UILabel alloc] init];
+    _num1Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
+    _num1Label.textColor = kCEETextBlackColor;
+    _num1Label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_num1Label];
+    
+    _num2Label = [[UILabel alloc] init];
+    _num2Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
+    _num2Label.textColor = kCEETextBlackColor;
+    _num2Label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_num2Label];
+    
+    _num3Label = [[UILabel alloc] init];
+    _num3Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
+    _num3Label.textColor = kCEETextBlackColor;
+    _num3Label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_num3Label];
+    
+    _num4Label = [[UILabel alloc] init];
+    _num4Label.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
+    _num4Label.textColor = kCEETextBlackColor;
+    _num4Label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_num4Label];
+    
+    _separator1 = [[UIView alloc] init];
+    _separator1.backgroundColor = kCEETextBlackColor;
+    [self addSubview:_separator1];
+    
+    _separator2 = [[UIView alloc] init];
+    _separator2.backgroundColor = kCEETextBlackColor;
+    [self addSubview:_separator2];
+    
+    _separator3 = [[UIView alloc] init];
+    _separator3.backgroundColor = kCEETextBlackColor;
+    [self addSubview:_separator3];
+    
+    [_num1Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        make.left.equalTo(self.mas_left);
+        make.width.equalTo(self.mas_width).multipliedBy(0.25);
     }];
+    
+    [_num2Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        make.left.equalTo(_num1Label.mas_right);
+        make.width.equalTo(self.mas_width).multipliedBy(0.25);
+    }];
+    
+    [_num3Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        make.left.equalTo(_num2Label.mas_right);
+        make.width.equalTo(self.mas_width).multipliedBy(0.25);
+    }];
+    
+    [_num4Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        make.left.equalTo(_num3Label.mas_right);
+        make.width.equalTo(self.mas_width).multipliedBy(0.25);
+    }];
+    
+    [_separator1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(28);
+        make.left.equalTo(_num1Label.mas_right);
+    }];
+    
+    [_separator2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(28);
+        make.left.equalTo(_num2Label.mas_right);
+    }];
+    
+    [_separator3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(28);
+        make.left.equalTo(_num3Label.mas_right);
+    }];
+    
+    self.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 - (BOOL)canBecomeFirstResponder {
@@ -139,7 +144,7 @@
     return _codeText;
 }
 
-- (void)updateUI {
+- (void)update {
     if (self.codeText.length > 0) {
         self.num1Label.text = [self.codeText substringWithRange:NSMakeRange(0, 1)];
     } else {
@@ -163,6 +168,8 @@
     } else {
         self.num4Label.text = @"";
     }
+    
+    [self.delegate couponCodeChanged:self.codeText];
 }
 
 #pragma mark - UIKeyInput
@@ -177,7 +184,7 @@
     }
     [self.codeText appendString:text];
 
-    [self updateUI];
+    [self update];
 }
 
 - (void)deleteBackward {
@@ -186,18 +193,7 @@
     }
     [self.codeText deleteCharactersInRange:NSMakeRange(self.codeText.length - 1, 1)];
     
-    [self updateUI];
-}
-
-- (void)show {
-    [super show];
-    self.keyboardType = UIKeyboardTypeNumberPad;
-    [self becomeFirstResponder];
-}
-
-- (void)dismiss {
-    [self resignFirstResponder];
-    [super dismiss];
+    [self update];
 }
 
 @end

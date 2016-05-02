@@ -30,6 +30,8 @@
 		BB3209121CD4E580009D1862 /* CEEStory.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209111CD4E580009D1862 /* CEEStory.m */; };
 		BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209141CD4E6D8009D1862 /* CEECity.m */; };
 		BB3209181CD4E7D7009D1862 /* CEEStoryListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209171CD4E7D7009D1862 /* CEEStoryListAPI.m */; };
+		BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32091A1CD6C9C2009D1862 /* CEECouponConsumeAPI.m */; };
+		BB32091E1CD6CC86009D1862 /* HUDCouponCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32091D1CD6CC86009D1862 /* HUDCouponCodeViewController.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -143,6 +145,10 @@
 		BB3209141CD4E6D8009D1862 /* CEECity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECity.m; sourceTree = "<group>"; };
 		BB3209161CD4E7D7009D1862 /* CEEStoryListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryListAPI.h; sourceTree = "<group>"; };
 		BB3209171CD4E7D7009D1862 /* CEEStoryListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryListAPI.m; sourceTree = "<group>"; };
+		BB3209191CD6C9C2009D1862 /* CEECouponConsumeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEECouponConsumeAPI.h; sourceTree = "<group>"; };
+		BB32091A1CD6C9C2009D1862 /* CEECouponConsumeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECouponConsumeAPI.m; sourceTree = "<group>"; };
+		BB32091C1CD6CC86009D1862 /* HUDCouponCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDCouponCodeViewController.h; sourceTree = "<group>"; };
+		BB32091D1CD6CC86009D1862 /* HUDCouponCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDCouponCodeViewController.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -345,6 +351,8 @@
 				BB48E5D71CD4BB46005150C3 /* CEECouponListAPI.m */,
 				BB3209161CD4E7D7009D1862 /* CEEStoryListAPI.h */,
 				BB3209171CD4E7D7009D1862 /* CEEStoryListAPI.m */,
+				BB3209191CD6C9C2009D1862 /* CEECouponConsumeAPI.h */,
+				BB32091A1CD6C9C2009D1862 /* CEECouponConsumeAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -487,6 +495,8 @@
 				BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */,
 				BB48E5CF1CD465E3005150C3 /* HUDStoryFetchingViewController.h */,
 				BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */,
+				BB32091C1CD6CC86009D1862 /* HUDCouponCodeViewController.h */,
+				BB32091D1CD6CC86009D1862 /* HUDCouponCodeViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -762,6 +772,7 @@
 				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB29EF631CCC6E3A001C25B6 /* MapAnchorView.m in Sources */,
+				BB32091E1CD6CC86009D1862 /* HUDCouponCodeViewController.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BB48E5D81CD4BB46005150C3 /* CEECouponListAPI.m in Sources */,
 				BB48E5CB1CD1A603005150C3 /* HUDCouponAcquiringViewController.m in Sources */,
@@ -775,6 +786,7 @@
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
+				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
 				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,

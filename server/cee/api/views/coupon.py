@@ -35,15 +35,16 @@ class ConsumeCoupon(APIView):
             if code != user_coupon.coupon.code:
                 return Response({
                     'code': -2,
-                    'msg': 'code error',
+                    'msg': '验证码错误',
                 })
             user_coupon.consumed = True
             user_coupon.save(update_fields=['consumed'])
             return Response({
                 'code': 0,
+                'msg': '验证成功'
             })
         except UserCoupon.DoesNotExist:
             return Response({
                 'code': -1,
-                'msg': 'coupon not exists',
+                'msg': '优惠券不存在',
             })

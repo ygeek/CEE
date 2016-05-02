@@ -25,7 +25,6 @@
     self = [super init];
     if (self) {
         self.requestSerializer = [AFJSONRequestSerializer serializer];
-        [self.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         self.responseSerializer = [JSONResponseSerializer serializer];
     }
     return self;

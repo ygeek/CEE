@@ -8,6 +8,15 @@
 
 #import "HUDBaseView.h"
 
-@interface HUDCouponCodeView : HUDBaseView
-@property(nonatomic) UIKeyboardType keyboardType;
+
+@protocol HUDCouponCodeViewDelegate <NSObject>
+
+- (void)couponCodeChanged:(NSString *)code;
+
+@end
+
+
+@interface HUDCouponCodeView : UIView
+@property (nonatomic, weak) id<HUDCouponCodeViewDelegate> delegate;
+@property (nonatomic) UIKeyboardType keyboardType;
 @end
