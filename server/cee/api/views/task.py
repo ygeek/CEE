@@ -70,15 +70,16 @@ class CompleteTask(APIView):
                 awards = []
             return Response({
                 'code': 0,
+                'image_key': task.award_image_key,
                 'awards': awards,
             })
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': 'invalid task id: %s' % task_id,
+                'msg': '非法的任务id: %s' % task_id,
             })
         except Task.DoesNotExist:
             return Response({
                'code': -2,
-                'msg': 'task not exists',
+               'msg': '这是一个不存在的任务',
             })

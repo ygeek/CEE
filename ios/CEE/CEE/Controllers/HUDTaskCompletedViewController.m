@@ -8,11 +8,12 @@
 
 @import Masonry;
 
-#import "HUDStoryCompletedViewController.h"
+#import "HUDTaskCompletedViewController.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+Utils.h"
 
-@interface HUDStoryCompletedViewController ()
+@interface HUDTaskCompletedViewController ()
 @property (nonatomic, strong) UIView * panel;
 @property (nonatomic, strong) UIImageView * picView;
 @property (nonatomic, strong) UILabel * messageLabel;
@@ -22,7 +23,7 @@
 @end
 
 
-@implementation HUDStoryCompletedViewController
+@implementation HUDTaskCompletedViewController
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -119,7 +120,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadSampleData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,11 +131,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)loadSampleData {
-    self.picView.image = [UIImage imageWithColor:[UIColor greenColor] size:CGSizeMake(232, 186)];
+- (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey {
+    CEEJSONAward * award = awards.firstObject;
+    
+    [self.picView cee_setImageWithKey:imageKey];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
     NSAttributedString * moneyAttrStr =
-    [[NSAttributedString alloc] initWithString:@"+100"
+    [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%@", (award ? award.detail[@"amount"] : @(0))]
                                     attributes:@{NSForegroundColorAttributeName: hexColor(0xdfaa4a),
                                                  NSFontAttributeName:[UIFont fontWithName:kCEEFontNameRegular size:21]}];
     NSMutableAttributedString * result = [[NSMutableAttributedString alloc] initWithAttributedString:coinAttrStr];

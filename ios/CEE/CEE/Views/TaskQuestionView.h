@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UIButton * confirmButton;
 @property (nonatomic, strong) NSMutableArray<UIButton *> * optionButtons;
 
+@property (nonatomic, assign) NSUInteger selectedIndex;
+
 - (void)loadOptions:(NSArray<NSString *> *)options;
 - (void)setLocation:(NSString *)location;
 @end

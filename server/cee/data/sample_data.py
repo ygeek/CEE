@@ -141,7 +141,8 @@ story_item_3.save()
 task = Task(name='测试任务',
             desc='这是一组测试用选择题',
             location='北京天安门',
-            coin=100)
+            coin=100,
+            award_image_key='sample_big1_jpg')
 task.save()
 
 choice1 = Choice(task=task,

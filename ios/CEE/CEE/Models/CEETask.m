@@ -21,3 +21,8 @@
 @implementation CEEJSONTask
 
 @end
+
+
+@implementation CEEJSONAward
+
+@end

@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TaskViewController : UIViewController
 
+@class CEEJSONTask;
+@class TaskViewController;
+
+
+@protocol TaskViewControllerDelegate <NSObject>
+
+- (void)task:(CEEJSONTask *)task completedInController:(TaskViewController *)controller;
+
+- (void)task:(CEEJSONTask *)task failedInController:(TaskViewController *)controller;
+
+@end
+
+
+@interface TaskViewController : UIViewController
+@property (nonatomic, weak) id<TaskViewControllerDelegate> delegate;
+@property (nonatomic, strong) CEEJSONTask * task;
 @end

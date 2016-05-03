@@ -23,6 +23,7 @@
 #import "HUDGetNewMapView.h"
 #import "HUDFetchingMapView.h"
 #import "HUDGetMedalView.h"
+#import "HUDTaskCompletedViewController.h"
 #import "TaskViewController.h"
 #import "CEEImageManager.h"
 #import "CEELocationManager.h"
@@ -31,9 +32,10 @@
 #import "UIImageView+Utils.h"
 #import "CEEAcquiredMapsAPI.h"
 #import "CEETaskAPI.h"
+#import "CEETaskCompleteAPI.h"
 
 
-@interface WorldViewController () <HUDViewDelegate>
+@interface WorldViewController () <HUDViewDelegate, TaskViewControllerDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
 @property (nonatomic, strong) UIImageView * mapView;
 @property (nonatomic, strong) NSMutableArray<MapAnchorView *> * anchorViews;
@@ -153,9 +155,6 @@
         self.getMedalHUD = [[HUDGetMedalView alloc] init];
         self.getMedalHUD.delegate = self;
         [self.getMedalHUD show];
-    } else {
-        TaskViewController * vc = [[TaskViewController alloc] init];
-        [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
     }
      */
 }
@@ -195,6 +194,8 @@
         .then(^(CEEJSONTask * task) {
             [SVProgressHUD dismiss];
             TaskViewController * vc = [[TaskViewController alloc] init];
+            vc.delegate = self;
+            vc.task = task;
             [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
         }).catch(^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
@@ -206,6 +207,44 @@
 
 - (void)HUDOverlayViewTouched:(HUDBaseView *)view {
     [view dismiss];
+}
+
+#pragma mark - TaskViewControllerDelegate
+
+- (void)task:(CEEJSONTask *)task completedInController:(TaskViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:^{
+        [SVProgressHUD showWithStatus:@"请稍等…"];
+        
+        for (CEEJSONAnchor * anchor in self.anchors) {
+            if ([anchor.type isEqualToString:kAnchorTypeNameTask] &&
+                [anchor.ref_id isEqualToNumber:task.id]) {
+                anchor.completed = @(YES);
+            }
+        }
+        
+        for (MapAnchorView * anchorView in self.anchorViews) {
+            CEEJSONAnchor * anchor = anchorView.anchor;
+            if ([anchor.type isEqualToString:kAnchorTypeNameTask] &&
+                [anchor.ref_id isEqualToNumber:task.id]) {
+                anchor.completed = @(YES);
+                anchorView.anchorType = MapAnchorTypeTaskFinished;
+            }
+        }
+        
+        [[CEETaskCompleteAPI api] completeTaskWithID:task.id]
+        .then(^(NSArray<CEEJSONAward *> * awards, NSString * image_key) {
+            [SVProgressHUD dismiss];
+            HUDTaskCompletedViewController * vc = [[HUDTaskCompletedViewController alloc] init];
+            [vc loadAwards:awards andImageKey:image_key];
+            [self presentViewController:vc animated:YES completion:nil];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    }];
+}
+
+- (void)task:(CEEJSONTask *)task failedInController:(TaskViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Loads

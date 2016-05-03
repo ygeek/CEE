@@ -37,9 +37,20 @@
 
 
 @interface CEEJSONTask : JSONModel
+@property (nonatomic, strong) NSNumber * id;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * desc;
 @property (nonatomic, strong) NSString * location;
 @property (nonatomic, strong) NSArray<CEEJSONChoice> * choices;
 @property (nonatomic, strong) NSNumber * completed;
+@end
+
+
+@interface CEEJSONAward : JSONModel
+@property (nonatomic, strong) NSString * type;
+@property (nonatomic, strong) NSDictionary * detail;
+@end
+
+
+@protocol CEEJSONAward <NSObject>
 @end

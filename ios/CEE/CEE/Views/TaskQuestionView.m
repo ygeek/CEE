@@ -45,6 +45,7 @@
     [self addSubview:self.closeButton];
     
     self.photoView = [[UIImageView alloc] init];
+    self.photoView.contentMode = UIViewContentModeScaleAspectFill;
     [self.containerView addSubview:self.photoView];
     
     UIImage * locationIcon = [UIImage imageNamed:@"白定位"];
@@ -82,6 +83,7 @@
                 return kCEECircleGrayColor;
             }
         }];
+        [optionButton addTarget:self action:@selector(optionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.optionButtons addObject:optionButton];
     }
     
@@ -96,6 +98,18 @@
     [self.containerView addSubview:self.confirmButton];
     
     [self setupLayout];
+    
+    [RACObserve(self, selectedIndex) subscribeNext:^(NSNumber *index) {
+        for (UIButton * button in self.optionButtons) {
+            button.selected = NO;
+        }
+        
+        if (index.integerValue < 0) {
+            return;
+        }
+
+        self.optionButtons[index.integerValue].selected = YES;
+    }];
 }
 
 - (void)setupLayout {
@@ -149,7 +163,12 @@
     }];
 }
 
+- (void)optionButtonPressed:(UIButton *)button {
+    self.selectedIndex = [self.optionButtons indexOfObject:button];
+}
+
 - (void)loadOptions:(NSArray<NSString *> *)options {
+    self.selectedIndex = -1;
     for (UIButton * optionButton in self.optionButtons) {
         [optionButton removeFromSuperview];
     }

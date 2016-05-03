@@ -10,6 +10,7 @@ class Task(models.Model):
     desc = models.TextField()
     location = models.TextField()
     coin = models.IntegerField()
+    award_image_key = models.CharField(max_length=100)
     owners = models.ManyToManyField(User,
                                     through='UserTask',
                                     related_name='tasks')

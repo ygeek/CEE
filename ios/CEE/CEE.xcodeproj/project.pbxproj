@@ -40,6 +40,7 @@
 		BB3209331CD764A6009D1862 /* CEEAcquiredMapsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209321CD764A6009D1862 /* CEEAcquiredMapsAPI.m */; };
 		BB3209361CD78B82009D1862 /* CEETask.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209351CD78B82009D1862 /* CEETask.m */; };
 		BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209381CD78D38009D1862 /* CEETaskAPI.m */; };
+		BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -49,7 +50,7 @@
 		BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */; };
 		BB48E5C81CD19EAD005150C3 /* HUDGetMedalView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */; };
 		BB48E5CB1CD1A603005150C3 /* HUDCouponAcquiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CA1CD1A603005150C3 /* HUDCouponAcquiringViewController.m */; };
-		BB48E5CE1CD1B03E005150C3 /* HUDStoryCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */; };
+		BB48E5CE1CD1B03E005150C3 /* HUDTaskCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5CD1CD1B03E005150C3 /* HUDTaskCompletedViewController.m */; };
 		BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */; };
 		BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5D41CD489C0005150C3 /* CEEUploadManager.m */; };
 		BB48E5D81CD4BB46005150C3 /* CEECouponListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5D71CD4BB46005150C3 /* CEECouponListAPI.m */; };
@@ -173,6 +174,8 @@
 		BB3209351CD78B82009D1862 /* CEETask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETask.m; sourceTree = "<group>"; };
 		BB3209371CD78D38009D1862 /* CEETaskAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEETaskAPI.h; sourceTree = "<group>"; };
 		BB3209381CD78D38009D1862 /* CEETaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETaskAPI.m; sourceTree = "<group>"; };
+		BB32093A1CD83707009D1862 /* CEETaskCompleteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEETaskCompleteAPI.h; sourceTree = "<group>"; };
+		BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETaskCompleteAPI.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -191,8 +194,8 @@
 		BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDGetMedalView.m; sourceTree = "<group>"; };
 		BB48E5C91CD1A603005150C3 /* HUDCouponAcquiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDCouponAcquiringViewController.h; sourceTree = "<group>"; };
 		BB48E5CA1CD1A603005150C3 /* HUDCouponAcquiringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDCouponAcquiringViewController.m; sourceTree = "<group>"; };
-		BB48E5CC1CD1B03E005150C3 /* HUDStoryCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDStoryCompletedViewController.h; sourceTree = "<group>"; };
-		BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDStoryCompletedViewController.m; sourceTree = "<group>"; };
+		BB48E5CC1CD1B03E005150C3 /* HUDTaskCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDTaskCompletedViewController.h; sourceTree = "<group>"; };
+		BB48E5CD1CD1B03E005150C3 /* HUDTaskCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDTaskCompletedViewController.m; sourceTree = "<group>"; };
 		BB48E5CF1CD465E3005150C3 /* HUDStoryFetchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDStoryFetchingViewController.h; sourceTree = "<group>"; };
 		BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDStoryFetchingViewController.m; sourceTree = "<group>"; };
 		BB48E5D21CD482D1005150C3 /* HTTPStatusCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStatusCodes.h; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				BB3209321CD764A6009D1862 /* CEEAcquiredMapsAPI.m */,
 				BB3209371CD78D38009D1862 /* CEETaskAPI.h */,
 				BB3209381CD78D38009D1862 /* CEETaskAPI.m */,
+				BB32093A1CD83707009D1862 /* CEETaskCompleteAPI.h */,
+				BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -525,8 +530,8 @@
 				BB48E5BE1CD09D91005150C3 /* TaskViewController.m */,
 				BB48E5C91CD1A603005150C3 /* HUDCouponAcquiringViewController.h */,
 				BB48E5CA1CD1A603005150C3 /* HUDCouponAcquiringViewController.m */,
-				BB48E5CC1CD1B03E005150C3 /* HUDStoryCompletedViewController.h */,
-				BB48E5CD1CD1B03E005150C3 /* HUDStoryCompletedViewController.m */,
+				BB48E5CC1CD1B03E005150C3 /* HUDTaskCompletedViewController.h */,
+				BB48E5CD1CD1B03E005150C3 /* HUDTaskCompletedViewController.m */,
 				BB48E5CF1CD465E3005150C3 /* HUDStoryFetchingViewController.h */,
 				BB48E5D01CD465E3005150C3 /* HUDStoryFetchingViewController.m */,
 				BB32091C1CD6CC86009D1862 /* HUDCouponCodeViewController.h */,
@@ -829,6 +834,7 @@
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
+				BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
@@ -837,7 +843,7 @@
 				BB3209271CD72394009D1862 /* CEEMap.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
 				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,
-				BB48E5CE1CD1B03E005150C3 /* HUDStoryCompletedViewController.m in Sources */,
+				BB48E5CE1CD1B03E005150C3 /* HUDTaskCompletedViewController.m in Sources */,
 				BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */,
 				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,

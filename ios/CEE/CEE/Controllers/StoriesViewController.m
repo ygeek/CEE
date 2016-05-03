@@ -18,7 +18,7 @@
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
 #import "HUDCouponAcquiringViewController.h"
-#import "HUDStoryCompletedViewController.h"
+#import "HUDTaskCompletedViewController.h"
 #import "HUDStoryFetchingViewController.h"
 #import "CEEStoryListAPI.h"
 
