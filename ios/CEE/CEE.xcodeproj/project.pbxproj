@@ -47,6 +47,7 @@
 		BB32094B1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32094A1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m */; };
 		BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */; };
 		BB3209511CD9E468009D1862 /* CEEMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209501CD9E468009D1862 /* CEEMedal.m */; };
+		BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -194,6 +195,9 @@
 		BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMedalListAPI.m; sourceTree = "<group>"; };
 		BB32094F1CD9E468009D1862 /* CEEMedal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMedal.h; sourceTree = "<group>"; };
 		BB3209501CD9E468009D1862 /* CEEMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMedal.m; sourceTree = "<group>"; };
+		BB3209521CD9FC58009D1862 /* HUDNetworkErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNetworkErrorViewController.h; sourceTree = "<group>"; };
+		BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNetworkErrorViewController.m; sourceTree = "<group>"; };
+		BB3209551CDA1253009D1862 /* CEENotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEENotificationNames.h; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 				BB6AD3151CC322E000A1E0F7 /* UIImage+Utils.m */,
 				BB32091F1CD6F09F009D1862 /* UIImageView+Utils.h */,
 				BB3209201CD6F09F009D1862 /* UIImageView+Utils.m */,
+				BB3209551CDA1253009D1862 /* CEENotificationNames.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -560,6 +565,8 @@
 				BB32093E1CD9A296009D1862 /* HUDNewMapViewController.m */,
 				BB3209401CD9AB89009D1862 /* UserProfileViewController.h */,
 				BB3209411CD9AB89009D1862 /* UserProfileViewController.m */,
+				BB3209521CD9FC58009D1862 /* HUDNetworkErrorViewController.h */,
+				BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -830,6 +837,7 @@
 				BB6AD3191CC32B9300A1E0F7 /* StoryCoverViewController.m in Sources */,
 				BB3209121CD4E580009D1862 /* CEEStory.m in Sources */,
 				BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */,
+				BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */,
 				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
 				BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */,
 				BB32092D1CD7490D009D1862 /* CEEAnchorsAPI.m in Sources */,

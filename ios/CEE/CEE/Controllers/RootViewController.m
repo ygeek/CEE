@@ -18,6 +18,9 @@
 #import "LoginViewController.h"
 #import "CEEUserSession.h"
 #import "FillProfileViewController.h"
+#import "CEENotificationNames.h"
+#import "HUDNetworkErrorViewController.h"
+
 
 @interface RootViewController ()
 @property (nonatomic, assign) BOOL isAppeared;
@@ -95,6 +98,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkErrorNotification:)
+                                                 name:kCEENetworkErrorNotificationName
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -135,6 +143,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)networkErrorNotification:(NSNotification *)notification {
+    UIViewController * rootVC = self.presentedViewController ?: self;
+    HUDNetworkErrorViewController * vc = [[HUDNetworkErrorViewController alloc] init];
+    [rootVC presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)presentLogin {

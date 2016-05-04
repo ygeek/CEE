@@ -12,6 +12,7 @@
 #import "CEEAPIClient.h"
 #import "HTTPStatusCodes.h"
 #import "CEEUserSession.h"
+#import "CEENotificationNames.h"
 
 
 @implementation CEEBaseResponse
@@ -110,6 +111,12 @@
 }
 
 - (NSError *)processHttpError:(NSError *)error {
+    if ([error.domain isEqualToString:NSURLErrorDomain]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCEENetworkErrorNotificationName
+                                                            object:self
+                                                          userInfo:@{CEE_ERROR_KEY: error}];
+        return error;
+    }
     NSHTTPURLResponse * response = error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
     NSInteger statusCode = response.statusCode;
     NSMutableDictionary * userInfo = [[error userInfo] mutableCopy];
