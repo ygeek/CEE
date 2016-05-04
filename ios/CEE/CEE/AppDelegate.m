@@ -16,6 +16,7 @@
 #import "CEEUtils.h"
 #import "CEEUserSession.h"
 #import "CEEImageManager.h"
+#import "CEELocationManager.h"
 
 @interface AppDelegate ()
 
@@ -29,6 +30,7 @@
     [CEEAppearanceManager setup];
     [CEEImageManager manager];
     [[CEEUserSession session] load];
+    [[CEELocationManager manager] startMonitoringLocationChanges];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
@@ -53,10 +55,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[CEELocationManager manager] stopMonitoringLocationChanges];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[CEELocationManager manager] startMonitoringLocationChanges];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

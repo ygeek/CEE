@@ -13,5 +13,6 @@ class UserMapSerializer(serializers.ModelSerializer):
                   'latitude',
                   'image_key',
                   'icon_key',
+                  'summary_image_key',
                   'city',
                   'completed')

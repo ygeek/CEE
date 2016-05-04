@@ -24,6 +24,7 @@
 #import "HUDFetchingMapView.h"
 #import "HUDGetMedalView.h"
 #import "HUDTaskCompletedViewController.h"
+#import "HUDNewMapViewController.h"
 #import "TaskViewController.h"
 #import "CEEImageManager.h"
 #import "CEELocationManager.h"
@@ -33,6 +34,7 @@
 #import "CEEAcquiredMapsAPI.h"
 #import "CEETaskAPI.h"
 #import "CEETaskCompleteAPI.h"
+#import "CEELocationManager.h"
 
 
 @interface WorldViewController () <HUDViewDelegate, TaskViewControllerDelegate>
@@ -46,9 +48,6 @@
 @property (nonatomic, strong) HUDFetchingMapView * fetchingMapHUD;
 @property (nonatomic, strong) HUDGetMedalView * getMedalHUD;
 
-@property (nonatomic, strong) CEEJSONMap * currentMap;
-@property (nonatomic, strong) NSArray<CEEJSONAnchor *> * anchors;
-@property (nonatomic, strong) NSArray<CEEJSONMap *> * acquiredMaps;
 @end
 
 
@@ -97,8 +96,9 @@
                                       action:@selector(menuPressed:)];
     
     @weakify(self)
-    [RACObserve(self, acquiredMaps) subscribeNext:^(NSArray<CEEJSONMap *> * maps) {
+    [RACObserve([CEELocationManager manager], acquiredMaps) subscribeNext:^(NSArray<CEEJSONMap *> * maps) {
         @strongify(self)
+        
         [self.view layoutIfNeeded];
         if (!maps || maps.count == 0) {
             self.panelOffset.offset(96);
@@ -114,6 +114,11 @@
                              [self.view layoutIfNeeded];
                          }];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(foundNewMapNotification:)
+                                                 name:CEEFoundNewMapNotificationName
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,12 +134,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (!self.currentMap) {
+    if (![CEELocationManager manager].currentMap) {
         [self.fetchingMapHUD show];
         [[CEELocationManager manager] fetchNearestMap]
         .then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
-            self.currentMap = map;
-            self.anchors = anchors;
             [self loadMap:map];
             [self loadAnchors:anchors];
             [self.fetchingMapHUD dismiss];
@@ -147,11 +150,7 @@
     [self loadAcquiredMaps];
     
     /*
-    if (!self.getNewMapHUD) {
-        self.getNewMapHUD = [[HUDGetNewMapView alloc] init];
-        self.getNewMapHUD.delegate = self;
-        [self.getNewMapHUD show];
-    } else if (!self.getMedalHUD) {
+    else if (!self.getMedalHUD) {
         self.getMedalHUD = [[HUDGetMedalView alloc] init];
         self.getMedalHUD.delegate = self;
         [self.getMedalHUD show];
@@ -178,7 +177,7 @@
 
 - (void)moreMapPressed:(id)sender {
     AcquiredMapsViewController * mapsVC = [[AcquiredMapsViewController alloc] init];
-    mapsVC.maps = self.acquiredMaps;
+    mapsVC.maps = [CEELocationManager manager].acquiredMaps;
     [self.navigationController pushViewController:mapsVC animated:YES];
 }
 
@@ -203,6 +202,13 @@
     }
 }
 
+- (void)foundNewMapNotification:(NSNotification *)notification {
+    CEEJSONMap * map = notification.userInfo[CEENewMapKey];
+    HUDNewMapViewController * vc = [[HUDNewMapViewController alloc] init];
+    [vc loadMap:map];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 #pragma mark - HUDViewDelegate
 
 - (void)HUDOverlayViewTouched:(HUDBaseView *)view {
@@ -215,7 +221,7 @@
     [controller dismissViewControllerAnimated:YES completion:^{
         [SVProgressHUD showWithStatus:@"请稍等…"];
         
-        for (CEEJSONAnchor * anchor in self.anchors) {
+        for (CEEJSONAnchor * anchor in [CEELocationManager manager].currentAnchors) {
             if ([anchor.type isEqualToString:kAnchorTypeNameTask] &&
                 [anchor.ref_id isEqualToNumber:task.id]) {
                 anchor.completed = @(YES);
@@ -251,7 +257,7 @@
 
 - (void)loadMap:(CEEJSONMap *)map {
     self.navigationItem.title = map.name;
-    
+   
     [[CEEImageManager manager] queryImageForKey:map.image_key]
     .then(^(UIImage *image) {
         [self setupMapImage:image];
@@ -289,13 +295,9 @@
 }
 
 - (void)loadAcquiredMaps {
-    [[CEEAcquiredMapsAPI api] fetchAcquiredMaps]
+    [[CEELocationManager manager] loadAcquiredMaps]
     .then(^(NSArray<CEEJSONMap *> * maps) {
-        return [self.panelView loadAcquiredMaps:maps].then(^{
-            return maps;
-        });
-    }).then(^(NSArray<CEEJSONMap *> * maps) {
-        self.acquiredMaps = maps;
+        return [self.panelView loadAcquiredMaps:maps];
     });
 }
 

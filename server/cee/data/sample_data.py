@@ -255,6 +255,7 @@ map1 = Map(name='北京天安门',
            geohash=geohash.encode(longitude=116.38, latitude=39.9),
            image_key='sample_map',
            icon_key='sample_small_png',
+           summary_image_key='sample_big2_jpg',
            city=city)
 map1.save()
 
@@ -262,9 +263,10 @@ map2 = Map(name='北京大学',
            desc='这里是北京大学!',
            longitude=116.32,
            latitude=39.99,
-           geohash=geohash.encode(longitude=116.32, latitude=39.99),
+           geohash=geohash.encode(longitude=116.32, latitude=29.99),
            image_key='sample_map',
            icon_key='sample_small_png',
+           summary_image_key='sample_big1_jpg',
            city=city)
 map2.save()
 

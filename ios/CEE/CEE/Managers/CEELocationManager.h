@@ -9,8 +9,13 @@
 @import PromiseKit;
 @import UIKit;
 
+#import "CEEMap.h"
+#import "CEEAnchor.h"
 
-#define CEE_LOCATION_ERROR_DOMAIN @"CEE_LOCATION_ERROR_DOMAIN"
+
+#define CEE_LOCATION_ERROR_DOMAIN       @"CEE_LOCATION_ERROR_DOMAIN"
+#define CEEFoundNewMapNotificationName  @"CEE_FOUND_NEW_MAP"
+#define CEENewMapKey                    @"CEE_NEW_MAP"
 
 
 @class TLCity;
@@ -24,6 +29,19 @@
 
 - (TLCity *)getCityWithName:(NSString *)cityName;
 
+- (AnyPromise *)queryNearestMap;
+
 - (AnyPromise *)fetchNearestMap;
+
+- (AnyPromise *)loadAcquiredMaps;
+
+- (void)startMonitoringLocationChanges;
+
+- (void)stopMonitoringLocationChanges;
+
+@property (nonatomic, strong) CEEJSONMap * currentMap;
+@property (nonatomic, strong) NSArray<CEEJSONAnchor *> * currentAnchors;
+@property (nonatomic, strong) CEEJSONMap * nearestMap;
+@property (nonatomic, strong) NSMutableArray<CEEJSONMap *> * acquiredMaps;
 
 @end

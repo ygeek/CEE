@@ -21,5 +21,6 @@
 @property (nonatomic, strong) NSNumber * latitude;
 @property (nonatomic, strong) NSString * image_key;
 @property (nonatomic, strong) NSString * icon_key;
+@property (nonatomic, strong) NSString * summary_image_key;
 @property (nonatomic, strong) NSString * city;
 @end

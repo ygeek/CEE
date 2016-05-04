@@ -13,6 +13,7 @@ class Map(models.Model):
     geohash = models.CharField(max_length=16, db_index=True)
     image_key = models.CharField(max_length=100)
     icon_key = models.CharField(max_length=100)
+    summary_image_key = models.CharField(max_length=100)
     city = models.ForeignKey(City,
                              related_name='maps')
     owners = models.ManyToManyField(User,
