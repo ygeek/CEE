@@ -302,3 +302,23 @@ anchor4 = Anchor(map=map1,
                  type=Anchor.Type.Task,
                  ref_id=task.id)
 anchor4.save()
+
+
+medal1 = Medal(map=map1,
+               name='测试勋章1',
+               desc='这是第一个测试勋章',
+               icon_key='sample_small_png')
+medal1.save()
+
+user_medal_1 = UserMedal(user=user, medal=medal1)
+user_medal_1.save()
+
+
+medal2 = Medal(map=map2,
+               name='测试勋章2',
+               desc='这是第2个测试勋章',
+               icon_key='sample_small_png')
+medal2.save()
+
+user_medal_2 = UserMedal(user=user, medal=medal2)
+user_medal_2.save()

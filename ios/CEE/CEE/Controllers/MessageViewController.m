@@ -7,10 +7,12 @@
 //
 
 @import Masonry;
+@import RDVTabBarController;
 
 #import "MessageViewController.h"
 #import "MessageTableViewCell.h"
 #import "AppearanceConstants.h"
+#import "UserProfileViewController.h"
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIView * titleView;
@@ -66,7 +68,9 @@
 }
 
 - (void)menuPressed:(id)sender {
-    
+    UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate

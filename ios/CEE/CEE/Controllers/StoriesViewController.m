@@ -14,6 +14,7 @@
 #import "StoryCoverViewController.h"
 #import "StoryTableViewCell.h"
 #import "StoryTableViewCellMenuView.h"
+#import "UserProfileViewController.h"
 #import "RefreshingPanel.h"
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
@@ -90,18 +91,9 @@
 }
 
 - (void)menuPressed:(id)sender {
-    /*
-    CouponAcquiringViewController * vc = [[CouponAcquiringViewController alloc] init];
-    [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
-     */
-    
-    /*
-    HUDStoryCompletedViewController * vc = [[HUDStoryCompletedViewController alloc] init];
-    [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
-     */
-    
-    HUDStoryFetchingViewController * vc = [[HUDStoryFetchingViewController alloc] init];
-    [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
+    UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)refresh {

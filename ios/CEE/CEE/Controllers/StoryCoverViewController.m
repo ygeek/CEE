@@ -18,6 +18,7 @@
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
 #import "AppearanceConstants.h"
+#import "UserProfileViewController.h"
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
@@ -321,7 +322,9 @@
 }
 
 - (void)menuPressed:(id)sender {
-    
+    UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)pageControlClicked:(UIPageControl *)pageControl {

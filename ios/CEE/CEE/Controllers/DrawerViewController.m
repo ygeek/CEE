@@ -8,6 +8,7 @@
 
 @import Masonry;
 @import SVProgressHUD;
+@import RDVTabBarController;
 
 #import "DrawerViewController.h"
 #import "CouponScrollView.h"
@@ -16,6 +17,7 @@
 #import "CEECouponListAPI.h"
 #import "UIImage+Utils.h"
 #import "HUDCouponCodeViewController.h"
+#import "UserProfileViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -92,7 +94,9 @@
 #pragma mark - Event Handling
 
 - (void)menuPressed:(id)sender {
-    
+    UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark CouponScrollViewDatasource

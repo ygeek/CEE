@@ -41,6 +41,12 @@
 		BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209381CD78D38009D1862 /* CEETaskAPI.m */; };
 		BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */; };
 		BB32093F1CD9A296009D1862 /* HUDNewMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32093E1CD9A296009D1862 /* HUDNewMapViewController.m */; };
+		BB3209421CD9AB89009D1862 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209411CD9AB89009D1862 /* UserProfileViewController.m */; };
+		BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209441CD9B0CE009D1862 /* UserProfileView.m */; };
+		BB3209481CD9BD16009D1862 /* MedalNormalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209471CD9BD16009D1862 /* MedalNormalCollectionViewCell.m */; };
+		BB32094B1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32094A1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m */; };
+		BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */; };
+		BB3209511CD9E468009D1862 /* CEEMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209501CD9E468009D1862 /* CEEMedal.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -176,6 +182,18 @@
 		BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETaskCompleteAPI.m; sourceTree = "<group>"; };
 		BB32093D1CD9A296009D1862 /* HUDNewMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNewMapViewController.h; sourceTree = "<group>"; };
 		BB32093E1CD9A296009D1862 /* HUDNewMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNewMapViewController.m; sourceTree = "<group>"; };
+		BB3209401CD9AB89009D1862 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		BB3209411CD9AB89009D1862 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		BB3209431CD9B0CE009D1862 /* UserProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileView.h; sourceTree = "<group>"; };
+		BB3209441CD9B0CE009D1862 /* UserProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileView.m; sourceTree = "<group>"; };
+		BB3209461CD9BD16009D1862 /* MedalNormalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedalNormalCollectionViewCell.h; sourceTree = "<group>"; };
+		BB3209471CD9BD16009D1862 /* MedalNormalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedalNormalCollectionViewCell.m; sourceTree = "<group>"; };
+		BB3209491CD9BD27009D1862 /* MedalEmptyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedalEmptyCollectionViewCell.h; sourceTree = "<group>"; };
+		BB32094A1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedalEmptyCollectionViewCell.m; sourceTree = "<group>"; };
+		BB32094C1CD9E43A009D1862 /* CEEMedalListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMedalListAPI.h; sourceTree = "<group>"; };
+		BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMedalListAPI.m; sourceTree = "<group>"; };
+		BB32094F1CD9E468009D1862 /* CEEMedal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMedal.h; sourceTree = "<group>"; };
+		BB3209501CD9E468009D1862 /* CEEMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMedal.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -390,6 +408,8 @@
 				BB3209381CD78D38009D1862 /* CEETaskAPI.m */,
 				BB32093A1CD83707009D1862 /* CEETaskCompleteAPI.h */,
 				BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */,
+				BB32094C1CD9E43A009D1862 /* CEEMedalListAPI.h */,
+				BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -538,6 +558,8 @@
 				BB32091D1CD6CC86009D1862 /* HUDCouponCodeViewController.m */,
 				BB32093D1CD9A296009D1862 /* HUDNewMapViewController.h */,
 				BB32093E1CD9A296009D1862 /* HUDNewMapViewController.m */,
+				BB3209401CD9AB89009D1862 /* UserProfileViewController.h */,
+				BB3209411CD9AB89009D1862 /* UserProfileViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -582,6 +604,8 @@
 				BB32092F1CD74A7B009D1862 /* CEEAnchor.m */,
 				BB3209341CD78B82009D1862 /* CEETask.h */,
 				BB3209351CD78B82009D1862 /* CEETask.m */,
+				BB32094F1CD9E468009D1862 /* CEEMedal.h */,
+				BB3209501CD9E468009D1862 /* CEEMedal.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,6 +653,12 @@
 				BB48E5C41CD0E4E3005150C3 /* TaskAnswerView.m */,
 				BB48E5C61CD19EAD005150C3 /* HUDGetMedalView.h */,
 				BB48E5C71CD19EAD005150C3 /* HUDGetMedalView.m */,
+				BB3209431CD9B0CE009D1862 /* UserProfileView.h */,
+				BB3209441CD9B0CE009D1862 /* UserProfileView.m */,
+				BB3209461CD9BD16009D1862 /* MedalNormalCollectionViewCell.h */,
+				BB3209471CD9BD16009D1862 /* MedalNormalCollectionViewCell.m */,
+				BB3209491CD9BD27009D1862 /* MedalEmptyCollectionViewCell.h */,
+				BB32094A1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -813,6 +843,7 @@
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
 				BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
+				BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
 				BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */,
@@ -826,7 +857,9 @@
 				BB48E5D81CD4BB46005150C3 /* CEECouponListAPI.m in Sources */,
 				BB48E5CB1CD1A603005150C3 /* HUDCouponAcquiringViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
+				BB3209481CD9BD16009D1862 /* MedalNormalCollectionViewCell.m in Sources */,
 				BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */,
+				BB32094B1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m in Sources */,
 				BB29EF6B1CCE7904001C25B6 /* CouponCard.m in Sources */,
 				BB29EF411CC90A3F001C25B6 /* TLCity.m in Sources */,
 				BB29EF571CCA4716001C25B6 /* CEEDownloadURLAPI.m in Sources */,
@@ -839,11 +872,14 @@
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
 				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,
+				BB3209421CD9AB89009D1862 /* UserProfileViewController.m in Sources */,
+				BB3209511CD9E468009D1862 /* CEEMedal.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB3209271CD72394009D1862 /* CEEMap.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
 				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,
 				BB48E5CE1CD1B03E005150C3 /* HUDTaskCompletedViewController.m in Sources */,
+				BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */,
 				BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */,
 				BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */,
 				BB6103BE1CC7A5A100350809 /* CEEUserSession.m in Sources */,

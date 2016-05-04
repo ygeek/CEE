@@ -19,14 +19,14 @@ urlpatterns = [
     url(r'^v1/userprofile/$', UserProfileView.as_view()),
 
     url(r'^v1/uploadtoken/$', UploadTokenView.as_view()),
-    url(r'^v1/downloadurl/(?P<key>\w+)/$', PrivateDownloadURL.as_view()),
+    url(r'^v1/downloadurl/(?P<key>[\w\-]+)/$', PrivateDownloadURL.as_view()),
 
     url(r'^v1/item/(?P<item_id>\d+)/$', ItemDetail.as_view()),
     url(r'^v1/user/(?P<user_id>\d+)/item/$', UserItemList.as_view()),
 
     # User(open)
-    url(r'^v1/user/(?P<user_id>\d+)/medal/$', UserMedalList.as_view()),
-    url(r'^v1/user/friend/$', UserFriendList.as_view()),
+    url(r'^v1/user/medals/$', UserMedalList.as_view()),
+    url(r'^v1/user/friends/$', UserFriendList.as_view()),
 
     # Map
     url(remove_space(

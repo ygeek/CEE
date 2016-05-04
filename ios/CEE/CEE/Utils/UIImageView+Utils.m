@@ -39,9 +39,11 @@ static char currentOperationIDKey;
                                     self.image = image;
                                 } completion:nil];
             } else {
-                NSLog(@"error: %@", error);
+                NSLog(@"load image key [%@] error: %@", key, error);
             }
         }];
+    }).catch(^(NSError *error) {
+        NSLog(@"get download url for key [%@] error: %@", key, error);
     });
 }
 

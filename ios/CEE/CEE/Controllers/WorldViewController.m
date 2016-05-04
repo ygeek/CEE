@@ -18,9 +18,9 @@
 
 #import "WorldViewController.h"
 #import "AcquiredMapsViewController.h"
+#import "UserProfileViewController.h"
 #import "MapPanelView.h"
 #import "MapAnchorView.h"
-#import "HUDGetNewMapView.h"
 #import "HUDFetchingMapView.h"
 #import "HUDGetMedalView.h"
 #import "HUDTaskCompletedViewController.h"
@@ -44,7 +44,6 @@
 @property (nonatomic, strong) MapPanelView * panelView;
 @property (nonatomic, strong) MASConstraint * panelOffset;
 
-@property (nonatomic, strong) HUDGetNewMapView * getNewMapHUD;
 @property (nonatomic, strong) HUDFetchingMapView * fetchingMapHUD;
 @property (nonatomic, strong) HUDGetMedalView * getMedalHUD;
 
@@ -166,6 +165,11 @@
 }
 
 - (void)menuPressed:(id)sender {
+    UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
+    UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
+    
+    /*
     NSURL *videoURL = [NSURL URLWithString:@"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
     AVPlayer *player = [AVPlayer playerWithURL:videoURL];
     AVPlayerViewController *playerViewController = [AVPlayerViewController new];
@@ -173,6 +177,7 @@
     [self presentViewController:playerViewController animated:YES completion:^{
         [player play];
     }];
+     */
 }
 
 - (void)moreMapPressed:(id)sender {

@@ -1,0 +1,1 @@
+rm db.sqlite3; rm -rf api/migrations/; python manage.py makemigrations api; python manage.py migrate; python manage.py dbshell < data/sqlite-import-city.sql; python manage.py shell < data/sample_data.py

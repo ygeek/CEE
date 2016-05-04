@@ -9,7 +9,7 @@ class Medal(models.Model):
     map = models.OneToOneField(Map, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, unique=True)
     desc = models.TextField()
-    icon_url = models.URLField()
+    icon_key = models.CharField(max_length=100)
     owners = models.ManyToManyField(User,
                                     through='UserMedal',
                                     related_name='medals')
