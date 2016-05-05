@@ -11,3 +11,8 @@
 @implementation CEEJSONStory
 
 @end
+
+
+@implementation CEEJSONLevel
+
+@end

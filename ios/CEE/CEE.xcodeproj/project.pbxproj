@@ -48,6 +48,16 @@
 		BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */; };
 		BB3209511CD9E468009D1862 /* CEEMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209501CD9E468009D1862 /* CEEMedal.m */; };
 		BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */; };
+		BB3209581CDA17FF009D1862 /* CEEStoryLevelsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209571CDA17FF009D1862 /* CEEStoryLevelsAPI.m */; };
+		BB32095B1CDA2003009D1862 /* StoryDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32095A1CDA2003009D1862 /* StoryDialogViewController.m */; };
+		BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32095D1CDA2022009D1862 /* StoryNumberPuzzleViewController.m */; };
+		BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209601CDA2033009D1862 /* StoryTextPuzzleViewController.m */; };
+		BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209631CDA204A009D1862 /* StoryH5ViewController.m */; };
+		BB3209671CDA205C009D1862 /* StoryEmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209661CDA205C009D1862 /* StoryEmptyViewController.m */; };
+		BB32096A1CDA2115009D1862 /* StoryVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209691CDA2115009D1862 /* StoryVideoViewController.m */; };
+		BB32096D1CDA2219009D1862 /* CEEStoriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32096C1CDA2219009D1862 /* CEEStoriesManager.m */; };
+		BB3209701CDA42BE009D1862 /* StoryLevelsRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32096F1CDA42BE009D1862 /* StoryLevelsRootViewController.m */; };
+		BB3209731CDB35FC009D1862 /* HUDNumberInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209721CDB35FC009D1862 /* HUDNumberInputViewController.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -198,6 +208,26 @@
 		BB3209521CD9FC58009D1862 /* HUDNetworkErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNetworkErrorViewController.h; sourceTree = "<group>"; };
 		BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNetworkErrorViewController.m; sourceTree = "<group>"; };
 		BB3209551CDA1253009D1862 /* CEENotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEENotificationNames.h; sourceTree = "<group>"; };
+		BB3209561CDA17FF009D1862 /* CEEStoryLevelsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryLevelsAPI.h; sourceTree = "<group>"; };
+		BB3209571CDA17FF009D1862 /* CEEStoryLevelsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryLevelsAPI.m; sourceTree = "<group>"; };
+		BB3209591CDA2003009D1862 /* StoryDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryDialogViewController.h; sourceTree = "<group>"; };
+		BB32095A1CDA2003009D1862 /* StoryDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryDialogViewController.m; sourceTree = "<group>"; };
+		BB32095C1CDA2022009D1862 /* StoryNumberPuzzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryNumberPuzzleViewController.h; sourceTree = "<group>"; };
+		BB32095D1CDA2022009D1862 /* StoryNumberPuzzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryNumberPuzzleViewController.m; sourceTree = "<group>"; };
+		BB32095F1CDA2033009D1862 /* StoryTextPuzzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTextPuzzleViewController.h; sourceTree = "<group>"; };
+		BB3209601CDA2033009D1862 /* StoryTextPuzzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTextPuzzleViewController.m; sourceTree = "<group>"; };
+		BB3209621CDA204A009D1862 /* StoryH5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryH5ViewController.h; sourceTree = "<group>"; };
+		BB3209631CDA204A009D1862 /* StoryH5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryH5ViewController.m; sourceTree = "<group>"; };
+		BB3209651CDA205C009D1862 /* StoryEmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryEmptyViewController.h; sourceTree = "<group>"; };
+		BB3209661CDA205C009D1862 /* StoryEmptyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryEmptyViewController.m; sourceTree = "<group>"; };
+		BB3209681CDA2115009D1862 /* StoryVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryVideoViewController.h; sourceTree = "<group>"; };
+		BB3209691CDA2115009D1862 /* StoryVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryVideoViewController.m; sourceTree = "<group>"; };
+		BB32096B1CDA2219009D1862 /* CEEStoriesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoriesManager.h; sourceTree = "<group>"; };
+		BB32096C1CDA2219009D1862 /* CEEStoriesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoriesManager.m; sourceTree = "<group>"; };
+		BB32096E1CDA42BE009D1862 /* StoryLevelsRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryLevelsRootViewController.h; sourceTree = "<group>"; };
+		BB32096F1CDA42BE009D1862 /* StoryLevelsRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryLevelsRootViewController.m; sourceTree = "<group>"; };
+		BB3209711CDB35FC009D1862 /* HUDNumberInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNumberInputViewController.h; sourceTree = "<group>"; };
+		BB3209721CDB35FC009D1862 /* HUDNumberInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNumberInputViewController.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -414,6 +444,8 @@
 				BB32093B1CD83707009D1862 /* CEETaskCompleteAPI.m */,
 				BB32094C1CD9E43A009D1862 /* CEEMedalListAPI.h */,
 				BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */,
+				BB3209561CDA17FF009D1862 /* CEEStoryLevelsAPI.h */,
+				BB3209571CDA17FF009D1862 /* CEEStoryLevelsAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -567,6 +599,22 @@
 				BB3209411CD9AB89009D1862 /* UserProfileViewController.m */,
 				BB3209521CD9FC58009D1862 /* HUDNetworkErrorViewController.h */,
 				BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */,
+				BB3209591CDA2003009D1862 /* StoryDialogViewController.h */,
+				BB32095A1CDA2003009D1862 /* StoryDialogViewController.m */,
+				BB32095C1CDA2022009D1862 /* StoryNumberPuzzleViewController.h */,
+				BB32095D1CDA2022009D1862 /* StoryNumberPuzzleViewController.m */,
+				BB32095F1CDA2033009D1862 /* StoryTextPuzzleViewController.h */,
+				BB3209601CDA2033009D1862 /* StoryTextPuzzleViewController.m */,
+				BB3209621CDA204A009D1862 /* StoryH5ViewController.h */,
+				BB3209631CDA204A009D1862 /* StoryH5ViewController.m */,
+				BB3209651CDA205C009D1862 /* StoryEmptyViewController.h */,
+				BB3209661CDA205C009D1862 /* StoryEmptyViewController.m */,
+				BB3209681CDA2115009D1862 /* StoryVideoViewController.h */,
+				BB3209691CDA2115009D1862 /* StoryVideoViewController.m */,
+				BB32096E1CDA42BE009D1862 /* StoryLevelsRootViewController.h */,
+				BB32096F1CDA42BE009D1862 /* StoryLevelsRootViewController.m */,
+				BB3209711CDB35FC009D1862 /* HUDNumberInputViewController.h */,
+				BB3209721CDB35FC009D1862 /* HUDNumberInputViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -590,6 +638,8 @@
 				BB29EF531CCA2F5C001C25B6 /* CEEImageManager.m */,
 				BB48E5D31CD489C0005150C3 /* CEEUploadManager.h */,
 				BB48E5D41CD489C0005150C3 /* CEEUploadManager.m */,
+				BB32096B1CDA2219009D1862 /* CEEStoriesManager.h */,
+				BB32096C1CDA2219009D1862 /* CEEStoriesManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -815,9 +865,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB32095B1CDA2003009D1862 /* StoryDialogViewController.m in Sources */,
 				BB3209241CD72253009D1862 /* CEENearestMapAPI.m in Sources */,
 				BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */,
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
+				BB3209701CDA42BE009D1862 /* StoryLevelsRootViewController.m in Sources */,
 				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
 				BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */,
 				BB3209331CD764A6009D1862 /* CEEAcquiredMapsAPI.m in Sources */,
@@ -827,10 +879,12 @@
 				BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */,
 				BB3209181CD4E7D7009D1862 /* CEEStoryListAPI.m in Sources */,
 				BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */,
+				BB3209581CDA17FF009D1862 /* CEEStoryLevelsAPI.m in Sources */,
 				BB29EF601CCC6E2B001C25B6 /* MapPanelView.m in Sources */,
 				BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */,
 				BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
+				BB3209671CDA205C009D1862 /* StoryEmptyViewController.m in Sources */,
 				BB6AD30A1CC26B5A00A1E0F7 /* StoryTableViewCell.m in Sources */,
 				BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */,
 				BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */,
@@ -849,8 +903,10 @@
 				BB3209211CD6F09F009D1862 /* UIImageView+Utils.m in Sources */,
 				BB29EF541CCA2F5C001C25B6 /* CEEImageManager.m in Sources */,
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
+				BB3209731CDB35FC009D1862 /* HUDNumberInputViewController.m in Sources */,
 				BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
+				BB32096A1CDA2115009D1862 /* StoryVideoViewController.m in Sources */,
 				BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
@@ -876,6 +932,7 @@
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */,
+				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
@@ -885,6 +942,8 @@
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB3209271CD72394009D1862 /* CEEMap.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */,
+				BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */,
 				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,
 				BB48E5CE1CD1B03E005150C3 /* HUDTaskCompletedViewController.m in Sources */,
 				BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */,
@@ -903,6 +962,7 @@
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
 				BB32093F1CD9A296009D1862 /* HUDNewMapViewController.m in Sources */,
 				BB29EF4B1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m in Sources */,
+				BB32096D1CDA2219009D1862 /* CEEStoriesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

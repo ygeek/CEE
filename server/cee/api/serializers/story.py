@@ -21,7 +21,8 @@ class UserStorySerializer(serializers.ModelSerializer):
             'tags',
             'coin',
             'image_keys',
-            'tour_img_key',
+            'tour_image_key',
+            'hud_image_key',
             'completed',
             'progress',
         )

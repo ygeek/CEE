@@ -31,6 +31,7 @@
 - (void)commonInit {
     self.iconView = [[UIImageView alloc] init];
     self.iconView.contentMode = UIViewContentModeCenter;
+    self.iconView.image = [UIImage imageNamed:@"未得到勋章占位图"];
     [self.contentView addSubview:self.iconView];
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);

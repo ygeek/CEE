@@ -85,7 +85,6 @@
                                           target:self
                                           action:@selector(backPressed:)];
    
-    self.headView.backgroundColor = [UIColor clearColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChangeFrameNotification:)
@@ -313,7 +312,8 @@
 }
 
 - (void)setupHeadView {
-    self.headView = [[UIImageView alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(86, 86)]];
+    self.headView = [[UIImageView alloc] init];
+    self.headView.image = [UIImage imageNamed:@"cee-头像"];
     self.headView.layer.masksToBounds = YES;
     self.headView.layer.cornerRadius = 43;
     

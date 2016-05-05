@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class CEEJSONStory;
+
 @interface HUDStoryFetchingViewController : UIViewController
+
+- (void)loadStory:(CEEJSONStory *)story;
 
 @end

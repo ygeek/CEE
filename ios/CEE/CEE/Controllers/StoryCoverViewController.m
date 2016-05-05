@@ -19,6 +19,11 @@
 #import "UIImageView+Utils.h"
 #import "AppearanceConstants.h"
 #import "UserProfileViewController.h"
+#import "CEEStoryLevelsAPI.h"
+#import "HUDStoryFetchingViewController.h"
+#import "CEEStoriesManager.h"
+#import "StoryLevelsRootViewController.h"
+
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
@@ -118,6 +123,7 @@
     [self.goButton setTitleColor:kCEETextBlackColor forState:UIControlStateNormal];
     [self.goButton setBackgroundColor:kCEEThemeYellowColor];
     self.goButton.titleLabel.font = [UIFont fontWithName:kGoboldFontNameRegular size:35];
+    [self.goButton addTarget:self action:@selector(goPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.contentScrollView];
     
@@ -281,7 +287,7 @@
     self.progressTitleLabel.text = @"进度：";
     self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.story.progress.floatValue * 100];
     
-    [self.distanceIcon cee_setImageWithKey:self.story.tour_img_key];
+    [self.distanceIcon cee_setImageWithKey:self.story.tour_image_key];
     self.distanceTitleLabel.text = @"行程：";
     self.distanceLabel.text = [NSString stringWithFormat:@"%.1fKM", self.story.distance.floatValue];
 }
@@ -329,6 +335,22 @@
 
 - (void)pageControlClicked:(UIPageControl *)pageControl {
     [self.imagesScrollView scrollRectToVisible:self.imageViews[pageControl.currentPage].frame animated:YES];
+}
+
+- (void)goPressed:(id)sender {
+    HUDStoryFetchingViewController * hud = [[HUDStoryFetchingViewController alloc] init];
+    [hud loadStory:self.story];
+    [self.rdv_tabBarController presentViewController:hud animated:YES completion:nil];
+    
+    [[CEEStoriesManager manager] downloadStoryWithID:self.story.id]
+    .then(^(NSArray<CEEJSONLevel *> * levels) {
+        [hud dismissViewControllerAnimated:YES completion:^{
+            StoryLevelsRootViewController * levelsRoot = [[StoryLevelsRootViewController alloc] init];
+            levelsRoot.levels = levels;
+            [levelsRoot nextLevel];
+            [self.rdv_tabBarController presentViewController:levelsRoot animated:YES completion:nil];
+        }];
+    });
 }
 
 #pragma mark - Private Methods

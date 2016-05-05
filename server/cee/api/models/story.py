@@ -18,7 +18,8 @@ class Story(models.Model):
     city = models.ForeignKey(City, related_name='stories')
     coin = models.IntegerField(default=0)
     image_keys = JsonField()
-    tour_img_key = models.CharField(max_length=100)
+    tour_image_key = models.CharField(max_length=100)
+    hud_image_key = models.CharField(max_length=100)
 
 
 class UserStory(models.Model):

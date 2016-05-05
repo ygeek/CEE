@@ -14,6 +14,7 @@
 @end
 
 @interface CEEJSONStory : JSONModel
+@property (nonatomic, strong) NSNumber * id;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * desc;
 @property (nonatomic, strong) NSNumber * time;
@@ -23,7 +24,20 @@
 @property (nonatomic, strong) NSArray<NSString *> * tags;
 @property (nonatomic, strong) NSNumber * coin;
 @property (nonatomic, strong) NSArray<NSString *> * image_keys;
-@property (nonatomic, strong) NSString * tour_img_key;
+@property (nonatomic, strong) NSString * tour_image_key;
+@property (nonatomic, strong) NSString * hud_image_key;
 @property (nonatomic, strong) NSNumber<Optional> * completed;
 @property (nonatomic, strong) NSNumber<Optional> * progress;
+@end
+
+
+@protocol CEEJSONLevel <NSObject>
+@end
+
+
+@interface CEEJSONLevel : JSONModel
+@property (nonatomic, strong) NSNumber * id;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSNumber * order;
+@property (nonatomic, strong) NSDictionary * content;
 @end

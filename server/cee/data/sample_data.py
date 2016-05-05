@@ -25,14 +25,16 @@ story = Story(name='测试故事',
               city=city,
               coin=100,
               image_keys=['sample_big1_jpg', 'sample_big2_jpg'],
-              tour_img_key='sample_small_png')
+              tour_image_key='sample_small_png',
+              hud_image_key='sample_big1_jpg')
 story.save()
 
 
 level_dialog = Level(name='测试对话关卡',
                      content={'type': 'dialog',
                               'img': 'sample_big1_jpg',
-                              'text': '这是一段对白啊对白', })
+                              'sayer': '说话人的名字',
+                              'text': '这是一段对白啊对白\n还带换行的!', })
 level_dialog.save()
 
 
@@ -44,22 +46,23 @@ level_video.save()
 
 level_num_puzzle = Level(name='测试数字谜题关卡',
                          content={'type': 'number',
-                                  'img': 'sample_small_png',
+                                  'img': 'sample_big1_jpg',
                                   'text': '这是谜题的说明文字啊',
-                                  'answer': '12345'})
+                                  'answer': '1234'})
 level_num_puzzle.save()
 
 
 level_text_puzzle = Level(name='测试文字谜题关卡',
                           content={'type': 'text',
-                                   'img': 'sample_small_png',
+                                   'img': 'sample_big2_jpg',
                                    'text': '这是谜题的说明文字啊',
-                                   'answer': '这是真正的答案啊!'})
+                                   'answer': 'answer123'})
 level_text_puzzle.save()
 
 
 level_empty = Level(name='测试空白关卡',
                     content={'type': 'empty',
+                             'img': 'sample_big1_jpg',
                              'event': 'test_event_name'})
 level_empty.save()
 

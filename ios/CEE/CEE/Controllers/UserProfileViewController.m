@@ -113,14 +113,14 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.medals.count) {
+        CEEJSONMedal * medal = self.medals[indexPath.row];
         MedalNormalCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMedalNormalCellIdentifier
                                                                                          forIndexPath:indexPath];
-        cell.iconView.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(70, 58)];
+        [cell.iconView cee_setImageWithKey:medal.icon_key];
         return cell;
     } else {
         MedalEmptyCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMedalEmptyCellIdentifier
                                                                                         forIndexPath:indexPath];
-        cell.iconView.image = [UIImage imageWithColor:[UIColor purpleColor] size:CGSizeMake(45, 45)];
         return cell;
     }
 }
@@ -131,7 +131,12 @@
                                                                            withReuseIdentifier:kMedalHeaderIdentifier
                                                                                   forIndexPath:indexPath];
         CEEJSONUserProfile * profile = [CEEUserSession session].userProfile;
-        [profileView.headImageView cee_setImageWithKey:profile.head_img_key];
+        UIImage * defaultHead = [UIImage imageNamed:@"cee-头像"];
+        if (profile.head_img_key && profile.head_img_key.length > 0) {
+            [profileView.headImageView cee_setImageWithKey:profile.head_img_key placeholder:defaultHead];
+        } else {
+            profileView.headImageView.image = defaultHead;
+        }
         profileView.nicknameLabel.text = profile.nickname;
         profileView.coinLabel.text = @"3200";
         profileView.friendsLabel.text = @"24";

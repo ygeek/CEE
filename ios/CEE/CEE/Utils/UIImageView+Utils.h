@@ -12,4 +12,6 @@
 
 - (void)cee_setImageWithKey:(NSString *)key;
 
+- (void)cee_setImageWithKey:(NSString *)key placeholder:(UIImage *)image;
+
 @end

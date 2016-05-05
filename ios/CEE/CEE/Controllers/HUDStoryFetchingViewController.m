@@ -11,6 +11,8 @@
 #import "HUDStoryFetchingViewController.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+Utils.h"
+#import "CEEStory.h"
 
 
 @interface HUDStoryFetchingViewController ()
@@ -83,7 +85,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadSampleData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,8 +92,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadSampleData {
-    self.picView.image = [UIImage imageWithColor:[UIColor greenColor] size:CGSizeMake(232, 251)];
+- (void)loadStory:(CEEJSONStory *)story {
+    [self.picView cee_setImageWithKey:story.hud_image_key];
 }
 
 @end
