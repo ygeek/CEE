@@ -17,7 +17,7 @@ from .qiniu import *
 from .anchor import *
 from .level import *
 from .item import *
-from .friends import *
+from .userInfo import *
 
 class Hello(APIView):
     """ Example view """

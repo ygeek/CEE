@@ -41,3 +41,4 @@ INSERT INTO api_levelcoupon(`id`, `amount`, `remain`, `coupon_id`, `level_id`, `
 (1, 10, 10, 1, 1, 1),
 (2, 10, 0, 2, 1, 1),
 (3, 10, 10, 2, 2, 1);
+
