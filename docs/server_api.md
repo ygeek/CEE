@@ -881,3 +881,37 @@ Authorization: Token xxxxxxx
     "code": 0
 }
 ```
+
+
+## 获取用户信息
+### Request
+```http
+GET /api/v1/user/info/
+Authorization: Token xxxxxxx
+```
+### Response
+```http
+{
+  "code": 0,
+  "userInfo": {
+    "id": 1,
+    "coin": 10,
+    "medals": [
+      {
+        "id": 1,
+        "name": "Medal-1",
+        "desc": "Medal-Desc-1",
+        "icon_key": "medal-1.png"
+      },
+      {
+        "id": 2,
+        "name": "Medal-2",
+        "desc": "Medal-Desc-2",
+        "icon_key": "medal-2.png"
+      }
+    ],
+    "head_img_key": null,
+    "friend_num": 1
+  }
+}
+```
