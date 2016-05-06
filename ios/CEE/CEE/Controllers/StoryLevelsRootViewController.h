@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class CEEJSONLevel;
+@class CEEJSONItem;
 
 @interface StoryLevelsRootViewController : UINavigationController
 
 @property (nonatomic, strong) NSArray<CEEJSONLevel *> * levels;
+@property (nonatomic, strong) NSArray<CEEJSONItem *> * items;
 
 - (void)nextLevel;
+
+- (NSArray<CEEJSONLevel *> *)completedLevels;
 
 @end

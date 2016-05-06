@@ -53,8 +53,13 @@
     if (!self.videoPlayed) {
         [self loadVideoURL];
     } else {
-        StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
-        [levelsRoot nextLevel];
+        if (self.navigationController && [self.navigationController isKindOfClass:[StoryLevelsRootViewController class]]) {
+            StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
+            [levelsRoot nextLevel];
+        } else {
+            // Memory Mode
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 

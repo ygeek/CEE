@@ -58,6 +58,13 @@
 		BB32096D1CDA2219009D1862 /* CEEStoriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32096C1CDA2219009D1862 /* CEEStoriesManager.m */; };
 		BB3209701CDA42BE009D1862 /* StoryLevelsRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32096F1CDA42BE009D1862 /* StoryLevelsRootViewController.m */; };
 		BB3209731CDB35FC009D1862 /* HUDNumberInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209721CDB35FC009D1862 /* HUDNumberInputViewController.m */; };
+		BB3209771CDB92F8009D1862 /* StoryItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209761CDB92F8009D1862 /* StoryItemsViewController.m */; };
+		BB32097A1CDB94B5009D1862 /* CEETriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209791CDB94B5009D1862 /* CEETriangleView.m */; };
+		BB32097D1CDBA785009D1862 /* StoryMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32097C1CDBA785009D1862 /* StoryMemoryViewController.m */; };
+		BB3209801CDBA7D5009D1862 /* MemoryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32097F1CDBA7D5009D1862 /* MemoryItemView.m */; };
+		BB3209831CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209821CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m */; };
+		BB3209861CDC13D8009D1862 /* CEEStoryItemsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209851CDC13D8009D1862 /* CEEStoryItemsAPI.m */; };
+		BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209881CDC2055009D1862 /* StoryItemCollectionViewCell.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -207,7 +214,6 @@
 		BB3209501CD9E468009D1862 /* CEEMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMedal.m; sourceTree = "<group>"; };
 		BB3209521CD9FC58009D1862 /* HUDNetworkErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNetworkErrorViewController.h; sourceTree = "<group>"; };
 		BB3209531CD9FC58009D1862 /* HUDNetworkErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNetworkErrorViewController.m; sourceTree = "<group>"; };
-		BB3209551CDA1253009D1862 /* CEENotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEENotificationNames.h; sourceTree = "<group>"; };
 		BB3209561CDA17FF009D1862 /* CEEStoryLevelsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryLevelsAPI.h; sourceTree = "<group>"; };
 		BB3209571CDA17FF009D1862 /* CEEStoryLevelsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryLevelsAPI.m; sourceTree = "<group>"; };
 		BB3209591CDA2003009D1862 /* StoryDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryDialogViewController.h; sourceTree = "<group>"; };
@@ -228,6 +234,21 @@
 		BB32096F1CDA42BE009D1862 /* StoryLevelsRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryLevelsRootViewController.m; sourceTree = "<group>"; };
 		BB3209711CDB35FC009D1862 /* HUDNumberInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNumberInputViewController.h; sourceTree = "<group>"; };
 		BB3209721CDB35FC009D1862 /* HUDNumberInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNumberInputViewController.m; sourceTree = "<group>"; };
+		BB3209741CDB90DE009D1862 /* CEENotificationNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEENotificationNames.h; sourceTree = "<group>"; };
+		BB3209751CDB92F8009D1862 /* StoryItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryItemsViewController.h; sourceTree = "<group>"; };
+		BB3209761CDB92F8009D1862 /* StoryItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryItemsViewController.m; sourceTree = "<group>"; };
+		BB3209781CDB94B5009D1862 /* CEETriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEETriangleView.h; sourceTree = "<group>"; };
+		BB3209791CDB94B5009D1862 /* CEETriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEETriangleView.m; sourceTree = "<group>"; };
+		BB32097B1CDBA785009D1862 /* StoryMemoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryMemoryViewController.h; sourceTree = "<group>"; };
+		BB32097C1CDBA785009D1862 /* StoryMemoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryMemoryViewController.m; sourceTree = "<group>"; };
+		BB32097E1CDBA7D5009D1862 /* MemoryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryItemView.h; sourceTree = "<group>"; };
+		BB32097F1CDBA7D5009D1862 /* MemoryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryItemView.m; sourceTree = "<group>"; };
+		BB3209811CDC0BD8009D1862 /* MemoryItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryItemCollectionViewCell.h; sourceTree = "<group>"; };
+		BB3209821CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryItemCollectionViewCell.m; sourceTree = "<group>"; };
+		BB3209841CDC13D8009D1862 /* CEEStoryItemsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryItemsAPI.h; sourceTree = "<group>"; };
+		BB3209851CDC13D8009D1862 /* CEEStoryItemsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryItemsAPI.m; sourceTree = "<group>"; };
+		BB3209871CDC2055009D1862 /* StoryItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryItemCollectionViewCell.h; sourceTree = "<group>"; };
+		BB3209881CDC2055009D1862 /* StoryItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryItemCollectionViewCell.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -446,6 +467,8 @@
 				BB32094D1CD9E43A009D1862 /* CEEMedalListAPI.m */,
 				BB3209561CDA17FF009D1862 /* CEEStoryLevelsAPI.h */,
 				BB3209571CDA17FF009D1862 /* CEEStoryLevelsAPI.m */,
+				BB3209841CDC13D8009D1862 /* CEEStoryItemsAPI.h */,
+				BB3209851CDC13D8009D1862 /* CEEStoryItemsAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -478,7 +501,6 @@
 				BB6AD3151CC322E000A1E0F7 /* UIImage+Utils.m */,
 				BB32091F1CD6F09F009D1862 /* UIImageView+Utils.h */,
 				BB3209201CD6F09F009D1862 /* UIImageView+Utils.m */,
-				BB3209551CDA1253009D1862 /* CEENotificationNames.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -550,6 +572,7 @@
 		BBA5324A1CBBD0F500282D3E /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				BB3209741CDB90DE009D1862 /* CEENotificationNames.h */,
 				BB48E5D21CD482D1005150C3 /* HTTPStatusCodes.h */,
 				BB6AD2ED1CC2287200A1E0F7 /* Localizable.strings */,
 				BB6AD3001CC2512500A1E0F7 /* AppearanceConstants.h */,
@@ -615,6 +638,10 @@
 				BB32096F1CDA42BE009D1862 /* StoryLevelsRootViewController.m */,
 				BB3209711CDB35FC009D1862 /* HUDNumberInputViewController.h */,
 				BB3209721CDB35FC009D1862 /* HUDNumberInputViewController.m */,
+				BB3209751CDB92F8009D1862 /* StoryItemsViewController.h */,
+				BB3209761CDB92F8009D1862 /* StoryItemsViewController.m */,
+				BB32097B1CDBA785009D1862 /* StoryMemoryViewController.h */,
+				BB32097C1CDBA785009D1862 /* StoryMemoryViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -716,6 +743,14 @@
 				BB3209471CD9BD16009D1862 /* MedalNormalCollectionViewCell.m */,
 				BB3209491CD9BD27009D1862 /* MedalEmptyCollectionViewCell.h */,
 				BB32094A1CD9BD27009D1862 /* MedalEmptyCollectionViewCell.m */,
+				BB3209781CDB94B5009D1862 /* CEETriangleView.h */,
+				BB3209791CDB94B5009D1862 /* CEETriangleView.m */,
+				BB32097E1CDBA7D5009D1862 /* MemoryItemView.h */,
+				BB32097F1CDBA7D5009D1862 /* MemoryItemView.m */,
+				BB3209811CDC0BD8009D1862 /* MemoryItemCollectionViewCell.h */,
+				BB3209821CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m */,
+				BB3209871CDC2055009D1862 /* StoryItemCollectionViewCell.h */,
+				BB3209881CDC2055009D1862 /* StoryItemCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -885,6 +920,7 @@
 				BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
 				BB3209671CDA205C009D1862 /* StoryEmptyViewController.m in Sources */,
+				BB3209801CDBA7D5009D1862 /* MemoryItemView.m in Sources */,
 				BB6AD30A1CC26B5A00A1E0F7 /* StoryTableViewCell.m in Sources */,
 				BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */,
 				BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */,
@@ -893,6 +929,7 @@
 				BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */,
 				BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */,
 				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
+				BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */,
 				BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */,
 				BB32092D1CD7490D009D1862 /* CEEAnchorsAPI.m in Sources */,
 				BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */,
@@ -905,12 +942,14 @@
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
 				BB3209731CDB35FC009D1862 /* HUDNumberInputViewController.m in Sources */,
 				BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */,
+				BB3209831CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m in Sources */,
 				BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */,
 				BB32096A1CDA2115009D1862 /* StoryVideoViewController.m in Sources */,
 				BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
 				BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */,
+				BB32097A1CDB94B5009D1862 /* CEETriangleView.m in Sources */,
 				BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
 				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,
@@ -930,6 +969,7 @@
 				BB29EF421CC90A3F001C25B6 /* TLCityGroupCell.m in Sources */,
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
+				BB32097D1CDBA785009D1862 /* StoryMemoryViewController.m in Sources */,
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */,
 				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
@@ -959,10 +999,12 @@
 				BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */,
 				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
 				BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */,
+				BB3209771CDB92F8009D1862 /* StoryItemsViewController.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,
 				BB32093F1CD9A296009D1862 /* HUDNewMapViewController.m in Sources */,
 				BB29EF4B1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m in Sources */,
 				BB32096D1CDA2219009D1862 /* CEEStoriesManager.m in Sources */,
+				BB3209861CDC13D8009D1862 /* CEEStoryItemsAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

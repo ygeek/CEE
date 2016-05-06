@@ -16,3 +16,8 @@
 @implementation CEEJSONLevel
 
 @end
+
+
+@implementation CEEJSONItem
+
+@end

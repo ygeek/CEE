@@ -343,10 +343,11 @@
     [self.rdv_tabBarController presentViewController:hud animated:YES completion:nil];
     
     [[CEEStoriesManager manager] downloadStoryWithID:self.story.id]
-    .then(^(NSArray<CEEJSONLevel *> * levels) {
+    .then(^(NSArray * levelsAndItems) {
         [hud dismissViewControllerAnimated:YES completion:^{
             StoryLevelsRootViewController * levelsRoot = [[StoryLevelsRootViewController alloc] init];
-            levelsRoot.levels = levels;
+            levelsRoot.levels = levelsAndItems[0];
+            levelsRoot.items = levelsAndItems[1];
             [levelsRoot nextLevel];
             [self.rdv_tabBarController presentViewController:levelsRoot animated:YES completion:nil];
         }];

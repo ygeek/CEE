@@ -11,6 +11,9 @@
 
 
 #define kCEENetworkErrorNotificationName @"kCEENetworkErrorNotificationName"
+#define kCEEEventNotificationName        @"kCEEEventNotificationName"
+
+#define kCEEEventNameKey @"kCEEEventKey"
 
 
 #endif /* CEENotificationNames_h */

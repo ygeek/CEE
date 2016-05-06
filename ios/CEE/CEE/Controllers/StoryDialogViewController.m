@@ -14,6 +14,7 @@
 #import "AppearanceConstants.h"
 #import "UIImageView+Utils.h"
 #import "StoryLevelsRootViewController.h"
+#import "StoryItemsViewController.h"
 
 
 @interface StoryDialogViewController ()
@@ -110,8 +111,13 @@
 }
 
 - (void)skipPressed:(id)sender {
-    StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
-    [levelsRoot nextLevel];
+    if (self.navigationController && [self.navigationController isKindOfClass:[StoryLevelsRootViewController class]]) {
+        StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
+        [levelsRoot nextLevel];
+    } else {
+        // Memory Mode
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)backPressed:(id)sender {
@@ -119,7 +125,12 @@
 }
 
 - (void)archivePressed:(id)sender {
-    
+    StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
+    StoryItemsViewController * itemsVC = [[StoryItemsViewController alloc] init];
+    itemsVC.completedLevels = levelsRoot.completedLevels;
+    itemsVC.items = levelsRoot.items;
+    UINavigationController * navVC = [[UINavigationController alloc] initWithRootViewController:itemsVC];
+    [self presentViewController:navVC animated:YES completion:nil];
 }
 
 - (void)setImage:(UIImage *)image {

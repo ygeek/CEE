@@ -14,6 +14,7 @@
 #import "StoryTextPuzzleViewController.h"
 #import "AppearanceConstants.h"
 #import "StoryLevelsRootViewController.h"
+#import "StoryItemsViewController.h"
 
 
 @interface StoryTextPuzzleViewController ()
@@ -179,7 +180,12 @@
 }
 
 - (void)archivePressed:(id)sender {
-    
+    StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
+    StoryItemsViewController * itemsVC = [[StoryItemsViewController alloc] init];
+    itemsVC.completedLevels = levelsRoot.completedLevels;
+    itemsVC.items = levelsRoot.items;
+    UINavigationController * navVC = [[UINavigationController alloc] initWithRootViewController:itemsVC];
+    [self presentViewController:navVC animated:YES completion:nil];
 }
 
 - (void)confirmPressed:(id)sender {

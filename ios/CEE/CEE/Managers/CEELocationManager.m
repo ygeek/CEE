@@ -128,6 +128,67 @@
     self.locatingTimer = nil;
 }
 
+- (BOOL)openNavigationAppToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
+    if ([self openGaodeNavigationToLatitude:latitude longitude:longitude]) {
+        return YES;
+    }
+    if ([self openBaiduNavigationToLatitude:latitude longitude:longitude]) {
+        return YES;
+    }
+    if ([self openGoogleNavigationToLatitude:latitude longitude:longitude]) {
+        return YES;
+    }
+    if ([self openAppleNavigationToLatitude:latitude longitude:longitude]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)openAppleNavigationToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = latitude;
+    coordinate.longitude = longitude;
+    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+    MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil]];
+    return [MKMapItem openMapsWithItems:@[currentLocation, toLocation]
+                   launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,
+                                   MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
+}
+
+- (BOOL)openBaiduNavigationToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = latitude;
+    coordinate.longitude = longitude;
+    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",
+                            coordinate.latitude,
+                            coordinate.longitude]
+                           stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
+- (BOOL)openGaodeNavigationToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = latitude;
+    coordinate.longitude = longitude;
+    NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",
+                            @"城市彩蛋",
+                            @"cee://",
+                            coordinate.latitude,
+                            coordinate.longitude]
+                           stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
+- (BOOL)openGoogleNavigationToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
+    NSString *urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",
+                            @"城市彩蛋",
+                            @"cee://",
+                            latitude,
+                            longitude]
+                           stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
 - (void)updateLocationFired:(NSTimer *)timer {
     [self queryNearestMap].then(^(CEEJSONMap * map) {
         NSLog(@"nearest map: %@", map.name);

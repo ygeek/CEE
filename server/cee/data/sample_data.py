@@ -63,7 +63,7 @@ level_text_puzzle.save()
 level_empty = Level(name='测试空白关卡',
                     content={'type': 'empty',
                              'img': 'sample_big1_jpg',
-                             'event': 'test_event_name'})
+                             'event': 'event1'})
 level_empty.save()
 
 
@@ -111,7 +111,8 @@ item_1 = Item(name='导航到天安门测试道具',
               activate_at=1,
               content={'type': 'navigation',
                        'icon': 'sample_small_png',
-                       'event': 'nav_event',
+                       'text': '这是一段说明文字啊说明文字',
+                       'event': 'event1',
                        'latitude': 39.90,
                        'longitude': 116.38})
 item_1.save()
@@ -129,7 +130,8 @@ item_3 = Item(name='测试锁箱道具',
               activate_at=3,
               content={'type': 'lock',
                        'icon': 'sample_small_png',
-                       'event': 'unlock_event'})
+                       'text': '这又是一段说明文字啊说明文字',
+                       'event': 'event2'})
 item_3.save()
 
 

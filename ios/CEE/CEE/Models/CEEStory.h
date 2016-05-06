@@ -41,3 +41,14 @@
 @property (nonatomic, strong) NSNumber * order;
 @property (nonatomic, strong) NSDictionary * content;
 @end
+
+
+@protocol CEEJSONItem <NSObject>
+@end
+
+
+@interface CEEJSONItem : JSONModel
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSNumber * activate_at;
+@property (nonatomic, strong) NSDictionary * content;
+@end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface StoryH5ViewController : UIViewController
-
+@property (nonatomic, copy) NSString * url;
 @end

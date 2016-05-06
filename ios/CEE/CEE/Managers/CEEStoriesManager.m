@@ -10,6 +10,7 @@
 
 #import "CEEStoriesManager.h"
 #import "CEEStoryLevelsAPI.h"
+#import "CEEStoryItemsAPI.h"
 #import "CEEImageManager.h"
 
 
@@ -25,6 +26,11 @@
 }
 
 - (AnyPromise *)downloadStoryWithID:(NSNumber *)storyID {
+    return PMKJoin(@[[self downloadLevelsWithStoryID:storyID],
+                     [self downloadItemsWithStoryID:storyID]]);
+}
+
+- (AnyPromise *)downloadLevelsWithStoryID:(NSNumber *)storyID {
     return [[CEEStoryLevelsAPI api] fetchLevelsWithStoryID:storyID]
     .then(^(NSArray<CEEJSONLevel *> * levels) {
         NSMutableArray * downloadPromises = [NSMutableArray array];
@@ -36,6 +42,22 @@
         }
         return PMKJoin(downloadPromises).then(^{
             return levels;
+        });
+    });
+}
+
+- (AnyPromise *)downloadItemsWithStoryID:(NSNumber *)storyID {
+    return [[CEEStoryItemsAPI api] fetchItemsWithStoryID:storyID]
+    .then(^(NSArray<CEEJSONItem *> * items) {
+        NSMutableArray * downloadPromises = [NSMutableArray array];
+        for (CEEJSONItem * item in items) {
+            NSString * imgKey = [item.content objectForKey:@"icon"];
+            if (imgKey) {
+                [downloadPromises addObject:[[CEEImageManager manager] downloadImageForKey:imgKey]];
+            }
+        }
+        return PMKJoin(downloadPromises).then(^{
+            return items;
         });
     });
 }

@@ -39,6 +39,8 @@
 
 - (void)stopMonitoringLocationChanges;
 
+- (BOOL)openNavigationAppToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
+
 @property (nonatomic, strong) CEEJSONMap * currentMap;
 @property (nonatomic, strong) NSArray<CEEJSONAnchor *> * currentAnchors;
 @property (nonatomic, strong) CEEJSONMap * nearestMap;

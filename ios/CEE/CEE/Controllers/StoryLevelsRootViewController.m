@@ -33,8 +33,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)currentLevel {
+    return self.viewControllers.count - 1;
+}
+
 - (void)nextLevel {
-    NSUInteger nextIndex = self.viewControllers.count;
+    NSUInteger nextIndex = self.currentLevel + 1;
     if (nextIndex >= self.levels.count) {
         // TODO: 完成任务
         return;
@@ -79,16 +83,24 @@
         nextVC = textVC;
     } else if ([type isEqualToString:@"empty"]) {
         StoryEmptyViewController * emptyVC = [[StoryEmptyViewController alloc] init];
-        
+        [[CEEImageManager manager] queryImageForKey:level.content[@"img"]]
+        .then(^(UIImage *image) {
+            emptyVC.image = image;
+        });
+        emptyVC.requiredEvent = level.content[@"event"];
         nextVC = emptyVC;
     } else if ([type isEqualToString:@"h5"]) {
         StoryH5ViewController * h5VC = [[StoryH5ViewController alloc] init];
-        
+        h5VC.url = level.content[@"url"];
         nextVC = h5VC;
     } else {
         return;
     }
     [self pushViewController:nextVC animated:YES];
+}
+
+- (NSArray<CEEJSONLevel *> *)completedLevels {
+    return [self.levels subarrayWithRange:NSMakeRange(0, self.viewControllers.count)];
 }
 
 @end

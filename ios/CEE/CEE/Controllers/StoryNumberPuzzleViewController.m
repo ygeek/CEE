@@ -14,6 +14,7 @@
 #import "StoryNumberPuzzleViewController.h"
 #import "HUDNumberInputViewController.h"
 #import "StoryLevelsRootViewController.h"
+#import "StoryItemsViewController.h"
 #import "AppearanceConstants.h"
 
 @interface StoryNumberPuzzleViewController () <HUDNumberInputViewControllerDelegate>
@@ -123,7 +124,12 @@
 }
 
 - (void)archivePressed:(id)sender {
-    
+    StoryLevelsRootViewController * levelsRoot = (StoryLevelsRootViewController *)(self.navigationController);
+    StoryItemsViewController * itemsVC = [[StoryItemsViewController alloc] init];
+    itemsVC.completedLevels = levelsRoot.completedLevels;
+    itemsVC.items = levelsRoot.items;
+    UINavigationController * navVC = [[UINavigationController alloc] initWithRootViewController:itemsVC];
+    [self presentViewController:navVC animated:YES completion:nil];
 }
 
 #pragma mark - HUDNumberInputViewControllerDelegate
