@@ -1,0 +1,21 @@
+{% extends 'cms/base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}新增/编辑优惠券{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            新增/编辑优惠券
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
+                {% include 'cms/form.html' %}
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="保存"/>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

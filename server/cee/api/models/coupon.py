@@ -15,7 +15,7 @@ class Coupon(models.Model):
     gmt_start = models.DateField()
     gmt_end = models.DateField()
     code = models.CharField(max_length=10)
-    is_deleted = models.BooleanField()
+    is_deleted = models.BooleanField(default=False)
     owners = models.ManyToManyField(User,
                                     through='UserCoupon',
                                     related_name='coupons')

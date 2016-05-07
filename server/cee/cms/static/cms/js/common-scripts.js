@@ -156,8 +156,8 @@ var Script = function () {
 
 
 // date pickers
-    $('input[name="birthday"]').datepicker({
-        format: 'yyyy/mm/dd',
+    $('input[name="birthday"],input[name="gmt_start"],input[name="gmt_end"]').datepicker({
+        format: 'yyyy-mm-dd',
         language: 'zh-CN'
     });
 

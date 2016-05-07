@@ -17,7 +17,7 @@
         '</a></div>');
 
     function initImages() {
-        var val = $('textarea[name="image_urls"]').val();
+        var val = $('textarea[name="image_keys"]').val();
         var imageList;
         try {
             imageList = JSON.parse(val);
@@ -77,7 +77,7 @@
         } else {
             $('#qiniu-upload-container').addClass('has-image');
         }
-        $('textarea[name="image_urls"]').val(JSON.stringify(images));
+        $('textarea[name="image_keys"]').val(JSON.stringify(images));
     }
 
     $('#qiniu-upload-container').delegate('a.thumbnail', 'click', function (event) {

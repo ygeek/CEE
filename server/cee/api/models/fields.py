@@ -6,6 +6,24 @@ from django.core import validators
 from django.core import exceptions
 
 
+class JsonDict(dict):
+    def __unicode__(self):
+        return json.dumps(self)
+
+
+class JsonList(list):
+    def __unicode__(self):
+        return json.dumps(self)
+
+
+def to_json_value(value):
+    if isinstance(value, dict):
+        return JsonDict(value)
+    elif isinstance(value, list):
+        return JsonList(value)
+    return value
+
+
 class JsonField(models.TextField):
     def __init__(self, *args, **kwargs):
         super(JsonField, self).__init__(*args, **kwargs)
@@ -14,7 +32,7 @@ class JsonField(models.TextField):
         if value is None:
             return None
         try:
-            return json.loads(value)
+            return to_json_value(json.loads(value))
         except ValueError:
             raise exceptions.ValidationError('invalid json value')
 
@@ -22,9 +40,9 @@ class JsonField(models.TextField):
         if value is None:
             return None
         if isinstance(value, dict) or isinstance(value, list):
-            return value
+            return to_json_value(value)
         try:
-            return json.loads(value)
+            return to_json_value(json.loads(value))
         except ValueError:
             raise exceptions.ValidationError('invalid json value')
 

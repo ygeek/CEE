@@ -2,15 +2,14 @@
 
 from __future__ import unicode_literals
 
-import json
-
 from django.core.urlresolvers import reverse_lazy
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Story
+from cms.views.widgets import JsonTextArea
 
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -28,26 +27,20 @@ class StoryDetail(DetailView):
     context_object_name = 'story'
 
 
-class JsonTextArea(Textarea):
-    def render(self, name, value, attrs=None):
-        if not isinstance(value, basestring):
-            value = json.dumps(value)
-        return super(JsonTextArea, self).render(name, value, attrs=attrs)
-
-
 class StoryForm(ModelForm):
     class Meta:
         model = Story
-        fields = ['name', 'time', 'distance', 'city', 'image_keys']
+        fields = ['name', 'time', 'distance', 'difficulty', 'city', 'image_keys']
         labels = {
             'name': '名称',
             'city': '城市',
             'time': '预计完成时间（分钟）',
             'distance': '预计移动距离',
-            'image_keys': '封面图片'
+            'image_keys': '封面图片',
+            'difficulty': '难度'
         }
         widgets = {
-            'image_keys': JsonTextArea(attrs={'rows': 4, 'readonly': 'true'})
+            'image_keys': JsonTextArea()
         }
 
 

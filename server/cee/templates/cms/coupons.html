@@ -1,6 +1,6 @@
 {% extends 'cms/base.html' %}
 
-{% load staticfiles %}
+{% load staticfiles coupon_tags %}
 
 {% block title %}优惠券{% endblock %}
 
@@ -9,7 +9,7 @@
         <header class="panel-heading clearfix">
             优惠券管理 ({{ object_list.count }})
             <div class="pull-right">
-                <a href="" class="btn btn-success btn-sm">
+                <a href="{% url 'cms-add-coupon' %}" class="btn btn-success btn-sm">
                     <i class="fa fa-plus-circle"></i>
                     新增优惠券
                 </a>
@@ -20,18 +20,21 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>描述</th>
+                    <th>餐厅名称</th>
                     <th>密码</th>
+                    <th>优惠信息</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for coupon in coupons %}
                     <tr>
-                        <th scope="row">{{ coupons.id }}</th>
-                        <td>{{ coupon.desc }}</td>
+                        <th scope="row">{{ coupon.id }}</th>
+                        <td>{{ coupon.location }}</td>
                         <td>{{ coupon.code }}</td>
+                        <td>{{ coupon|coupon_details|safe }}</td>
                         <td>
+                            <a href="{% url 'cms-edit-coupon' pk=coupon.id %}" class="btn btn-info btn-sm">基本信息</a>
                             <a href="#" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>
