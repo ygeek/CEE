@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 #import "CEEUserProfile.h"
+#import "CEEFriendInfo.h"
 
 
 @interface CEEUserSession : NSObject
@@ -19,6 +20,7 @@
 
 @property (nonatomic, copy) NSString * authToken;
 @property (nonatomic, strong) CEEJSONUserProfile * userProfile;
+@property (nonatomic, strong) NSArray<CEEJSONFriendInfo *> * friends;
 @property (nonatomic, assign) BOOL isFetchingUserProfile;
 @property (nonatomic, assign) BOOL authorizationFailed;
 
@@ -27,6 +29,8 @@
 - (AnyPromise *)loggedInWithAuth:(NSString *)auth;
 
 - (AnyPromise *)loadUserProfile;
+
+- (AnyPromise *)loadFriends;
 
 - (void)onUnauthorized;
 

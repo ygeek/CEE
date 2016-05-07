@@ -16,7 +16,7 @@ class UserInfo(APIView):
         serializer = UserInfoSerializer(request.user)
         return Response({
             'code': 0,
-            'userInfo' : serializer.data
+            'userInfo': serializer.data
         })
 
 
@@ -30,7 +30,7 @@ class UserFriendList(APIView):
         serializer = FriendInfoSerializer(friends, many=True)
         return Response({
             'code': 0,
-            'num':len(serializer.data),
+            'num': len(serializer.data),
             'friends': serializer.data
         })
 

@@ -10,13 +10,14 @@
 @import OAStackView;
 
 #import "UserProfileViewController.h"
+#import "UserFriendsViewController.h"
 #import "UserProfileView.h"
 #import "CEEUserSession.h"
 #import "MedalNormalCollectionViewCell.h"
 #import "MedalEmptyCollectionViewCell.h"
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
-#import "CEEMedalListAPI.h"
+#import "CEEUserInfoAPI.h"
 
 
 #define kMedalNormalCellIdentifier @"kMedalNormalCellIdentifier"
@@ -26,7 +27,7 @@
 
 @interface UserProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView * collectionView;
-@property (nonatomic, strong) NSArray<CEEJSONMedal *> * medals;
+@property (nonatomic, strong) CEEJSONUserInfo * userInfo;
 @end
 
 @implementation UserProfileViewController
@@ -82,8 +83,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[CEEMedalListAPI api] fetchMedals].then(^(NSArray<CEEJSONMedal *> * medals) {
-        self.medals = medals;
+    [[CEEUserInfoAPI api] fetchUserInfo].then(^(CEEJSONUserInfo * userInfo) {
+        self.userInfo = userInfo;
         [UIView transitionWithView:self.collectionView
                           duration:0.3
                            options:UIViewAnimationOptionTransitionCrossDissolve
@@ -101,6 +102,11 @@
     
 }
 
+- (void)friendsTapped:(id)sender {
+    UserFriendsViewController * friendsVC = [[UserFriendsViewController alloc] init];
+    [self.navigationController pushViewController:friendsVC animated:YES];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -108,12 +114,12 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.medals.count + (4 - (self.medals.count % 4));
+    return self.userInfo.medals.count + (4 - (self.userInfo.medals.count % 4));
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < self.medals.count) {
-        CEEJSONMedal * medal = self.medals[indexPath.row];
+    if (indexPath.row < self.userInfo.medals.count) {
+        CEEJSONMedal * medal = self.userInfo.medals[indexPath.row];
         MedalNormalCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMedalNormalCellIdentifier
                                                                                          forIndexPath:indexPath];
         [cell.iconView cee_setImageWithKey:medal.icon_key];
@@ -133,13 +139,21 @@
         CEEJSONUserProfile * profile = [CEEUserSession session].userProfile;
         UIImage * defaultHead = [UIImage imageNamed:@"cee-头像"];
         if (profile.head_img_key && profile.head_img_key.length > 0) {
-            [profileView.headImageView cee_setImageWithKey:profile.head_img_key placeholder:defaultHead];
+            [profileView.headImageView cee_setImageWithKey:profile.head_img_key
+                                               placeholder:defaultHead];
         } else {
             profileView.headImageView.image = defaultHead;
         }
         profileView.nicknameLabel.text = profile.nickname;
-        profileView.coinLabel.text = @"3200";
-        profileView.friendsLabel.text = @"24";
+        profileView.coinLabel.text = self.userInfo.coin.stringValue ?: @"0";
+        profileView.friendsLabel.text = self.userInfo.friend_num.stringValue ?: @"0";
+        
+        profileView.friendsLabel.userInteractionEnabled = YES;
+        if (profileView.friendsLabel.gestureRecognizers.count == 0) {
+            UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(friendsTapped:)];
+            [profileView.friendsLabel addGestureRecognizer:tapRecognizer];
+        }
+        
         return profileView;
     }
     return nil;

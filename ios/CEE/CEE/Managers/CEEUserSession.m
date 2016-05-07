@@ -14,6 +14,7 @@
 #import "CEEDatabase.h"
 #import "CEEAPIClient.h"
 #import "CEEFetchUserProfileAPI.h"
+#import "CEEFriendListAPI.h"
 
 
 @implementation CEEUserSession
@@ -97,6 +98,12 @@
         NSLog(@"Fetch User profile Error: %@", error);
     }).finally(^{
         self.isFetchingUserProfile = NO;
+    });
+}
+
+- (AnyPromise *)loadFriends {
+    return [[CEEFriendListAPI api] fetchFriendList].then(^(NSArray *friends){
+        self.friends = friends;
     });
 }
 

@@ -13,7 +13,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'coin', 'medals' ,'head_img_key', 'friend_num')
+        fields = ('id', 'coin', 'medals', 'head_img_key', 'friend_num')
 
     def get_coin(self, user):
         try:
@@ -39,14 +39,24 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
 class FriendInfoSerializer(serializers.ModelSerializer):
 
+    nickname = serializers.SerializerMethodField()
     coin = serializers.SerializerMethodField()
     medals = serializers.SerializerMethodField()
     head_img_key = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id','coin','medals','head_img_key')
+        fields = ('id',
+                  'coin',
+                  'medals',
+                  'head_img_key')
 
+    def get_nickname(self, user):
+        try:
+            user_profile = UserProfile.objects.get(user=user)
+            return user_profile.nickname
+        except UserProfile.DoesNotExist:
+            return None
 
     def get_coin(self, user):
         try:

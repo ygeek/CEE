@@ -117,6 +117,12 @@
 		BB6AD3191CC32B9300A1E0F7 /* StoryCoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD3181CC32B9300A1E0F7 /* StoryCoverViewController.m */; };
 		BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD31B1CC32FED00A1E0F7 /* StoryDifficultyView.m */; };
 		BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD31E1CC3309100A1E0F7 /* StoryTagView.m */; };
+		BBA2F7811CDD6E82004A5585 /* CEEUserInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */; };
+		BBA2F7841CDD6ECD004A5585 /* CEEUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7831CDD6ECD004A5585 /* CEEUserInfo.m */; };
+		BBA2F7871CDD74D8004A5585 /* CEEFriendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */; };
+		BBA2F78A1CDD754A004A5585 /* CEEFriendListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7891CDD754A004A5585 /* CEEFriendListAPI.m */; };
+		BBA2F78D1CDD8DE6004A5585 /* UserFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */; };
+		BBA2F7901CDD8E97004A5585 /* UserFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F78F1CDD8E97004A5585 /* UserFriendTableViewCell.m */; };
 		BBA532351CBBC56500282D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532341CBBC56500282D3E /* main.m */; };
 		BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532371CBBC56500282D3E /* AppDelegate.m */; };
 		BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA5323F1CBBC56500282D3E /* Assets.xcassets */; };
@@ -344,6 +350,18 @@
 		BB6AD31B1CC32FED00A1E0F7 /* StoryDifficultyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryDifficultyView.m; sourceTree = "<group>"; };
 		BB6AD31D1CC3309100A1E0F7 /* StoryTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTagView.h; sourceTree = "<group>"; };
 		BB6AD31E1CC3309100A1E0F7 /* StoryTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTagView.m; sourceTree = "<group>"; };
+		BBA2F77F1CDD6E82004A5585 /* CEEUserInfoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserInfoAPI.h; sourceTree = "<group>"; };
+		BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserInfoAPI.m; sourceTree = "<group>"; };
+		BBA2F7821CDD6ECD004A5585 /* CEEUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserInfo.h; sourceTree = "<group>"; };
+		BBA2F7831CDD6ECD004A5585 /* CEEUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserInfo.m; sourceTree = "<group>"; };
+		BBA2F7851CDD74D8004A5585 /* CEEFriendInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEFriendInfo.h; sourceTree = "<group>"; };
+		BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEFriendInfo.m; sourceTree = "<group>"; };
+		BBA2F7881CDD754A004A5585 /* CEEFriendListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEFriendListAPI.h; sourceTree = "<group>"; };
+		BBA2F7891CDD754A004A5585 /* CEEFriendListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEFriendListAPI.m; sourceTree = "<group>"; };
+		BBA2F78B1CDD8DE6004A5585 /* UserFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriendsViewController.h; sourceTree = "<group>"; };
+		BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendsViewController.m; sourceTree = "<group>"; };
+		BBA2F78E1CDD8E97004A5585 /* UserFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriendTableViewCell.h; sourceTree = "<group>"; };
+		BBA2F78F1CDD8E97004A5585 /* UserFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendTableViewCell.m; sourceTree = "<group>"; };
 		BBA532301CBBC56500282D3E /* CEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA532341CBBC56500282D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBA532361CBBC56500282D3E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -469,6 +487,10 @@
 				BB3209571CDA17FF009D1862 /* CEEStoryLevelsAPI.m */,
 				BB3209841CDC13D8009D1862 /* CEEStoryItemsAPI.h */,
 				BB3209851CDC13D8009D1862 /* CEEStoryItemsAPI.m */,
+				BBA2F77F1CDD6E82004A5585 /* CEEUserInfoAPI.h */,
+				BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */,
+				BBA2F7881CDD754A004A5585 /* CEEFriendListAPI.h */,
+				BBA2F7891CDD754A004A5585 /* CEEFriendListAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -642,6 +664,8 @@
 				BB3209761CDB92F8009D1862 /* StoryItemsViewController.m */,
 				BB32097B1CDBA785009D1862 /* StoryMemoryViewController.h */,
 				BB32097C1CDBA785009D1862 /* StoryMemoryViewController.m */,
+				BBA2F78B1CDD8DE6004A5585 /* UserFriendsViewController.h */,
+				BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -690,6 +714,10 @@
 				BB3209351CD78B82009D1862 /* CEETask.m */,
 				BB32094F1CD9E468009D1862 /* CEEMedal.h */,
 				BB3209501CD9E468009D1862 /* CEEMedal.m */,
+				BBA2F7821CDD6ECD004A5585 /* CEEUserInfo.h */,
+				BBA2F7831CDD6ECD004A5585 /* CEEUserInfo.m */,
+				BBA2F7851CDD74D8004A5585 /* CEEFriendInfo.h */,
+				BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -751,6 +779,8 @@
 				BB3209821CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m */,
 				BB3209871CDC2055009D1862 /* StoryItemCollectionViewCell.h */,
 				BB3209881CDC2055009D1862 /* StoryItemCollectionViewCell.m */,
+				BBA2F78E1CDD8E97004A5585 /* UserFriendTableViewCell.h */,
+				BBA2F78F1CDD8E97004A5585 /* UserFriendTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -927,6 +957,7 @@
 				BB6AD3191CC32B9300A1E0F7 /* StoryCoverViewController.m in Sources */,
 				BB3209121CD4E580009D1862 /* CEEStory.m in Sources */,
 				BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */,
+				BBA2F7811CDD6E82004A5585 /* CEEUserInfoAPI.m in Sources */,
 				BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */,
 				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
 				BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */,
@@ -938,6 +969,7 @@
 				BB48E5C81CD19EAD005150C3 /* HUDGetMedalView.m in Sources */,
 				BB29EF681CCCB58C001C25B6 /* HUDCouponCodeView.m in Sources */,
 				BB3209211CD6F09F009D1862 /* UIImageView+Utils.m in Sources */,
+				BBA2F7901CDD8E97004A5585 /* UserFriendTableViewCell.m in Sources */,
 				BB29EF541CCA2F5C001C25B6 /* CEEImageManager.m in Sources */,
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
 				BB3209731CDB35FC009D1862 /* HUDNumberInputViewController.m in Sources */,
@@ -948,6 +980,7 @@
 				BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
+				BBA2F7841CDD6ECD004A5585 /* CEEUserInfo.m in Sources */,
 				BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */,
 				BB32097A1CDB94B5009D1862 /* CEETriangleView.m in Sources */,
 				BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */,
@@ -958,6 +991,7 @@
 				BB32091E1CD6CC86009D1862 /* HUDCouponCodeViewController.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BB48E5D81CD4BB46005150C3 /* CEECouponListAPI.m in Sources */,
+				BBA2F78A1CDD754A004A5585 /* CEEFriendListAPI.m in Sources */,
 				BB48E5CB1CD1A603005150C3 /* HUDCouponAcquiringViewController.m in Sources */,
 				BBA532351CBBC56500282D3E /* main.m in Sources */,
 				BB3209481CD9BD16009D1862 /* MedalNormalCollectionViewCell.m in Sources */,
@@ -970,6 +1004,7 @@
 				BB6AD3161CC322E000A1E0F7 /* UIImage+Utils.m in Sources */,
 				BB6AD3051CC2528900A1E0F7 /* CEEUtils.m in Sources */,
 				BB32097D1CDBA785009D1862 /* StoryMemoryViewController.m in Sources */,
+				BBA2F78D1CDD8DE6004A5585 /* UserFriendsViewController.m in Sources */,
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */,
 				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
@@ -981,6 +1016,7 @@
 				BB3209511CD9E468009D1862 /* CEEMedal.m in Sources */,
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB3209271CD72394009D1862 /* CEEMap.m in Sources */,
+				BBA2F7871CDD74D8004A5585 /* CEEFriendInfo.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
 				BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */,
 				BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */,
