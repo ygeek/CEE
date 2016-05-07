@@ -170,7 +170,7 @@ class CompleteStoryLevel(APIView):
                     story=story,
                     level=level,
                     consumed=False)
-                serializer = UserCouponSerializer(user_coupon)
+                serializer = UserCouponSerializer(user_coupon.coupon)
                 awards.append({
                     'type': 'coupon',
                     'detail': serializer.data,

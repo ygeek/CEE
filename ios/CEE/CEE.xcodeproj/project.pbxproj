@@ -123,6 +123,9 @@
 		BBA2F78A1CDD754A004A5585 /* CEEFriendListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7891CDD754A004A5585 /* CEEFriendListAPI.m */; };
 		BBA2F78D1CDD8DE6004A5585 /* UserFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */; };
 		BBA2F7901CDD8E97004A5585 /* UserFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F78F1CDD8E97004A5585 /* UserFriendTableViewCell.m */; };
+		BBA2F7931CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7921CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m */; };
+		BBA2F7961CDE0300004A5585 /* CEEStoryDetailAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7951CDE0300004A5585 /* CEEStoryDetailAPI.m */; };
+		BBA2F7991CDE0C0C004A5585 /* CEEStoryCompleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7981CDE0C0C004A5585 /* CEEStoryCompleteAPI.m */; };
 		BBA532351CBBC56500282D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532341CBBC56500282D3E /* main.m */; };
 		BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532371CBBC56500282D3E /* AppDelegate.m */; };
 		BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA5323F1CBBC56500282D3E /* Assets.xcassets */; };
@@ -362,6 +365,12 @@
 		BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendsViewController.m; sourceTree = "<group>"; };
 		BBA2F78E1CDD8E97004A5585 /* UserFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriendTableViewCell.h; sourceTree = "<group>"; };
 		BBA2F78F1CDD8E97004A5585 /* UserFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendTableViewCell.m; sourceTree = "<group>"; };
+		BBA2F7911CDDF37C004A5585 /* CEECompleteStoryLevelAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEECompleteStoryLevelAPI.h; sourceTree = "<group>"; };
+		BBA2F7921CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECompleteStoryLevelAPI.m; sourceTree = "<group>"; };
+		BBA2F7941CDE0300004A5585 /* CEEStoryDetailAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryDetailAPI.h; sourceTree = "<group>"; };
+		BBA2F7951CDE0300004A5585 /* CEEStoryDetailAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryDetailAPI.m; sourceTree = "<group>"; };
+		BBA2F7971CDE0C0C004A5585 /* CEEStoryCompleteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryCompleteAPI.h; sourceTree = "<group>"; };
+		BBA2F7981CDE0C0C004A5585 /* CEEStoryCompleteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryCompleteAPI.m; sourceTree = "<group>"; };
 		BBA532301CBBC56500282D3E /* CEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA532341CBBC56500282D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBA532361CBBC56500282D3E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -491,6 +500,12 @@
 				BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */,
 				BBA2F7881CDD754A004A5585 /* CEEFriendListAPI.h */,
 				BBA2F7891CDD754A004A5585 /* CEEFriendListAPI.m */,
+				BBA2F7911CDDF37C004A5585 /* CEECompleteStoryLevelAPI.h */,
+				BBA2F7921CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m */,
+				BBA2F7941CDE0300004A5585 /* CEEStoryDetailAPI.h */,
+				BBA2F7951CDE0300004A5585 /* CEEStoryDetailAPI.m */,
+				BBA2F7971CDE0C0C004A5585 /* CEEStoryCompleteAPI.h */,
+				BBA2F7981CDE0C0C004A5585 /* CEEStoryCompleteAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1007,7 +1022,9 @@
 				BBA2F78D1CDD8DE6004A5585 /* UserFriendsViewController.m in Sources */,
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */,
+				BBA2F7991CDE0C0C004A5585 /* CEEStoryCompleteAPI.m in Sources */,
 				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
+				BBA2F7931CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
@@ -1017,6 +1034,7 @@
 				BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */,
 				BB3209271CD72394009D1862 /* CEEMap.m in Sources */,
 				BBA2F7871CDD74D8004A5585 /* CEEFriendInfo.m in Sources */,
+				BBA2F7961CDE0300004A5585 /* CEEStoryDetailAPI.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
 				BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */,
 				BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */,

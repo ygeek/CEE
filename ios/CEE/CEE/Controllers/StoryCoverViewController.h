@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class CEEJSONStory;
+@class CEEJSONLevel;
 
 
 @interface StoryCoverViewController : UIViewController
 @property (nonatomic, strong) CEEJSONStory * story;
+@property (nonatomic, strong) NSArray<CEEJSONLevel *> * levels;
 @end

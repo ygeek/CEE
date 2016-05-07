@@ -10,6 +10,8 @@
 @import RDVTabBarController;
 @import SDWebImage;
 
+#import <PromiseKit/PromiseKit.h>
+
 #import "StoryCoverViewController.h"
 #import "CEEStory.h"
 #import "StoryInfoView.h"
@@ -23,6 +25,7 @@
 #import "HUDStoryFetchingViewController.h"
 #import "CEEStoriesManager.h"
 #import "StoryLevelsRootViewController.h"
+#import "CEEStoryDetailAPI.h"
 
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
@@ -51,8 +54,6 @@
 @property (nonatomic, strong) UIButton * goButton;
 
 @property (nonatomic, strong) NSMutableArray<UIImageView *> * imageViews;
-
-@property (nonatomic, assign) BOOL hasProgress;
 
 @end
 
@@ -285,7 +286,7 @@
     
     self.progressIcon.backgroundColor = [UIColor grayColor];
     self.progressTitleLabel.text = @"进度：";
-    self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.story.progress.floatValue * 100];
+    self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.storyProgress];
     
     [self.distanceIcon cee_setImageWithKey:self.story.tour_image_key];
     self.distanceTitleLabel.text = @"行程：";
@@ -300,6 +301,33 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+    [self updateStory];
+}
+
+- (void)updateStory {
+    AnyPromise * levelsPromise = [[CEEStoryLevelsAPI api] fetchLevelsWithStoryID:self.story.id];
+    AnyPromise * storyPromise = [[CEEStoryDetailAPI api] fetchDetailWithStoryID:self.story.id];
+    
+    PMKJoin(@[storyPromise, levelsPromise]).then(^(NSArray *results) {
+        self.story = results[0];
+        self.levels = results[1];
+        [self.infoView loadStory:self.story];
+        [self.infoViewPinning loadStory:self.story];
+        [self loadTags];
+        self.descView.text = self.story.desc;
+        self.difficultyView.difficulty = self.story.difficulty.integerValue;
+        self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.storyProgress];
+        [self.distanceIcon cee_setImageWithKey:self.story.tour_image_key];
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1fKM", self.story.distance.floatValue];
+    });
+}
+
+- (CGFloat)storyProgress {
+    if (!self.levels || self.levels.count == 0) {
+        return 0.0;
+    } else {
+        return self.story.progress.floatValue / self.levels.count * 100.0;
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -346,6 +374,7 @@
     .then(^(NSArray * levelsAndItems) {
         [hud dismissViewControllerAnimated:YES completion:^{
             StoryLevelsRootViewController * levelsRoot = [[StoryLevelsRootViewController alloc] init];
+            levelsRoot.story = self.story;
             levelsRoot.levels = levelsAndItems[0];
             levelsRoot.items = levelsAndItems[1];
             [levelsRoot nextLevel];

@@ -20,6 +20,7 @@
 #import "FillProfileViewController.h"
 #import "CEENotificationNames.h"
 #import "HUDNetworkErrorViewController.h"
+#import "HUDTaskCompletedViewController.h"
 
 
 @interface RootViewController ()
@@ -103,6 +104,11 @@
                                              selector:@selector(networkErrorNotification:)
                                                  name:kCEENetworkErrorNotificationName
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(storyCompleteNotification:)
+                                                 name:kCEEStoryCompleteNotificationName
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -149,6 +155,10 @@
     UIViewController * rootVC = self.presentedViewController ?: self;
     HUDNetworkErrorViewController * vc = [[HUDNetworkErrorViewController alloc] init];
     [rootVC presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)storyCompleteNotification:(NSNotification *)notification {
+    
 }
 
 - (void)presentLogin {

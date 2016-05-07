@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class CEEJSONStory;
 @class CEEJSONLevel;
 @class CEEJSONItem;
 
 @interface StoryLevelsRootViewController : UINavigationController
-
+@property (nonatomic, strong) CEEJSONStory * story;
 @property (nonatomic, strong) NSArray<CEEJSONLevel *> * levels;
 @property (nonatomic, strong) NSArray<CEEJSONItem *> * items;
 

@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from ..models.auth import *
 from ..serializers.userInfo import *
 
+
 class UserInfo(APIView):
     permission_classes = (IsAuthenticated, )
 
