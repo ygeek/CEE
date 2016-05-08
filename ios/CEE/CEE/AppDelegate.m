@@ -17,6 +17,7 @@
 #import "CEEUserSession.h"
 #import "CEEImageManager.h"
 #import "CEELocationManager.h"
+#import "CEEMessagesManager.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,7 @@
     [CEEImageManager manager];
     [[CEEUserSession session] load];
     [[CEELocationManager manager] startMonitoringLocationChanges];
+    [[CEEMessagesManager manager] fetchMessages];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     

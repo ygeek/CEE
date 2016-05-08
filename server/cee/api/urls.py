@@ -62,4 +62,8 @@ urlpatterns = [
     url(r'^v1/coupon/$', UserCouponList.as_view()),
     url(r'^v1/coupon/(?P<uuid_>[-a-z0-9]{36})/consume/$',
         ConsumeCoupon.as_view()),
+
+    # Message
+    url(r'^v1/messages/(?P<timestamp>\d+)/', UserMessageList.as_view()),
+    url(r'^v1/message/(?P<message_id>\d+)/read/', UserMessageMarkRead.as_view()),
 ]

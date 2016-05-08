@@ -126,6 +126,10 @@
 		BBA2F7931CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7921CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m */; };
 		BBA2F7961CDE0300004A5585 /* CEEStoryDetailAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7951CDE0300004A5585 /* CEEStoryDetailAPI.m */; };
 		BBA2F7991CDE0C0C004A5585 /* CEEStoryCompleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7981CDE0C0C004A5585 /* CEEStoryCompleteAPI.m */; };
+		BBA2F79C1CDE2005004A5585 /* CEEMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F79B1CDE2004004A5585 /* CEEMessage.m */; };
+		BBA2F79F1CDED5CC004A5585 /* CEEMessagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F79E1CDED5CC004A5585 /* CEEMessagesManager.m */; };
+		BBA2F7A21CDF3A22004A5585 /* CEEMessageListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7A11CDF3A22004A5585 /* CEEMessageListAPI.m */; };
+		BBA2F7A51CDF3A44004A5585 /* CEEMessageReadAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */; };
 		BBA532351CBBC56500282D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532341CBBC56500282D3E /* main.m */; };
 		BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532371CBBC56500282D3E /* AppDelegate.m */; };
 		BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA5323F1CBBC56500282D3E /* Assets.xcassets */; };
@@ -371,6 +375,14 @@
 		BBA2F7951CDE0300004A5585 /* CEEStoryDetailAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryDetailAPI.m; sourceTree = "<group>"; };
 		BBA2F7971CDE0C0C004A5585 /* CEEStoryCompleteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryCompleteAPI.h; sourceTree = "<group>"; };
 		BBA2F7981CDE0C0C004A5585 /* CEEStoryCompleteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryCompleteAPI.m; sourceTree = "<group>"; };
+		BBA2F79A1CDE2004004A5585 /* CEEMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMessage.h; sourceTree = "<group>"; };
+		BBA2F79B1CDE2004004A5585 /* CEEMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMessage.m; sourceTree = "<group>"; };
+		BBA2F79D1CDED5CC004A5585 /* CEEMessagesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMessagesManager.h; sourceTree = "<group>"; };
+		BBA2F79E1CDED5CC004A5585 /* CEEMessagesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMessagesManager.m; sourceTree = "<group>"; };
+		BBA2F7A01CDF3A22004A5585 /* CEEMessageListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMessageListAPI.h; sourceTree = "<group>"; };
+		BBA2F7A11CDF3A22004A5585 /* CEEMessageListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMessageListAPI.m; sourceTree = "<group>"; };
+		BBA2F7A31CDF3A44004A5585 /* CEEMessageReadAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMessageReadAPI.h; sourceTree = "<group>"; };
+		BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMessageReadAPI.m; sourceTree = "<group>"; };
 		BBA532301CBBC56500282D3E /* CEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA532341CBBC56500282D3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBA532361CBBC56500282D3E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -506,6 +518,10 @@
 				BBA2F7951CDE0300004A5585 /* CEEStoryDetailAPI.m */,
 				BBA2F7971CDE0C0C004A5585 /* CEEStoryCompleteAPI.h */,
 				BBA2F7981CDE0C0C004A5585 /* CEEStoryCompleteAPI.m */,
+				BBA2F7A01CDF3A22004A5585 /* CEEMessageListAPI.h */,
+				BBA2F7A11CDF3A22004A5585 /* CEEMessageListAPI.m */,
+				BBA2F7A31CDF3A44004A5585 /* CEEMessageReadAPI.h */,
+				BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -706,6 +722,8 @@
 				BB48E5D41CD489C0005150C3 /* CEEUploadManager.m */,
 				BB32096B1CDA2219009D1862 /* CEEStoriesManager.h */,
 				BB32096C1CDA2219009D1862 /* CEEStoriesManager.m */,
+				BBA2F79D1CDED5CC004A5585 /* CEEMessagesManager.h */,
+				BBA2F79E1CDED5CC004A5585 /* CEEMessagesManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -733,6 +751,8 @@
 				BBA2F7831CDD6ECD004A5585 /* CEEUserInfo.m */,
 				BBA2F7851CDD74D8004A5585 /* CEEFriendInfo.h */,
 				BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */,
+				BBA2F79A1CDE2004004A5585 /* CEEMessage.h */,
+				BBA2F79B1CDE2004004A5585 /* CEEMessage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -987,6 +1007,7 @@
 				BBA2F7901CDD8E97004A5585 /* UserFriendTableViewCell.m in Sources */,
 				BB29EF541CCA2F5C001C25B6 /* CEEImageManager.m in Sources */,
 				BB6AD30D1CC26F5C00A1E0F7 /* StoryTableViewCellMenuView.m in Sources */,
+				BBA2F7A51CDF3A44004A5585 /* CEEMessageReadAPI.m in Sources */,
 				BB3209731CDB35FC009D1862 /* HUDNumberInputViewController.m in Sources */,
 				BB29EF441CC90A3F001C25B6 /* TLCityPickerController.m in Sources */,
 				BB3209831CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m in Sources */,
@@ -1001,6 +1022,7 @@
 				BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
 				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,
+				BBA2F7A21CDF3A22004A5585 /* CEEMessageListAPI.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB29EF631CCC6E3A001C25B6 /* MapAnchorView.m in Sources */,
 				BB32091E1CD6CC86009D1862 /* HUDCouponCodeViewController.m in Sources */,
@@ -1028,6 +1050,7 @@
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
+				BBA2F79C1CDE2005004A5585 /* CEEMessage.m in Sources */,
 				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,
 				BB3209421CD9AB89009D1862 /* UserProfileViewController.m in Sources */,
 				BB3209511CD9E468009D1862 /* CEEMedal.m in Sources */,
@@ -1039,6 +1062,7 @@
 				BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */,
 				BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */,
 				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,
+				BBA2F79F1CDED5CC004A5585 /* CEEMessagesManager.m in Sources */,
 				BB48E5CE1CD1B03E005150C3 /* HUDTaskCompletedViewController.m in Sources */,
 				BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */,
 				BB3209391CD78D38009D1862 /* CEETaskAPI.m in Sources */,

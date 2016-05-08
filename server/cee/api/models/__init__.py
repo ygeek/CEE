@@ -11,3 +11,4 @@ from .map import *
 from .medal import *
 from .story import *
 from .task import *
+from .message import *

@@ -8,15 +8,20 @@
 
 @import Masonry;
 @import RDVTabBarController;
+@import ReactiveCocoa;
 
 #import "MessageViewController.h"
 #import "MessageTableViewCell.h"
 #import "AppearanceConstants.h"
 #import "UserProfileViewController.h"
+#import "CEEUserSession.h"
+#import "CEEMessagesManager.h"
+
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIView * titleView;
 @property (nonatomic, strong) UITableView * tableView;
+@property (nonatomic, strong) RACDisposable * messagesToken;
 @end
 
 @implementation MessageViewController
@@ -67,6 +72,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    @weakify(self)
+    self.messagesToken = [RACObserve([CEEMessagesManager manager], messages) subscribeNext:^(NSArray *messages) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
+    
+    [[CEEMessagesManager manager] fetchMessages];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.messagesToken dispose];
+}
+
 - (void)menuPressed:(id)sender {
     UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
@@ -77,38 +100,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    CEEJSONMessage * message = [CEEMessagesManager manager].messages[indexPath.row];
+    if (message.unread.boolValue) {
+        [[CEEMessagesManager manager] markReadWithMessageID:message.id];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [CEEMessagesManager manager].messages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MessageTableViewCell class])];
+    
+    CEEJSONMessage * message = [CEEMessagesManager manager].messages[indexPath.row];
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
-    switch (indexPath.row) {
-        case 0:
-            cell.iconView.image = [[UIImage imageNamed:@"消息_故事"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            cell.dateLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-            cell.messageLabel.text = @"《Wade》任务正在进行中…";
-            break;
-        case 1:
-            cell.iconView.image = [[UIImage imageNamed:@"消息_注意"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            cell.dateLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-            cell.messageLabel.text = @"发现在您周围的城市彩蛋《深夜食堂》，马上开始体验吧";
-            break;
-        case 2:
-            cell.iconView.image = [[UIImage imageNamed:@"消息_提示"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            cell.dateLabel.text = [dateFormatter stringFromDate:[NSDate date]];
-            cell.messageLabel.text = @"您有条优惠券即将过期——万达广场茶餐厅";
-            break;
-        default:
-            break;
+    cell.dateLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.timestamp.floatValue]];
+    cell.messageLabel.text = message.text;
+    
+    cell.bodyView.backgroundColor = message.unread.boolValue ? hexColor(0xefe529) : hexColor(0xefefef);
+    
+    if ([message.type isEqualToString:@"story"]) {
+        cell.iconView.image = [[UIImage imageNamed:@"消息_故事"]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    } else if ([message.type isEqualToString:@"attention"]) {
+        cell.iconView.image = [[UIImage imageNamed:@"消息_注意"]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    } else if ([message.type isEqualToString:@"alert"]) {
+        cell.iconView.image = [[UIImage imageNamed:@"消息_提示"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

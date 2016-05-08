@@ -21,6 +21,7 @@
 #import "CEENotificationNames.h"
 #import "HUDNetworkErrorViewController.h"
 #import "HUDTaskCompletedViewController.h"
+#import "CEEMessagesManager.h"
 
 
 @interface RootViewController ()
@@ -91,10 +92,13 @@
     [items[2] setFinishedSelectedImage:[UIImage imageNamed:@"故事_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"故事"]];
     items[3].title = _T(@"message");
     [items[3] setFinishedSelectedImage:[UIImage imageNamed:@"消息_active"] withFinishedUnselectedImage:[UIImage imageNamed:@"消息"]];
-    items[3].badgeValue = @"3";
     
     self.isAppeared = NO;
     self.isPresentingLogin = NO;
+    
+    RAC(items[3], badgeValue) = [RACObserve([CEEMessagesManager manager], unreadCount) map:^id(NSNumber *unreadCount) {
+        return unreadCount.integerValue > 0 ? unreadCount.stringValue : nil;
+    }];
 }
 
 - (void)viewDidLoad {

@@ -48,7 +48,7 @@
 
 - (void)commonInit {
     self.bodyView = [[UIView alloc] init];
-    self.bodyView.backgroundColor = kCEEThemeYellowColor;
+    self.bodyView.backgroundColor = kCEEYellowColor;
     
     self.iconView = [[UIImageView alloc] init];
     self.iconView.tintColor = kCEETextBlackColor;

@@ -18,6 +18,7 @@ from .anchor import *
 from .level import *
 from .item import *
 from .userInfo import *
+from .message import *
 
 class Hello(APIView):
     """ Example view """

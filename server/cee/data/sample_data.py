@@ -3,6 +3,7 @@
 # from __future__ import unicode_literals
 from __future__ import absolute_import
 
+import time
 import datetime
 import geohash
 from api.models import *
@@ -11,6 +12,27 @@ from api.models import *
 user = User(username='15910603382')
 user.set_password('87655161Zm')
 user.save()
+
+message1 = Message(user=user,
+                   type=Message.Type.Attention,
+                   timestamp=int(time.time()),
+                   text='这是一条消息,需要注意!',
+                   unread=True)
+message1.save()
+
+message2 = Message(user=user,
+                   type=Message.Type.Story,
+                   timestamp=int(time.time()),
+                   text='这是另外一条消息,用来提示故事!',
+                   unread=True)
+message2.save()
+
+message3 = Message(user=user,
+                   type=Message.Type.Coupon,
+                   timestamp=int(time.time()),
+                   text='这是一条警告,告诉你优惠券要过期了!',
+                   unread=True)
+message3.save()
 
 city = City.objects.get(key='1000010000')
 
