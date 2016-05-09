@@ -70,7 +70,7 @@
                                     action:@selector(backPressed:)];
     
     self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(23, 23)]
+    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"齿轮"]
                                      style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(settingPressed:)];

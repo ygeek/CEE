@@ -62,7 +62,7 @@
 
 - (void)nextLevel {
     if (self.currentLevel < 0) {
-        self.currentLevel = self.story.progress.integerValue;
+        self.currentLevel = self.story.progress.integerValue - 1;
         [self jumpToNextLevel];
         return;
     }
