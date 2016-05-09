@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'api',
     'cms',
     'bootstrap3',
+    'django_cron',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -150,6 +151,11 @@ LOGGING = {
             'level': 'DEBUG',  # change debug level as appropiate
             'propagate': False,
         },
+        'debug': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        }
     },
 }
 
@@ -158,3 +164,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+CRON_CLASSES = [
+    'api.cronjob.CouponMessageJob',
+    'api.cronjob.TestCronJob',
+]

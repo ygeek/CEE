@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class UserDeviceToken(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='device_token')
     device_token = models.CharField(max_length=100)
     installation_id = models.CharField(max_length=100)
 

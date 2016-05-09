@@ -1,9 +1,12 @@
 Django==1.9.5
-django-filter==0.13.0
 django-bootstrap3==7.0.1
+django-common-helpers==0.8.0
+django-cron==0.4.6
+django-filter==0.13.0
 djangorestframework==3.3.3
 gunicorn==19.4.5
 Markdown==2.6.6
+pysqlite==2.8.2
+python-geohash==0.8.5
 qiniu==7.0.6
 requests==2.9.1
-python-geohash==0.8.5
