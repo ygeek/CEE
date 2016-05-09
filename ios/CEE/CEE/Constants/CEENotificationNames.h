@@ -15,11 +15,14 @@
 #define kCEEStoryCompleteNotificationName   @"kCEEStoryCompleteNotificationName"
 #define kCEEMapCompleteNotificationName     @"kCEEMapCompleteNotificationName"
 #define kCEEMessagesUpdatedNotificationName @"kCEEMessagesUpdatedNotificationName"
+#define kCEEFriendsUpdatedNotificationName  @"kCEEFriendsUpdatedNotificationName"
 
 #define kCEEEventNameKey @"kCEEEventKey"
 #define kCEEStoryCompleteAwardsKey @"kCEEStoryCompleteAwardsKey"
 #define kCEEStoryCompleteStoryKey  @"kCEEStoryCompleteStoryKey"
 #define kCEEMapCompleteMapKey      @"kCEEMapCompleteMapKey"
 
+
+#define kCEEErrorDomain @"CEEErrorDomain"
 
 #endif /* CEENotificationNames_h */

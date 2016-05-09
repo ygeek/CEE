@@ -27,6 +27,7 @@
 #import "StoryLevelsRootViewController.h"
 #import "CEEStoryDetailAPI.h"
 #import "CEEMessagesManager.h"
+#import "ProgressBatteryView.h"
 
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
@@ -44,7 +45,8 @@
 @property (nonatomic, strong) UIView * tagContainer;
 @property (nonatomic, strong) NSMutableArray<StoryTagView *> * tagViews;
 
-@property (nonatomic, strong) UIImageView * progressIcon;
+// @property (nonatomic, strong) UIImageView * progressIcon;
+@property (nonatomic, strong) ProgressBatteryView * progressView;
 @property (nonatomic, strong) UILabel * progressTitleLabel;
 @property (nonatomic, strong) UILabel * progressLabel;
 
@@ -101,8 +103,10 @@
     
     self.tagContainer = [[UIView alloc] init];
     
-    self.progressIcon = [[UIImageView alloc] init];
-    self.progressIcon.contentMode = UIViewContentModeCenter;
+    //self.progressIcon = [[UIImageView alloc] init];
+    //self.progressIcon.contentMode = UIViewContentModeCenter;
+    self.progressView = [[ProgressBatteryView alloc] init];
+    
     self.progressTitleLabel = [[UILabel alloc] init];
     self.progressTitleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:10];
     self.progressTitleLabel.textColor = kCEETextBlackColor;
@@ -145,7 +149,7 @@
     
     [self.contentView addSubview:self.tagContainer];
     
-    [self.contentView addSubview:self.progressIcon];
+    [self.contentView addSubview:self.progressView];
     [self.contentView addSubview:self.progressTitleLabel];
     [self.contentView addSubview:self.progressLabel];
     
@@ -214,15 +218,15 @@
         make.centerX.equalTo(self.contentView.mas_centerX);
     }];
     
-    [self.progressIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.tagContainer.mas_bottom).offset(28);
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.width.mas_equalTo(250);
-        make.height.mas_equalTo(100);
+        make.width.mas_equalTo(51);
+        make.height.mas_equalTo(80);
     }];
     
     [self.progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.progressIcon.mas_bottom).offset(11);
+        make.top.equalTo(self.progressView.mas_bottom).offset(11);
         make.left.equalTo(self.contentView.mas_centerX);
     }];
     
@@ -285,7 +289,7 @@
     
     self.difficultyView.difficulty = self.story.difficulty.integerValue;
     
-    self.progressIcon.backgroundColor = [UIColor grayColor];
+    // self.progressIcon.backgroundColor = [UIColor grayColor];
     self.progressTitleLabel.text = @"进度：";
     self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.storyProgress];
     
@@ -317,6 +321,7 @@
         [self loadTags];
         self.descView.text = self.story.desc;
         self.difficultyView.difficulty = self.story.difficulty.integerValue;
+        self.progressView.progress = self.storyProgress;
         self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", self.storyProgress];
         [self.distanceIcon cee_setImageWithKey:self.story.tour_image_key];
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1fKM", self.story.distance.floatValue];

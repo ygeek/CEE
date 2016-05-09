@@ -34,4 +34,6 @@
 
 - (void)onUnauthorized;
 
+- (AnyPromise *)addAddressBookFriends;
+
 @end

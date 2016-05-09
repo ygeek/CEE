@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <PromiseKit/PromiseKit.h>
+
 
 @interface SDKManager : NSObject
 
@@ -19,7 +21,5 @@
 - (void)loginWeixin;
 
 - (void)loginWeibo;
-
-- (void)addAddressBookFriends;
 
 @end

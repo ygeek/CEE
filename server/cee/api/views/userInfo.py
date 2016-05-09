@@ -3,6 +3,8 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+import json
+from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -36,9 +38,24 @@ class UserFriendList(APIView):
         })
 
 
-class addFriends(APIView):
+class AddFriends(APIView):
     permission_classes = (IsAuthenticated, )
 
-    def post(self, request, friendList):
-        pass
-
+    def post(self, request):
+        mobilelist = request.data['mobiles'].split(',')
+        count = 0
+        if mobilelist is not None:
+            for mobile in mobilelist:
+                try:
+                    userprofile = UserProfile.objects.get(mobile=mobile)
+                    userfriend = UserFriend(user=request.user, friend=userprofile.user)
+                    userfriend.save()
+                    count += 1
+                except UserProfile.DoesNotExist:
+                    pass
+                except IntegrityError:
+                    pass
+        return Response({
+            'code': 0,
+            'num': count,
+        })

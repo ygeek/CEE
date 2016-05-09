@@ -16,6 +16,7 @@
 #import "CEEUserSession.h"
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
+#import "CEENotificationNames.h"
 
 
 #define kUserFriendCellIdentifier @"kUserFriendCellIdentifier"
@@ -118,6 +119,11 @@
         self.friends = session.friends;
         [self update];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(friendsUpdatedNotification:)
+                                                 name:kCEEFriendsUpdatedNotificationName
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,6 +158,14 @@
 
 - (void)settingPressed:(id)sender {
     
+}
+
+- (void)friendsUpdatedNotification:(NSNotification *)notification {
+    CEEUserSession * session = [CEEUserSession session];
+    [session loadFriends].then(^(NSArray *friends) {
+        self.friends = friends;
+        [self update];
+    });
 }
 
 #pragma mark - UITableViewDataSource

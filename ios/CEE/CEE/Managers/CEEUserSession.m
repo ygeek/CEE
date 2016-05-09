@@ -10,11 +10,16 @@
 @import Realm_JSON;
 @import ReactiveCocoa;
 
+#import <AddressBook/AddressBook.h>
+
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
 #import "CEEAPIClient.h"
 #import "CEEFetchUserProfileAPI.h"
 #import "CEEFriendListAPI.h"
+
+#import "CEEAddFriendsAPI.h"
+#import "CEENotificationNames.h"
 
 
 @implementation CEEUserSession
@@ -63,8 +68,15 @@
     if (auth && auth.length > 0) {
         [[CEEAPIClient client].requestSerializer setValue:[NSString stringWithFormat:@"Token %@", auth]
                                        forHTTPHeaderField:@"Authorization"];
-
-        return [self loadUserProfile];
+        return [self loadUserProfile].then(^{
+            return [self addAddressBookFriends];
+        }).then(^(NSNumber * addCount){
+            if (addCount.integerValue > 0) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kCEEFriendsUpdatedNotificationName
+                                                                    object:self
+                                                                  userInfo:nil];
+            }
+        });
     } else {
         [[CEEAPIClient client].requestSerializer clearAuthorizationHeader];
         return [AnyPromise promiseWithValue:nil];
@@ -109,6 +121,49 @@
 
 - (void)onUnauthorized {
     self.authorizationFailed = YES;
+}
+
+- (AnyPromise *)addAddressBookFriends {
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
+            ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error){
+                CFErrorRef *error1 = NULL;
+                ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error1);
+                resolve([self addFriendsFromAddressBook:addressBook]);
+            });
+        }];
+    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        CFErrorRef *error = NULL;
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+        return [self addFriendsFromAddressBook:addressBook];
+    } else {
+        return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
+            resolve([NSError errorWithDomain:kCEEErrorDomain
+                                        code:-1
+                                    userInfo:@{NSLocalizedDescriptionKey: @"没有获取通讯录权限"}]);
+        }];
+    }
+}
+
+- (AnyPromise *)addFriendsFromAddressBook:(ABAddressBookRef)addressBook {
+    CFIndex numberOfPeople = ABAddressBookGetPersonCount(addressBook);
+    CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(addressBook);
+    
+    NSMutableArray * mobiles = [NSMutableArray array];
+    for ( int i = 0; i < numberOfPeople; i++) {
+        ABRecordRef person = CFArrayGetValueAtIndex(people, i);
+        
+        //读取电话多值
+        ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        for (int k = 0; k<ABMultiValueGetCount(phone); k++) {
+            NSString * personPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phone, k);
+            NSLog(@"phone: %@", personPhone);
+            [mobiles addObject:personPhone];
+        }
+    }
+    
+    return [[CEEAddFriendsAPI api] addMobiles:mobiles];
 }
 
 @end
