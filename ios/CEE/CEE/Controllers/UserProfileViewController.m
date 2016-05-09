@@ -28,12 +28,15 @@
 @interface UserProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView * collectionView;
 @property (nonatomic, strong) CEEJSONUserInfo * userInfo;
+@property (nonatomic, assign) BOOL isAppeared;
 @end
 
 @implementation UserProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.isAppeared = NO;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -83,15 +86,20 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[CEEUserInfoAPI api] fetchUserInfo].then(^(CEEJSONUserInfo * userInfo) {
-        self.userInfo = userInfo;
-        [UIView transitionWithView:self.collectionView
-                          duration:0.3
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^{
-                            [self.collectionView reloadData];
-                        } completion:nil];
-    });
+    if (!self.isAppeared) {
+        self.isAppeared = YES;
+        [[CEEUserInfoAPI api] fetchUserInfo].then(^(CEEJSONUserInfo * userInfo) {
+            self.userInfo = userInfo;
+            [UIView transitionWithView:self.collectionView
+                              duration:0.3
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+                                [self.collectionView reloadData];
+                            } completion:nil];
+        });
+    } else {
+        [self.collectionView reloadData];
+    }
 }
 
 - (void)backPressed:(id)sender {

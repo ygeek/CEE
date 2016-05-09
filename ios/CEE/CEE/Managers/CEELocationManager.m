@@ -206,6 +206,7 @@
             });
         } else {
             if ([self checkIfNewMap:map]) {
+                [self.acquiredMaps addObject:map];
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEEFoundNewMapNotificationName
                                                                     object:self
                                                                   userInfo:@{CEENewMapKey: map}];

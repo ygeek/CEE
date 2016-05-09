@@ -62,7 +62,8 @@
 
 - (void)nextLevel {
     if (self.currentLevel < 0) {
-        self.currentLevel = self.story.progress.integerValue - 1;
+        self.currentLevel = self.story.progress.integerValue;
+        self.currentLevel -= (self.currentLevel == 0);
         [self jumpToNextLevel];
         return;
     }
@@ -89,12 +90,9 @@
         } else {
             if (awards.count > 0) {
                 HUDCouponAcquiringViewController * couponHUD = [[HUDCouponAcquiringViewController alloc] init];
-                [self.rdv_tabBarController presentViewController:couponHUD animated:YES completion:^{
-                    [self jumpToNextLevel];
-                }];
-            } else {
-                [self jumpToNextLevel];
+                [self.rdv_tabBarController presentViewController:couponHUD animated:YES completion:nil];
             }
+            [self jumpToNextLevel];
         }
     }).catch(^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];

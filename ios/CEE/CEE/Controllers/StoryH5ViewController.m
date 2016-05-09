@@ -84,15 +84,20 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     [SVProgressHUD dismiss];
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"加载失败"
-                                                                    message:@"加载失败啦，请重试。"
+                                                                    message:@"好像加载失败啦，需要重新加载吗？"
                                                              preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * action = [UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction * action = [UIAlertAction actionWithTitle:@"重加载" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSURL * url = [NSURL URLWithString:self.url];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
     }];
     
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"不用了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self backPressed:nil];
+    }];
+    
     [alert addAction:action];
+    [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
 }
