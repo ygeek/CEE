@@ -8,6 +8,7 @@ from django.db import models
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from ..models.map import *
 from ..models.story import *
 from ..models.auth import *
 from ..models.coupon import *
@@ -49,6 +50,7 @@ class StoryDetail(APIView):
             if created:
                 story.completed = False,
                 story.progress = 0
+                self._acquire_related_map(request.user, story)
             else:
                 story.completed = user_story.completed
                 story.progress = user_story.progress
@@ -67,6 +69,17 @@ class StoryDetail(APIView):
                 'code': -2,
                 'msg': 'story not exists',
             })
+
+    def _acquire_related_map(self, user, story):
+        try:
+            anchor = Anchor.objects.get(type=Anchor.Type.Story, ref_id=story.id)
+            user_map, created = UserMap.objects.get_or_create(
+                defaults={'completed': False},
+                user=user,
+                map_id=anchor.map_id)
+            print user_map, created
+        except Anchor.DoesNotExist:
+            pass
 
 
 class CompleteStory(APIView):
@@ -170,6 +183,8 @@ class CompleteStoryLevel(APIView):
                     story=story,
                     level=level,
                     consumed=False)
+                user_coupon.coupon.uuid = user_coupon.uuid
+                user_coupon.coupon.consumed = user_coupon.consumed
                 serializer = UserCouponSerializer(user_coupon.coupon)
                 awards.append({
                     'type': 'coupon',
