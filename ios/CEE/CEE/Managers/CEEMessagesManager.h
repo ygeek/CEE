@@ -11,6 +11,8 @@
 
 
 #import "CEEMessage.h"
+#import "CEEMap.h"
+#import "CEEStory.h"
 
 
 @interface CEEMessagesManager : NSObject
@@ -22,6 +24,14 @@
 - (AnyPromise *)fetchMessages;
 
 - (AnyPromise *)markReadWithMessageID:(NSNumber *)messageID;
+
+- (void)notifyNewMap:(CEEJSONMap *)map;
+
+- (void)completeMapWithID:(NSNumber *)mapID;
+
+- (void)notifyRunningStory:(CEEJSONStory *)story;
+
+- (void)completeStoryWithID:(NSNumber *)storyID;
 
 @property (nonatomic, strong) NSMutableArray<CEEJSONMessage *> * messages;
 

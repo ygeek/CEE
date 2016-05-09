@@ -10,12 +10,16 @@
 #define CEENotificationNames_h
 
 
-#define kCEENetworkErrorNotificationName  @"kCEENetworkErrorNotificationName"
-#define kCEEEventNotificationName         @"kCEEEventNotificationName"
-#define kCEEStoryCompleteNotificationName @"kCEEStoryCompleteNotificationName"
+#define kCEENetworkErrorNotificationName    @"kCEENetworkErrorNotificationName"
+#define kCEEEventNotificationName           @"kCEEEventNotificationName"
+#define kCEEStoryCompleteNotificationName   @"kCEEStoryCompleteNotificationName"
+#define kCEEMapCompleteNotificationName     @"kCEEMapCompleteNotificationName"
+#define kCEEMessagesUpdatedNotificationName @"kCEEMessagesUpdatedNotificationName"
 
 #define kCEEEventNameKey @"kCEEEventKey"
 #define kCEEStoryCompleteAwardsKey @"kCEEStoryCompleteAwardsKey"
+#define kCEEStoryCompleteStoryKey  @"kCEEStoryCompleteStoryKey"
+#define kCEEMapCompleteMapKey      @"kCEEMapCompleteMapKey"
 
 
 #endif /* CEENotificationNames_h */

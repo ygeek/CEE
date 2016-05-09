@@ -24,4 +24,8 @@ class Message(models.Model):
     timestamp = models.IntegerField()
     text = models.TextField()
     unread = models.BooleanField(default=True)
+    story_id = models.IntegerField(blank=True, null=True)
+    map_id = models.IntegerField(blank=True, null=True)
+    coupon_id = models.IntegerField(blank=True, null=True)
+    is_local = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)

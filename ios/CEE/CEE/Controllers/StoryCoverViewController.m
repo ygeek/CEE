@@ -26,6 +26,7 @@
 #import "CEEStoriesManager.h"
 #import "StoryLevelsRootViewController.h"
 #import "CEEStoryDetailAPI.h"
+#import "CEEMessagesManager.h"
 
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
@@ -378,6 +379,7 @@
             levelsRoot.levels = levelsAndItems[0];
             levelsRoot.items = levelsAndItems[1];
             [levelsRoot nextLevel];
+            [[CEEMessagesManager manager] notifyRunningStory:self.story];
             [self.rdv_tabBarController presentViewController:levelsRoot animated:YES completion:nil];
         }];
     });

@@ -80,7 +80,8 @@
                 [SVProgressHUD dismiss];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kCEEStoryCompleteNotificationName
                                                                     object:self
-                                                                  userInfo:@{kCEEStoryCompleteAwardsKey: awards}];
+                                                                  userInfo:@{kCEEStoryCompleteStoryKey:self.story,
+                                                                             kCEEStoryCompleteAwardsKey: awards}];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }).catch(^(NSError *error) {
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];

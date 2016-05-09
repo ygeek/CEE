@@ -14,4 +14,8 @@ class MessageSerializer(serializers.ModelSerializer):
                   'type',
                   'timestamp',
                   'text',
-                  'unread')
+                  'unread',
+                  'story_id',
+                  'map_id',
+                  'coupon_id',
+                  'is_local')

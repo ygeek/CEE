@@ -17,6 +17,7 @@
 #import "CEEImageManager.h"
 #import "CEEAnchorsAPI.h"
 #import "CEEAcquiredMapsAPI.h"
+#import "CEEMessagesManager.h"
 
 @interface CEELocationManager ()
 @property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
@@ -208,6 +209,7 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEEFoundNewMapNotificationName
                                                                     object:self
                                                                   userInfo:@{CEENewMapKey: map}];
+                [[CEEMessagesManager manager] notifyNewMap:map];
             }
         }
     }).catch(^(NSError *error) {

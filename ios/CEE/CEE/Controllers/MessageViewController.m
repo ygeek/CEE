@@ -132,7 +132,7 @@
     } else if ([message.type isEqualToString:@"attention"]) {
         cell.iconView.image = [[UIImage imageNamed:@"消息_注意"]
                                imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    } else if ([message.type isEqualToString:@"alert"]) {
+    } else if ([message.type isEqualToString:@"coupon"]) {
         cell.iconView.image = [[UIImage imageNamed:@"消息_提示"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     

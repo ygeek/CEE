@@ -13,26 +13,6 @@ user = User(username='15910603382')
 user.set_password('87655161Zm')
 user.save()
 
-message1 = Message(user=user,
-                   type=Message.Type.Attention,
-                   timestamp=int(time.time()),
-                   text='这是一条消息,需要注意!',
-                   unread=True)
-message1.save()
-
-message2 = Message(user=user,
-                   type=Message.Type.Story,
-                   timestamp=int(time.time()),
-                   text='这是另外一条消息,用来提示故事!',
-                   unread=True)
-message2.save()
-
-message3 = Message(user=user,
-                   type=Message.Type.Coupon,
-                   timestamp=int(time.time()),
-                   text='这是一条警告,告诉你优惠券要过期了!',
-                   unread=True)
-message3.save()
 
 city = City.objects.get(key='1000010000')
 
@@ -349,3 +329,26 @@ medal2.save()
 
 user_medal_2 = UserMedal(user=user, medal=medal2)
 user_medal_2.save()
+
+
+message1 = Message(user=user,
+                   type=Message.Type.Attention,
+                   timestamp=int(time.time()),
+                   text='这是一条消息,需要注意!',
+                   unread=True)
+message1.save()
+
+message2 = Message(user=user,
+                   type=Message.Type.Story,
+                   timestamp=int(time.time()),
+                   text='这是另外一条消息,用来提示故事!',
+                   unread=True)
+message2.save()
+
+message3 = Message(user=user,
+                   type=Message.Type.Coupon,
+                   timestamp=int(time.time()),
+                   text='这是一条警告,告诉你优惠券要过期了!',
+                   coupon_id=coupon.id,
+                   unread=True)
+message3.save()
