@@ -40,18 +40,20 @@ class UserMessageMarkRead(APIView):
 
     def post(self, request, message_id):
         try:
-            message = Message.objects.get(id=int(message_id))
-            message.unread = False
-            message.save(update_fields=['unread'])
-            return Response({
-                'code': 0,
-                'msg': '标记消息已读',
-            })
-        except Message.DoesNotExist:
-            return Response({
-                'code': -1,
-                'msg': '消息不存在',
-            })
+            message_id = int(message_id)
+            affect_rows = Message.objects.filter(
+                user=request.user, id=message_id).update(
+                    unread=False)
+            if affect_rows > 0:
+                return Response({
+                    'code': 0,
+                    'msg': '标记消息已读',
+                })
+            else:
+                return Response({
+                    'code': -1,
+                    'msg': '消息不存在',
+                })
         except ValueError:
             return Response({
                 'code': -2,
