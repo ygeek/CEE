@@ -6,7 +6,6 @@ from __future__ import absolute_import
 import math
 import geohash
 from django.db import models
-from django.db import connection
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -60,27 +59,25 @@ class NearestMap(APIView):
         hashcode = geohash.encode(latitude,
                                   longitude,
                                   precision=precision)
-        nullp = {'sqlite': 'IFNULL', 'mysql': 'ISNULL'}[connection.vendor]
         args = {
-            'nullp': nullp,
             'user_id': user.id,
             'geohash': hashcode,
             'city': '',
         }
         if city_key is not None:
-            args['city'] = 'AND city_id=%s' % city_key
+            args['city'] = 'AND `city_id`=%s' % city_key
         sql = '''
-            SELECT api_map.id AS id,
-                   name,
-                   desc,
-                   image_key,
-                   %(nullp)s(completed, 0) AS completed
-            FROM api_map
-                LEFT JOIN api_usermap
-                    ON api_map.id=api_usermap.map_id
-            WHERE %(nullp)s(user_id, %(user_id)d)=%(user_id)d
-              AND %(nullp)s(completed, 0)=0
-              AND geohash LIKE '%(geohash)s%%'
+            SELECT `api_map`.`id` AS `id`,
+                   `name`,
+                   `desc`,
+                   `image_key`,
+                   IFNULL(`completed`, 0) AS `completed`
+            FROM `api_map`
+                LEFT JOIN `api_usermap`
+                    ON `api_map`.`id`=`api_usermap`.`map_id`
+            WHERE IFNULL(`user_id`, %(user_id)d)=%(user_id)d
+              AND IFNULL(`completed`, 0)=0
+              AND `geohash` LIKE '%(geohash)s%%'
               %(city)s
             LIMIT 1
         ''' % args
