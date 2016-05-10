@@ -34,7 +34,9 @@ class Register(APIView):
     def post(self, request):
         user_form = UserForm(request.data)
         if user_form.is_valid():
-            user = user_form.save()
+            user = User(username=user_form.cleaned_data['username'])
+            user.set_password(user_form.cleaned_data['password'])
+            user.save()
             token = Token.objects.create(user=user)
             return Response({
                 'code': 0,
@@ -68,7 +70,7 @@ class Login(APIView):
                     if profile.nickname:
                         user_info['nickname'] = profile.nickname
                     if profile.head_url:
-                        user_info['head_url'] = profile.head_url
+                        user_info['head_img_key'] = profile.head_img_key
                     if profile.sex:
                         user_info['sex'] = profile.sex
                     if profile.birthday:

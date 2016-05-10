@@ -175,11 +175,10 @@
             request.nickname = self.nicknameField.text;
             request.head_img_key = key;
             request.sex = self.sex;
+            request.location = self.locationField.text;
             if (self.birthday) {
                 request.birthday = @([self.birthday timeIntervalSince1970]);
             }
-            request.location = self.locationField.text;
-            
             return [[CEESaveUserProfileAPI api] saveUserProfile:request];
         }).then(^{
             return [[CEEUserSession session] loadUserProfile];
@@ -194,8 +193,11 @@
         request.nickname = self.nicknameField.text;
         request.head_img_key = nil;
         request.sex = self.sex;
-        request.birthday = @([self.birthday timeIntervalSince1970]);
         request.location = self.locationField.text;
+        if (self.birthday) {
+            request.birthday = @([self.birthday timeIntervalSince1970]);
+        }
+        
         [[CEESaveUserProfileAPI api] saveUserProfile:request]
         .then(^{
             return [CEEUserSession.session loadUserProfile];

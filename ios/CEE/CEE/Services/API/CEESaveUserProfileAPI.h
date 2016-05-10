@@ -9,7 +9,7 @@
 #import "CEEBaseAPI.h"
 
 @interface CEESaveUserProfileRequest: JSONModel
-@property (nonatomic, strong) NSString<Optional> * nickname;
+@property (nonatomic, strong) NSString * nickname;
 @property (nonatomic, strong) NSString<Optional> * head_img_key;
 @property (nonatomic, strong) NSString<Optional> * sex;
 @property (nonatomic, assign) NSNumber<Optional> * birthday;
