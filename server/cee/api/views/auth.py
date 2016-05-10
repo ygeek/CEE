@@ -6,6 +6,7 @@ import hashlib
 import uuid
 import time
 import datetime
+import logging
 
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
@@ -203,7 +204,13 @@ class UserProfileView(APIView):
             })
 
     def post(self, request):
-        birthday_ts = float(request.data.get('birthday'))
+        birthday_ts = 0
+        try:
+            birthday_ts = float(request.data.get('birthday'))
+        except ValueError:
+            logging.getLogger('debug').log(
+                logging.DEBUG,
+                'error birthday {0}'.format(repr(request.data.get('birthday'))))
 
         user = request.user
         nickname = request.data['nickname']

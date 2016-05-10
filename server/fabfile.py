@@ -71,8 +71,10 @@ def deploy():
                 run('python manage.pyc makemigrations')
                 run('python manage.pyc makemigrations api')
                 run('python manage.pyc makemigrations cms')
+                run('python manage.pyc makemigrations django_cron')
                 run('python manage.pyc migrate')
                 run('python manage.pyc collectstatic')
+                run('python manage.pyc runcrons')
 
 
 def create_superuser():

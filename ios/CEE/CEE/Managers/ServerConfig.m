@@ -20,11 +20,11 @@
 }
 
 - (NSString *)serverAddress {
-#if DEBUG
-    return @"http://127.0.0.1:8000";
-#else
+// #if DEBUG
+//     return @"http://127.0.0.1:8000";
+// #else
     return @"http://101.201.48.167";
-#endif
+// #endif
 }
 
 - (NSString *)qiniuBucketDomain {

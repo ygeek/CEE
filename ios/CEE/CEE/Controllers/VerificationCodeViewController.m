@@ -79,9 +79,6 @@
 }
 
 - (void)requireCodePressed:(id)sender {
-#if DEBUG
-    
-#else
     [SVProgressHUD show];
     [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
                             phoneNumber:self.phoneNumber
@@ -95,20 +92,19 @@
              [SVProgressHUD showErrorWithStatus:error.localizedDescription];
          }
      }];
-#endif
 }
 
 - (void)nextPressed:(id)sender {
-#if DEBUG
-    [[CEERegisterAPI api] registerWithMobile:self.phoneNumber password:self.password]
-    .then(^(NSString * authToken) {
-        return [[CEEUserSession session] loggedInWithAuth:authToken];
-    }).then(^{
-        [SVProgressHUD dismiss];
-    }).catch(^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    });
-#else
+// #if DEBUG
+//     [[CEERegisterAPI api] registerWithMobile:self.phoneNumber password:self.password]
+//     .then(^(NSString * authToken) {
+//         return [[CEEUserSession session] loggedInWithAuth:authToken];
+//     }).then(^{
+//         [SVProgressHUD dismiss];
+//     }).catch(^(NSError *error) {
+//         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+//     });
+// #else
     [SVProgressHUD show];
     [SMSSDK commitVerificationCode:self.codeField.text
                        phoneNumber:self.phoneNumber
@@ -128,7 +124,7 @@
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }
     }];
-#endif
+// #endif
 }
 
 - (void)backgroundTapped:(id)sender {
