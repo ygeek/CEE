@@ -72,7 +72,8 @@ class StoryDetail(APIView):
 
     def _acquire_related_map(self, user, story):
         try:
-            anchor = Anchor.objects.get(type=Anchor.Type.Story, ref_id=story.id)
+            anchor = Anchor.objects.get(
+                type=Anchor.Type.Story, ref_id=story.id)
             user_map, created = UserMap.objects.get_or_create(
                 defaults={'completed': False},
                 user=user,
@@ -120,6 +121,21 @@ class CompleteStory(APIView):
                 'code': -2,
                 'msg': 'story not exists',
             })
+
+
+class StartedStoryList(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        stories = request.user.stories.annotate(
+            completed=models.F('user_stories__completed'),
+            progress=models.F('user_stories__progress')).filter(
+                progress__gt=0)
+        serializer = UserStorySerializer(stories, many=True)
+        return Response({
+            'code': 0,
+            'stories': serializer.data
+        })
 
 
 class StoryLevelList(APIView):

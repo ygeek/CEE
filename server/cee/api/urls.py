@@ -46,6 +46,7 @@ urlpatterns = [
         NearestMap.as_view()),
     url(r'^v1/map/acquired/$', AcquiredMapList.as_view()),
     url(r'^v1/map/(?P<map_id>\d+)/complete/$', CompleteMap.as_view()),
+    url(r'^v1/map/completed/count/$', CompletedMapCount.as_view()),
     # Anchor
     url(r'^v1/map/(?P<map_id>\d+)/anchor/$', MapAnchorList.as_view()),
     # Task
@@ -54,6 +55,7 @@ urlpatterns = [
     # Story
     url(r'^v1/city/(?P<city_key>\w+)/story/$', CityStoryList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/$', StoryDetail.as_view()),
+    url(r'^v1/story/started/$', StartedStoryList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/level/$', StoryLevelList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/item/$', StoryItemList.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/complete/$', CompleteStory.as_view()),

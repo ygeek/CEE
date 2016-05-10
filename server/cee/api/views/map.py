@@ -150,3 +150,15 @@ class CompleteMap(APIView):
                 'code': -2,
                 'msg': 'map not exist'
             })
+
+
+class CompletedMapCount(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        count = UserMap.objects.filter(
+            user=request.user, completed=True).count()
+        return Response({
+            'code': 0,
+            'count': count,
+        })
