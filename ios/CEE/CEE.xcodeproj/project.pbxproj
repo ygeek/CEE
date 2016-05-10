@@ -142,7 +142,7 @@
 		BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325D1CBBDA5900282D3E /* WorldViewController.m */; };
 		BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532601CBBDA6A00282D3E /* StoriesViewController.m */; };
 		BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532631CBBDA9E00282D3E /* MessageViewController.m */; };
-		DBE2B2942E7909B051221FF0 /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F33B289AB3942036A5E07CD /* Pods_CEE.framework */; };
+		BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC16A01CE22EC90043930A /* Pods_CEE.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -408,7 +408,7 @@
 		BBA532601CBBDA6A00282D3E /* StoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
 		BBA532621CBBDA9E00282D3E /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		BBA532631CBBDA9E00282D3E /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		BBCDB01B1CE18C1900634525 /* CEE copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CEE copy-Info.plist"; path = "/Users/meng/ygeek/CEE-repo/ios/CEE/CEE copy-Info.plist"; sourceTree = "<absolute>"; };
+		BBEC16A01CE22EC90043930A /* Pods_CEE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_CEE.framework; path = "Pods/../build/Debug-iphoneos/Pods_CEE.framework"; sourceTree = "<group>"; };
 		F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -417,9 +417,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */,
 				BB6103C51CC7E10C00350809 /* MapKit.framework in Frameworks */,
 				BB6103C31CC7E0FF00350809 /* CoreLocation.framework in Frameworks */,
-				DBE2B2942E7909B051221FF0 /* Pods_CEE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +429,7 @@
 		776D73916CBD9193D6B0A815 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBEC16A01CE22EC90043930A /* Pods_CEE.framework */,
 				BB6103C41CC7E10C00350809 /* MapKit.framework */,
 				BB6103C21CC7E0FF00350809 /* CoreLocation.framework */,
 				6F33B289AB3942036A5E07CD /* Pods_CEE.framework */,
@@ -590,7 +591,6 @@
 				BBA532311CBBC56500282D3E /* Products */,
 				88ABD1A048EDE3AD129BFD87 /* Pods */,
 				776D73916CBD9193D6B0A815 /* Frameworks */,
-				BBCDB01B1CE18C1900634525 /* CEE copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1150,7 +1150,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1188,7 +1188,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1203,7 +1203,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Daiwei (G5H4ZSYAX7)";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = CEE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1219,7 +1223,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aftertech Inc. (4F97F65324)";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = CEE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
