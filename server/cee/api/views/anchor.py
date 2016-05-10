@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from django.db import connection
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -17,8 +18,9 @@ class MapAnchorList(APIView):
         try:
             map_id = int(map_id)
             map_ = Map.objects.get(id=map_id)
+            nullp = {'sqlite': 'IFNULL', 'mysql': 'ISNULL'}[connection.vendor]
             args = {
-                'nullp': 'IFNULL',  # for sqlite(ISNULL for MySQL)
+                'nullp': nullp,
                 'map_id': map_id,
                 'user_id': request.user.id,
             }

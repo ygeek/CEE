@@ -6,6 +6,7 @@ from __future__ import absolute_import
 import math
 import geohash
 from django.db import models
+from django.db import connection
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -59,8 +60,9 @@ class NearestMap(APIView):
         hashcode = geohash.encode(latitude,
                                   longitude,
                                   precision=precision)
+        nullp = {'sqlite': 'IFNULL', 'mysql': 'ISNULL'}[connection.vendor]
         args = {
-            'nullp': 'IFNULL',  # for sqlite(ISNULL for MySQL)
+            'nullp': nullp,
             'user_id': user.id,
             'geohash': hashcode,
             'city': '',
