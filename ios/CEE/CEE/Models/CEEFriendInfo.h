@@ -17,6 +17,6 @@
 @property (nonatomic, strong) NSNumber * id;
 @property (nonatomic, strong) NSString * nickname;
 @property (nonatomic, strong) NSNumber * coin;
-@property (nonatomic, strong) NSArray<CEEJSONMedal> * medals;
+@property (nonatomic, strong) NSNumber * medals;
 @property (nonatomic, strong) NSString<Optional> * head_img_key;
 @end

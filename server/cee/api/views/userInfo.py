@@ -46,12 +46,14 @@ class AddFriends(APIView):
         count = 0
         if mobilelist is not None:
             for mobile in mobilelist:
+                if request.user.username == mobile:
+                    continue
                 try:
-                    userprofile = UserProfile.objects.get(mobile=mobile)
-                    userfriend = UserFriend(user=request.user, friend=userprofile.user)
+                    friend = User.objects.get(username=mobile)
+                    userfriend = UserFriend(user=request.user, friend=friend)
                     userfriend.save()
                     count += 1
-                except UserProfile.DoesNotExist:
+                except User.DoesNotExist:
                     pass
                 except IntegrityError:
                     pass

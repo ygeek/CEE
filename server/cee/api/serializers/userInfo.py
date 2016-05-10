@@ -47,6 +47,7 @@ class FriendInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id',
+                  'nickname',
                   'coin',
                   'medals',
                   'head_img_key')

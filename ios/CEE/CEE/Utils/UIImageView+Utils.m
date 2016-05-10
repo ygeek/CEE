@@ -23,6 +23,11 @@ static char currentOperationIDKey;
 }
 
 - (void)cee_setImageWithKey:(NSString *)key placeholder:(UIImage *)image {
+    if (key == nil || key.length == 0) {
+        self.image = image;
+        return;
+    }
+    
     NSString * operationID = [[NSUUID UUID] UUIDString];
     objc_setAssociatedObject(self, &currentOperationIDKey, operationID, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     __weak typeof(self) weakSelf = self;

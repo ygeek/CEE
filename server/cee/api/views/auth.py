@@ -69,7 +69,7 @@ class Login(APIView):
                     user_info = {'username': user.username}
                     if profile.nickname:
                         user_info['nickname'] = profile.nickname
-                    if profile.head_url:
+                    if profile.head_img_key:
                         user_info['head_img_key'] = profile.head_img_key
                     if profile.sex:
                         user_info['sex'] = profile.sex

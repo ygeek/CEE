@@ -12,7 +12,7 @@
 @property (nonatomic, strong) NSString * nickname;
 @property (nonatomic, strong) NSString<Optional> * head_img_key;
 @property (nonatomic, strong) NSString<Optional> * sex;
-@property (nonatomic, assign) NSNumber<Optional> * birthday;
+@property (nonatomic, strong) NSNumber<Optional> * birthday;
 @property (nonatomic, strong) NSString<Optional> * mobile;
 @property (nonatomic, strong) NSString<Optional> * location;
 @end

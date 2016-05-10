@@ -91,8 +91,8 @@
     [self.inviteField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.friendsIcon.mas_right).offset(16);
         make.centerY.equalTo(self.friendsIcon.mas_centerY);
+        make.right.equalTo(self.view.mas_right).offset(-71);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(213);
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

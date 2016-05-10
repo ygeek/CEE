@@ -10,7 +10,7 @@ from api.models import *
 
 
 user = User(username='15910603382')
-user.set_password('87655161Zm')
+user.set_password('Jibuzhu123')
 user.save()
 
 
@@ -71,7 +71,7 @@ level_empty.save()
 
 level_h5 = Level(name='测试H5关卡',
                  content={'type': 'h5',
-                          'url': 'http://www.baidu.com'})
+                          'url': 'http://101.201.48.167/static/sample_h5_level.html'})
 level_h5.save()
 
 

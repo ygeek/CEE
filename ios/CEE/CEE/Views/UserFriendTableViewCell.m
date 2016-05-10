@@ -100,7 +100,7 @@
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(16);
         make.left.equalTo(self.headView.mas_right).offset(38);
-        make.height.mas_equalTo(19);
+        make.height.mas_equalTo(20);
     }];
     
     [self.eggsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,7 +148,7 @@
 - (void)loadFriendInfo:(CEEJSONFriendInfo *)friendInfo {
     self.nameLabel.text = friendInfo.nickname;
     self.coinLabel.text = friendInfo.coin.stringValue;
-    self.medalsLabel.text = @(friendInfo.medals.count).stringValue;
+    self.medalsLabel.text = friendInfo.medals.stringValue;
     [self.headView cee_setImageWithKey:friendInfo.head_img_key
                            placeholder:[UIImage imageNamed:@"cee-头像"]];
     // TODO: replace with real data

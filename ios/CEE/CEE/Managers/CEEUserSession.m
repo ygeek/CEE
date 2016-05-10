@@ -116,6 +116,7 @@
 - (AnyPromise *)loadFriends {
     return [[CEEFriendListAPI api] fetchFriendList].then(^(NSArray *friends){
         self.friends = friends;
+        return friends;
     });
 }
 
@@ -158,6 +159,12 @@
         ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
         for (int k = 0; k<ABMultiValueGetCount(phone); k++) {
             NSString * personPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phone, k);
+            if ([personPhone hasPrefix:@"+86"]) {
+                personPhone = [personPhone substringFromIndex:3];
+            }
+            personPhone = [[personPhone componentsSeparatedByCharactersInSet:
+                            [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                           componentsJoinedByString:@""];
             NSLog(@"phone: %@", personPhone);
             [mobiles addObject:personPhone];
         }
