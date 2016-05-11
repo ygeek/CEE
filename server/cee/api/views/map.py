@@ -59,13 +59,6 @@ class NearestMap(APIView):
         hashcode = geohash.encode(latitude,
                                   longitude,
                                   precision=precision)
-        args = {
-            'user_id': user.id,
-            'geohash': hashcode,
-            'city': '',
-        }
-        if city_key is not None:
-            args['city'] = 'AND `city_id`=%s' % city_key
         sql = '''
             SELECT `api_map`.`id` AS `id`,
                    `name`,
@@ -75,13 +68,19 @@ class NearestMap(APIView):
             FROM `api_map`
                 LEFT JOIN `api_usermap`
                     ON `api_map`.`id`=`api_usermap`.`map_id`
-            WHERE IFNULL(`user_id`, %(user_id)d)=%(user_id)d
+            WHERE IFNULL(`user_id`, %(user_id)s)=%(user_id)s
               AND IFNULL(`completed`, 0)=0
-              AND `geohash` LIKE '%(geohash)s%%'
-              %(city)s
-            LIMIT 1
-        ''' % args
-        maps = list(Map.objects.raw(sql))
+              AND `geohash` LIKE %(geohash)s
+        '''
+        kwargs = {
+            'user_id': user.id,
+            'geohash': hashcode + '%',
+            'city': city_key,
+        }
+        if city_key is not None:
+            sql += "AND `city_id`=%s\n"
+        sql += 'LIMIT 1'
+        maps = list(Map.objects.raw(sql, params=kwargs))
         if not maps: return None
         map_ = maps[0]
         user_map, created = UserMap.objects.get_or_create(

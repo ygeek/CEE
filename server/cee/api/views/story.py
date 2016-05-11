@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 
 from django.db import models
+from django.db import transaction
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -188,28 +189,29 @@ class CompleteStoryLevel(APIView):
                 user=request.user, story=story).update(
                     progress=progress)
             awards = []
-            level_coupons = LevelCoupon.objects.select_for_update().filter(
-                story=story, level=level, remain__gt=0)
-            for level_coupon in level_coupons:
-                level_coupon.remain = models.F('remain') - 1
-                level_coupon.save(update_fields=['remain'])
-                user_coupon = UserCoupon.objects.create(
-                    user=request.user,
-                    coupon=level_coupon.coupon,
-                    story=story,
-                    level=level,
-                    consumed=False)
-                user_coupon.coupon.uuid = user_coupon.uuid
-                user_coupon.coupon.consumed = user_coupon.consumed
-                serializer = UserCouponSerializer(user_coupon.coupon)
-                awards.append({
-                    'type': 'coupon',
-                    'detail': serializer.data,
-                })
+            with transaction.atomic():
+                level_coupons = LevelCoupon.objects.select_for_update().filter(
+                    story=story, level=level, remain__gt=0)
+                for level_coupon in level_coupons:
+                    level_coupon.remain = models.F('remain') - 1
+                    level_coupon.save(update_fields=['remain'])
+                    user_coupon = UserCoupon.objects.create(
+                        user=request.user,
+                        coupon=level_coupon.coupon,
+                        story=story,
+                        level=level,
+                        consumed=False)
+                    user_coupon.coupon.uuid = user_coupon.uuid
+                    user_coupon.coupon.consumed = user_coupon.consumed
+                    serializer = UserCouponSerializer(user_coupon.coupon)
+                    awards.append({
+                        'type': 'coupon',
+                        'detail': serializer.data,
+                    })
             return Response({
                 'code': 0,
                 'awards': awards,
-             })
+            })
         except ValueError:
             return Response({
                 'code': -1,
