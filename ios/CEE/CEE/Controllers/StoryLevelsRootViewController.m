@@ -61,9 +61,13 @@
 }
 
 - (void)nextLevel {
+    
     if (self.currentLevel < 0) {
-        self.currentLevel = self.story.progress.integerValue;
-        self.currentLevel -= (self.currentLevel == 0);
+        if (self.story.progress.integerValue == self.levels.count) {
+            self.currentLevel = -1;
+        } else {
+            self.currentLevel = self.story.progress.integerValue - 1;
+        }
         [self jumpToNextLevel];
         return;
     }
@@ -73,6 +77,11 @@
                                         withLevelID:self.levels[self.currentLevel].id]
     .then(^(NSArray<CEEJSONAward *> * awards) {
         [SVProgressHUD dismiss];
+        
+        if (awards.count > 0) {
+            HUDCouponAcquiringViewController * couponHUD = [[HUDCouponAcquiringViewController alloc] init];
+            [self.rdv_tabBarController presentViewController:couponHUD animated:YES completion:nil];
+        }
         
         NSUInteger nextIndex = self.currentLevel + 1;
         if (nextIndex >= self.levels.count) {
@@ -88,10 +97,6 @@
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             });
         } else {
-            if (awards.count > 0) {
-                HUDCouponAcquiringViewController * couponHUD = [[HUDCouponAcquiringViewController alloc] init];
-                [self.rdv_tabBarController presentViewController:couponHUD animated:YES completion:nil];
-            }
             [self jumpToNextLevel];
         }
     }).catch(^(NSError *error) {

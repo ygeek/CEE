@@ -195,19 +195,23 @@
 }
 
 - (void)completeStoryWithID:(NSNumber *)storyID {
-    CEEJSONMessage * existing = nil;
+    CEEMessage * existing = [CEEMessage objectForPrimaryKey:storyID];
+    if (!existing) {
+        return;
+    }
+    
+    CEEJSONMessage * existingJSON = nil;
     for (CEEJSONMessage * msg in self.messages) {
         if ([msg.story_id isEqualToNumber:storyID]) {
-            existing = msg;
+            existingJSON = msg;
             break;
         }
     }
-    [self.messages removeObject:existing];
+    [self.messages removeObject:existingJSON];
     
     RLMRealm * realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
-    CEEMessage * msg = [CEEMessage objectForPrimaryKey:existing.id];
-    [realm deleteObject:msg];
+    [realm deleteObject:existing];
     [realm commitWriteTransaction];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kCEEMessagesUpdatedNotificationName

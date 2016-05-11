@@ -184,7 +184,7 @@ class CompleteStoryLevel(APIView):
             story = Story.objects.get(id=story_id)
             level = Level.objects.get(id=level_id)
             story_level = StoryLevel.objects.get(story=story, level=level)
-            progress = story_level.order
+            progress = story_level.order + 1
             affect_rows = UserStory.objects.filter(
                 user=request.user, story=story).update(
                     progress=progress)
