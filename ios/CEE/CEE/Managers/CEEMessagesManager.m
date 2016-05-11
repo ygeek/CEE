@@ -138,26 +138,31 @@
     message.username = [CEEUserSession session].userProfile.username;
     [realm commitWriteTransaction];
     
+    self.unreadCount = [[self.messages valueForKeyPath:@"@sum.unread"] integerValue];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kCEEMessagesUpdatedNotificationName
                                                         object:self
                                                       userInfo:nil];
 }
 
 - (void)completeMapWithID:(NSNumber *)mapID {
-    CEEJSONMessage * existing = nil;
+    NSMutableArray * existingJSON = [NSMutableArray array];
     for (CEEJSONMessage * msg in self.messages) {
         if ([msg.map_id isEqualToNumber:mapID]) {
-            existing = msg;
-            break;
+            [existingJSON addObject:msg];
         }
     }
-    [self.messages removeObject:existing];
+    [self.messages removeObjectsInArray:existingJSON];
     
-    RLMRealm * realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    CEEMessage * msg = [CEEMessage objectForPrimaryKey:existing.id];
-    [realm deleteObject:msg];
-    [realm commitWriteTransaction];
+    RLMResults * existing = [CEEMessage objectsWhere:@"map_id == %@", mapID];
+    if (existing && existing.count > 0) {
+        RLMRealm * realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObjects:existing];
+        [realm commitWriteTransaction];
+    }
+    
+    self.unreadCount = [[self.messages valueForKeyPath:@"@sum.unread"] integerValue];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kCEEMessagesUpdatedNotificationName
                                                         object:self
@@ -189,30 +194,32 @@
     message.username = [CEEUserSession session].userProfile.username;
     [realm commitWriteTransaction];
     
+    self.unreadCount = [[self.messages valueForKeyPath:@"@sum.unread"] integerValue];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:kCEEMessagesUpdatedNotificationName
                                                         object:self
                                                       userInfo:nil];
 }
 
 - (void)completeStoryWithID:(NSNumber *)storyID {
-    CEEMessage * existing = [CEEMessage objectForPrimaryKey:storyID];
-    if (!existing) {
-        return;
-    }
-    
-    CEEJSONMessage * existingJSON = nil;
+    NSMutableArray * existingJSON = [NSMutableArray array];
     for (CEEJSONMessage * msg in self.messages) {
         if ([msg.story_id isEqualToNumber:storyID]) {
-            existingJSON = msg;
-            break;
+            [existingJSON addObject:msg];
         }
     }
-    [self.messages removeObject:existingJSON];
+    [self.messages removeObjectsInArray:existingJSON];
     
-    RLMRealm * realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [realm deleteObject:existing];
-    [realm commitWriteTransaction];
+    RLMResults * existing = [CEEMessage objectsWhere:@"story_id == %@", storyID];
+    
+    if (existing && existing.count > 0 ) {
+        RLMRealm * realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObjects:existing];
+        [realm commitWriteTransaction];
+    }
+    
+    self.unreadCount = [[self.messages valueForKeyPath:@"@sum.unread"] integerValue];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kCEEMessagesUpdatedNotificationName
                                                         object:self
