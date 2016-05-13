@@ -16,4 +16,6 @@
 
 - (AnyPromise *)downloadStoryWithID:(NSNumber *)storyID;
 
+- (AnyPromise *)checkStartedStories;
+
 @end

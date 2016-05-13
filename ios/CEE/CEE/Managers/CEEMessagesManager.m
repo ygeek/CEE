@@ -170,10 +170,14 @@
 }
 
 - (void)notifyRunningStory:(CEEJSONStory *)story {
-    for (CEEJSONMessage * msg in self.messages) {
-        if ([msg.story_id isEqualToNumber:story.id]) {
-            return;
+    if (self.messages) {
+        for (CEEJSONMessage * msg in self.messages) {
+            if ([msg.story_id isEqualToNumber:story.id]) {
+                return;
+            }
         }
+    } else if ([CEEMessage objectsWhere:@"story_id == %@", story.id].count > 0) {
+        return;
     }
     
     CEEJSONMessage * msg = [[CEEJSONMessage alloc] init];

@@ -11,7 +11,9 @@
 #import "CEEStoriesManager.h"
 #import "CEEStoryLevelsAPI.h"
 #import "CEEStoryItemsAPI.h"
+#import "CEEStartedStoriesAPI.h"
 #import "CEEImageManager.h"
+#import "CEEMessagesManager.h"
 
 
 @implementation CEEStoriesManager
@@ -59,6 +61,15 @@
         return PMKJoin(downloadPromises).then(^{
             return items;
         });
+    });
+}
+
+- (AnyPromise *)checkStartedStories {
+    return [[CEEStartedStoriesAPI api] fetchStartedStories]
+    .then(^(NSArray<CEEJSONStory *> * stories) {
+        for (CEEJSONStory * story in stories) {
+            [[CEEMessagesManager manager] notifyRunningStory:story];
+        }
     });
 }
 

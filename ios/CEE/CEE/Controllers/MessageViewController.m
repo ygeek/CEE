@@ -16,6 +16,7 @@
 #import "UserProfileViewController.h"
 #import "CEEUserSession.h"
 #import "CEEMessagesManager.h"
+#import "CEEStoriesManager.h"
 
 
 @interface MessageViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -81,7 +82,9 @@
         [self.tableView reloadData];
     }];
     
-    [[CEEMessagesManager manager] fetchMessages];
+    [[CEEMessagesManager manager] fetchMessages].then(^{
+        return [[CEEStoriesManager manager] checkStartedStories];
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
