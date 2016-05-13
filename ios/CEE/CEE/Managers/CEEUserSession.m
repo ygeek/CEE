@@ -17,6 +17,7 @@
 #import "CEEAPIClient.h"
 #import "CEEFetchUserProfileAPI.h"
 #import "CEEFriendListAPI.h"
+#import "CEEDeviceTokenAPI.h"
 
 #import "CEEAddFriendsAPI.h"
 #import "CEENotificationNames.h"
@@ -68,6 +69,14 @@
     if (auth && auth.length > 0) {
         [[CEEAPIClient client].requestSerializer setValue:[NSString stringWithFormat:@"Token %@", auth]
                                        forHTTPHeaderField:@"Authorization"];
+        
+        [[CEEDeviceTokenAPI api] uploadDeviceToken:self.deviceToken installationId:self.installationId]
+        .then(^(NSString * msg) {
+            NSLog(@"upload device token: %@", msg);
+        }).catch(^(NSError *error) {
+            NSLog(@"upload device token error: %@", error);
+        });
+        
         return [self loadUserProfile].then(^{
             return [self addAddressBookFriends];
         }).then(^(NSNumber * addCount){

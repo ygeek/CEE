@@ -65,6 +65,7 @@
 		BB3209831CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209821CDC0BD8009D1862 /* MemoryItemCollectionViewCell.m */; };
 		BB3209861CDC13D8009D1862 /* CEEStoryItemsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209851CDC13D8009D1862 /* CEEStoryItemsAPI.m */; };
 		BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3209881CDC2055009D1862 /* StoryItemCollectionViewCell.m */; };
+		BB3D83F51CE57E0B00C7057D /* CEEDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83F41CE57E0B00C7057D /* CEEDeviceTokenAPI.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -265,6 +266,8 @@
 		BB3209851CDC13D8009D1862 /* CEEStoryItemsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryItemsAPI.m; sourceTree = "<group>"; };
 		BB3209871CDC2055009D1862 /* StoryItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryItemCollectionViewCell.h; sourceTree = "<group>"; };
 		BB3209881CDC2055009D1862 /* StoryItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryItemCollectionViewCell.m; sourceTree = "<group>"; };
+		BB3D83F31CE57E0B00C7057D /* CEEDeviceTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEDeviceTokenAPI.h; sourceTree = "<group>"; };
+		BB3D83F41CE57E0B00C7057D /* CEEDeviceTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEDeviceTokenAPI.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -537,6 +540,8 @@
 				BBA2F7A71CE0AC7F004A5585 /* CEEAddFriendsAPI.m */,
 				BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */,
 				BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */,
+				BB3D83F31CE57E0B00C7057D /* CEEDeviceTokenAPI.h */,
+				BB3D83F41CE57E0B00C7057D /* CEEDeviceTokenAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1038,6 +1043,7 @@
 				BBA2F7A81CE0AC7F004A5585 /* CEEAddFriendsAPI.m in Sources */,
 				BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */,
 				BB32097A1CDB94B5009D1862 /* CEETriangleView.m in Sources */,
+				BB3D83F51CE57E0B00C7057D /* CEEDeviceTokenAPI.m in Sources */,
 				BB48E5D51CD489C0005150C3 /* CEEUploadManager.m in Sources */,
 				BB6AD3021CC2512500A1E0F7 /* AppearanceConstants.m in Sources */,
 				BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */,

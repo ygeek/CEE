@@ -75,7 +75,8 @@
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
-    // TODO (zhangmeng): 上传 currentInstallation.deviceToken   currentInstallation.installationId
+    [CEEUserSession session].deviceToken = currentInstallation.deviceToken;
+    [CEEUserSession session].installationId = currentInstallation.installationId;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

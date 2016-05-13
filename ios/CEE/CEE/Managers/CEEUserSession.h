@@ -21,6 +21,8 @@
 @property (nonatomic, copy) NSString * authToken;
 @property (nonatomic, strong) CEEJSONUserProfile * userProfile;
 @property (nonatomic, strong) NSArray<CEEJSONFriendInfo *> * friends;
+@property (nonatomic, strong) NSString * deviceToken;
+@property (nonatomic, strong) NSString * installationId;
 @property (nonatomic, assign) BOOL isFetchingUserProfile;
 @property (nonatomic, assign) BOOL authorizationFailed;
 
