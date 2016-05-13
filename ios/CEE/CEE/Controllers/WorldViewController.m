@@ -35,6 +35,11 @@
 #import "CEETaskAPI.h"
 #import "CEETaskCompleteAPI.h"
 #import "CEELocationManager.h"
+#import "HUDStoryFetchingViewController.h"
+#import "CEEStoriesManager.h"
+#import "CEEStoryDetailAPI.h"
+#import "StoryLevelsRootViewController.h"
+#import "CEEMessagesManager.h"
 
 
 @interface WorldViewController () <HUDViewDelegate, TaskViewControllerDelegate>
@@ -201,6 +206,30 @@
             vc.delegate = self;
             vc.task = task;
             [self.rdv_tabBarController presentViewController:vc animated:YES completion:nil];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    } else if ([anchorView.anchor.type isEqualToString:kAnchorTypeNameStory]) {
+        NSNumber * storyID = anchorView.anchor.ref_id;
+        [SVProgressHUD show];
+        [[CEEStoryDetailAPI api] fetchDetailWithStoryID:storyID].then(^(CEEJSONStory *story) {
+            [SVProgressHUD dismiss];
+            HUDStoryFetchingViewController * hud = [[HUDStoryFetchingViewController alloc] init];
+            [hud loadStory:story];
+            [self.rdv_tabBarController presentViewController:hud animated:YES completion:nil];
+            
+            [[CEEStoriesManager manager] downloadStoryWithID:story.id]
+            .then(^(NSArray * levelsAndItems) {
+                [hud dismissViewControllerAnimated:YES completion:^{
+                    StoryLevelsRootViewController * levelsRoot = [[StoryLevelsRootViewController alloc] init];
+                    levelsRoot.story = story;
+                    levelsRoot.levels = levelsAndItems[0];
+                    levelsRoot.items = levelsAndItems[1];
+                    [levelsRoot nextLevel];
+                    [[CEEMessagesManager manager] notifyRunningStory:story];
+                    [self.rdv_tabBarController presentViewController:levelsRoot animated:YES completion:nil];
+                }];
+            });
         }).catch(^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         });
