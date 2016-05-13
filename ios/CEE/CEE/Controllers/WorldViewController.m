@@ -42,7 +42,10 @@
 #import "CEEMessagesManager.h"
 
 
-@interface WorldViewController () <HUDViewDelegate, TaskViewControllerDelegate>
+@interface WorldViewController () <HUDViewDelegate,
+                                   TaskViewControllerDelegate,
+                                   MapPanelViewDelegate,
+                                   AcquiredMapsViewControllerDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
 @property (nonatomic, strong) UIImageView * mapView;
 @property (nonatomic, strong) NSMutableArray<MapAnchorView *> * anchorViews;
@@ -74,6 +77,7 @@
     [self.contentScrollView addSubview:self.mapView];
     
     self.panelView = [[MapPanelView alloc] init];
+    self.panelView.delegate = self;
     [self.view addSubview:self.panelView];
     
     [self.panelView.moreMapButton addTarget:self action:@selector(moreMapPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -152,14 +156,6 @@
     }
     
     [self loadAcquiredMaps];
-    
-    /*
-    else if (!self.getMedalHUD) {
-        self.getMedalHUD = [[HUDGetMedalView alloc] init];
-        self.getMedalHUD.delegate = self;
-        [self.getMedalHUD show];
-    }
-     */
 }
 
 - (HUDFetchingMapView *)fetchingMapHUD {
@@ -173,21 +169,12 @@
     UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
     [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
-    
-    /*
-    NSURL *videoURL = [NSURL URLWithString:@"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
-    AVPlayer *player = [AVPlayer playerWithURL:videoURL];
-    AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-    playerViewController.player = player;
-    [self presentViewController:playerViewController animated:YES completion:^{
-        [player play];
-    }];
-     */
 }
 
 - (void)moreMapPressed:(id)sender {
     AcquiredMapsViewController * mapsVC = [[AcquiredMapsViewController alloc] init];
     mapsVC.maps = [CEELocationManager manager].acquiredMaps;
+    mapsVC.delegate = self;
     [self.navigationController pushViewController:mapsVC animated:YES];
 }
 
@@ -285,6 +272,29 @@
 
 - (void)task:(CEEJSONTask *)task failedInController:(TaskViewController *)controller {
     [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - MapPanelViewDelegate
+
+- (void)mapPressed:(CEEJSONMap *)map {
+    [self.fetchingMapHUD show];
+
+    [[CEELocationManager manager] fetchMapData:map]
+    .then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
+        [self loadMap:map];
+        [self loadAnchors:anchors];
+        [self.fetchingMapHUD dismiss];
+    }).catch(^(NSError *error) {
+        [self.fetchingMapHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
+}
+
+#pragma mark - AcquiredMapsViewControllerDelegate
+
+- (void)acquiredMapsViewController:(AcquiredMapsViewController *)controller didSelectMap:(CEEJSONMap *)map {
+    [self.navigationController popViewControllerAnimated:YES];
+    [self mapPressed:map];
 }
 
 #pragma mark - Loads

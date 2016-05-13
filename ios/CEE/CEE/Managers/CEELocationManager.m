@@ -18,6 +18,7 @@
 #import "CEEAnchorsAPI.h"
 #import "CEEAcquiredMapsAPI.h"
 #import "CEEMessagesManager.h"
+#import "CEEUserSession.h"
 
 @interface CEELocationManager ()
 @property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
@@ -93,6 +94,19 @@
             self.currentAnchors = anchors;
             return PMKManifold(map, anchors);
         });
+    });
+}
+
+- (AnyPromise *)fetchMapData:(CEEJSONMap *)map {
+    return [[CEEImageManager manager] downloadImageForKey:map.image_key]
+    .then(^(UIImage *image) {
+        return map;
+    }).then(^(CEEJSONMap * map) {
+        return [[CEEAnchorsAPI api] fetchAnchorsWithMapID:map.id];
+    }).then(^(NSArray<CEEJSONAnchor *> *anchors) {
+        self.currentMap = map;
+        self.currentAnchors = anchors;
+        return PMKManifold(map, anchors);
     });
 }
 
@@ -191,6 +205,9 @@
 }
 
 - (void)updateLocationFired:(NSTimer *)timer {
+    if (![CEEUserSession session].authToken) {
+        return;
+    }
     [self queryNearestMap].then(^(CEEJSONMap * map) {
         NSLog(@"nearest map: %@", map.name);
         self.nearestMap = map;

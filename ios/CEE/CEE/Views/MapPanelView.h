@@ -12,9 +12,19 @@
 
 #import "CEEMap.h"
 
+
+@protocol MapPanelViewDelegate <NSObject>
+
+- (void)mapPressed:(CEEJSONMap *)map;
+
+@end
+
+
 @interface MapPanelView : UIView
+@property (nonatomic, weak) id<MapPanelViewDelegate> delegate;
 @property (nonatomic, strong) NSArray<UIButton *> * mapButtons;
 @property (nonatomic, strong) UIButton * moreMapButton;
+@property (nonatomic, strong) NSArray<CEEJSONMap *> * maps;
 
 - (AnyPromise *)loadAcquiredMaps:(NSArray<CEEJSONMap *> *)maps;
 

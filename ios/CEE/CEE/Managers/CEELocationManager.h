@@ -33,6 +33,8 @@
 
 - (AnyPromise *)fetchNearestMap;
 
+- (AnyPromise *)fetchMapData:(CEEJSONMap *)map;
+
 - (AnyPromise *)loadAcquiredMaps;
 
 - (void)startMonitoringLocationChanges;

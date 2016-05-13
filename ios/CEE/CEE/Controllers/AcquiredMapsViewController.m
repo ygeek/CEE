@@ -86,5 +86,10 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < self.maps.count) {
+        [self.delegate acquiredMapsViewController:self didSelectMap:self.maps[indexPath.row]];
+    }
+}
 
 @end

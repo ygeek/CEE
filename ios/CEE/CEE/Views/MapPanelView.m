@@ -99,10 +99,14 @@
 }
 
 - (void)mapPressed:(id)sender {
-    
+    NSInteger index = [self.mapButtons indexOfObject:sender];
+    if (index != NSNotFound && index < self.maps.count) {
+        [self.delegate mapPressed:self.maps[index]];
+    }
 }
 
 - (AnyPromise *)loadAcquiredMaps:(NSArray<CEEJSONMap *> *)maps {
+    self.maps = maps;
     NSMutableArray * loadPromises = [NSMutableArray array];
     for (NSUInteger i = 0; i < maps.count && i < 3; i++) {
         [loadPromises addObject:[[CEEImageManager manager] downloadImageForKey:maps[i].icon_key]

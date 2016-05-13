@@ -10,6 +10,15 @@
 
 #import "CEEMap.h"
 
+@class AcquiredMapsViewController;
+
+@protocol AcquiredMapsViewControllerDelegate <NSObject>
+
+- (void)acquiredMapsViewController:(AcquiredMapsViewController *)controller didSelectMap:(CEEJSONMap *)map;
+
+@end
+
 @interface AcquiredMapsViewController : UIViewController
+@property (nonatomic, weak) id<AcquiredMapsViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray<CEEJSONMap *> * maps;
 @end
