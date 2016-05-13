@@ -31,13 +31,17 @@
 }
 
 - (void)commonInit {
+    self.userInteractionEnabled = YES;
+    
     self.iconView = [[UIImageView alloc] init];
     self.iconView.contentMode = UIViewContentModeCenter;
+    self.iconView.userInteractionEnabled = NO;
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:9];
     self.titleLabel.textColor = kCEETextBlackColor;
+    self.titleLabel.userInteractionEnabled = NO;
     
     [self addSubview:self.iconView];
     [self addSubview:self.titleLabel];

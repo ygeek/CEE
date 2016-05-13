@@ -106,28 +106,31 @@ class LoginThirdParty(APIView):
         access_token = request.data['access_token']
         uid = request.data['uid']
         platform = request.data['platform']
+
+        auth_failed = Response({
+            'code': -1,
+            'msg': '验证失败，请重试'
+        })
+
+        if platform == 'weixin':
+            if not verify_weixin_openid(access_token, uid):
+                return auth_failed
+        elif platform == 'weibo':
+            if not verify_weibo_openid(access_token, uid):
+                return auth_failed
+        elif platform == 'qq':
+            if not verify_qq_openid(access_token, uid):
+                return auth_failed
+        else:
+            return Response({
+                'code': -2,
+                'msg': '不支持该第三方帐号登录'
+            })
+
         try:
             account = ThirdPartyAccount.objects.get(uid=uid, platform=platform)
             user = account.user
         except ThirdPartyAccount.DoesNotExist:
-            auth_failed = Response({
-                'code': -1,
-                'msg': '验证失败，请重试'
-            })
-            if platform == 'weixin':
-                if not verify_weixin_openid(access_token, uid):
-                    return auth_failed
-            elif platform == 'weibo':
-                if not verify_weibo_openid(access_token, uid):
-                    return auth_failed
-            elif platform == 'qq':
-                if not verify_qq_openid(access_token, uid):
-                    return auth_failed
-            else:
-                return Response({
-                    'code': -2,
-                    'msg': '不支持该第三方帐号登录'
-                })
             fake_username = '{0}_{1}'.format(platform, hashlib.sha1(uid).hexdigest())
             fake_email = '{0}@cee_{1}.com'.format(fake_username, platform)
             user = User.objects.create_user(username=fake_username, email=fake_email, password=unicode(uuid.uuid1()))

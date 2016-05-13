@@ -143,6 +143,7 @@
 		BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532601CBBDA6A00282D3E /* StoriesViewController.m */; };
 		BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532631CBBDA9E00282D3E /* MessageViewController.m */; };
 		BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC16A01CE22EC90043930A /* Pods_CEE.framework */; };
+		BBEC16A41CE436DF0043930A /* CEELoginThirdpartyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -409,6 +410,8 @@
 		BBA532621CBBDA9E00282D3E /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		BBA532631CBBDA9E00282D3E /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		BBEC16A01CE22EC90043930A /* Pods_CEE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_CEE.framework; path = "Pods/../build/Debug-iphoneos/Pods_CEE.framework"; sourceTree = "<group>"; };
+		BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELoginThirdpartyAPI.h; sourceTree = "<group>"; };
+		BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELoginThirdpartyAPI.m; sourceTree = "<group>"; };
 		F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -532,6 +535,8 @@
 				BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */,
 				BBA2F7A61CE0AC7F004A5585 /* CEEAddFriendsAPI.h */,
 				BBA2F7A71CE0AC7F004A5585 /* CEEAddFriendsAPI.m */,
+				BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */,
+				BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -988,6 +993,7 @@
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
 				BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
+				BBEC16A41CE436DF0043930A /* CEELoginThirdpartyAPI.m in Sources */,
 				BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */,
 				BB3209181CD4E7D7009D1862 /* CEEStoryListAPI.m in Sources */,
 				BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */,

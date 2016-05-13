@@ -37,7 +37,7 @@ class QQConfig(object):
     QQ API: http://wiki.open.qq.com/wiki/website/get_user_info
 
     """
-    APPID = '12345'  # TODO (zhangmeng): 等正式APP ID
+    APPID = '1105325484'
     AUTH_URL = 'https://graph.qq.com/user/get_user_info'
     ACCESS_TOKEN_KEY = 'access_token'
     APPID_KEY = 'oauth_consumer_key'

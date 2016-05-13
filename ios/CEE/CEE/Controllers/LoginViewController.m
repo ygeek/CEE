@@ -16,6 +16,7 @@
 #import "AppearanceConstants.h"
 #import "ThirdPartyLoginButton.h"
 #import "RegisterViewController.h"
+#import "SDKManager.h"
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
 #import "CEELoginAPI.h"
@@ -113,6 +114,39 @@
     }).then(^{
         [SVProgressHUD dismiss];
     }).catch(^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
+}
+
+- (void)loginQQPressed:(id)sender {
+    [[SDKManager sharedInstance] loginQQInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
+        [[CEEUserSession session] loggedInWithAuth:authToken];
+        if (userProfile) {
+            [CEEUserSession session].userProfile = userProfile;
+        }
+    }).catch(^(NSError * error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
+}
+
+- (void)loginWechatPressed:(id)sender {
+    [[SDKManager sharedInstance] loginWeixinInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
+        [[CEEUserSession session] loggedInWithAuth:authToken];
+        if (userProfile) {
+            [CEEUserSession session].userProfile = userProfile;
+        }
+    }).catch(^(NSError * error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
+}
+
+- (void)loginWeiboPressed:(id)sender {
+    [[SDKManager sharedInstance] loginWeiboInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
+        [[CEEUserSession session] loggedInWithAuth:authToken];
+        if (userProfile) {
+            [CEEUserSession session].userProfile = userProfile;
+        }
+    }).catch(^(NSError * error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     });
 }
@@ -265,19 +299,24 @@
     self.qqLoginButton = [[ThirdPartyLoginButton alloc] init];
     self.qqLoginButton.iconView.image = [UIImage imageNamed:@"qq"];
     self.qqLoginButton.titleLabel.text = @"QQ 登录";
+    UITapGestureRecognizer * qqTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginQQPressed:)];
+    [self.qqLoginButton addGestureRecognizer:qqTapRecognizer];
     
     self.weixinLoginButton = [[ThirdPartyLoginButton alloc] init];
     self.weixinLoginButton.iconView.image = [UIImage imageNamed:@"微信"];
     self.weixinLoginButton.titleLabel.text = @"微信 登录";
+    UITapGestureRecognizer * weixinTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginWechatPressed:)];
+    [self.weixinLoginButton addGestureRecognizer:weixinTapRecognizer];
     
     self.weiboLoginButton = [[ThirdPartyLoginButton alloc] init];
     self.weiboLoginButton.iconView.image = [UIImage imageNamed:@"微博"];
     self.weiboLoginButton.titleLabel.text = @"微博 登录";
+    UITapGestureRecognizer * weiboTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginWeiboPressed:)];
+    [self.weiboLoginButton addGestureRecognizer:weiboTapRecognizer];
     
     [self.contentView addSubview:self.qqLoginButton];
     [self.contentView addSubview:self.weixinLoginButton];
     [self.contentView addSubview:self.weiboLoginButton];
-    
 }
 
 - (void)setupBottomLine {

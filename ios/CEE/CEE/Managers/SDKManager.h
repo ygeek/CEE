@@ -16,10 +16,10 @@
 
 - (void)setup;
 
-- (void)loginQQ;
+- (AnyPromise *)loginQQInViewController:(UIViewController *)vc;
 
-- (void)loginWeixin;
+- (AnyPromise *)loginWeixinInViewController:(UIViewController *)vc;
 
-- (void)loginWeibo;
+- (AnyPromise *)loginWeiboInViewController:(UIViewController *)vc;
 
 @end

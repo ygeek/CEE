@@ -9,6 +9,8 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudIM/AVOSCloudIM.h>
 
+#import <UMengSocialCOM/UMSocial.h>
+
 #import "AppDelegate.h"
 #import "SDKManager.h"
 #import "CEEAppearanceManager.h"
@@ -74,6 +76,26 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
     // TODO (zhangmeng): 上传 currentInstallation.deviceToken   currentInstallation.installationId
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self handleURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(nonnull id)annotation {
+    return [self handleURL:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    return [self handleURL:url];
+}
+
+- (BOOL)handleURL:(NSURL *)url {
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == NO) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
 }
 
 @end

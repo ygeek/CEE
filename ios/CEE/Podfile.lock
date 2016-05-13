@@ -75,6 +75,7 @@ PODS:
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.2.5)
   - SMSSDK (2.0.4)
   - SVProgressHUD (2.0.3)
+  - UMengSocialCOM (5.1.0)
 
 DEPENDENCIES:
   - ABMenuTableViewCell
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKPlatforms/WeChat
   - SMSSDK
   - SVProgressHUD
+  - UMengSocialCOM
 
 EXTERNAL SOURCES:
   DZNPhotoPickerController:
@@ -142,5 +144,6 @@ SPEC CHECKSUMS:
   ShareSDK3: ccdd8ec971044703e7722e19c2f3b38fb03775e2
   SMSSDK: 642b6a8c55fd382be44487cd5e0b0710681895f9
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  UMengSocialCOM: 8fa4732b03757161aaa8aab97be7d980adb9ccdb
 
 COCOAPODS: 0.39.0

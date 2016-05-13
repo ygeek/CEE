@@ -29,5 +29,6 @@ target 'CEE' do
     pod 'PromiseKit'
     pod "PromiseKit/CoreLocation"
     pod 'OAStackView'
+    pod 'UMengSocialCOM'
 end
 
