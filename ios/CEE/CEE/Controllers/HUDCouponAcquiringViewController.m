@@ -83,4 +83,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)loadCoupon:(CEEJSONCoupon *)coupon {
+    [self.couponCard loadCoupon:coupon];
+}
+
 @end

@@ -19,10 +19,10 @@
 #import "StoryEmptyViewController.h"
 #import "StoryH5ViewController.h"
 #import "CEEStory.h"
+#import "CEECoupon.h"
 #import "CEEImageManager.h"
 #import "CEECompleteStoryLevelAPI.h"
 #import "CEEStoryCompleteAPI.h"
-#import "HUDCouponAcquiringViewController.h"
 #import "CEENotificationNames.h"
 
 @interface StoryLevelsRootViewController ()
@@ -78,9 +78,15 @@
     .then(^(NSArray<CEEJSONAward *> * awards) {
         [SVProgressHUD dismiss];
         
-        if (awards.count > 0) {
-            HUDCouponAcquiringViewController * couponHUD = [[HUDCouponAcquiringViewController alloc] init];
-            [self.rdv_tabBarController presentViewController:couponHUD animated:YES completion:nil];
+        CEEJSONCoupon * coupon = nil;
+        for (CEEJSONAward * award in awards) {
+            if ([award.type isEqualToString:@"coupon"]) {
+                NSError * jsonError = nil;
+                coupon = [[CEEJSONCoupon alloc] initWithDictionary:award.detail error:&jsonError];
+                if (jsonError) {
+                    NSLog(@"load coupon json error: %@", jsonError);
+                }
+            }
         }
         
         NSUInteger nextIndex = self.currentLevel + 1;
@@ -98,6 +104,12 @@
             });
         } else {
             [self jumpToNextLevel];
+        }
+        
+        if (coupon > 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCEECouponAcquiringNotificationName
+                                                                object:self
+                                                              userInfo:@{kCEECouponAwardsKey: coupon}];
         }
     }).catch(^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];

@@ -12,6 +12,7 @@
 #import "CouponCard.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+Utils.h"
 #import "CEEDownloadURLAPI.h"
 
 
@@ -250,21 +251,7 @@
     
     NSString * currentID = [[NSUUID UUID] UUIDString];
     self.currentID = currentID;
-    [[CEEDownloadURLAPI api] requestURLWithKey:coupon.image_key].then(^(NSString * url) {
-        if ([currentID isEqualToString:self.currentID]) {
-            [self.photoView sd_setImageWithURL:[NSURL URLWithString:url]
-                              placeholderImage:[UIImage imageWithColor:kCEEBackgroundGrayColor size:self.photoView.frame.size]
-                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                         [UIView transitionWithView:self.photoView
-                                                           duration:0.5
-                                                            options:UIViewAnimationOptionTransitionCrossDissolve
-                                                         animations:^{
-                                                             self.photoView.image = image;
-                                                         }
-                                                         completion:nil];
-                                     }];
-        }
-    });
+    [self.photoView cee_setImageWithKey:coupon.image_key placeholder:[UIImage imageWithColor:kCEEBackgroundGrayColor size:self.photoView.frame.size]];
     
     NSMutableAttributedString * locationString = [[NSAttributedString attributedStringWithAttachment:self.locationAttachment] mutableCopy];
     [locationString appendAttributedString:

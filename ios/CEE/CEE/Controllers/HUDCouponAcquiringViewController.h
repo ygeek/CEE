@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class CEEJSONCoupon;
+
 @interface HUDCouponAcquiringViewController : UIViewController
 
-
+- (void)loadCoupon:(CEEJSONCoupon *)coupon;
 
 @end

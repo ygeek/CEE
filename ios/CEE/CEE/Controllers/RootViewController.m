@@ -21,6 +21,7 @@
 #import "CEENotificationNames.h"
 #import "HUDNetworkErrorViewController.h"
 #import "HUDTaskCompletedViewController.h"
+#import "HUDCouponAcquiringViewController.h"
 #import "CEEMessagesManager.h"
 
 
@@ -113,6 +114,11 @@
                                              selector:@selector(storyCompleteNotification:)
                                                  name:kCEEStoryCompleteNotificationName
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(couponAcquiringNotification:)
+                                                 name:kCEECouponAcquiringNotificationName
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -156,13 +162,20 @@
 }
 
 - (void)networkErrorNotification:(NSNotification *)notification {
-    UIViewController * rootVC = self.presentedViewController ?: self;
     HUDNetworkErrorViewController * vc = [[HUDNetworkErrorViewController alloc] init];
+    UIViewController * rootVC = self.presentedViewController ?: self;
     [rootVC presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)storyCompleteNotification:(NSNotification *)notification {
     
+}
+
+- (void)couponAcquiringNotification:(NSNotification *)notification {
+    HUDCouponAcquiringViewController * couponHUD = [[HUDCouponAcquiringViewController alloc] init];
+    [couponHUD loadCoupon:notification.userInfo[kCEECouponAwardsKey]];
+    UIViewController * rootVC = self.presentedViewController ?: self;
+    [rootVC presentViewController:couponHUD animated:YES completion:nil];
 }
 
 - (void)presentLogin {

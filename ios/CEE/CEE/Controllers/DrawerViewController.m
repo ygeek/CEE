@@ -59,6 +59,11 @@
     }];
     
     self.isReload = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(couponAcquiringNotification:)
+                                                 name:kCEECouponAcquiringNotificationName
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,6 +104,10 @@
     UserProfileViewController * profileVC = [[UserProfileViewController alloc] init];
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:profileVC];
     [self.rdv_tabBarController presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)couponAcquiringNotification:(NSNotification *)notification {
+    self.coupons = nil;
 }
 
 #pragma mark CouponScrollViewDatasource
