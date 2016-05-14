@@ -39,7 +39,7 @@ class CouponForm(ModelForm):
             'gmt_start': '开始时间',
             'gmt_end': '结束时间',
             'code': '消费密码',
-            'desc': '描述',
+            'desc': '优惠详情',
             'image_key': '配图'
         }
         widgets = {

@@ -1,6 +1,6 @@
 {% extends 'cms/base.html' %}
 
-{% load bootstrap3 %}
+{% load staticfiles bootstrap3 %}
 
 {% block title %}新增/编辑优惠券{% endblock %}
 
@@ -9,6 +9,15 @@
         <header class="panel-heading">
             新增/编辑优惠券
         </header>
+        {% if coupon %}
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         <div class="panel-body">
             <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
                 {% include 'cms/form.html' %}
@@ -18,4 +27,9 @@
             </form>
         </div>
     </section>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'cms/js/user_form.js' %}"></script>
 {% endblock %}

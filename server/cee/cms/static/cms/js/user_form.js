@@ -1,0 +1,3 @@
+(function(){
+    makeDictEditor('desc');
+})();

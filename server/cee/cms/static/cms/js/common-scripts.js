@@ -161,4 +161,63 @@ var Script = function () {
         language: 'zh-CN'
     });
 
+// global utils
+    function makeDictEditor(name, itemCount) {
+        itemCount = itemCount || 2;
+
+        var selector = 'textarea[name="' + name + '"]';
+        var $textarea = $(selector);
+        var dict;
+        try {
+            dict = JSON.parse($textarea.val());
+        } catch (e) {
+            dict = {};
+        }
+
+        $textarea.addClass('hidden');
+
+        function getItemHtml(index) {
+            var res = '<div class="col-md-3"><label class="control-label" for="coupon-desc-title-{{i}}">优惠内容{{i}}</label></div>' +
+                '<div class="col-md-9"><input class="form-control" type="text" id="coupon-desc-title-{{i}}"></div>' +
+                '<div class="col-md-3"><label class="control-label" for="coupon-desc-content-{{i}}">优惠详情{{i}}</label></div>' +
+                '<div class="col-md-9"><textarea class="form-control" rows="2" id="coupon-desc-content-{{i}}">' +
+                '</textarea></div>';
+            return res.replace(/\{\{i}}/g, index + 1);
+        }
+
+        var itemsHtml = _.map(_.range(itemCount), getItemHtml).join('');
+        var $replaced = $('<div class="container-fluid">' +
+            '<div class="row">' + itemsHtml + '</div>' +
+            '</div>');
+
+        // fill in initial values
+        var keys = _.keys(dict);
+        _.times(Math.min(itemCount, _.size(dict)), function (i) {
+            var key = keys[i];
+            var value = dict[key];
+            var $input = $replaced.find('#coupon-desc-title-' + (i + 1));
+            $input.val(key);
+            var $textarea = $replaced.find('#coupon-desc-content-' + (i + 1));
+            $textarea.val(value);
+        });
+
+        $textarea.parent().append($replaced);
+
+        $textarea.closest('form').on('submit', function () {
+            var submitDict = {};
+            _.times(itemCount, function(i) {
+                var $input = $replaced.find('#coupon-desc-title-' + (i + 1));
+                var key = $input.val();
+                if (!key) {
+                    return;
+                }
+                var $textarea = $replaced.find('#coupon-desc-content-' + (i + 1));
+                submitDict[key] = $textarea.val();
+            });
+
+            $textarea.val(JSON.stringify(submitDict));
+        });
+    }
+
+    window.makeDictEditor = makeDictEditor;
 }();
