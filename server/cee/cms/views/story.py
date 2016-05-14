@@ -157,3 +157,15 @@ class AddLevel(CreateView):
             return response
         else:
             return self.form_invalid(form)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class DeleteLevel(DeleteView):
+    model = Level
+    context_object_name = 'level'
+    template_name = 'cms/level_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('cms-level-list', kwargs={
+            'story_id': self.kwargs['story_id']
+        })
