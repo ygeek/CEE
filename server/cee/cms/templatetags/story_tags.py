@@ -1,3 +1,5 @@
+# coding=utf-8
+from __future__ import unicode_literals
 from django import template
 
 register = template.Library()
@@ -16,3 +18,22 @@ def story_complete_count(value):
 @register.filter
 def story_level_count(value):
     return value.story_levels.count()
+
+
+@register.filter
+def level_type(value):
+    type = value.content['type']
+    if type == 'dialog':
+        return '对话'
+    elif type == 'number':
+        return '数字谜题'
+    elif type == 'text':
+        return '文字谜题'
+    elif type == 'video':
+        return '视频'
+    elif type == 'empty':
+        return '空白关卡'
+    elif type == 'h5':
+        return 'H5关卡'
+    else:
+        return '未知类型关卡'

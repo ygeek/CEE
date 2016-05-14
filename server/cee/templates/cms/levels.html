@@ -1,5 +1,7 @@
 {% extends 'cms/base.html' %}
 
+{% load story_tags %}
+
 {% block title %}关卡管理{% endblock %}
 
 {% block content %}
@@ -23,7 +25,7 @@
                 <tr>
                     <th>#</th>
                     <th>名称</th>
-                    <th>内容</th>
+                    <th>类型</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -32,7 +34,7 @@
                     <tr>
                         <th scope="row">{{ level.id }}</th>
                         <td>{{ level.name }}</td>
-                        <td>{{ level.content }}</td>
+                        <td>{{ level|level_type }}</td>
                         <td>
                             {#                            <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">详情</a>#}
                             {#                            <a href="{% url 'cms-level-list' story_id=story.id %}" class="btn btn-success btn-sm">管理关卡</a>#}
