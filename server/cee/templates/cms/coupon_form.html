@@ -1,6 +1,6 @@
 {% extends 'cms/base.html' %}
 
-{% load staticfiles bootstrap3 %}
+{% load staticfiles bootstrap3 coupon_tags %}
 
 {% block title %}新增/编辑优惠券{% endblock %}
 
@@ -9,15 +9,31 @@
         <header class="panel-heading">
             新增/编辑优惠券
         </header>
+
         {% if coupon %}
             <div class="panel-body">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
-
+                        <div class="col-md-12">
+                            <h5>不同故事下的获得情况：</h5>
+                        </div>
+                    </div>
+                    {{ coupon | coupon_story_info | safe }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>已发放优惠券使用情况：</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">已发放：</div>
+                        <div class="col-md-3 col-xs-6">{{ coupon | coupon_get_count }}</div>
+                        <div class="col-md-3 col-xs-6">已消费：</div>
+                        <div class="col-md-3 col-xs-6">{{ coupon | coupon_consumed_count }}</div>
                     </div>
                 </div>
             </div>
         {% endif %}
+
         <div class="panel-body">
             <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
                 {% include 'cms/form.html' %}
