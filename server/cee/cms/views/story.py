@@ -2,10 +2,11 @@
 
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
+from django.db import transaction
 from django.forms import ModelForm, ChoiceField
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Story, Level, StoryLevel
@@ -105,20 +106,43 @@ class LevelForm(ModelForm):
 
 
 @method_decorator(staff_member_required, name='dispatch')
+class LevelList(ListView):
+    template_name = 'cms/levels.html'
+    context_object_name = 'levels'
+
+    def get_story(self):
+        return Story.objects.get(pk=self.kwargs['story_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(LevelList, self).get_context_data(**kwargs)
+        context['story'] = self.get_story()
+        return context
+
+    def get_queryset(self):
+        story = self.get_story()
+        return Level.objects.filter(stories=story)
+
+
+@method_decorator(staff_member_required, name='dispatch')
 class AddLevel(CreateView):
     template_name = 'cms/level_form.html'
-    success_url = reverse_lazy('cms-stories')
     form_class = LevelForm
     object = None
 
     def get_story(self):
-        return Story.objects.get(pk=self.kwargs['pk'])
+        return Story.objects.get(pk=self.kwargs['story_id'])
+
+    def get_success_url(self):
+        return reverse('cms-level-list', kwargs={
+            'story_id': self.kwargs['story_id']
+        })
 
     def get_context_data(self, **kwargs):
         context = super(AddLevel, self).get_context_data(**kwargs)
         context['story'] = self.get_story()
         return context
 
+    @transaction.atomic
     def post(self, request, *args, **kwargs):
         self.object = None
         form = self.get_form()

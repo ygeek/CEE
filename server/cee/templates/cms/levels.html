@@ -1,0 +1,47 @@
+{% extends 'cms/base.html' %}
+
+{% block title %}关卡管理{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading clearfix">
+            关卡管理 ({{ object_list.count }}) --- 故事名：{{ story.name }}
+            <a class="btn btn-sm" href="{% url 'cms-stories' %}">
+                <i class="fa fa-arrow-left"></i>
+                返回故事列表
+            </a>
+            <div class="pull-right">
+                <a class="btn btn-success btn-sm" href="{% url 'cms-add-level' story_id=story.id %}">
+                    <i class="fa fa-plus-circle"></i>
+                    新增关卡
+                </a>
+            </div>
+        </header>
+        <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+            <table class="table table-bordered vertical-middle">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>内容</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for level in levels %}
+                    <tr>
+                        <th scope="row">{{ level.id }}</th>
+                        <td>{{ level.name }}</td>
+                        <td>{{ level.content }}</td>
+                        <td>
+                            {#                            <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">详情</a>#}
+                            {#                            <a href="{% url 'cms-level-list' story_id=story.id %}" class="btn btn-success btn-sm">管理关卡</a>#}
+                            {#                            <a href="{% url 'cms-delete-story' pk=story.id %}" class="btn btn-danger btn-sm">删除</a>#}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
