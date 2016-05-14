@@ -36,11 +36,12 @@ class StoryForm(ModelForm):
             'distance',
             'difficulty',
             'city',
+            'coin',
             'desc',
             'tags',
             'tour_image_key',
             'hud_image_key',
-            'image_keys'
+            'image_keys',
         ]
         labels = {
             'name': '名称',
@@ -49,10 +50,11 @@ class StoryForm(ModelForm):
             'distance': '预计移动距离',
             'image_keys': '封面图片',
             'difficulty': '难度',
-            'tour_image_key': '行程图',
+            'tour_image_key': '示意路线图',
             'hud_image_key': '加载图',
             'desc': '关卡介绍',
-            'tags': '标签'
+            'tags': '标签',
+            'coin': '金币'
         }
         widgets = {
             'image_keys': JsonTextArea(),

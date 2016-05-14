@@ -173,6 +173,9 @@ var Script = function () {
         } catch (e) {
             dict = {};
         }
+        if (!dict) {
+            dict = {};
+        }
 
         $textarea.addClass('hidden');
 
@@ -231,6 +234,9 @@ var Script = function () {
         try {
             list = JSON.parse($textarea.val());
         } catch (e) {
+            list = [];
+        }
+        if (!list) {
             list = [];
         }
 
