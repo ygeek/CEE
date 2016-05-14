@@ -23,6 +23,13 @@
     });
 }
 
+- (AnyPromise *)completeMapWithStoryID:(NSNumber *)storyID {
+    NSString * url = [NSString stringWithFormat:@"/api/v1/story/%@/complete-map/", storyID];
+    return [self promisePOST:url withParams:nil].then(^(CEEMapCompleteResponse * response) {
+        return response.awards;
+    });
+}
+
 - (Class)responseSuccessClass {
     return [CEEMapCompleteResponse class];
 }

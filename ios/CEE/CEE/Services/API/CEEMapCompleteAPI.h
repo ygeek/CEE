@@ -19,4 +19,6 @@
 
 - (AnyPromise *)completeMapWithID:(NSNumber *)mapID;
 
+- (AnyPromise *)completeMapWithStoryID:(NSNumber *)storyID;
+
 @end

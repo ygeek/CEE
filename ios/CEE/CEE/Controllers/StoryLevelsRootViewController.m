@@ -103,8 +103,7 @@
                                                                       userInfo:@{kCEEStoryCompleteStoryKey:self.story,
                                                                                  kCEEStoryCompleteAwardsKey: awards}];
                 }];
-                // TODO: replace API
-                return [[CEEMapCompleteAPI api] completeMapWithID:[CEEMapManager manager].currentMap.id];
+                return [[CEEMapCompleteAPI api] completeMapWithStoryID:self.story.id];
             }).then(^(NSArray<CEEJSONAward *> * awards) {
                 if (awards.count > 0) {
                     HUDGetMedalViewController * vc = [[HUDGetMedalViewController alloc] init];
