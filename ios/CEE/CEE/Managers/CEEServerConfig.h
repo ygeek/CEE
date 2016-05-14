@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ServerConfig : NSObject
+@interface CEEServerConfig : NSObject
 
 + (instancetype)config;
 

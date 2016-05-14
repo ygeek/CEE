@@ -17,7 +17,7 @@
 @implementation CEEMessageListAPI
 
 - (AnyPromise *)fetchMessagesFromTimestamp:(NSNumber *)timestamp {
-    NSString * url = [NSString stringWithFormat:@"/api/v1/messages/%ld/", timestamp.integerValue];
+    NSString * url = [NSString stringWithFormat:@"/api/v1/messages/%@/", timestamp];
     return [self promiseGET:url withParams:nil].then(^(CEEMessageResponse *response) {
         return response.messages;
     });

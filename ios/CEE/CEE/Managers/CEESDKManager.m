@@ -30,16 +30,16 @@
 
 
 
-#import "SDKManager.h"
+#import "CEESDKManager.h"
 
 #import "CEELoginThirdPartyAPI.h"
 
 
-@implementation SDKManager
+@implementation CEESDKManager
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
-    static SDKManager * instance = nil;
+    static CEESDKManager * instance = nil;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
     });

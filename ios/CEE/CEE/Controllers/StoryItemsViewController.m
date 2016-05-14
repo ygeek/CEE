@@ -17,7 +17,7 @@
 #import "AppearanceConstants.h"
 #import "StoryItemCollectionViewCell.h"
 #import "CEENotificationNames.h"
-#import "CEELocationManager.h"
+#import "CEEMapManager.h"
 
 
 #define kStoryItemCellIdentifier @"kStoryItemCellIdentifier"
@@ -190,7 +190,7 @@
                                                             object:item
                                                           userInfo:@{kCEEEventNameKey: item.content[@"event"]}];
         
-        if (![[CEELocationManager manager] openNavigationAppToLatitude:latitude.floatValue longitude:longitude.floatValue]) {
+        if (![[CEEMapManager manager] openNavigationAppToLatitude:latitude.floatValue longitude:longitude.floatValue]) {
             NSLog(@"call navigation app failed.");
         }
     } else if ([item.content[@"type"] isEqualToString:@"lock"]) {

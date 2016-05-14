@@ -21,7 +21,7 @@
 @class TLCity;
 
 
-@interface CEELocationManager : NSObject
+@interface CEEMapManager : NSObject
 
 + (instancetype)manager;
 
@@ -29,23 +29,31 @@
 
 - (TLCity *)getCityWithName:(NSString *)cityName;
 
-- (AnyPromise *)queryNearestMap;
-
-- (AnyPromise *)fetchNearestMap;
-
-- (AnyPromise *)fetchMapData:(CEEJSONMap *)map;
-
-- (AnyPromise *)loadAcquiredMaps;
-
 - (void)startMonitoringLocationChanges;
 
 - (void)stopMonitoringLocationChanges;
 
 - (BOOL)openNavigationAppToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 
+#pragma mark - Nearest Map
+
+- (AnyPromise *)queryNearestMap;
+
+- (AnyPromise *)fetchNearestMap;
+
+@property (nonatomic, strong) CEEJSONMap * nearestMap;
+
+#pragma mark - Acquired Maps
+
+- (AnyPromise *)loadAcquiredMaps;
+
+- (AnyPromise *)fetchMapData:(CEEJSONMap *)map;
+
+@property (nonatomic, strong) NSMutableArray<CEEJSONMap *> * acquiredMaps;
+
+#pragma mark - Current Map
+
 @property (nonatomic, strong) CEEJSONMap * currentMap;
 @property (nonatomic, strong) NSArray<CEEJSONAnchor *> * currentAnchors;
-@property (nonatomic, strong) CEEJSONMap * nearestMap;
-@property (nonatomic, strong) NSMutableArray<CEEJSONMap *> * acquiredMaps;
 
 @end

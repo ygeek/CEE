@@ -16,7 +16,7 @@
 #import "AppearanceConstants.h"
 #import "ThirdPartyLoginButton.h"
 #import "RegisterViewController.h"
-#import "SDKManager.h"
+#import "CEESDKManager.h"
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
 #import "CEELoginAPI.h"
@@ -119,7 +119,7 @@
 }
 
 - (void)loginQQPressed:(id)sender {
-    [[SDKManager sharedInstance] loginQQInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
+    [[CEESDKManager sharedInstance] loginQQInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
         [[CEEUserSession session] loggedInWithAuth:authToken];
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;
@@ -130,7 +130,7 @@
 }
 
 - (void)loginWechatPressed:(id)sender {
-    [[SDKManager sharedInstance] loginWeixinInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
+    [[CEESDKManager sharedInstance] loginWeixinInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
         [[CEEUserSession session] loggedInWithAuth:authToken];
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;
@@ -141,7 +141,7 @@
 }
 
 - (void)loginWeiboPressed:(id)sender {
-    [[SDKManager sharedInstance] loginWeiboInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
+    [[CEESDKManager sharedInstance] loginWeiboInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
         [[CEEUserSession session] loggedInWithAuth:authToken];
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;

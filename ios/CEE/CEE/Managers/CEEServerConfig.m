@@ -6,13 +6,13 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-#import "ServerConfig.h"
+#import "CEEServerConfig.h"
 
-@implementation ServerConfig
+@implementation CEEServerConfig
 
 + (instancetype)config {
     static dispatch_once_t onceToken;
-    static ServerConfig * instance = nil;
+    static CEEServerConfig * instance = nil;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
     });

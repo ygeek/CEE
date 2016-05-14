@@ -9,7 +9,7 @@
 @import SDWebImage;
 
 #import "CEEImageManager.h"
-#import "ServerConfig.h"
+#import "CEEServerConfig.h"
 #import "CEEDownloadURLAPI.h"
 
 @implementation CEEImageManager
@@ -39,7 +39,7 @@
 }
 
 - (NSString *)imageCacheKeyForKey:(NSString *)key {
-    return [NSString stringWithFormat:@"%@%@", [[ServerConfig config] qiniuBucketDomain], key];
+    return [NSString stringWithFormat:@"%@%@", [[CEEServerConfig config] qiniuBucketDomain], key];
 }
 
 - (AnyPromise *)queryImageForKey:(NSString *)key {

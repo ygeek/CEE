@@ -15,13 +15,13 @@
 #import <UMengSocialCOM/UMSocial.h>
 
 #import "AppDelegate.h"
-#import "SDKManager.h"
+#import "CEESDKManager.h"
 #import "CEEAppearanceManager.h"
 #import "RootViewController.h"
 #import "CEEUtils.h"
 #import "CEEUserSession.h"
 #import "CEEImageManager.h"
-#import "CEELocationManager.h"
+#import "CEEMapManager.h"
 #import "CEEMessagesManager.h"
 
 @interface AppDelegate ()
@@ -32,11 +32,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[SDKManager sharedInstance] setup];
+    [[CEESDKManager sharedInstance] setup];
     [CEEAppearanceManager setup];
     [CEEImageManager manager];
     [[CEEUserSession session] load];
-    [[CEELocationManager manager] startMonitoringLocationChanges];
+    [[CEEMapManager manager] startMonitoringLocationChanges];
     [[CEEMessagesManager manager] fetchMessages];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -62,12 +62,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [[CEELocationManager manager] stopMonitoringLocationChanges];
+    [[CEEMapManager manager] stopMonitoringLocationChanges];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[CEELocationManager manager] startMonitoringLocationChanges];
+    [[CEEMapManager manager] startMonitoringLocationChanges];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

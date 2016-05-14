@@ -27,14 +27,14 @@
 #import "HUDNewMapViewController.h"
 #import "TaskViewController.h"
 #import "CEEImageManager.h"
-#import "CEELocationManager.h"
+#import "CEEMapManager.h"
 #import "CEEMap.h"
 #import "CEEAnchor.h"
 #import "UIImageView+Utils.h"
 #import "CEEAcquiredMapsAPI.h"
 #import "CEETaskAPI.h"
 #import "CEETaskCompleteAPI.h"
-#import "CEELocationManager.h"
+#import "CEEMapManager.h"
 #import "HUDStoryFetchingViewController.h"
 #import "CEEStoriesManager.h"
 #import "CEEStoryDetailAPI.h"
@@ -105,7 +105,7 @@
                                       action:@selector(menuPressed:)];
     
     @weakify(self)
-    [RACObserve([CEELocationManager manager], acquiredMaps) subscribeNext:^(NSArray<CEEJSONMap *> * maps) {
+    [RACObserve([CEEMapManager manager], acquiredMaps) subscribeNext:^(NSArray<CEEJSONMap *> * maps) {
         @strongify(self)
         
         [self.view layoutIfNeeded];
@@ -148,9 +148,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (![CEELocationManager manager].currentMap) {
+    if (![CEEMapManager manager].currentMap) {
         [self.fetchingMapHUD show];
-        [[CEELocationManager manager] fetchNearestMap]
+        [[CEEMapManager manager] fetchNearestMap]
         .then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
             [self loadMap:map];
             [self loadAnchors:anchors];
@@ -179,7 +179,7 @@
 
 - (void)moreMapPressed:(id)sender {
     AcquiredMapsViewController * mapsVC = [[AcquiredMapsViewController alloc] init];
-    mapsVC.maps = [CEELocationManager manager].acquiredMaps;
+    mapsVC.maps = [CEEMapManager manager].acquiredMaps;
     mapsVC.delegate = self;
     [self.navigationController pushViewController:mapsVC animated:YES];
 }
@@ -238,7 +238,7 @@
 
 - (void)storyCompletedNotification:(NSNotification *)notification {
     CEEJSONStory * story = notification.userInfo[kCEEStoryCompleteStoryKey];
-    for (CEEJSONAnchor * anchor in [CEELocationManager manager].currentAnchors) {
+    for (CEEJSONAnchor * anchor in [CEEMapManager manager].currentAnchors) {
         if ([anchor.type isEqualToString:kAnchorTypeNameStory] &&
             [anchor.ref_id isEqualToNumber:story.id]) {
             anchor.completed = @(YES);
@@ -267,7 +267,7 @@
     [controller dismissViewControllerAnimated:YES completion:^{
         [SVProgressHUD showWithStatus:@"请稍等…"];
         
-        for (CEEJSONAnchor * anchor in [CEELocationManager manager].currentAnchors) {
+        for (CEEJSONAnchor * anchor in [CEEMapManager manager].currentAnchors) {
             if ([anchor.type isEqualToString:kAnchorTypeNameTask] &&
                 [anchor.ref_id isEqualToNumber:task.id]) {
                 anchor.completed = @(YES);
@@ -307,7 +307,7 @@
 - (void)mapPressed:(CEEJSONMap *)map {
     [self.fetchingMapHUD show];
 
-    [[CEELocationManager manager] fetchMapData:map]
+    [[CEEMapManager manager] fetchMapData:map]
     .then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
         [self loadMap:map];
         [self loadAnchors:anchors];
@@ -367,7 +367,7 @@
 }
 
 - (void)loadAcquiredMaps {
-    [[CEELocationManager manager] loadAcquiredMaps]
+    [[CEEMapManager manager] loadAcquiredMaps]
     .then(^(NSArray<CEEJSONMap *> * maps) {
         return [self.panelView loadAcquiredMaps:maps];
     });

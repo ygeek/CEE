@@ -10,7 +10,7 @@
 #import <PromiseKit/PromiseKit.h>
 
 
-@interface SDKManager : NSObject
+@interface CEESDKManager : NSObject
 
 + (instancetype)sharedInstance;
 

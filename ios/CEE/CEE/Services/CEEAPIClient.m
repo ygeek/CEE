@@ -7,7 +7,7 @@
 //
 
 #import "CEEAPIClient.h"
-#import "ServerConfig.h"
+#import "CEEServerConfig.h"
 #import "JSONResponseSerializer.h"
 
 @implementation CEEAPIClient
@@ -16,7 +16,7 @@
     static dispatch_once_t onceToken;
     static CEEAPIClient * instance = nil;
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc] initWithBaseURL:[NSURL URLWithString:[ServerConfig config].serverAddress]];
+        instance = [[self alloc] initWithBaseURL:[NSURL URLWithString:[CEEServerConfig config].serverAddress]];
     });
     return instance;
 }

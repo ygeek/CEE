@@ -11,7 +11,7 @@
 
 #import <PromiseKit/PromiseKit.h>
 
-#import "CEELocationManager.h"
+#import "CEEMapManager.h"
 #import "TLCity.h"
 #import "CEENearestMapAPI.h"
 #import "CEEImageManager.h"
@@ -20,17 +20,17 @@
 #import "CEEMessagesManager.h"
 #import "CEEUserSession.h"
 
-@interface CEELocationManager ()
+@interface CEEMapManager ()
 @property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
 @property (nonatomic, strong) NSTimer * locatingTimer;
 @end
 
 
-@implementation CEELocationManager
+@implementation CEEMapManager
 
 + (instancetype)manager {
     static dispatch_once_t onceToken;
-    static CEELocationManager * instance = nil;
+    static CEEMapManager * instance = nil;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
     });

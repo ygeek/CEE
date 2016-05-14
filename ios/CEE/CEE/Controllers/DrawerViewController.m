@@ -106,8 +106,10 @@
         [self.scrollView reloadData];
         if (self.coupons && self.coupons.count > 0) {
             self.scrollView.hidden = NO;
+            self.emptyLabel.hidden = YES;
         } else {
             self.scrollView.hidden = YES;
+            self.emptyLabel.hidden = NO;
         }
         [SVProgressHUD dismiss];
     }).catch(^(NSError *error){

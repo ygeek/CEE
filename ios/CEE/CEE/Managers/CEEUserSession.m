@@ -22,7 +22,7 @@
 #import "CEEAddFriendsAPI.h"
 #import "CEEAddWeiboFriendsAPI.h"
 #import "CEENotificationNames.h"
-#import "SDKManager.h"
+#import "CEESDKManager.h"
 
 
 @implementation CEEUserSession
@@ -185,7 +185,7 @@
 }
 
 - (AnyPromise *)addWeiboFriends {
-    return [[SDKManager sharedInstance] requestWeiboFriends]
+    return [[CEESDKManager sharedInstance] requestWeiboFriends]
     .then(^(NSDictionary * friendsData) {
         return [[CEEAddWeiboFriendsAPI api] addWeiboFriends:@[]];
     });

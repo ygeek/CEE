@@ -90,7 +90,7 @@
 		BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A01CC5088100350809 /* RegisterViewController.m */; };
 		BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */; };
 		BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A61CC5199100350809 /* FillProfileViewController.m */; };
-		BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A91CC62AB300350809 /* ServerConfig.m */; };
+		BB6103AA1CC62AB300350809 /* CEEServerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103A91CC62AB300350809 /* CEEServerConfig.m */; };
 		BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */; };
 		BB6103B11CC671A400350809 /* CEEAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B01CC671A400350809 /* CEEAPIClient.m */; };
 		BB6103B51CC67A6300350809 /* CEEBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103B41CC67A6300350809 /* CEEBaseAPI.m */; };
@@ -100,7 +100,7 @@
 		BB6103C11CC7ABE700350809 /* CEEDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103C01CC7ABE700350809 /* CEEDatabase.m */; };
 		BB6103C31CC7E0FF00350809 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6103C21CC7E0FF00350809 /* CoreLocation.framework */; };
 		BB6103C51CC7E10C00350809 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6103C41CC7E10C00350809 /* MapKit.framework */; };
-		BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103C71CC7E13000350809 /* CEELocationManager.m */; };
+		BB6103C81CC7E13000350809 /* CEEMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103C71CC7E13000350809 /* CEEMapManager.m */; };
 		BB6103CD1CC8570B00350809 /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103CC1CC8570B00350809 /* AIDatePickerController.m */; };
 		BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2E81CC206EE00A1E0F7 /* CouponScrollView.m */; };
 		BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD2EB1CC21E2900A1E0F7 /* HUDBaseView.m */; };
@@ -140,7 +140,7 @@
 		BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532371CBBC56500282D3E /* AppDelegate.m */; };
 		BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA5323F1CBBC56500282D3E /* Assets.xcassets */; };
 		BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5324D1CBBD0F500282D3E /* RootViewController.m */; };
-		BBA532541CBBD11100282D3E /* SDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532531CBBD11100282D3E /* SDKManager.m */; };
+		BBA532541CBBD11100282D3E /* CEESDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532531CBBD11100282D3E /* CEESDKManager.m */; };
 		BBA532581CBBD5DB00282D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */; };
 		BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */; };
 		BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325D1CBBDA5900282D3E /* WorldViewController.m */; };
@@ -320,8 +320,8 @@
 		BB6103A31CC50DB100350809 /* VerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationCodeViewController.m; sourceTree = "<group>"; };
 		BB6103A51CC5199100350809 /* FillProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillProfileViewController.h; sourceTree = "<group>"; };
 		BB6103A61CC5199100350809 /* FillProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillProfileViewController.m; sourceTree = "<group>"; };
-		BB6103A81CC62AB300350809 /* ServerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfig.h; sourceTree = "<group>"; };
-		BB6103A91CC62AB300350809 /* ServerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfig.m; sourceTree = "<group>"; };
+		BB6103A81CC62AB300350809 /* CEEServerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEServerConfig.h; sourceTree = "<group>"; };
+		BB6103A91CC62AB300350809 /* CEEServerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEServerConfig.m; sourceTree = "<group>"; };
 		BB6103AC1CC6336300350809 /* JSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONResponseSerializer.h; sourceTree = "<group>"; };
 		BB6103AD1CC6336300350809 /* JSONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONResponseSerializer.m; sourceTree = "<group>"; };
 		BB6103AF1CC671A400350809 /* CEEAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAPIClient.h; sourceTree = "<group>"; };
@@ -338,8 +338,8 @@
 		BB6103C01CC7ABE700350809 /* CEEDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEDatabase.m; sourceTree = "<group>"; };
 		BB6103C21CC7E0FF00350809 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BB6103C41CC7E10C00350809 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		BB6103C61CC7E13000350809 /* CEELocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELocationManager.h; sourceTree = "<group>"; };
-		BB6103C71CC7E13000350809 /* CEELocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELocationManager.m; sourceTree = "<group>"; };
+		BB6103C61CC7E13000350809 /* CEEMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMapManager.h; sourceTree = "<group>"; };
+		BB6103C71CC7E13000350809 /* CEEMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMapManager.m; sourceTree = "<group>"; };
 		BB6103CB1CC8570B00350809 /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIDatePickerController.h; sourceTree = "<group>"; };
 		BB6103CC1CC8570B00350809 /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIDatePickerController.m; sourceTree = "<group>"; };
 		BB6AD2E71CC206EE00A1E0F7 /* CouponScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScrollView.h; sourceTree = "<group>"; };
@@ -410,8 +410,8 @@
 		BBA532441CBBC56500282D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBA5324C1CBBD0F500282D3E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		BBA5324D1CBBD0F500282D3E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		BBA532521CBBD11100282D3E /* SDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKManager.h; sourceTree = "<group>"; };
-		BBA532531CBBD11100282D3E /* SDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKManager.m; sourceTree = "<group>"; };
+		BBA532521CBBD11100282D3E /* CEESDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEESDKManager.h; sourceTree = "<group>"; };
+		BBA532531CBBD11100282D3E /* CEESDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEESDKManager.m; sourceTree = "<group>"; };
 		BBA532571CBBD5DB00282D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBA532591CBBDA4A00282D3E /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
@@ -739,18 +739,18 @@
 		BBA5324E1CBBD0F500282D3E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				BBA532521CBBD11100282D3E /* SDKManager.h */,
-				BBA532531CBBD11100282D3E /* SDKManager.m */,
-				BB6103A81CC62AB300350809 /* ServerConfig.h */,
-				BB6103A91CC62AB300350809 /* ServerConfig.m */,
+				BBA532521CBBD11100282D3E /* CEESDKManager.h */,
+				BBA532531CBBD11100282D3E /* CEESDKManager.m */,
+				BB6103A81CC62AB300350809 /* CEEServerConfig.h */,
+				BB6103A91CC62AB300350809 /* CEEServerConfig.m */,
 				BB6103B91CC7295F00350809 /* CEEAppearanceManager.h */,
 				BB6103BA1CC7295F00350809 /* CEEAppearanceManager.m */,
 				BB6103BC1CC7A5A100350809 /* CEEUserSession.h */,
 				BB6103BD1CC7A5A100350809 /* CEEUserSession.m */,
 				BB6103BF1CC7ABE700350809 /* CEEDatabase.h */,
 				BB6103C01CC7ABE700350809 /* CEEDatabase.m */,
-				BB6103C61CC7E13000350809 /* CEELocationManager.h */,
-				BB6103C71CC7E13000350809 /* CEELocationManager.m */,
+				BB6103C61CC7E13000350809 /* CEEMapManager.h */,
+				BB6103C71CC7E13000350809 /* CEEMapManager.m */,
 				BB29EF521CCA2F5C001C25B6 /* CEEImageManager.h */,
 				BB29EF531CCA2F5C001C25B6 /* CEEImageManager.m */,
 				BB48E5D31CD489C0005150C3 /* CEEUploadManager.h */,
@@ -1007,7 +1007,7 @@
 				BB6103AE1CC6336300350809 /* JSONResponseSerializer.m in Sources */,
 				BB6103A41CC50DB100350809 /* VerificationCodeViewController.m in Sources */,
 				BB3209701CDA42BE009D1862 /* StoryLevelsRootViewController.m in Sources */,
-				BBA532541CBBD11100282D3E /* SDKManager.m in Sources */,
+				BBA532541CBBD11100282D3E /* CEESDKManager.m in Sources */,
 				BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */,
 				BB3209331CD764A6009D1862 /* CEEAcquiredMapsAPI.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
@@ -1019,7 +1019,7 @@
 				BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */,
 				BB3209581CDA17FF009D1862 /* CEEStoryLevelsAPI.m in Sources */,
 				BB29EF601CCC6E2B001C25B6 /* MapPanelView.m in Sources */,
-				BB6103C81CC7E13000350809 /* CEELocationManager.m in Sources */,
+				BB6103C81CC7E13000350809 /* CEEMapManager.m in Sources */,
 				BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */,
 				BB6AD2E91CC206EE00A1E0F7 /* CouponScrollView.m in Sources */,
 				BB3209671CDA205C009D1862 /* StoryEmptyViewController.m in Sources */,
@@ -1119,7 +1119,7 @@
 				BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */,
 				BB29EF511CCA2B7F001C25B6 /* CEEUserProfile.m in Sources */,
 				BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */,
-				BB6103AA1CC62AB300350809 /* ServerConfig.m in Sources */,
+				BB6103AA1CC62AB300350809 /* CEEServerConfig.m in Sources */,
 				BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */,
 				BB3209771CDB92F8009D1862 /* StoryItemsViewController.m in Sources */,
 				BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */,

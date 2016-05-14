@@ -18,7 +18,7 @@
 #import "FillProfileViewController.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
-#import "CEELocationManager.h"
+#import "CEEMapManager.h"
 #import "AIDatePickerController.h"
 #import "CEESaveUserProfileAPI.h"
 #import "CEEUserSession.h"
@@ -123,12 +123,12 @@
     
     self.locationField.text = kLocatingText;
     [self.locatingIndicator startAnimating];
-    [[CEELocationManager manager] getLocation].then(^(CLPlacemark *placemark) {
+    [[CEEMapManager manager] getLocation].then(^(CLPlacemark *placemark) {
         NSString * cityName = placemark.locality;
-        TLCity * city = [[CEELocationManager manager] getCityWithName:cityName];
+        TLCity * city = [[CEEMapManager manager] getCityWithName:cityName];
         if (!city) {
             cityName = @"北京市";
-            city = [[CEELocationManager manager] getCityWithName:cityName];
+            city = [[CEEMapManager manager] getCityWithName:cityName];
         }
         self.locationField.text = cityName;
         [self.locatingIndicator stopAnimating];
@@ -136,7 +136,7 @@
         if (self.presentedViewController && [self.presentedViewController isKindOfClass:[UINavigationController class]]) {
             TLCityPickerController * vc = ((UINavigationController *)self.presentedViewController).viewControllers[0];
             if ([vc isKindOfClass:[TLCityPickerController class]]) {
-                TLCity * city = [[CEELocationManager manager] getCityWithName:cityName];
+                TLCity * city = [[CEEMapManager manager] getCityWithName:cityName];
                 if (city) {
                     [vc setLocationCityID:city.cityID];
                     [vc.tableView reloadData];
@@ -236,7 +236,7 @@
 - (void)locationPressed:(id)sender {
     TLCityPickerController * picker = [[TLCityPickerController alloc] init];
     picker.delegate = self;
-    TLCity * city = [[CEELocationManager manager] getCityWithName:self.locationField.text];
+    TLCity * city = [[CEEMapManager manager] getCityWithName:self.locationField.text];
     if (city) {
         picker.locationCityID = city.cityID;
     }
