@@ -30,17 +30,33 @@ class StoryDetail(DetailView):
 class StoryForm(ModelForm):
     class Meta:
         model = Story
-        fields = ['name', 'time', 'distance', 'difficulty', 'city', 'image_keys']
+        fields = [
+            'name',
+            'time',
+            'distance',
+            'difficulty',
+            'city',
+            'desc',
+            'tags',
+            'tour_image_key',
+            'hud_image_key',
+            'image_keys'
+        ]
         labels = {
             'name': '名称',
             'city': '城市',
             'time': '预计完成时间（分钟）',
             'distance': '预计移动距离',
             'image_keys': '封面图片',
-            'difficulty': '难度'
+            'difficulty': '难度',
+            'tour_image_key': '行程图',
+            'hud_image_key': '加载图',
+            'desc': '关卡介绍',
+            'tags': '标签'
         }
         widgets = {
-            'image_keys': JsonTextArea()
+            'image_keys': JsonTextArea(),
+            'tags': JsonTextArea()
         }
 
 

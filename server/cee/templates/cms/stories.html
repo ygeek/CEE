@@ -36,8 +36,7 @@
                         <td>{{ story|story_user_count }}</td>
                         <td>{{ story|story_complete_count }}</td>
                         <td>
-                            <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">基本信息</a>
-                            <a href="{% url 'cms-story-detail' pk=story.id %}" class="btn btn-success btn-sm">详细信息</a>
+                            <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">详情</a>
                             <a href="{% url 'cms-delete-story' pk=story.id %}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>

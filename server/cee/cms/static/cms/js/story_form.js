@@ -1,4 +1,10 @@
 (function () {
+    makeListEditor('tags');
+
+    makeSingleImageUploader('tour_image_key');
+    makeSingleImageUploader('hud_image_key');
+
+
     var QINIU_DOMAIN = '7xt08d.com1.z0.glb.clouddn.com';
     var DOWNTOKEN_URL = '/cms/downtoken/';
 

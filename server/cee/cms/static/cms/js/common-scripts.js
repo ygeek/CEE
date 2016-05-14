@@ -219,6 +219,57 @@ var Script = function () {
         });
     }
 
+    function makeListEditor(name, itemCount) {
+        itemCount = itemCount || 5;
+
+        var selector = 'textarea[name="' + name + '"]';
+        var $textarea = $(selector);
+
+        $textarea.addClass('hidden');
+
+        var list;
+        try {
+            list = JSON.parse($textarea.val());
+        } catch (e) {
+            list = [];
+        }
+
+        var itemTemplate = _.template('<div class="col-xs-6 col-sm-3 col-md-2">' +
+            '<input class="form-control" type="text" id="tag-input-<%=name%>-<%=index%>">' +
+            '</div>');
+
+        var itemsHtml = _.map(_.range(itemCount), function (i) {
+            return itemTemplate({
+                name: name,
+                index: i
+            });
+        }).join('');
+        var $replaced = $('<div class="container-fluid"><div class="row">' +
+            itemsHtml +
+            '</div></div>');
+
+        _.times(Math.min(list.length, itemCount), function (i) {
+            var $input = $replaced.find('#tag-input-' + name + '-' + i);
+            $input.val(list[i]);
+        });
+
+        $textarea.parent().append($replaced);
+
+        $textarea.closest('form').on('submit', function () {
+            var submitList = [];
+
+            _.times(itemCount, function (i) {
+                var $input = $replaced.find('#tag-input-' + name + '-' + i);
+                var tag = $input.val();
+                if (tag) {
+                    submitList.push(tag);
+                }
+            });
+
+            $textarea.val(JSON.stringify(submitList));
+        });
+    }
+
     function makeSingleImageUploader(name) {
         var QINIU_DOMAIN = '7xt08d.com1.z0.glb.clouddn.com';
         var DOWNTOKEN_URL = '/cms/downtoken/';
@@ -361,5 +412,6 @@ var Script = function () {
     }
 
     window.makeDictEditor = makeDictEditor;
+    window.makeListEditor = makeListEditor;
     window.makeSingleImageUploader = makeSingleImageUploader;
 }();
