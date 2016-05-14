@@ -20,6 +20,7 @@
 #import "UserProfileViewController.h"
 #import "HUDNetworkErrorViewController.h"
 #import "CEENotificationNames.h"
+#import "AppearanceConstants.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -30,6 +31,7 @@
                                     CouponScrollViewDelegate,
                                     CouponCardDelegate,
                                     HUDCouponCodeViewControllerDelegate>
+@property (nonatomic, strong) UILabel * emptyLabel;
 @property (nonatomic, strong) CouponScrollView * scrollView;
 @property (nonatomic, strong) HUDCouponCodeView * codeView;
 @property (nonatomic, assign) BOOL isReload;
@@ -40,6 +42,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.emptyLabel = [[UILabel alloc] init];
+    self.emptyLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:16];
+    self.emptyLabel.textColor = kCEETextBlackColor;
+    self.emptyLabel.text = @"抽屉里现在没有优惠券";
+    [self.view addSubview:self.emptyLabel];
+    
     self.scrollView = [[CouponScrollView alloc] init];
     [self.view addSubview:self.scrollView];
     self.scrollView.dataSource = self;
@@ -51,6 +59,10 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(menuPressed:)];
+    
+    [self.emptyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+    }];
     
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
@@ -92,6 +104,11 @@
     [[CEECouponListAPI api] fetchCouponList].then(^(NSArray<CEEJSONCoupon *> *coupons) {
         self.coupons = [coupons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"consumed == NO"]];
         [self.scrollView reloadData];
+        if (self.coupons && self.coupons.count > 0) {
+            self.scrollView.hidden = NO;
+        } else {
+            self.scrollView.hidden = YES;
+        }
         [SVProgressHUD dismiss];
     }).catch(^(NSError *error){
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
@@ -244,10 +261,10 @@
 }
 
 - (CGFloat)scaleForProgress:(CGFloat)progress {
-    CGFloat scale0 = 1.0;
-    CGFloat scale1 = 0.89;
-    CGFloat scale2 = 0.76;
-    CGFloat scale3 = 0.5;
+    CGFloat scale0 = 1.0 * verticalScale();
+    CGFloat scale1 = 0.89 * verticalScale();
+    CGFloat scale2 = 0.76 * verticalScale();
+    CGFloat scale3 = 0.5 * verticalScale();
     
     progress = fabs(progress);
     if (progress >= 3.0) {
@@ -264,10 +281,10 @@
 }
 
 - (CGFloat)translationForProgress:(CGFloat)progress {
-    CGFloat trans0 = 0.0;
-    CGFloat trans1 = -22.0;
-    CGFloat trans2 = -55.0;
-    CGFloat trans3 = -90.0;
+    CGFloat trans0 = 0.0 / verticalScale();
+    CGFloat trans1 = -22.0 / verticalScale();
+    CGFloat trans2 = -55.0 / verticalScale();
+    CGFloat trans3 = -90.0 / verticalScale();
     
     CGFloat sign = progress >= 0 ? 1.0 : -1.0;
     progress = fabs(progress);
