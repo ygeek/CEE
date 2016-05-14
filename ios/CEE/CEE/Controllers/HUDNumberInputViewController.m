@@ -84,7 +84,7 @@
     
     [self.panelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
-        make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width - 146);
+        make.width.mas_equalTo(230);
         make.height.mas_equalTo(310);
     }];
     

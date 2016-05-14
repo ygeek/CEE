@@ -100,14 +100,14 @@
         make.top.equalTo(self.contentView.mas_top).offset(70);
         make.left.equalTo(self.contentView.mas_left).offset(20);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.height.mas_equalTo(350);
+        make.height.mas_equalTo(350 * verticalScale());
     }];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top);
         make.left.equalTo(self.contentView.mas_left).offset(20);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.height.mas_equalTo(406);
+        make.height.mas_equalTo(406 * verticalScale());
     }];
     
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {

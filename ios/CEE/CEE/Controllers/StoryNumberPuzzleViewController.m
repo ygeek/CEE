@@ -57,7 +57,7 @@
         make.top.equalTo(self.mas_topLayoutGuideBottom).offset(70);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
-        make.height.mas_equalTo(350);
+        make.height.mas_equalTo(350 * verticalScale());
     }];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
