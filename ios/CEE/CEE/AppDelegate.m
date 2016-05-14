@@ -6,6 +6,9 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import AVFoundation;
+@import AVKit;
+
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudIM/AVOSCloudIM.h>
 
@@ -77,6 +80,14 @@
     [currentInstallation saveInBackground];
     [CEEUserSession session].deviceToken = currentInstallation.deviceToken;
     [CEEUserSession session].installationId = currentInstallation.installationId;
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if ([self.window.rootViewController.presentedViewController isKindOfClass: [AVPlayerViewController class]]) {
+        return UIInterfaceOrientationMaskAll;
+    } else {
+        return UIInterfaceOrientationMaskPortrait;
+    }
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
