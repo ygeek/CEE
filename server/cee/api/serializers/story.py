@@ -7,6 +7,7 @@ class UserStorySerializer(serializers.ModelSerializer):
     image_keys = serializers.ListField()
     completed = serializers.BooleanField()
     progress = serializers.IntegerField()
+    like = serializers.BooleanField()
 
     class Meta:
         model = Story
@@ -25,6 +26,7 @@ class UserStorySerializer(serializers.ModelSerializer):
             'hud_image_key',
             'completed',
             'progress',
+            'like',
         )
 
 

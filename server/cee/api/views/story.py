@@ -23,7 +23,8 @@ class CityStoryList(APIView):
             city = City.objects.get(key=city_key)
             stories = city.stories.annotate(
                 completed=models.F('user_stories__completed'),
-                progress=models.F('user_stories__progress')
+                progress=models.F('user_stories__progress'),
+                like=models.F('user_stories__like')
             )
             serializer = UserStorySerializer(stories, many=True)
             return Response({
@@ -45,16 +46,21 @@ class StoryDetail(APIView):
             story_id = int(story_id)
             story = Story.objects.get(id=story_id)
             user_story, created = UserStory.objects.get_or_create(
-                defaults={'completed': False, 'progress': 0},
+                defaults={
+                    'completed': False,
+                    'progress': 0,
+                    'like': False},
                 user=request.user,
                 story=story)
             if created:
                 story.completed = False,
                 story.progress = 0
+                story.like = False
                 self._acquire_related_map(request.user, story)
             else:
                 story.completed = user_story.completed
                 story.progress = user_story.progress
+                story.like = user_story.like
             serializer = UserStorySerializer(story)
             return Response({
                 'code': 0,
@@ -79,7 +85,6 @@ class StoryDetail(APIView):
                 defaults={'completed': False},
                 user=user,
                 map_id=anchor.map_id)
-            print user_map, created
         except Anchor.DoesNotExist:
             pass
 
@@ -130,7 +135,8 @@ class StartedStoryList(APIView):
     def get(self, request):
         stories = request.user.stories.annotate(
             completed=models.F('user_stories__completed'),
-            progress=models.F('user_stories__progress')).filter(
+            progress=models.F('user_stories__progress'),
+            like=models.F('user_stories__like')).filter(
                 progress__gt=0)
         serializer = UserStorySerializer(stories, many=True)
         return Response({
@@ -152,7 +158,8 @@ class StoryLevelList(APIView):
                     'user': request.user,
                     'story': story,
                     'progress': 0,
-                    'completed': False})
+                    'completed': False,
+                    'like': False})
             levels = story.levels.annotate(
                 order=models.F('story_levels__order')
             ).order_by('story_levels__order')
@@ -257,3 +264,44 @@ class StoryItemList(APIView):
                 'code': -2,
                 'msg': 'story not exists',
             })
+
+
+class LikeStory(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, story_id, like):
+        try:
+            story_id = int(story_id)
+            story = Story.objects.get(id=story_id)
+            user_story, created = UserStory.objects.get_or_create(
+                defaults={
+                    'completed': False,
+                    'progress': 0,
+                    'like': False},
+                user=request.user,
+                story=story)
+            affect_rows = UserStory.objects.filter(
+                user=request.user, story=story).exclude(
+                    like=like).update(
+                        like=like)
+            if affect_rows > 0:
+                delta = affect_rows if like else -affect_rows
+                Story.objects.filter(
+                    id=story.id).update(
+                        good=models.F('good') + delta)
+            return Response({
+                'code': 0,
+                'msg': '操作成功',
+            })
+
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': '故事ID有问题: %s' % story_id,
+            })
+        except Story.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': '故事不存在',
+            })
+

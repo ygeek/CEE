@@ -62,6 +62,12 @@ urlpatterns = [
     url(r'^v1/story/(?P<story_id>\d+)/complete/$', CompleteStory.as_view()),
     url(r'^v1/story/(?P<story_id>\d+)/level/(?P<level_id>\d+)/complete/$',
         CompleteStoryLevel.as_view()),
+    url(r'^v1/story/(?P<story_id>\d+)/like/$',
+        LikeStory.as_view(),
+        kwargs={'like': True}),
+    url(r'^v1/story/(?P<story_id>\d+)/dislike/$',
+        LikeStory.as_view(),
+        kwargs={'like': False}),
     # Coupon
     url(r'^v1/coupon/$', UserCouponList.as_view()),
     url(r'^v1/coupon/(?P<uuid_>[-a-z0-9]{36})/consume/$',
