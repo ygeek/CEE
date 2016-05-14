@@ -30,7 +30,7 @@ class UserStory(models.Model):
     story = models.ForeignKey(Story, related_name='user_stories')
     completed = models.BooleanField()
     progress = models.IntegerField()
-    like = models.BooleanField()
+    like = models.BooleanField(default=False)
 
     class Meta:
         unique_together = (

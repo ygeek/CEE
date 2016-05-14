@@ -7,6 +7,7 @@
 //
 
 @import Masonry;
+@import SVProgressHUD;
 
 #import "HUDTaskCompletedViewController.h"
 #import "AppearanceConstants.h"
@@ -14,6 +15,8 @@
 #import "UIImageView+Utils.h"
 #import "CEENotificationNames.h"
 #import "CEEStory.h"
+#import "CEEStoryLikeAPI.h"
+#import "CEEStoryDislikeAPI.h"
 
 @interface HUDTaskCompletedViewController ()
 @property (nonatomic, strong) UIView * panel;
@@ -150,7 +153,24 @@
 }
 
 - (void)heartPressed:(id)sender {
-    // TODO: 根据story是否被点过赞调用点赞或取消点赞接口
+    [SVProgressHUD show];
+    if (self.story.like.boolValue) {
+        [[CEEStoryDislikeAPI api] dislikeStoryWithID:self.story.id].then(^{
+            [SVProgressHUD dismiss];
+            self.story.like = @(NO);
+            [self updateHeartWithStory:self.story];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    } else {
+        [[CEEStoryLikeAPI api] likeStoryWithID:self.story.id].then(^{
+            [SVProgressHUD dismiss];
+            self.story.like = @(YES);
+            [self updateHeartWithStory:self.story];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    }
 }
 
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey {
@@ -170,14 +190,18 @@
 - (void)setStory:(CEEJSONStory *)story {
     _story = story;
     if (story) {
-        if (story.like.boolValue) {
-            [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞_active"] forState:UIControlStateNormal];
-        } else {
-            [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞"] forState:UIControlStateNormal];
-        }
+        [self updateHeartWithStory:story];
         self.heartButton.hidden = NO;
     } else {
         self.heartButton.hidden = YES;
+    }
+}
+
+- (void)updateHeartWithStory:(CEEJSONStory *)story {
+    if (story.like.boolValue) {
+        [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞_active"] forState:UIControlStateNormal];
+    } else {
+        [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞"] forState:UIControlStateNormal];
     }
 }
 

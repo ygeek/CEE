@@ -76,7 +76,7 @@ def deploy():
                 run('python manage.pyc collectstatic')
                 run('python manage.pyc runcrons')
                 run('python manage.pyc shell < data/city.py.data')
-                run('python manage.pyc shell < data/sample.py.data')
+                # run('python manage.pyc shell < data/sample.py.data')
                 run('cp data/sample_h5_level.html static')
 
 
