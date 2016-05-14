@@ -12,7 +12,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.forms.models import modelform_factory
 
 from api.models import UserProfile
-
+from api.models import UserCoin
+from api.models import UserCoupon
 
 @method_decorator(staff_member_required, name='dispatch')
 class UserList(ListView):
@@ -41,20 +42,29 @@ class UserDetail(DetailView, UpdateView):
                                                'mobile': '手机',
                                            }
                                            )
+
+    user_coin_form_class = modelform_factory(UserCoin,
+                                            fields=['amount'],
+                                             labels={'amount':'金币数'})
     object = None
     profile = None
+    user_coin = None
 
     def get_context_data(self, **kwargs):
-        context = {'profile_form': self.profile_form_class(instance=self.get_profile())}
+        context = {'profile_form': self.profile_form_class(instance=self.get_profile()),
+                   'user_coin_form': self.user_coin_form_class(instance=self.get_user_coin())}
+        context['user_coupon_list'] = UserCoupon.objects.filter(user=self.object)
         context.update(super(UserDetail, self).get_context_data(**kwargs))
+        print context['user_coupon_list']
         return context
 
-    def form_valid(self, form, profile_form):
+    def form_valid(self, form, profile_form, user_coin_form):
         profile_form.save()
+        user_coin_form.save()
         return super(UserDetail, self).form_valid(form)
 
     def form_invalid(self, form, profile_form):
-        return self.render_to_response(self.get_context_data(form=form, profile_form=profile_form))
+        return self.render_to_response(self.get_context_data(form=form, profile_form=profile_form, user_coin_form=user_coin_form))
 
     def get_profile(self):
         try:
@@ -63,20 +73,30 @@ class UserDetail(DetailView, UpdateView):
             profile = UserProfile(user=self.object)
         return profile
 
+    def get_user_coin(self):
+        try:
+            user_coin = self.object.coin
+        except UserCoin.DoesNotExist:
+            user_coin = UserCoin(user=self.object)
+        return user_coin
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.profile = self.get_profile()
+        self.user_coin = self.get_user_coin()
         return self.render_to_response(self.get_context_data())
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.profile = self.get_profile()
+        self.user_coin = self.get_user_coin()
         form = self.get_form()
         profile_form = self.profile_form_class(self.request.POST, instance=self.profile)
-        if form.is_valid() and profile_form.is_valid():
-            return self.form_valid(form, profile_form)
+        user_coin_form = self.user_coin_form_class(self.request.POST, instance=self.user_coin)
+        if form.is_valid() and profile_form.is_valid() and user_coin_form.is_valid():
+            return self.form_valid(form, profile_form, user_coin_form)
         else:
-            return self.form_invalid(form, profile_form)
+            return self.form_invalid(form, profile_form, user_coin_form)
 
 
 @method_decorator(staff_member_required, name='dispatch')

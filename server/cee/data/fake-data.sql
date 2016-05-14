@@ -41,4 +41,5 @@ INSERT INTO api_levelcoupon(`id`, `amount`, `remain`, `coupon_id`, `level_id`, `
 (1, 10, 10, 1, 1, 1),
 (2, 10, 0, 2, 1, 1),
 (3, 10, 10, 2, 2, 1);
-
+INSERT INTO api_usercoupon(`uuid`,`user_id`,`coupon_id`,`story_id`,`level_id`,`consumed`) VALUES
+('16fd2706-8baf-433b-82eb-8c7fada847da',1,1,1,1,'0');

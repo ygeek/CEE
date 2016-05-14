@@ -9,11 +9,12 @@ class UserInfoSerializer(serializers.ModelSerializer):
     coin = serializers.SerializerMethodField()
     medals = MedalSerializer(many=True, read_only=True)
     friend_num = serializers.SerializerMethodField()
+    finish_maps = serializers.SerializerMethodField()
     head_img_key = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id', 'coin', 'medals', 'head_img_key', 'friend_num')
+        fields = ('id', 'coin', 'medals', 'head_img_key', 'friend_num', 'finish_maps')
 
     def get_coin(self, user):
         try:
@@ -36,12 +37,20 @@ class UserInfoSerializer(serializers.ModelSerializer):
         except UserFriend.DoesNotExist:
             return 0
 
+    def get_finish_maps(self, user):
+        try:
+            user_map = UserMap.objects.filter(user=user, complited=True)
+            return len(user_map)
+        except UserMap.DoesNotExist:
+            return 0
+
 
 class FriendInfoSerializer(serializers.ModelSerializer):
 
     nickname = serializers.SerializerMethodField()
     coin = serializers.SerializerMethodField()
     medals = serializers.SerializerMethodField()
+    finish_maps = serializers.SerializerMethodField()
     head_img_key = serializers.SerializerMethodField()
 
     class Meta:
@@ -79,3 +88,10 @@ class FriendInfoSerializer(serializers.ModelSerializer):
             return user_profile.head_img_key
         except UserProfile.DoesNotExist:
             return None
+
+    def get_finish_maps(self, user):
+        try:
+            user_map = UserMap.objects.filter(user=user, complited=True)
+            return len(user_map)
+        except UserMap.DoesNotExist:
+            return 0
