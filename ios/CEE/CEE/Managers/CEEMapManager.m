@@ -19,6 +19,7 @@
 #import "CEEAcquiredMapsAPI.h"
 #import "CEEMessagesManager.h"
 #import "CEEUserSession.h"
+#import "CEENotificationNames.h"
 
 @interface CEEMapManager ()
 @property (nonatomic, strong) NSMutableArray<TLCity *> * cities;
@@ -216,17 +217,17 @@
                 return [self checkIfNewMap:map];
             }).then(^(NSNumber * isNewMap) {
                 if (isNewMap.boolValue) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEEFoundNewMapNotificationName
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEFoundNewMapNotificationName
                                                                         object:self
-                                                                      userInfo:@{CEENewMapKey: map}];
+                                                                      userInfo:@{kCEENewMapKey: map}];
                 }
             });
         } else {
             if ([self checkIfNewMap:map]) {
                 [self.acquiredMaps addObject:map];
-                [[NSNotificationCenter defaultCenter] postNotificationName:CEEFoundNewMapNotificationName
+                [[NSNotificationCenter defaultCenter] postNotificationName:kCEEFoundNewMapNotificationName
                                                                     object:self
-                                                                  userInfo:@{CEENewMapKey: map}];
+                                                                  userInfo:@{kCEENewMapKey: map}];
                 [[CEEMessagesManager manager] notifyNewMap:map];
             }
         }

@@ -18,12 +18,17 @@
 #define kCEEMessagesUpdatedNotificationName @"kCEEMessagesUpdatedNotificationName"
 #define kCEEFriendsUpdatedNotificationName  @"kCEEFriendsUpdatedNotificationName"
 #define kCEECouponAcquiringNotificationName @"kCEECouponAcquiringNotificationName"
+#define kCEEHUDPresentNotificationName      @"kCEEHUDPresentNotificationName"
+#define kCEEHUDDismissNotificationName      @"kCEEHUDDismissNotificationName"
+#define kCEEFoundNewMapNotificationName  @"kCEEFoundNewMapNotificationName"
 
 #define kCEEEventNameKey           @"kCEEEventKey"
 #define kCEEStoryCompleteAwardsKey @"kCEEStoryCompleteAwardsKey"
 #define kCEEStoryCompleteStoryKey  @"kCEEStoryCompleteStoryKey"
 #define kCEEMapCompleteMapKey      @"kCEEMapCompleteMapKey"
 #define kCEECouponAwardsKey        @"kCEECouponAwardsKey"
+#define kCEEHUDKey      @"kCEEHUDKey"
+#define kCEENewMapKey                    @"kCEENewMapKey"
 
 
 #define kCEEErrorDomain @"CEEErrorDomain"

@@ -8,6 +8,7 @@
 
 #import "CEEBaseAPI.h"
 #import "CEETask.h"
+#import "CEEAward.h"
 
 
 @interface CEECompleteStoryLevelResponse : CEEBaseResponse

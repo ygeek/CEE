@@ -129,6 +129,7 @@
     self.coupons = nil;
 }
 
+
 #pragma mark CouponScrollViewDatasource
 
 - (NSInteger)numberOfViews {

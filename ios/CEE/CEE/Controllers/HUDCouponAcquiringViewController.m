@@ -11,6 +11,7 @@
 #import "HUDCouponAcquiringViewController.h"
 #import "CouponCard.h"
 #import "AppearanceConstants.h"
+#import "CEENotificationNames.h"
 
 
 @interface HUDCouponAcquiringViewController ()
@@ -42,6 +43,7 @@
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     self.couponCard = [[CouponCard alloc] init];
+    self.couponCard.codeButton.hidden = YES;
     [self.view addSubview:self.couponCard];
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -80,7 +82,9 @@
 }
 
 - (void)confirmPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDDismissNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: self}];
 }
 
 - (void)loadCoupon:(CEEJSONCoupon *)coupon {

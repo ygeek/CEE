@@ -121,6 +121,8 @@
 		BB6AD3191CC32B9300A1E0F7 /* StoryCoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD3181CC32B9300A1E0F7 /* StoryCoverViewController.m */; };
 		BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD31B1CC32FED00A1E0F7 /* StoryDifficultyView.m */; };
 		BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD31E1CC3309100A1E0F7 /* StoryTagView.m */; };
+		BB91FCE61CE70F95006C79DF /* CEEMapCompleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */; };
+		BB91FCE91CE71096006C79DF /* CEEAward.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCE81CE71096006C79DF /* CEEAward.m */; };
 		BBA2F7811CDD6E82004A5585 /* CEEUserInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */; };
 		BBA2F7841CDD6ECD004A5585 /* CEEUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7831CDD6ECD004A5585 /* CEEUserInfo.m */; };
 		BBA2F7871CDD74D8004A5585 /* CEEFriendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */; };
@@ -372,6 +374,10 @@
 		BB6AD31B1CC32FED00A1E0F7 /* StoryDifficultyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryDifficultyView.m; sourceTree = "<group>"; };
 		BB6AD31D1CC3309100A1E0F7 /* StoryTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTagView.h; sourceTree = "<group>"; };
 		BB6AD31E1CC3309100A1E0F7 /* StoryTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTagView.m; sourceTree = "<group>"; };
+		BB91FCE41CE70F95006C79DF /* CEEMapCompleteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMapCompleteAPI.h; sourceTree = "<group>"; };
+		BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMapCompleteAPI.m; sourceTree = "<group>"; };
+		BB91FCE71CE71096006C79DF /* CEEAward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAward.h; sourceTree = "<group>"; };
+		BB91FCE81CE71096006C79DF /* CEEAward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAward.m; sourceTree = "<group>"; };
 		BBA2F77F1CDD6E82004A5585 /* CEEUserInfoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserInfoAPI.h; sourceTree = "<group>"; };
 		BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserInfoAPI.m; sourceTree = "<group>"; };
 		BBA2F7821CDD6ECD004A5585 /* CEEUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserInfo.h; sourceTree = "<group>"; };
@@ -557,6 +563,8 @@
 				BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */,
 				BB3D83FC1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.h */,
 				BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */,
+				BB91FCE41CE70F95006C79DF /* CEEMapCompleteAPI.h */,
+				BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -788,6 +796,8 @@
 				BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */,
 				BBA2F79A1CDE2004004A5585 /* CEEMessage.h */,
 				BBA2F79B1CDE2004004A5585 /* CEEMessage.m */,
+				BB91FCE71CE71096006C79DF /* CEEAward.h */,
+				BB91FCE81CE71096006C79DF /* CEEAward.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1090,6 +1100,7 @@
 				BBA2F7991CDE0C0C004A5585 /* CEEStoryCompleteAPI.m in Sources */,
 				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
 				BBA2F7931CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m in Sources */,
+				BB91FCE61CE70F95006C79DF /* CEEMapCompleteAPI.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
@@ -1105,6 +1116,7 @@
 				BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */,
 				BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */,
 				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,
+				BB91FCE91CE71096006C79DF /* CEEAward.m in Sources */,
 				BBA2F79F1CDED5CC004A5585 /* CEEMessagesManager.m in Sources */,
 				BB48E5CE1CD1B03E005150C3 /* HUDTaskCompletedViewController.m in Sources */,
 				BB32094E1CD9E43A009D1862 /* CEEMedalListAPI.m in Sources */,

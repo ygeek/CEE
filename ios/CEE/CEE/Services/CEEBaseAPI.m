@@ -73,6 +73,10 @@
     return [CEEBaseResponse class];
 }
 
+- (BOOL)checkResponseSuccess:(CEEBaseResponse *)response {
+    return response.code == 0;
+}
+
 - (id)responseWithObject:(id)responseObject {
     NSError * jsonError = nil;
     
@@ -84,7 +88,7 @@
     }
     
     // 2. check code -> if error existed
-    if (baseResponse.code != 0) {
+    if (![self checkResponseSuccess:baseResponse]) {
         // 3. error existed
         return [NSError errorWithDomain:CEE_API_ERROR_DOMAIN
                                    code:baseResponse.code

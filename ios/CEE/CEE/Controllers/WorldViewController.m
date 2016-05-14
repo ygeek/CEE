@@ -24,7 +24,6 @@
 #import "HUDFetchingMapView.h"
 #import "HUDGetMedalView.h"
 #import "HUDTaskCompletedViewController.h"
-#import "HUDNewMapViewController.h"
 #import "TaskViewController.h"
 #import "CEEImageManager.h"
 #import "CEEMapManager.h"
@@ -123,11 +122,7 @@
                              [self.view layoutIfNeeded];
                          }];
     }];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(foundNewMapNotification:)
-                                                 name:CEEFoundNewMapNotificationName
-                                               object:nil];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(storyCompletedNotification:)
@@ -229,13 +224,6 @@
     }
 }
 
-- (void)foundNewMapNotification:(NSNotification *)notification {
-    CEEJSONMap * map = notification.userInfo[CEENewMapKey];
-    HUDNewMapViewController * vc = [[HUDNewMapViewController alloc] init];
-    [vc loadMap:map];
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
 - (void)storyCompletedNotification:(NSNotification *)notification {
     CEEJSONStory * story = notification.userInfo[kCEEStoryCompleteStoryKey];
     for (CEEJSONAnchor * anchor in [CEEMapManager manager].currentAnchors) {
@@ -288,10 +276,12 @@
             [SVProgressHUD dismiss];
             HUDTaskCompletedViewController * vc = [[HUDTaskCompletedViewController alloc] init];
             [vc loadAwards:awards andImageKey:image_key];
-            [self presentViewController:vc animated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                                object:self
+                                                              userInfo:@{kCEEHUDKey: vc}];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:kCEETaskCompleteNotificationName object:self];
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCEETaskCompleteNotificationName
+                                                                object:self];
         }).catch(^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         });

@@ -35,6 +35,8 @@
 - (AnyPromise *)promisePOST:(NSString *)url withParams:(NSDictionary *)params;
 - (AnyPromise *)promisePOST:(NSString *)url withRequest:(JSONModel *)request;
 
+- (BOOL)checkResponseSuccess:(CEEBaseResponse *)response;
+
 - (Class)responseSuccessClass;
 
 - (NSError *)processHttpError:(NSError *)error;

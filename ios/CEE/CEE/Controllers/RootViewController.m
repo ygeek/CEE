@@ -22,6 +22,7 @@
 #import "HUDNetworkErrorViewController.h"
 #import "HUDTaskCompletedViewController.h"
 #import "HUDCouponAcquiringViewController.h"
+#import "HUDNewMapViewController.h"
 #import "CEEMessagesManager.h"
 
 
@@ -29,6 +30,10 @@
 @property (nonatomic, assign) BOOL isAppeared;
 @property (nonatomic, assign) BOOL isPresentingLogin;
 @property (nonatomic, assign) BOOL isPresentingUserProfile;
+
+@property (nonatomic, strong) NSMutableArray * presentHUDQueue;
+@property (nonatomic, strong) UIViewController * presentedHUD;
+
 @end
 
 @implementation RootViewController
@@ -97,6 +102,8 @@
     self.isAppeared = NO;
     self.isPresentingLogin = NO;
     
+    self.presentHUDQueue = [NSMutableArray array];
+    
     RAC(items[3], badgeValue) = [RACObserve([CEEMessagesManager manager], unreadCount) map:^id(NSNumber *unreadCount) {
         return unreadCount.integerValue > 0 ? unreadCount.stringValue : nil;
     }];
@@ -118,6 +125,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(couponAcquiringNotification:)
                                                  name:kCEECouponAcquiringNotificationName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(HUDPresentNotification:)
+                                                 name:kCEEHUDPresentNotificationName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(HUDDismissNotification:)
+                                                 name:kCEEHUDDismissNotificationName
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(foundNewMapNotification:)
+                                                 name:kCEEFoundNewMapNotificationName
                                                object:nil];
 }
 
@@ -163,8 +185,9 @@
 
 - (void)networkErrorNotification:(NSNotification *)notification {
     HUDNetworkErrorViewController * vc = [[HUDNetworkErrorViewController alloc] init];
-    UIViewController * rootVC = self.presentedViewController ?: self;
-    [rootVC presentViewController:vc animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: vc}];
 }
 
 - (void)storyCompleteNotification:(NSNotification *)notification {
@@ -173,15 +196,50 @@
     CEEJSONStory * story = notification.userInfo[kCEEStoryCompleteStoryKey];
     [vc loadAwards:awards andImageKey:story.hud_image_key];
     vc.story = story;
-    UIViewController * rootVC = self.presentedViewController ?: self;
-    [rootVC presentViewController:vc animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: vc}];
 }
 
 - (void)couponAcquiringNotification:(NSNotification *)notification {
     HUDCouponAcquiringViewController * couponHUD = [[HUDCouponAcquiringViewController alloc] init];
     [couponHUD loadCoupon:notification.userInfo[kCEECouponAwardsKey]];
-    UIViewController * rootVC = self.presentedViewController ?: self;
-    [rootVC presentViewController:couponHUD animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: couponHUD}];
+}
+
+- (void)foundNewMapNotification:(NSNotification *)notification {
+    CEEJSONMap * map = notification.userInfo[kCEENewMapKey];
+    HUDNewMapViewController * vc = [[HUDNewMapViewController alloc] init];
+    [vc loadMap:map];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: vc}];
+}
+
+- (void)HUDPresentNotification:(NSNotification *)notification {
+    UIViewController * vc = notification.userInfo[kCEEHUDKey];
+    if (self.presentedHUD) {
+        [self.presentHUDQueue addObject:vc];
+    } else {
+        UIViewController * rootVC = self.presentedViewController ?: self;
+        [rootVC presentViewController:vc animated:YES completion:nil];
+        self.presentedHUD = vc;
+    }
+}
+
+- (void)HUDDismissNotification:(NSNotification *)notification {
+    self.presentedHUD = nil;
+    UIViewController * vc = notification.userInfo[kCEEHUDKey];
+    [vc dismissViewControllerAnimated:YES completion:^{
+        if (self.presentHUDQueue.count > 0) {
+            UIViewController * next = [self.presentHUDQueue firstObject];
+            [self.presentHUDQueue removeObjectAtIndex:0];
+            UIViewController * rootVC = self.presentedViewController ?: self;
+            [rootVC presentViewController:next animated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)presentLogin {

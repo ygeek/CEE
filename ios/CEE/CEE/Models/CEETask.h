@@ -44,13 +44,3 @@
 @property (nonatomic, strong) NSArray<CEEJSONChoice> * choices;
 @property (nonatomic, strong) NSNumber * completed;
 @end
-
-
-@interface CEEJSONAward : JSONModel
-@property (nonatomic, strong) NSString * type;
-@property (nonatomic, strong) NSDictionary * detail;
-@end
-
-
-@protocol CEEJSONAward <NSObject>
-@end

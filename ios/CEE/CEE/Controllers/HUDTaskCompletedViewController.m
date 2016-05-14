@@ -12,6 +12,7 @@
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
+#import "CEENotificationNames.h"
 
 @interface HUDTaskCompletedViewController ()
 @property (nonatomic, strong) UIView * panel;
@@ -142,7 +143,9 @@
 }
 
 - (void)confirmPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDDismissNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: self}];
 }
 
 - (void)heartPressed:(id)sender {

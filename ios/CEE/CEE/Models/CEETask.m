@@ -22,7 +22,3 @@
 
 @end
 
-
-@implementation CEEJSONAward
-
-@end

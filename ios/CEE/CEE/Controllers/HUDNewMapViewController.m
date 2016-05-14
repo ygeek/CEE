@@ -12,6 +12,7 @@
 #import "AppearanceConstants.h"
 #import "CEEMap.h"
 #import "UIImageView+Utils.h"
+#import "CEENotificationNames.h"
 
 @interface HUDNewMapViewController ()
 @property (nonatomic, strong) UIView * panelView;
@@ -121,7 +122,9 @@
 }
 
 - (void)backgroundTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDDismissNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: self}];
 }
 
 - (void)loadMap:(CEEJSONMap *)map {

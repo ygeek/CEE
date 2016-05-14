@@ -10,6 +10,7 @@
 
 #import "HUDNetworkErrorViewController.h"
 #import "AppearanceConstants.h"
+#import "CEENotificationNames.h"
 #import "UIImage+Utils.h"
 
 @interface HUDNetworkErrorViewController ()
@@ -98,7 +99,9 @@
 }
 
 - (void)backgroundTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDDismissNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: self}];
 }
 
 - (void)panelTapped:(id)sender {
@@ -106,7 +109,9 @@
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDDismissNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: self}];
 }
 
 @end

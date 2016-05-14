@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "CEETask.h"
+#import "CEEAward.h"
 
 @class CEEJSONStory;
 

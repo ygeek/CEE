@@ -14,8 +14,6 @@
 
 
 #define CEE_LOCATION_ERROR_DOMAIN       @"CEE_LOCATION_ERROR_DOMAIN"
-#define CEEFoundNewMapNotificationName  @"CEE_FOUND_NEW_MAP"
-#define CEENewMapKey                    @"CEE_NEW_MAP"
 
 
 @class TLCity;
