@@ -24,6 +24,9 @@
 #import "CEECompleteStoryLevelAPI.h"
 #import "CEEStoryCompleteAPI.h"
 #import "CEENotificationNames.h"
+#import "CEEMapManager.h"
+#import "CEEMapCompleteAPI.h"
+#import "HUDGetMedalViewController.h"
 
 @interface StoryLevelsRootViewController ()
 @property (nonatomic, assign) NSInteger currentLevel;
@@ -100,8 +103,20 @@
                                                                       userInfo:@{kCEEStoryCompleteStoryKey:self.story,
                                                                                  kCEEStoryCompleteAwardsKey: awards}];
                 }];
-            }).catch(^(NSError *error) {
-                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                // TODO: replace API
+                return [[CEEMapCompleteAPI api] completeMapWithID:[CEEMapManager manager].currentMap.id];
+            }).then(^(NSArray<CEEJSONAward *> * awards) {
+                if (awards.count > 0) {
+                    HUDGetMedalViewController * vc = [[HUDGetMedalViewController alloc] init];
+                    [vc loadAward:awards.firstObject];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                                        object:self
+                                                                      userInfo:@{kCEEHUDKey: vc}];
+                }
+            }).catch(^(NSError * error) {
+                if (!([error.domain isEqualToString:CEE_API_ERROR_DOMAIN] && error.code == -3)) {
+                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                }
             });
         } else {
             [self jumpToNextLevel];

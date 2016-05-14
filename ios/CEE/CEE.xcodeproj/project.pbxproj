@@ -123,6 +123,9 @@
 		BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6AD31E1CC3309100A1E0F7 /* StoryTagView.m */; };
 		BB91FCE61CE70F95006C79DF /* CEEMapCompleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */; };
 		BB91FCE91CE71096006C79DF /* CEEAward.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCE81CE71096006C79DF /* CEEAward.m */; };
+		BB91FCEC1CE73960006C79DF /* HUDGetMedalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCEB1CE73960006C79DF /* HUDGetMedalViewController.m */; };
+		BB91FCEF1CE7438D006C79DF /* CEEStoryLikeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCEE1CE7438D006C79DF /* CEEStoryLikeAPI.m */; };
+		BB91FCF21CE743A3006C79DF /* CEEStoryDislikeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB91FCF11CE743A3006C79DF /* CEEStoryDislikeAPI.m */; };
 		BBA2F7811CDD6E82004A5585 /* CEEUserInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */; };
 		BBA2F7841CDD6ECD004A5585 /* CEEUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7831CDD6ECD004A5585 /* CEEUserInfo.m */; };
 		BBA2F7871CDD74D8004A5585 /* CEEFriendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7861CDD74D8004A5585 /* CEEFriendInfo.m */; };
@@ -378,6 +381,12 @@
 		BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMapCompleteAPI.m; sourceTree = "<group>"; };
 		BB91FCE71CE71096006C79DF /* CEEAward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAward.h; sourceTree = "<group>"; };
 		BB91FCE81CE71096006C79DF /* CEEAward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAward.m; sourceTree = "<group>"; };
+		BB91FCEA1CE73960006C79DF /* HUDGetMedalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDGetMedalViewController.h; sourceTree = "<group>"; };
+		BB91FCEB1CE73960006C79DF /* HUDGetMedalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDGetMedalViewController.m; sourceTree = "<group>"; };
+		BB91FCED1CE7438D006C79DF /* CEEStoryLikeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryLikeAPI.h; sourceTree = "<group>"; };
+		BB91FCEE1CE7438D006C79DF /* CEEStoryLikeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryLikeAPI.m; sourceTree = "<group>"; };
+		BB91FCF01CE743A3006C79DF /* CEEStoryDislikeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStoryDislikeAPI.h; sourceTree = "<group>"; };
+		BB91FCF11CE743A3006C79DF /* CEEStoryDislikeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStoryDislikeAPI.m; sourceTree = "<group>"; };
 		BBA2F77F1CDD6E82004A5585 /* CEEUserInfoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserInfoAPI.h; sourceTree = "<group>"; };
 		BBA2F7801CDD6E82004A5585 /* CEEUserInfoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEUserInfoAPI.m; sourceTree = "<group>"; };
 		BBA2F7821CDD6ECD004A5585 /* CEEUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEUserInfo.h; sourceTree = "<group>"; };
@@ -565,6 +574,10 @@
 				BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */,
 				BB91FCE41CE70F95006C79DF /* CEEMapCompleteAPI.h */,
 				BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */,
+				BB91FCED1CE7438D006C79DF /* CEEStoryLikeAPI.h */,
+				BB91FCEE1CE7438D006C79DF /* CEEStoryLikeAPI.m */,
+				BB91FCF01CE743A3006C79DF /* CEEStoryDislikeAPI.h */,
+				BB91FCF11CE743A3006C79DF /* CEEStoryDislikeAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -740,6 +753,8 @@
 				BB32097C1CDBA785009D1862 /* StoryMemoryViewController.m */,
 				BBA2F78B1CDD8DE6004A5585 /* UserFriendsViewController.h */,
 				BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */,
+				BB91FCEA1CE73960006C79DF /* HUDGetMedalViewController.h */,
+				BB91FCEB1CE73960006C79DF /* HUDGetMedalViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1046,6 +1061,7 @@
 				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
 				BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */,
 				BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */,
+				BB91FCF21CE743A3006C79DF /* CEEStoryDislikeAPI.m in Sources */,
 				BB32092D1CD7490D009D1862 /* CEEAnchorsAPI.m in Sources */,
 				BB6AD2EC1CC21E2900A1E0F7 /* HUDBaseView.m in Sources */,
 				BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */,
@@ -1065,6 +1081,7 @@
 				BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
+				BB91FCEF1CE7438D006C79DF /* CEEStoryLikeAPI.m in Sources */,
 				BBA2F7841CDD6ECD004A5585 /* CEEUserInfo.m in Sources */,
 				BBA2F7A81CE0AC7F004A5585 /* CEEAddFriendsAPI.m in Sources */,
 				BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */,
@@ -1101,6 +1118,7 @@
 				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
 				BBA2F7931CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m in Sources */,
 				BB91FCE61CE70F95006C79DF /* CEEMapCompleteAPI.m in Sources */,
+				BB91FCEC1CE73960006C79DF /* HUDGetMedalViewController.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,

@@ -37,9 +37,11 @@
 #import "HUDStoryFetchingViewController.h"
 #import "CEEStoriesManager.h"
 #import "CEEStoryDetailAPI.h"
+#import "CEEMapCompleteAPI.h"
 #import "StoryLevelsRootViewController.h"
 #import "CEEMessagesManager.h"
 #import "CEENotificationNames.h"
+#import "HUDGetMedalViewController.h"
 
 
 @interface WorldViewController () <HUDViewDelegate,
@@ -282,8 +284,20 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kCEETaskCompleteNotificationName
                                                                 object:self];
-        }).catch(^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            
+            return [[CEEMapCompleteAPI api] completeMapWithID:[CEEMapManager manager].currentMap.id];
+        }).then(^(NSArray<CEEJSONAward *> * awards) {
+            if (awards.count > 0) {
+                HUDGetMedalViewController * vc = [[HUDGetMedalViewController alloc] init];
+                [vc loadAward:awards.firstObject];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                                    object:self
+                                                                  userInfo:@{kCEEHUDKey: vc}];
+            }
+        }).catch(^(NSError * error) {
+            if (!([error.domain isEqualToString:CEE_API_ERROR_DOMAIN] && error.code == -3)) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            }
         });
     }];
 }

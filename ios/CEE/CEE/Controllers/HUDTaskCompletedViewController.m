@@ -13,6 +13,7 @@
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
 #import "CEENotificationNames.h"
+#import "CEEStory.h"
 
 @interface HUDTaskCompletedViewController ()
 @property (nonatomic, strong) UIView * panel;
@@ -81,7 +82,7 @@
     
     self.heartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.heartButton addTarget:self action:@selector(heartPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.heartButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+    [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞"] forState:UIControlStateNormal];
     self.heartButton.hidden = YES;
     
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
@@ -169,7 +170,11 @@
 - (void)setStory:(CEEJSONStory *)story {
     _story = story;
     if (story) {
-        // TODO: 根据story是否被点过赞改图片颜色
+        if (story.like.boolValue) {
+            [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞_active"] forState:UIControlStateNormal];
+        } else {
+            [self.heartButton setImage:[UIImage imageNamed:@"弹窗_点赞"] forState:UIControlStateNormal];
+        }
         self.heartButton.hidden = NO;
     } else {
         self.heartButton.hidden = YES;

@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString * hud_image_key;
 @property (nonatomic, strong) NSNumber<Optional> * completed;
 @property (nonatomic, strong) NSNumber<Optional> * progress;
+@property (nonatomic, strong) NSNumber * like;
 @end
 
 
