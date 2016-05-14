@@ -11,3 +11,8 @@ def story_user_count(value):
 @register.filter
 def story_complete_count(value):
     return value.user_stories.filter(completed=True).count()
+
+
+@register.filter
+def story_level_count(value):
+    return value.story_levels.count()

@@ -276,7 +276,11 @@ var Script = function () {
         });
     }
 
-    function makeSingleImageUploader(name) {
+    function makeSingleImageUploader(name, options) {
+        options = options || {};
+        options.buttonLabel = options.buttonLabel || '上传';
+        options.preview = _.isBoolean(options.preview) ? options.preview : true;
+
         var QINIU_DOMAIN = '7xt08d.com1.z0.glb.clouddn.com';
         var DOWNTOKEN_URL = '/cms/downtoken/';
 
@@ -290,7 +294,7 @@ var Script = function () {
         var uploadButtonId = 'upload-button-' + name;
         var $uploadButton = $('<div class="text-center" style="margin: 10px 0;">' +
             '<button id="' + uploadButtonId + '" class="btn btn-info btn-sm">' +
-            '<i class="fa fa-upload"></i> 上传封面图片</button> ' +
+            '<i class="fa fa-upload"></i> ' + options.buttonLabel + '</button> ' +
             '<span class="upload-progress" style="display: none;">0%</span></div>');
         $uploadContainer.append($uploadButton);
         $input.parent().append($uploadContainer);
@@ -301,9 +305,9 @@ var Script = function () {
 
         var uploadedImageId = 'uploaded-image-' + name;
 
-        var imageTemplate = _.template('<div class="thumb" style="margin: 10px auto; max-width: 300px;">' +
+        var imageTemplate = options.preview ? _.template('<div class="thumb" style="margin: 10px auto; max-width: 300px;">' +
             '<img class="img-responsive" src="<%= src %>" alt="<%= key %>" id="' + uploadedImageId + '">' +
-            '</div>');
+            '</div>') : _.template('');
 
         $uploadContainer.append('<div class="row">' + imageTemplate({
                 src: '#',

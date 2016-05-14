@@ -3,12 +3,12 @@
 from __future__ import unicode_literals
 
 from django.core.urlresolvers import reverse_lazy
-from django.forms import ModelForm
+from django.forms import ModelForm, ChoiceField
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
-from api.models import Story, Level
+from api.models import Story, Level, StoryLevel
 from cms.views.widgets import JsonTextArea
 
 
@@ -79,10 +79,20 @@ class DeleteStory(DeleteView):
 
 
 class LevelForm(ModelForm):
+    type = ChoiceField(choices=[
+        ('dialog', '对话关卡'),
+        ('video', '视频关卡'),
+        ('number', '数字谜题关卡'),
+        ('text', '文字谜题关卡'),
+        ('empty', '空白关卡'),
+        ('h5', 'H5关卡')
+    ], label='关卡类型')
+
     class Meta:
         model = Level
         fields = [
             'name',
+            'type',
             'content'
         ]
         labels = {
@@ -99,8 +109,27 @@ class AddLevel(CreateView):
     template_name = 'cms/level_form.html'
     success_url = reverse_lazy('cms-stories')
     form_class = LevelForm
+    object = None
+
+    def get_story(self):
+        return Story.objects.get(pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         context = super(AddLevel, self).get_context_data(**kwargs)
-        context['story'] = Story.objects.get(pk=self.kwargs['pk'])
+        context['story'] = self.get_story()
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        if form.is_valid():
+            response = self.form_valid(form)
+            story_level = StoryLevel()
+            story = self.get_story()
+            story_level.story = story
+            story_level.level = form.instance
+            story_level.order = story.story_levels.count()
+            story_level.save()
+            return response
+        else:
+            return self.form_invalid(form)
