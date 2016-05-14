@@ -38,4 +38,6 @@
 
 - (AnyPromise *)addAddressBookFriends;
 
+- (AnyPromise *)addWeiboFriends;
+
 @end

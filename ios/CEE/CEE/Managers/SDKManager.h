@@ -22,4 +22,6 @@
 
 - (AnyPromise *)loginWeiboInViewController:(UIViewController *)vc;
 
+- (AnyPromise *)requestWeiboFriends;
+
 @end

@@ -13,6 +13,7 @@
 #define kCEENetworkErrorNotificationName    @"kCEENetworkErrorNotificationName"
 #define kCEEEventNotificationName           @"kCEEEventNotificationName"
 #define kCEEStoryCompleteNotificationName   @"kCEEStoryCompleteNotificationName"
+#define kCEETaskCompleteNotificationName    @"kCEETaskCompleteNotificationName"
 #define kCEEMapCompleteNotificationName     @"kCEEMapCompleteNotificationName"
 #define kCEEMessagesUpdatedNotificationName @"kCEEMessagesUpdatedNotificationName"
 #define kCEEFriendsUpdatedNotificationName  @"kCEEFriendsUpdatedNotificationName"

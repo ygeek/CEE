@@ -238,4 +238,13 @@
     return [self umengLoginViewController:vc platformName:UMShareToSina];
 }
 
+- (AnyPromise *)requestWeiboFriends {
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
+        [[UMSocialDataService defaultDataService] requestSnsFriends:UMShareToSina completion:^(UMSocialResponseEntity *response) {
+            NSLog(@"sns friends data: %@", response.data);
+            resolve(response.data.allKeys);
+        }];
+    }];
+}
+
 @end

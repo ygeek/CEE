@@ -61,3 +61,28 @@ class AddFriends(APIView):
             'code': 0,
             'num': count,
         })
+
+
+class AddWeiboFriends(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request):
+        weiboids = request.data['uids'].split(',')
+        count = 0
+        if weiboids is not None:
+            for uid in weiboids:
+                try:
+                    account = ThirdPartyAccount.objects.get(uid=uid, platform='weibo')
+                    if request.user.username == account.user.username:
+                        continue
+                    userfriend = UserFriend(user=request.user, friend=account.user)
+                    userfriend.save()
+                    count += 1
+                except ThirdPartyAccount.DoesNotExist:
+                    pass
+                except IntegrityError:
+                    pass
+        return Response({
+            'code': 0,
+            'num': count,
+        })

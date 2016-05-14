@@ -146,6 +146,12 @@
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;
         }
+        [[CEEUserSession session] addWeiboFriends]
+        .then(^(NSNumber * countAdded) {
+            NSLog(@"add %@ new weibo friends", countAdded);
+        }).catch(^(NSError *error) {
+            NSLog(@"add weibo friends error: %@", error);
+        });
     }).catch(^(NSError * error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     });

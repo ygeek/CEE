@@ -68,6 +68,7 @@
 		BB3D83F51CE57E0B00C7057D /* CEEDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83F41CE57E0B00C7057D /* CEEDeviceTokenAPI.m */; };
 		BB3D83F81CE6227300C7057D /* CEECompletedMapCountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83F71CE6227300C7057D /* CEECompletedMapCountAPI.m */; };
 		BB3D83FB1CE624ED00C7057D /* CEEStartedStoriesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */; };
+		BB3D83FE1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -274,6 +275,8 @@
 		BB3D83F71CE6227300C7057D /* CEECompletedMapCountAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECompletedMapCountAPI.m; sourceTree = "<group>"; };
 		BB3D83F91CE624ED00C7057D /* CEEStartedStoriesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStartedStoriesAPI.h; sourceTree = "<group>"; };
 		BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStartedStoriesAPI.m; sourceTree = "<group>"; };
+		BB3D83FC1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAddWeiboFriendsAPI.h; sourceTree = "<group>"; };
+		BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAddWeiboFriendsAPI.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 				BB3D83F71CE6227300C7057D /* CEECompletedMapCountAPI.m */,
 				BB3D83F91CE624ED00C7057D /* CEEStartedStoriesAPI.h */,
 				BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */,
+				BB3D83FC1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.h */,
+				BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 				BB3209121CD4E580009D1862 /* CEEStory.m in Sources */,
 				BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */,
 				BBA2F7811CDD6E82004A5585 /* CEEUserInfoAPI.m in Sources */,
+				BB3D83FE1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m in Sources */,
 				BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */,
 				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
 				BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */,
