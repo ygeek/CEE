@@ -94,11 +94,12 @@
             [SVProgressHUD show];
             [[CEEStoryCompleteAPI api] completeStoryID:self.story.id].then(^(NSArray<CEEJSONAward *> * awards) {
                 [SVProgressHUD dismiss];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kCEEStoryCompleteNotificationName
-                                                                    object:self
-                                                                  userInfo:@{kCEEStoryCompleteStoryKey:self.story,
-                                                                             kCEEStoryCompleteAwardsKey: awards}];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEStoryCompleteNotificationName
+                                                                        object:self
+                                                                      userInfo:@{kCEEStoryCompleteStoryKey:self.story,
+                                                                                 kCEEStoryCompleteAwardsKey: awards}];
+                }];
             }).catch(^(NSError *error) {
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             });

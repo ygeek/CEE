@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSTextAttachment * coinAttachment;
 @property (nonatomic, strong) UILabel * moneyLabel;
 @property (nonatomic, strong) UIButton * confirmButton;
+@property (nonatomic, strong) UIButton * heartButton;
 @end
 
 
@@ -77,12 +78,18 @@
     [self.confirmButton setTitle:@"确定" forState:UIControlStateNormal];
     [self.confirmButton addTarget:self action:@selector(confirmPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.heartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.heartButton addTarget:self action:@selector(heartPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.heartButton setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+    self.heartButton.hidden = YES;
+    
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [self.view addSubview:self.panel];
     [self.panel addSubview:self.picView];
     [self.panel addSubview:self.messageLabel];
     [self.panel addSubview:self.moneyLabel];
     [self.panel addSubview:self.confirmButton];
+    [self.panel addSubview:self.heartButton];
     
     [self.panel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
@@ -115,6 +122,13 @@
         make.bottom.equalTo(self.panel.mas_bottom);
         make.height.mas_equalTo(48);
     }];
+    
+    [self.heartButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.panel.mas_right).offset(-5);
+        make.top.equalTo(self.panel.mas_top).offset(3);
+        make.width.mas_equalTo(25);
+        make.height.mas_equalTo(25);
+    }];
 }
 
 - (void)viewDidLoad {
@@ -131,6 +145,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)heartPressed:(id)sender {
+    // TODO: 根据story是否被点过赞调用点赞或取消点赞接口
+}
+
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey {
     CEEJSONAward * award = awards.firstObject;
     
@@ -143,6 +161,16 @@
     NSMutableAttributedString * result = [[NSMutableAttributedString alloc] initWithAttributedString:coinAttrStr];
     [result appendAttributedString:moneyAttrStr];
     self.moneyLabel.attributedText = result;
+}
+
+- (void)setStory:(CEEJSONStory *)story {
+    _story = story;
+    if (story) {
+        // TODO: 根据story是否被点过赞改图片颜色
+        self.heartButton.hidden = NO;
+    } else {
+        self.heartButton.hidden = YES;
+    }
 }
 
 @end

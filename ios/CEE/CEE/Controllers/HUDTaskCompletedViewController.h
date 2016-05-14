@@ -10,7 +10,11 @@
 
 #import "CEETask.h"
 
+@class CEEJSONStory;
+
 @interface HUDTaskCompletedViewController : UIViewController
+
+@property (nonatomic, strong) CEEJSONStory * story;
 
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey;
 

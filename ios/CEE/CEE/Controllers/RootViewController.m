@@ -168,7 +168,13 @@
 }
 
 - (void)storyCompleteNotification:(NSNotification *)notification {
-    
+    HUDTaskCompletedViewController * vc = [[HUDTaskCompletedViewController alloc] init];
+    NSArray * awards = notification.userInfo[kCEEStoryCompleteAwardsKey];
+    CEEJSONStory * story = notification.userInfo[kCEEStoryCompleteStoryKey];
+    [vc loadAwards:awards andImageKey:story.hud_image_key];
+    vc.story = story;
+    UIViewController * rootVC = self.presentedViewController ?: self;
+    [rootVC presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)couponAcquiringNotification:(NSNotification *)notification {
