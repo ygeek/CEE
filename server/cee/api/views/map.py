@@ -6,10 +6,12 @@ from __future__ import absolute_import
 import math
 import geohash
 from django.db import models
+from django.db import connection
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from ..models.map import *
+from ..models.anchor import *
 from ..serializers.map import *
 from ..serializers.medal import *
 
@@ -121,6 +123,45 @@ class CompleteMap(APIView):
         try:
             map_id = int(map_id)
             map_ = Map.objects.get(id=map_id)
+            task_sql = '''
+                SELECT COUNT(*) AS `remains`
+                FROM `api_anchor`
+                    JOIN `api_task`
+                        ON `api_anchor`.`ref_id`=`api_task`.`id`
+                    LEFT JOIN `api_usertask`
+                        ON `api_anchor`.`ref_id`=`api_usertask`.`task_id`
+                WHERE `type`='task'
+                  AND `map_id`=%(map_id)s
+                  AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
+                  AND IFNULL(`completed`, 0)=0
+            '''
+            story_sql = '''
+                SELECT COUNT(*) AS `remains`
+                FROM `api_anchor`
+                    JOIN `api_story`
+                        ON `api_anchor`.`ref_id`=`api_story`.`id`
+                    LEFT JOIN `api_userstory`
+                        ON `api_anchor`.`ref_id`=`api_userstory`.`story_id`
+                WHERE `type`='story'
+                  AND `map_id`=%(map_id)s
+                  AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
+                  AND IFNULL(`completed`, 0)=0
+            '''
+            kwargs = {
+                'map_id': map_id,
+                'user_id': request.user.id,
+            }
+            cursor = connection.cursor()
+            cursor.execute(task_sql, kwargs)
+            task_remains = cursor.fetchone()[0]
+            cursor.execute(story_sql, kwargs)
+            story_remains = cursor.fetchone()[0]
+            remains = task_remains + story_remains
+            if remains > 0:
+                return Response({
+                    'code': -3,
+                    'msg': '地图未完成',
+                })
             affect_rows = UserMap.objects.filter(
                 user=request.user, map=map_, completed=False).update(
                     completed=True)

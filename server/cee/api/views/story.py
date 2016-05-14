@@ -297,7 +297,7 @@ class LikeStory(APIView):
         except ValueError:
             return Response({
                 'code': -1,
-                'msg': '故事ID有问题: %s' % story_id,
+                'msg': '无效的故事ID: %s' % story_id,
             })
         except Story.DoesNotExist:
             return Response({
