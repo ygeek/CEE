@@ -27,7 +27,7 @@ class UserDetail(DetailView, UpdateView):
     model = User
     template_name = 'cms/user.html'
     context_object_name = 'user'
-    fields = ['username', 'email']
+    fields = ['username', 'email', 'is_staff']
     success_url = reverse_lazy('cms-users')
     profile_form_class = modelform_factory(UserProfile,
                                            fields=[
