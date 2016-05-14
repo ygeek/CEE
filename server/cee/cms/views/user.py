@@ -14,6 +14,12 @@ from django.forms.models import modelform_factory
 from api.models import UserProfile
 from api.models import UserCoin
 from api.models import UserCoupon
+from api.models import Coupon
+from api.models import UserMap
+from api.models import Map
+from api.models import UserStory
+from api.models import Story
+
 
 @method_decorator(staff_member_required, name='dispatch')
 class UserList(ListView):
@@ -52,8 +58,20 @@ class UserDetail(DetailView, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = {'profile_form': self.profile_form_class(instance=self.get_profile()),
-                   'user_coin_form': self.user_coin_form_class(instance=self.get_user_coin()),
-                   'user_coupon_list': UserCoupon.objects.filter(user=self.object)}
+                   'user_coin_form': self.user_coin_form_class(instance=self.get_user_coin())}
+
+        uc_list = UserCoupon.objects.filter(user=self.object)
+        context['user_coupon_list'] = zip(uc_list,
+                                          [ Coupon.objects.get(id=uc.coupon_id) for uc in uc_list])
+
+        um_list = UserMap.objects.filter(user=self.object, completed=True)
+        context['user_map_list'] = zip(um_list,
+                                      [ Map.objects.get(id=um.map_id) for um in um_list])
+
+        us_list = UserStory.objects.filter(user=self.object, completed=True)
+        context['user_story_list'] = zip(us_list,
+                                        [ Story.objects.get(id=us.story_id) for us in us_list])
+
         context.update(super(UserDetail, self).get_context_data(**kwargs))
         return context
 

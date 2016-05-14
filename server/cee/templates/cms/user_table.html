@@ -1,0 +1,87 @@
+{% load staticfiles bootstrap3 %}
+
+<h5>
+  地图-列表
+</h5>
+<div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+    <table class="table table-bordered vertical-middle">
+        <thead>
+        <tr>
+            <th>地图  ID</th>
+            <th>地图名称</th>
+            <th>是否完成</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for a,b in user_map_list %}
+            <tr>
+                <td>{{ a.map_id }}</td>
+                <td>{{ b.name }}</td>
+                {% if a.completed %}
+                  <td>完成</td>
+                {% else %}
+                  <td>未完成</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div>
+
+<h5>
+  故事-列表
+</h5>
+<div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+    <table class="table table-bordered vertical-middle">
+        <thead>
+        <tr>
+            <th>故事  ID</th>
+            <th>故事名称</th>
+            <th>是否完成</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for a,b in user_story_list %}
+            <tr>
+                <td>{{ a.story_id }}</td>
+                <td>{{ b.name }}</td>
+                {% if a.completed %}
+                  <td>完成</td>
+                {% else %}
+                  <td>未完成</td>
+                {% endif %}
+            </tr>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div>
+
+<h5>
+  优惠卷-列表
+</h5>
+<div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+    <table class="table table-bordered vertical-middle">
+        <thead>
+        <tr>
+            <th>优惠卷ID</th>
+            <th>优惠卷名称</th>
+            <th>是否使用</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for a,b in user_coupon_list %}
+            <tr>
+                <td>{{ a.coupon_id }}</td>
+                <td>{{ b.name }}</td>
+                {% if a.consumed %}
+                  <td>已使用</td>
+                {% else %}
+                  <td>未使用</td>
+                {% endif %}
+            </tr>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
