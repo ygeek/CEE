@@ -201,3 +201,24 @@ class CompletedMapCount(APIView):
             'code': 0,
             'count': count,
         })
+
+
+class CompleteMapByStoryID(CompleteMap):
+    def post(self, request, story_id):
+        try:
+            story_id = int(story_id)
+            anchor = Anchor.objects.get(
+                type=Anchor.Type.Story,
+                ref_id=story_id)
+            return super(CompleteMapByStoryID, self).post(
+                request, anchor.map_id)
+        except ValueError:
+            return Response({
+                'code': -1,
+                'msg': '无效的故事ID: %s' % story_id,
+            })
+        except Anchor.DoesNotExist:
+            return Response({
+                'code': -2,
+                'msg': '故事未关联到地图',
+            })
