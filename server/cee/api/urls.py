@@ -48,6 +48,8 @@ urlpatterns = [
     url(r'^v1/map/acquired/$', AcquiredMapList.as_view()),
     url(r'^v1/map/(?P<map_id>\d+)/complete/$', CompleteMap.as_view()),
     url(r'^v1/map/completed/count/$', CompletedMapCount.as_view()),
+    url(r'^v1/story/(?P<story_id>\d+)/complete-map/$',
+        CompleteMapByStoryID.as_view()),
     # Anchor
     url(r'^v1/map/(?P<map_id>\d+)/anchor/$', MapAnchorList.as_view()),
     # Task
