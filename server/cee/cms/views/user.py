@@ -52,10 +52,9 @@ class UserDetail(DetailView, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = {'profile_form': self.profile_form_class(instance=self.get_profile()),
-                   'user_coin_form': self.user_coin_form_class(instance=self.get_user_coin())}
-        context['user_coupon_list'] = UserCoupon.objects.filter(user=self.object)
+                   'user_coin_form': self.user_coin_form_class(instance=self.get_user_coin()),
+                   'user_coupon_list': UserCoupon.objects.filter(user=self.object)}
         context.update(super(UserDetail, self).get_context_data(**kwargs))
-        print context['user_coupon_list']
         return context
 
     def form_valid(self, form, profile_form, user_coin_form):

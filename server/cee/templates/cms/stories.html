@@ -37,6 +37,7 @@
                         <td>{{ story|story_complete_count }}</td>
                         <td>
                             <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">详情</a>
+                            <a href="{% url 'cms-add-level' pk=story.id %}" class="btn btn-success btn-sm">添加关卡</a>
                             <a href="{% url 'cms-delete-story' pk=story.id %}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>

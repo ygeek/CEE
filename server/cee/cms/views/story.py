@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
-from api.models import Story
+from api.models import Story, Level
 from cms.views.widgets import JsonTextArea
 
 
@@ -76,3 +76,31 @@ class DeleteStory(DeleteView):
     context_object_name = 'story'
     template_name = 'cms/story_confirm_delete.html'
     success_url = reverse_lazy('cms-stories')
+
+
+class LevelForm(ModelForm):
+    class Meta:
+        model = Level
+        fields = [
+            'name',
+            'content'
+        ]
+        labels = {
+            'name': '关卡名称',
+            'content': '关卡内容'
+        }
+        widgets = {
+            'content': JsonTextArea()
+        }
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class AddLevel(CreateView):
+    template_name = 'cms/level_form.html'
+    success_url = reverse_lazy('cms-stories')
+    form_class = LevelForm
+
+    def get_context_data(self, **kwargs):
+        context = super(AddLevel, self).get_context_data(**kwargs)
+        context['story'] = Story.objects.get(pk=self.kwargs['pk'])
+        return context
