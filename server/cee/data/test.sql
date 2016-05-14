@@ -4,3 +4,4 @@ insert into api_usermedal(`id`,`user_id`,`medal_id`) values (1,1,1);
 insert into api_usermedal(`id`,`user_id`,`medal_id`) values (2,1,2);
 
 insert into api_userfriend(`id`,`user_id`,`friend_id`) values (1,1,2);
+insert into api_usermap(`id`,`user_id`,`map_id`,`completed`) values (1,1,1,1);

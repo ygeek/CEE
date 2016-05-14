@@ -2,6 +2,7 @@ from rest_framework import serializers
 from ..models.story import *
 from ..models.auth import *
 from ..models.medal import *
+from ..models.map import *
 from medal import *
 
 class UserInfoSerializer(serializers.ModelSerializer):
@@ -39,7 +40,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
     def get_finish_maps(self, user):
         try:
-            user_map = UserMap.objects.filter(user=user, complited=True)
+            user_map = UserMap.objects.filter(user=user, completed=True)
             return len(user_map)
         except UserMap.DoesNotExist:
             return 0
@@ -59,7 +60,9 @@ class FriendInfoSerializer(serializers.ModelSerializer):
                   'nickname',
                   'coin',
                   'medals',
-                  'head_img_key')
+                  'head_img_key',
+                  'finish_maps'
+                 )
 
     def get_nickname(self, user):
         try:
@@ -91,7 +94,7 @@ class FriendInfoSerializer(serializers.ModelSerializer):
 
     def get_finish_maps(self, user):
         try:
-            user_map = UserMap.objects.filter(user=user, complited=True)
+            user_map = UserMap.objects.filter(user=user, completed=True)
             return len(user_map)
         except UserMap.DoesNotExist:
             return 0
