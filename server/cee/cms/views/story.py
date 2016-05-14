@@ -20,13 +20,6 @@ class StoryList(ListView):
     paginate_by = 20
 
 
-@method_decorator(staff_member_required, name='dispatch')
-class StoryDetail(DetailView):
-    model = Story
-    template_name = 'cms/story.html'
-    context_object_name = 'story'
-
-
 class StoryForm(ModelForm):
     class Meta:
         model = Story

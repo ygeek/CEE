@@ -30,7 +30,7 @@
                 <tbody>
                 {% for story in stories %}
                     <tr>
-                        <th scope="row"><a href="{% url 'cms-story-detail' pk=story.id %}">{{ story.id }}</a></th>
+                        <th scope="row">{{ story.id }}</th>
                         <td>{{ story.name }}</td>
                         <td>{{ story.city }}</td>
                         <td>{{ story|story_user_count }}</td>
