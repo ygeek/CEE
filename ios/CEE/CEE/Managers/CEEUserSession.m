@@ -66,6 +66,7 @@
 }
 
 - (AnyPromise *)loggedInWithAuth:(NSString *)auth {
+    NSLog(@"auth token: %@", auth);
     [[CEEDatabase db] saveAuthToken:auth];
     self.authToken = auth;
     if (auth && auth.length > 0) {

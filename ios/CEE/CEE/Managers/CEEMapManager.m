@@ -60,8 +60,19 @@
 
 - (AnyPromise *)getLocation {
     return [CLLocationManager promise].then(^(CLLocation * location) {
+        // 保存 Device 的现语言 (英语 法语 ，，，)
+        NSMutableArray *userDefaultLanguages = [[NSUserDefaults standardUserDefaults]
+                                                objectForKey:@"AppleLanguages"];
+        // 强制 成 简体中文
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:@"zh-hans",nil]
+                                                  forKey:@"AppleLanguages"];
+        
         CLGeocoder * geocoder = [[CLGeocoder alloc] init];
-        return [geocoder reverseGeocode:location];
+        return [geocoder reverseGeocode:location].then(^(CLPlacemark * placemark, NSArray<CLPlacemark *> * placemarks) {
+            // 还原Device 的语言
+            [[NSUserDefaults standardUserDefaults] setObject:userDefaultLanguages forKey:@"AppleLanguages"];
+            return PMKManifold(placemark, placemarks);
+        });
     });
 }
 

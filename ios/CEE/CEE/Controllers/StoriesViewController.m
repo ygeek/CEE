@@ -22,6 +22,9 @@
 #import "HUDTaskCompletedViewController.h"
 #import "HUDStoryFetchingViewController.h"
 #import "CEEStoryListAPI.h"
+#import "CEEMapManager.h"
+#import "TLCity.h"
+
 
 @interface StoriesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView * tableView;
@@ -101,8 +104,22 @@
     self.tableView.contentInset = UIEdgeInsetsMake([RefreshingPanel defaultHeight], 0, 49, 0);
     self.tableView.contentOffset = contentOffset;
     
-    [[CEEStoryListAPI api] fetchStoriesWithCityKey:@"1000010000"]
-    .then(^(NSArray<CEEJSONStory> * stories){
+    [[CEEMapManager manager] getLocation].then(^(CLPlacemark *placemark) {
+        NSString * cityName = placemark.locality;
+        TLCity * city = [[CEEMapManager manager] getCityWithName:cityName];
+        if (!city) {
+            cityName = @"北京市";
+            city = [[CEEMapManager manager] getCityWithName:cityName];
+        }
+        return city.cityID;
+    }).catch(^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"定位失败，默认在北京啦！"];
+        NSString * cityName = @"北京市";
+        TLCity * city = [[CEEMapManager manager] getCityWithName:cityName];
+        return city.cityID;
+    }).then(^(NSString * cityID) {
+        return [[CEEStoryListAPI api] fetchStoriesWithCityKey:cityID];
+    }).then(^(NSArray<CEEJSONStory> * stories){
         self.stories = stories;
         [UIView animateWithDuration:0.3 animations:^{
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
