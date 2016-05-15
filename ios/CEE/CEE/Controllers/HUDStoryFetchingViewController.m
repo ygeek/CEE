@@ -49,6 +49,7 @@
     self.panel.layer.cornerRadius = 10;
     
     self.picView = [[UIImageView alloc] init];
+    self.picView.contentMode = UIViewContentModeScaleAspectFill;
     
     self.messageLabel = [[UILabel alloc] init];
     self.messageLabel.textAlignment = NSTextAlignmentCenter;

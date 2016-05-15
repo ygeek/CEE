@@ -37,6 +37,8 @@ class Register(APIView):
             user = User(username=user_form.cleaned_data['username'])
             user.set_password(user_form.cleaned_data['password'])
             user.save()
+            user_mobile = UserMobile(user=user, mobile=user.username)
+            user_mobile.save()
             token = Token.objects.create(user=user)
             return Response({
                 'code': 0,
@@ -77,6 +79,8 @@ class Login(APIView):
                         user_info['birthday'] = time.mktime(profile.birthday.timetuple())
                     if profile.location:
                         user_info['location'] = profile.location
+                    if profile.mobile:
+                        user_info['mobile'] = profile.mobile
                     return Response({
                         'code': 0,
                         'auth': token.key,
@@ -139,21 +143,13 @@ class LoginThirdParty(APIView):
         token = get_token(user)
         try:
             profile = UserProfile.objects.get(user=user)
-            user_info = {'username': user.username}
-            if profile.nickname:
-                user_info['nickname'] = profile.nickname
-            if profile.head_img_key:
-                user_info['head_img_key'] = profile.head_img_key
-            if profile.sex:
-                user_info['sex'] = profile.sex
-            if profile.birthday:
-                user_info['birthday'] = time.mktime(profile.birthday.timetuple())
-            if profile.location:
-                user_info['location'] = profile.location
+            serializer = UserProfileSerializer(profile)
+            data = serializer.data.copy()
+            data['username'] = user.username
             return Response({
                 'code': 0,
                 'auth': token.key,
-                'user': user_info,
+                'user': data,
             })
         except UserProfile.DoesNotExist:
             return Response({
@@ -223,6 +219,12 @@ class UserProfileView(APIView):
         sex = request.data.get('sex')
         birthday = None if birthday_ts is None else datetime.date.fromtimestamp(birthday_ts)
         mobile = request.data.get('mobile')
+        if not mobile:
+            try:
+                user_mobile = UserMobile.objects.get(user=user)
+                mobile = user_mobile.mobile
+            except UserMobile.DoesNotExist:
+                pass
         location = request.data.get('location')
         try:
             user_profile = UserProfile.objects.get(user=user)

@@ -4,6 +4,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserMobile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_mobile')
+    mobile = models.CharField(max_length=50, blank=True, null=True)
+
+
 class UserDeviceToken(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
