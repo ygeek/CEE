@@ -34,9 +34,9 @@ class MapAnchorList(APIView):
                         ON `api_anchor`.`ref_id`=`api_task`.`id`
                     LEFT JOIN `api_usertask`
                         ON `api_anchor`.`ref_id`=`api_usertask`.`task_id`
+                        AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
                 WHERE `type`='task'
                   AND `map_id`=%(map_id)s
-                  AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
             ''' % kwargs
             story_sql = '''
                 SELECT `api_anchor`.`id` AS `id`,
@@ -51,16 +51,12 @@ class MapAnchorList(APIView):
                         ON `api_anchor`.`ref_id`=`api_story`.`id`
                     LEFT JOIN `api_userstory`
                         ON `api_anchor`.`ref_id`=`api_userstory`.`story_id`
+                        AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
                 WHERE `type`='story'
                   AND `map_id`=%(map_id)s
-                  AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
             ''' % kwargs
             task_anchors = list(Anchor.objects.raw(task_sql))
             story_anchors = list(Anchor.objects.raw(story_sql))
-            task_anchors = list(Anchor.objects.raw(task_sql,
-                                                   params=kwargs))
-            story_anchors = list(Anchor.objects.raw(story_sql,
-                                                    params=kwargs))
             anchors = task_anchors + story_anchors
             serializer = UserAnchorSerializer(anchors, many=True)
             return Response({
