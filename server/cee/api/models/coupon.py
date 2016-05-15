@@ -19,6 +19,8 @@ class Coupon(models.Model):
     owners = models.ManyToManyField(User,
                                     through='UserCoupon',
                                     related_name='coupons')
+    def __unicode__(self):
+        return '%s'% (self.name)
 
 
 class LevelCoupon(models.Model):
