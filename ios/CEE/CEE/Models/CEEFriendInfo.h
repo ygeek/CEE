@@ -19,4 +19,5 @@
 @property (nonatomic, strong) NSNumber * coin;
 @property (nonatomic, strong) NSNumber * medals;
 @property (nonatomic, strong) NSString<Optional> * head_img_key;
+@property (nonatomic, strong) NSNumber * finish_maps;
 @end

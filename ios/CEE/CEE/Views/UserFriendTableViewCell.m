@@ -151,8 +151,7 @@
     self.medalsLabel.text = friendInfo.medals.stringValue;
     [self.headView cee_setImageWithKey:friendInfo.head_img_key
                            placeholder:[UIImage imageNamed:@"cee-头像"]];
-    // TODO: replace with real data
-    self.eggsLabel.text = @"16";
+    self.eggsLabel.text = friendInfo.finish_maps.stringValue;
 }
 
 @end

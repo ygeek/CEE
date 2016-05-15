@@ -16,4 +16,5 @@
 @property (nonatomic, strong) NSArray<CEEJSONMedal> * medals;
 @property (nonatomic, strong) NSString<Optional> * head_img_key;
 @property (nonatomic, strong) NSNumber * friend_num;
+@property (nonatomic, strong) NSNumber * finish_maps;
 @end
