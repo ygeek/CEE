@@ -46,5 +46,13 @@ urlpatterns = [
     url(r'^story/(?P<story_id>[0-9]+)/level/add/$', views.AddLevel.as_view(), name='cms-add-level'),
     url(r'^story/(?P<story_id>[0-9]+)/level/(?P<pk>[0-9]+)/edit/$', views.EditLevel.as_view(), name='cms-edit-level'),
     url(r'^story/(?P<story_id>[0-9]+)/level/(?P<pk>[0-9]+)/delete/$', views.DeleteLevel.as_view(),
-        name='cms-delete-level')
+        name='cms-delete-level'),
+    url(r'^tasks/$', views.TaskList.as_view(), name='cms-tasks'),
+    url(r'^task/add/$', views.AddTask.as_view(), name='cms-add-task'),
+    url(r'^task/(?P<pk>[0-9]+)/edit/$', views.EditTask.as_view(), name='cms-edit-task'),
+    url(r'^task/(?P<pk>[0-9]+)/delete/$', views.DeleteTask.as_view(), name='cms-delete-task'),
+    url(r'^task/(?P<task_id>[0-9]+)/choices/$', views.ChoiceList.as_view(), name='cms-choice-list'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/add/$', views.AddChoice.as_view(), name='cms-add-choice'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<pk>[0-9]+)/edit/$', views.EditChoice.as_view(), name='cms-edit-choice'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<pk>[0-9]+)/delete/$', views.DeleteChoice.as_view(), name='cms-delete-choice'),
 ]

@@ -1,0 +1,29 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block title %}添加选择题{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            添加选择题 --- 选择题组名： {{ task.name }}
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
+                <input type="hidden" name="task" value="{{ task.id }}">
+                {% include 'cms/form.html' %}
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="保存"/>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'cms/assets/plupload-2.1.8/js/plupload.full.min.js' %}"></script>
+    <script src="{% static 'cms/assets/qiniu/qiniu.min.js' %}"></script>
+    <script src="{% static 'cms/js/choice_form.js' %}"></script>
+{% endblock %}

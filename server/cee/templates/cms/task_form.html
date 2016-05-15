@@ -1,0 +1,71 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles bootstrap3 %}
+
+{% block title %}新增/编辑选择题组{% endblock %}
+
+{% block styles %}
+    <style>
+        #qiniu-upload-container {
+            margin: 10px 0;
+        }
+
+        #qiniu-upload-container .upload-progress {
+            margin: 10px;
+        }
+
+        #qiniu-upload-container .text-center {
+            padding: 10px 0;
+        }
+
+        #qiniu-upload-container .no-images-hint {
+            position: relative;
+            margin: 10px;
+        }
+
+        #qiniu-upload-container .images-container {
+            position: relative;
+            margin: 10px;
+        }
+
+        #qiniu-upload-container .uploading-list {
+            position: relative;
+            padding: 10px;
+        }
+
+        #qiniu-upload-container .uploading-list .progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 13px;
+            width: 0;
+            background-color: #53BEE6;
+        }
+
+        #qiniu-upload-container.has-image .no-images-hint {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            新增/编辑选择题组
+        </header>
+        <div class="panel-body">
+            <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
+                {% include 'cms/form.html' %}
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="保存"/>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'cms/assets/plupload-2.1.8/js/plupload.full.min.js' %}"></script>
+    <script src="{% static 'cms/assets/qiniu/qiniu.min.js' %}"></script>
+    <script src="{% static 'cms/js/task_form.js' %}"></script>
+{% endblock %}

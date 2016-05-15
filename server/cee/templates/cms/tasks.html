@@ -1,0 +1,42 @@
+{% extends 'cms/base.html' %}
+
+{% block title %}选择题组管理{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading clearfix">
+            选择题组管理 ({{ object_list.count }})
+        </header>
+        <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+            <table class="table table-bordered vertical-middle">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>位置</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <th scope="row">{{ task.id }}</th>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.desc }}</td>
+                        <td>{{ task.location }}</td>
+                        <td>
+                            <a href="{% url 'cms-edit-task' pk=task.id %}" class="btn btn-info btn-sm">详情</a>
+                            <a href="{% url 'cms-choice-list' task_id=task.id %}" class="btn btn-success btn-sm">管理选择题</a>
+                            <a href="{% url 'cms-delete-task' pk=task.id %}" class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="text-center">
+                {% include 'cms/pagninator.html' %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
