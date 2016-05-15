@@ -166,3 +166,115 @@ class DeleteChoice(DeleteView):
         return reverse('cms-choice-list', kwargs={
             'task_id': self.kwargs['task_id']
         })
+
+
+class OptionForm(ModelForm):
+    class Meta:
+        model = Option
+        fields = [
+            'choice',
+            'order',
+            'desc',
+        ]
+        labels = {
+            'order': '选项号',
+            'desc': '描述',
+        }
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class OptionList(ListView):
+    template_name = 'cms/options.html'
+    context_object_name = 'options'
+
+    def get_task(self):
+        return Task.objects.get(pk=self.kwargs['task_id'])
+
+    def get_choice(self):
+        return Choice.objects.get(pk=self.kwargs['choice_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(OptionList, self).get_context_data(**kwargs)
+        context['task'] = self.get_task()
+        context['choice'] = self.get_choice()
+        return context
+
+    def get_queryset(self):
+        choice = self.get_choice()
+        return Option.objects.filter(choice=choice)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class AddOption(CreateView):
+    template_name = 'cms/option_form.html'
+    form_class = OptionForm
+    object = None
+
+    def get_task(self):
+        return Task.objects.get(pk=self.kwargs['task_id'])
+
+    def get_choice(self):
+        return Choice.objects.get(pk=self.kwargs['choice_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(AddOption, self).get_context_data(**kwargs)
+        context['task'] = self.get_task()
+        context['choice'] = self.get_choice()
+        return context
+
+    def get_success_url(self):
+        return reverse('cms-option-list', kwargs={
+            'task_id': self.kwargs['task_id'],
+            'choice_id': self.kwargs['choice_id'],
+        })
+
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        if form.is_valid():
+            response = self.form_valid(form)
+            choice = self.get_choice()
+            choice.options.add(form.instance)
+            return response
+        else:
+            return self.form_invalid(form)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class EditOption(UpdateView):
+    model = Option
+    template_name = 'cms/option_form.html'
+    form_class = OptionForm
+    object = None
+
+    def get_task(self):
+        return Task.objects.get(pk=self.kwargs['task_id'])
+
+    def get_choice(self):
+        return Choice.objects.get(pk=self.kwargs['choice_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(EditOption, self).get_context_data(**kwargs)
+        context['task'] = self.get_task()
+        context['choice'] = self.get_choice()
+        return context
+
+    def get_success_url(self):
+        return reverse('cms-option-list', kwargs={
+            'task_id': self.kwargs['task_id'],
+            'choice_id': self.kwargs['choice_id'],
+        })
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class DeleteOption(DeleteView):
+    model = Option
+    context_object_name = 'option'
+    template_name = 'cms/option_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('cms-option-list', kwargs={
+            'task_id': self.kwargs['task_id'],
+            'choice_id': self.kwargs['choice_id'],
+        })

@@ -55,4 +55,8 @@ urlpatterns = [
     url(r'^task/(?P<task_id>[0-9]+)/choice/add/$', views.AddChoice.as_view(), name='cms-add-choice'),
     url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<pk>[0-9]+)/edit/$', views.EditChoice.as_view(), name='cms-edit-choice'),
     url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<pk>[0-9]+)/delete/$', views.DeleteChoice.as_view(), name='cms-delete-choice'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/options/$', views.OptionList.as_view(), name='cms-option-list'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/option/add/$', views.AddOption.as_view(), name='cms-add-option'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/option/(?P<pk>[0-9]+)/edit/$', views.EditOption.as_view(), name='cms-edit-option'),
+    url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/option/(?P<pk>[0-9]+)/delete/$', views.DeleteOption.as_view(), name='cms-delete-option'),
 ]

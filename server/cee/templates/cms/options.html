@@ -1,19 +1,19 @@
 {% extends 'cms/base.html' %}
 
-{% block title %}选择题管理{% endblock %}
+{% block title %}选项管理{% endblock %}
 
 {% block content %}
     <section class="panel">
         <header class="panel-heading clearfix">
-            选择题管理 ({{ object_list.count }}) --- 选择题组名：{{ task.name }}
-            <a class="btn btn-sm" href="{% url 'cms-tasks' %}">
+            选项管理 ({{ object_list.count }}) --- 选择题组名：{{ task.name }} 选择题名：{{ choice.name }}
+            <a class="btn btn-sm" href="{% url 'cms-choice-list' task_id=task.id %}">
                 <i class="fa fa-arrow-left"></i>
-                返回选择题组列表
+                返回选择题管理
             </a>
             <div class="pull-right">
-                <a class="btn btn-success btn-sm" href="{% url 'cms-add-choice' task_id=task.id %}">
+                <a class="btn btn-success btn-sm" href="{% url 'cms-add-option' task_id=task.id choice_id=choice.id %}">
                     <i class="fa fa-plus-circle"></i>
-                    新增选择题
+                    新增选项
                 </a>
             </div>
         </header>
@@ -22,23 +22,21 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>题号</th>
-                    <th>名称</th>
+                    <th>选项号</th>
+                    <th>描述</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for choice in choices %}
+                {% for option in options %}
                     <tr>
-                        <th scope="row">{{ choice.id }}</th>
-                        <td>{{ choice.order }}</td>
-                        <td>{{ choice.name }}</td>
+                        <th scope="row">{{ option.id }}</th>
+                        <td>{{ option.order }}</td>
+                        <td>{{ option.desc }}</td>
                         <td>
-                            <a href="{% url 'cms-edit-choice' task_id=task.id pk=choice.id %}"
+                            <a href="{% url 'cms-edit-option' task_id=task.id choice_id=choice.id pk=option.id %}"
                                class="btn btn-info btn-sm">编辑</a>
-                            <a href="{% url 'cms-option-list' task_id=task.id choice_id=choice.id %}"
-                               class="btn btn-success btn-sm">管理选项</a>
-                            <a href="{% url 'cms-delete-choice' task_id=task.id pk=choice.id %}"
+                            <a href="{% url 'cms-delete-option' task_id=task.id choice_id=choice.id pk=option.id %}"
                                class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>
