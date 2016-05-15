@@ -36,8 +36,10 @@
                         <td>
                             <a href="{% url 'cms-edit-option' task_id=task.id choice_id=choice.id pk=option.id %}"
                                class="btn btn-info btn-sm">编辑</a>
-                            <a href="{% url 'cms-delete-option' task_id=task.id choice_id=choice.id pk=option.id %}"
-                               class="btn btn-danger btn-sm">删除</a>
+                            {% if forloop.last %}
+                                <a href="{% url 'cms-delete-option' task_id=task.id choice_id=choice.id pk=option.id %}"
+                                   class="btn btn-danger btn-sm">删除</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
