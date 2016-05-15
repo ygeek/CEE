@@ -17,6 +17,10 @@ class MapAnchorList(APIView):
         try:
             map_id = int(map_id)
             map_ = Map.objects.get(id=map_id)
+            kwargs = {
+                'map_id': map_id,
+                'user_id': request.user.id,
+            }
             task_sql = '''
                 SELECT `api_anchor`.`id` AS `id`,
                        `api_anchor`.`name` AS `name`,
@@ -33,7 +37,7 @@ class MapAnchorList(APIView):
                 WHERE `type`='task'
                   AND `map_id`=%(map_id)s
                   AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
-            '''
+            ''' % kwargs
             story_sql = '''
                 SELECT `api_anchor`.`id` AS `id`,
                        `api_anchor`.`name` AS `name`,
@@ -50,11 +54,9 @@ class MapAnchorList(APIView):
                 WHERE `type`='story'
                   AND `map_id`=%(map_id)s
                   AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
-            '''
-            kwargs = {
-                'map_id': map_id,
-                'user_id': request.user.id,
-            }
+            ''' % kwargs
+            task_anchors = list(Anchor.objects.raw(task_sql))
+            story_anchors = list(Anchor.objects.raw(story_sql))
             task_anchors = list(Anchor.objects.raw(task_sql,
                                                    params=kwargs))
             story_anchors = list(Anchor.objects.raw(story_sql,
