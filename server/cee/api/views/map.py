@@ -74,8 +74,8 @@ class NearestMap(APIView):
             FROM `api_map`
                 LEFT JOIN `api_usermap`
                     ON `api_map`.`id`=`api_usermap`.`map_id`
-            WHERE IFNULL(`user_id`, %(user_id)s)=%(user_id)s
-              AND IFNULL(`completed`, 0)=0
+                    AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
+            WHERE IFNULL(`completed`, 0)=0
               AND `geohash` LIKE '%(geohash)s'
         ''' % kwargs
         if city_key is not None:
