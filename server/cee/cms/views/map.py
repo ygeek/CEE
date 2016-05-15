@@ -2,6 +2,8 @@
 
 from __future__ import unicode_literals
 
+import json
+
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.forms import ModelForm
 from django.utils.decorators import method_decorator
@@ -9,6 +11,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Map, Anchor
+from api.serializers import AnchorSerializer
 
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -79,6 +82,8 @@ class AnchorList(ListView):
     def get_context_data(self, **kwargs):
         context = super(AnchorList, self).get_context_data(**kwargs)
         context['map'] = self.get_map()
+        serializer = AnchorSerializer(context['anchors'], many=True)
+        context['anchors_json'] = json.dumps(serializer.data)
         return context
 
 
@@ -106,6 +111,14 @@ class AddAnchor(CreateView):
     form_class = AnchorForm
     object = None
 
+    def get_map(self):
+        return Map.objects.get(id=self.kwargs['map_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(AddAnchor, self).get_context_data(**kwargs)
+        context['map'] = self.get_map()
+        return context
+
     def get_success_url(self):
         return reverse('cms-anchor-list', kwargs={
             'map_id': self.kwargs['map_id']
@@ -126,6 +139,14 @@ class EditAnchor(UpdateView):
     model = Anchor
     template_name = 'cms/anchor_form.html'
     form_class = AnchorForm
+
+    def get_map(self):
+        return Map.objects.get(id=self.kwargs['map_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(EditAnchor, self).get_context_data(**kwargs)
+        context['map'] = self.get_map()
+        return context
 
     def get_success_url(self):
         return reverse('cms-anchor-list', kwargs={

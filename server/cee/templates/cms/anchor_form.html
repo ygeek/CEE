@@ -1,14 +1,25 @@
 {% extends 'cms/base.html' %}
 
-{% load bootstrap3 staticfiles %}
+{% load bootstrap3 staticfiles qiniu_tags %}
 
 {% block title %}新增/编辑锚点{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'cms/css/anchor.css' %}">
+{% endblock %}
 
 {% block content %}
     <section class="panel">
         <header class="panel-heading">
-            新增/编辑锚点
+            新增/编辑锚点 -- 在图片上单击放置锚点
         </header>
+        <div class="panel-body">
+            <div class="map-image-container">
+                <div class="map-image-wrapper">
+                    <img src="{{ map.image_key|download_url }}" alt="地图">
+                </div>
+            </div>
+        </div>
         <div class="panel-body">
             <form class="form-horizontal" action="" method="post" role="form">{% csrf_token %}
                 {% include 'cms/form.html' %}
@@ -21,4 +32,5 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static 'cms/js/anchor_form.js' %}"></script>
 {% endblock %}

@@ -18,3 +18,15 @@ class UserAnchorSerializer(serializers.ModelSerializer):
             'ref_id',
             'completed',
         )
+
+
+class AnchorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Anchor
+        fields = (
+            'id',
+            'name',
+            'type',
+            'dx',
+            'dy'
+        )

@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.map-image-container {
+    overflow: auto;
+    max-height: 500px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.map-image-container img {
+    display: block;
+}
+
+.map-image-wrapper {
+    position: relative;
+}
+
+.map-image-wrapper .anchor {
+    position: absolute;
+    background: #FFF;
+    cursor: default;
+}
+
+.map-image-wrapper .anchor .anchor-mark {
+    position: absolute;
+    background-color: red;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}

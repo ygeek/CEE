@@ -1,13 +1,21 @@
 {% extends 'cms/base.html' %}
 
-{% load staticfiles %}
+{% load staticfiles qiniu_tags %}
 
 {% block title %}{{ map.name }} - 锚点管理{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'cms/css/anchor.css' %}">
+{% endblock %}
 
 {% block content %}
     <section class="panel">
         <header class="panel-heading">
             锚点管理 - {{ map.name }}
+            <a class="btn btn-sm" href="{% url 'cms-maps' %}">
+                <i class="fa fa-arrow-left"></i>
+                返回地图列表
+            </a>
             <div class="pull-right">
                 <a class="btn btn-success btn-sm" href="{% url 'cms-add-anchor' map_id=map.id %}">
                     <i class="fa fa-plus-circle"></i>
@@ -15,6 +23,13 @@
                 </a>
             </div>
         </header>
+        <div class="panel-body">
+            <div class="map-image-container">
+                <div class="map-image-wrapper">
+                    <img src="{{ map.image_key|download_url }}" alt="地图">
+                </div>
+            </div>
+        </div>
         <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
             <table class="table table-bordered vertical-middle">
                 <thead>
@@ -43,4 +58,11 @@
             </table>
         </div>
     </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var g_anchors = {{ anchors_json|safe }};
+    </script>
+    <script src="{% static 'cms/js/anchors.js' %}"></script>
 {% endblock %}
