@@ -31,15 +31,15 @@
                 {% for map in maps %}
                     <tr>
                         <th scope="row">
-                            <a href="{% url 'cms-map-detail' pk=map.id %}">{{ map.id }}</a>
+                            <a href="{% url 'cms-anchor-list' map_id=map.id %}">{{ map.id }}</a>
                         </th>
                         <td>{{ map.name }}</td>
                         <td>{{ map.city }}</td>
                         <td>{{ map|map_user_count }}</td>
                         <td>{{ map|map_complete_count }}</td>
                         <td>
-                            <a href="{% url 'cms-edit-map' pk=map.id %}" class="btn btn-info btn-sm">基本信息</a>
-                            <a href="{% url 'cms-map-detail' pk=map.id %}" class="btn btn-success btn-sm">详细信息</a>
+                            <a href="{% url 'cms-edit-map' pk=map.id %}" class="btn btn-info btn-sm">详情</a>
+                            <a href="{% url 'cms-anchor-list' map_id=map.id %}" class="btn btn-success btn-sm">管理锚点</a>
                             <a href="{% url 'cms-delete-map' pk=map.id %}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>

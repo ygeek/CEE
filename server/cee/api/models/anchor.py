@@ -1,3 +1,4 @@
+# coding=utf-8
 from __future__ import unicode_literals
 
 from django.db import models
@@ -10,8 +11,8 @@ class Anchor(models.Model):
         Task = 'task'
         Story = 'story'
         Choices = (
-            (Task, Task.capitalize()),
-            (Story, Story.capitalize()),
+            (Task, '选择题'),
+            (Story, '故事'),
         )
 
     map = models.ForeignKey(Map, related_name='anchors')
@@ -19,6 +20,7 @@ class Anchor(models.Model):
     dx = models.IntegerField()
     dy = models.IntegerField()
     type = models.CharField(max_length=10,
+                            default='task',
                             choices=Type.Choices)
     ref_id = models.IntegerField()
     owners = models.ManyToManyField(User,
