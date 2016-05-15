@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
-from api.models import Story, Level, StoryLevel
+from api.models import Story, Level, StoryLevel, Item, StoryItem
 from cms.views.widgets import JsonTextArea
 
 
@@ -169,3 +169,87 @@ class DeleteLevel(DeleteView):
         return reverse('cms-level-list', kwargs={
             'story_id': self.kwargs['story_id']
         })
+
+
+class ItemForm(ModelForm):
+
+    class Meta:
+        model = Item
+        fields = [
+            'name',
+            'activate_at',
+            'content'
+        ]
+        labels = {
+            'name': '道具名称',
+            'content': '道具内容'
+        }
+        widgets = {
+            'content': JsonTextArea()
+        }
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class ItemList(ListView):
+    template_name = 'cms/items.html'
+    context_object_name = 'items'
+
+    def get_story(self):
+        return Story.objects.get(pk=self.kwargs['story_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemList, self).get_context_data(**kwargs)
+        context['story'] = self.get_story()
+        return context
+
+    def get_queryset(self):
+        story = self.get_story()
+        return Item.objects.filter(stories=story)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class AddItem(CreateView):
+    template_name = 'cms/item_form.html'
+    form_class = ItemForm
+    object = None
+
+    def get_story(self):
+        return Story.objects.get(pk=self.kwargs['story_id'])
+
+    def get_success_url(self):
+        return reverse('cms-item-list', kwargs={
+            'story_id': self.kwargs['story_id']
+        })
+
+    def get_context_data(self, **kwargs):
+        context = super(AddItem, self).get_context_data(**kwargs)
+        context['story'] = self.get_story()
+        return context
+
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        if form.is_valid():
+            response = self.form_valid(form)
+            story_item = StoryItem()
+            story = self.get_story()
+            story_item.story = story
+            story_item.item = form.instance
+            story_item.save()
+            return response
+        else:
+            return self.form_invalid(form)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class DeleteItem(DeleteView):
+    model = Item
+    context_object_name = 'item'
+    template_name = 'cms/item_confirm_delete.html'
+
+    def get_success_url(self):
+        return reverse('cms-item-list', kwargs={
+            'story_id': self.kwargs['story_id']
+        })
+

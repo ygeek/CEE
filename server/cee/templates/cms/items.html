@@ -1,0 +1,48 @@
+{% extends 'cms/base.html' %}
+
+{% load story_tags %}
+
+{% block title %}道具管理{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading clearfix">
+            道具管理 ({{ object_list.count }}) --- 故事名：{{ story.name }}
+            <a class="btn btn-sm" href="{% url 'cms-stories' %}">
+                <i class="fa fa-arrow-left"></i>
+                返回故事列表
+            </a>
+            <div class="pull-right">
+                <a class="btn btn-success btn-sm" href="{% url 'cms-add-item' story_id=story.id %}">
+                    <i class="fa fa-plus-circle"></i>
+                    新增道具
+                </a>
+            </div>
+        </header>
+        <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+            <table class="table table-bordered vertical-middle">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>类型</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <th scope="row">{{ item.id }}</th>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.type }}</td>
+                        <td>
+                            <a href="{% url 'cms-delete-item' story_id=story.id pk=item.id %}"
+                               class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
