@@ -19,10 +19,10 @@ class LevelCouponForm(ModelForm):
         model = LevelCoupon
         fields = [
             'coupon',
-            'amount'
+            'amount',
         ]
         labels = {
-            'amount': '优惠卷数量',
+            'amount': '优惠券数量',
         }
 
 
@@ -46,7 +46,7 @@ class LevelCouponList(ListView):
     def get_queryset(self):
         story = self.get_story()
         level = self.get_level()
-        return LevelCoupon.objects.filter(story=story,level=level)
+        return LevelCoupon.objects.filter(story=story, level=level)
 
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -78,7 +78,7 @@ class AddLevelCoupon(CreateView):
         self.object = None
         form = self.get_form()
         if form.is_valid():
-            #response = self.form_valid(form)
+            # response = self.form_valid(form)
             level_coupon = LevelCoupon()
             story = self.get_story()
             level = self.get_level()
@@ -102,4 +102,3 @@ class DeleteLevelCoupon(DeleteView):
             'story_id': self.kwargs['story_id'],
             'level_id': self.kwargs['level_id']
         })
-

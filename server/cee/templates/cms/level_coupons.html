@@ -20,8 +20,9 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>优惠卷ID</th>
-                    <th>优惠卷数量</th>
+                    <th>优惠券ID</th>
+                    <th>优惠券名称</th>
+                    <th>优惠券数量</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -30,6 +31,7 @@
                     <tr>
                         <th scope="row">{{ lcoupon.id }}</th>
                         <td> {{ lcoupon.coupon_id }}</td>
+                        <td> {{ lcoupon.coupon.name }}</td>
                         <td>{{ lcoupon.amount }}</td>
                         <td>
                             <a href="{% url 'cms-delete-levelcoupon' story_id=story.id level_id=level.id pk=lcoupon.id %}"
