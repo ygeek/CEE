@@ -164,16 +164,18 @@ class CompleteMap(APIView):
             affect_rows = UserMap.objects.filter(
                 user=request.user, map=map_, completed=False).update(
                     completed=True)
+            awards = []
             if affect_rows > 0:
-                serializer = MedalSerializer(map_.medal)
-                awards = [
-                    {
-                        'type': 'medal',
-                        'detail': serializer.data,
-                    }
-                ]
-            else:
-                awards = []
+                try:
+                    serializer = MedalSerializer(map_.medal)
+                    awards = [
+                        {
+                            'type': 'medal',
+                            'detail': serializer.data,
+                        }
+                    ]
+                except Medal.DoesNotExist:
+                    pass
             return Response({
                 'code': 0,
                 'awards': awards,

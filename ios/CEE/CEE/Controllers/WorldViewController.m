@@ -240,7 +240,7 @@
         if ([anchor.type isEqualToString:kAnchorTypeNameStory] &&
             [anchor.ref_id isEqualToNumber:story.id]) {
             anchor.completed = @(YES);
-            anchorView.anchorType = MapAnchorTypeTaskFinished;
+            anchorView.anchorType = MapAnchorTypeStoryFinished;
         }
     }
 }

@@ -97,12 +97,16 @@
             [SVProgressHUD show];
             [[CEEStoryCompleteAPI api] completeStoryID:self.story.id].then(^(NSArray<CEEJSONAward *> * awards) {
                 [SVProgressHUD dismiss];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEStoryCompleteNotificationName
-                                                                        object:self
-                                                                      userInfo:@{kCEEStoryCompleteStoryKey:self.story,
-                                                                                 kCEEStoryCompleteAwardsKey: awards}];
+                return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kCEEStoryCompleteNotificationName
+                                                                            object:self
+                                                                          userInfo:@{kCEEStoryCompleteStoryKey:self.story,
+                                                                                     kCEEStoryCompleteAwardsKey: awards}];
+                        resolve(nil);
+                    }];
                 }];
+            }).then(^{
                 return [[CEEMapCompleteAPI api] completeMapWithStoryID:self.story.id];
             }).then(^(NSArray<CEEJSONAward *> * awards) {
                 if (awards.count > 0) {

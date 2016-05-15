@@ -6,7 +6,7 @@ from .map import *
 
 
 class Medal(models.Model):
-    map = models.OneToOneField(Map, on_delete=models.CASCADE)
+    map = models.OneToOneField(Map, on_delete=models.CASCADE, related_name='medal')
     name = models.CharField(max_length=30, unique=True)
     desc = models.TextField()
     icon_key = models.CharField(max_length=100)

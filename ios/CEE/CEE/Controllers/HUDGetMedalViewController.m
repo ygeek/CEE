@@ -54,6 +54,7 @@
     [self.panelView addSubview:self.backgroundView];
     
     self.iconView = [[UIImageView alloc] init];
+    self.iconView.contentMode = UIViewContentModeCenter;
     [self.panelView addSubview:self.iconView];
     
     self.messageLabel = [[UILabel alloc] init];
@@ -126,7 +127,7 @@
 - (void)loadAward:(CEEJSONAward *)award {
     if ([award.type isEqualToString:@"medal"]) {
         // TODO: 换正式的占位图
-        self.backgroundView.image = [UIImage imageWithColor:kCEEYellowColor size:CGSizeMake(232, 251)];
+        self.backgroundView.image = [UIImage imageWithColor:kCEEBackgroundGrayColor size:CGSizeMake(232, 251)];
         [self.iconView cee_setImageWithKey:award.detail[@"icon_key"]];
     }
 }
