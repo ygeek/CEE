@@ -25,7 +25,6 @@
                 <tr>
                     <th>#</th>
                     <th>名称</th>
-                    <th>类型</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -33,9 +32,10 @@
                 {% for item in items %}
                     <tr>
                         <th scope="row">{{ item.id }}</th>
-                        <td>{{ item.title }}</td>
-                        <td>{{ item.type }}</td>
+                        <td>{{ item.name }}</td>
                         <td>
+                            <a href="{% url 'cms-edit-item' story_id=story.id pk=item.id %}"
+                               class="btn btn-primary btn-sm">编辑</a>
                             <a href="{% url 'cms-delete-item' story_id=story.id pk=item.id %}"
                                class="btn btn-danger btn-sm">删除</a>
                         </td>

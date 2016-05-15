@@ -5,6 +5,7 @@ from ..models.medal import *
 from ..models.map import *
 from medal import *
 
+
 class UserInfoSerializer(serializers.ModelSerializer):
 
     coin = serializers.SerializerMethodField()
@@ -15,7 +16,14 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'coin', 'medals', 'head_img_key', 'friend_num', 'finish_maps')
+        fields = (
+            'id',
+            'coin',
+            'medals',
+            'head_img_key',
+            'friend_num',
+            'finish_maps',
+        )
 
     def get_coin(self, user):
         try:
@@ -56,13 +64,14 @@ class FriendInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id',
-                  'nickname',
-                  'coin',
-                  'medals',
-                  'head_img_key',
-                  'finish_maps'
-                 )
+        fields = (
+            'id',
+            'nickname',
+            'coin',
+            'medals',
+            'head_img_key',
+            'finish_maps',
+        )
 
     def get_nickname(self, user):
         try:

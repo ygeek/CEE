@@ -182,6 +182,7 @@ class ItemForm(ModelForm):
         ]
         labels = {
             'name': '道具名称',
+            'activate_at': '激活关卡',
             'content': '道具内容'
         }
         widgets = {
@@ -240,6 +241,18 @@ class AddItem(CreateView):
             return response
         else:
             return self.form_invalid(form)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class EditItem(UpdateView):
+    model = Item
+    template_name = 'cms/item_form.html'
+    form_class = ItemForm
+
+    def get_success_url(self):
+        return reverse('cms-item-list', kwargs={
+            'story_id': self.kwargs['story_id']
+        })
 
 
 @method_decorator(staff_member_required, name='dispatch')

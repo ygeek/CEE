@@ -26,6 +26,7 @@ urlpatterns = [
 
     url(r'^story/(?P<story_id>[0-9]+)/items/$', views.ItemList.as_view(), name='cms-item-list'),
     url(r'^story/(?P<story_id>[0-9]+)/item/add/$', views.AddItem.as_view(), name='cms-add-item'),
+    url(r'^story/(?P<story_id>[0-9]+)/item/(?P<pk>[0-9]+)/edit/$', views.EditItem.as_view(), name='cms-edit-item'),
     url(r'^story/(?P<story_id>[0-9]+)/item/(?P<pk>[0-9]+)/delete/$', views.DeleteItem.as_view(),
         name='cms-delete-item'),
 

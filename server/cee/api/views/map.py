@@ -81,7 +81,6 @@ class NearestMap(APIView):
         if city_key is not None:
             sql += "AND `city_id`='%s'\n" % city_key
         sql += 'LIMIT 1'
-        print sql
         maps = list(Map.objects.raw(sql))
         if not maps: return None
         map_ = maps[0]
