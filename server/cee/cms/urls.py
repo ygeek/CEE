@@ -30,6 +30,10 @@ urlpatterns = [
     url(r'^story/(?P<story_id>[0-9]+)/item/(?P<pk>[0-9]+)/delete/$', views.DeleteItem.as_view(),
         name='cms-delete-item'),
 
+    url(r'^story/(?P<story_id>[0-9]+)/level/(?P<level_id>[0-9]+)/level_coupons/$', views.LevelCouponList.as_view(), name='cms-level-coupons'),
+    url(r'^story/(?P<story_id>[0-9]+)/level/(?P<level_id>[0-9]+)/levelcoupon/add/$', views.AddLevelCoupon.as_view(), name='cms-add-levelcoupon'),
+    url(r'^story/(?P<story_id>[0-9]+)/level/(?P<level_id>[0-9]+)/levelcoupon/(?P<pk>[0-9]+)/delete/$', views.DeleteLevelCoupon.as_view(), name='cms-delete-levelcoupon'),
+
     url(r'^story/(?P<story_id>[0-9]+)/levels/$', views.LevelList.as_view(), name='cms-level-list'),
     url(r'^story/(?P<story_id>[0-9]+)/level/add/$', views.AddLevel.as_view(), name='cms-add-level'),
     url(r'^story/(?P<story_id>[0-9]+)/level/(?P<pk>[0-9]+)/delete/$', views.DeleteLevel.as_view(),

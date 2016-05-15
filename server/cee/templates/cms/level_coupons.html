@@ -1,0 +1,44 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles coupon_tags %}
+
+{% block title %}优惠券{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading clearfix">
+            优惠券管理 ({{ object_list.count }})
+            <div class="pull-right">
+                <a href="{% url 'cms-add-levelcoupon' story_id=story.id level_id=level.id %}" class="btn btn-success btn-sm">
+                    <i class="fa fa-plus-circle"></i>
+                    新增优惠券
+                </a>
+            </div>
+        </header>
+        <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>优惠卷ID</th>
+                    <th>优惠卷数量</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for lcoupon in level_coupons %}
+                    <tr>
+                        <th scope="row">{{ lcoupon.id }}</th>
+                        <td> {{ lcoupon.coupon_id }}</td>
+                        <td>{{ lcoupon.amount }}</td>
+                        <td>
+                            <a href="{% url 'cms-delete-levelcoupon' story_id=story.id level_id=level.id pk=lcoupon.id %}"
+                               class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

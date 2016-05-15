@@ -9,7 +9,7 @@ from .coupon import *
 from .map import *
 from .story import *
 from .qiniu import *
-
+from .level import *
 
 def index(request):
     return render(request, "cms/index.html")

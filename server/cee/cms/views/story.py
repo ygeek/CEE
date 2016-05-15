@@ -265,4 +265,3 @@ class DeleteItem(DeleteView):
         return reverse('cms-item-list', kwargs={
             'story_id': self.kwargs['story_id']
         })
-

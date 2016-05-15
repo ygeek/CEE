@@ -26,7 +26,7 @@ class LevelCoupon(models.Model):
     level = models.ForeignKey(Level, related_name='level_coupons')
     coupon = models.ForeignKey(Coupon, related_name='level_coupons')
     amount = models.IntegerField()
-    remain = models.IntegerField()
+    remain = models.IntegerField(default=0)
 
 
 class UserCoupon(models.Model):
