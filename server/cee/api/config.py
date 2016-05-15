@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 
 class LeanCloudConfig(object):
-    APP_ID = 'zbamEfqUbNTXNwLKw8LiTPK0-gzGzoHsz'
-    APP_KEY = 'nWuVXVcpDSr4Eu3DHJqqSDyY'
+    APP_ID = 'jqkXh6wD9aecX74oeOVz9CtN-gzGzoHsz'
+    APP_KEY = 'wflBBpW9pcnMkPXf5Xjuk510'
     PUSH_URL = 'https://leancloud.cn/1.1/push'
     APP_ID_HEADER = 'X-LC-Id'
     APP_KEY_HEADER = 'X-LC-Key'

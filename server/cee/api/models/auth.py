@@ -14,7 +14,7 @@ class UserDeviceToken(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='device_token')
     device_token = models.CharField(max_length=100)
-    installation_id = models.CharField(max_length=100)
+    installation_id = models.CharField(max_length=100, blank=True, null=True)
 
 
 class ThirdPartyAccount(models.Model):

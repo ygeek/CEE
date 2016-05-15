@@ -21,7 +21,7 @@ def broadcast_apns_notification(message, is_prod=True):
     _post_apns_payload(payload)
 
 
-def push_apns_notification(message, installation_id, is_prod=True):
+def push_apns_notification(message, device_token, is_prod=True):
     payload = {
         'prod': 'prod' if is_prod else 'dev',
         'data': {
@@ -30,7 +30,7 @@ def push_apns_notification(message, installation_id, is_prod=True):
             # 'custom-key': '由用户添加的自定义属性，custom-key 仅是举例，可随意替换',
         },
         'where': {
-            'installationId': installation_id,
+            'deviceToken': device_token,
         },
     }
     _post_apns_payload(payload)

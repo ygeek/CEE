@@ -34,8 +34,8 @@ class CouponMessageJob(CronJobBase):
                                   unread=True,
                                   coupon_id=coupon.id)
                 message.save()
-                installation_id = user_coupon.user.device_token.installation_id
-                api.services.push_apns_notification(text, installation_id)
+                device_token = user_coupon.user.device_token.device_token
+                api.services.push_apns_notification(text, device_token)
 
 
 class TestCronJob(CronJobBase):

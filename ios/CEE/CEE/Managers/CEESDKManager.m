@@ -63,8 +63,8 @@
 - (void)setupAVOS {
     [AVOSCloudCrashReporting enable];
     
-    [AVOSCloud setApplicationId:@"zbamEfqUbNTXNwLKw8LiTPK0-gzGzoHsz"
-                      clientKey:@"nWuVXVcpDSr4Eu3DHJqqSDyY"];
+    [AVOSCloud setApplicationId:@"jqkXh6wD9aecX74oeOVz9CtN-gzGzoHsz"
+                      clientKey:@"wflBBpW9pcnMkPXf5Xjuk510"];
     
     [AVOSCloud registerForRemoteNotification];
 }

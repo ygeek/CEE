@@ -77,7 +77,13 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"save installation to leancloud succeed!");
+        } else {
+            NSLog(@"save installation to leancloud error: %@", error);
+        }
+    }];
     [CEEUserSession session].deviceToken = currentInstallation.deviceToken;
     [CEEUserSession session].installationId = currentInstallation.installationId;
 }

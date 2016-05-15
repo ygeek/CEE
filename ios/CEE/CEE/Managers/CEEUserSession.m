@@ -60,6 +60,32 @@
     return self;
 }
 
+- (void)setDeviceToken:(NSString *)deviceToken {
+    _deviceToken = [deviceToken copy];
+    if (deviceToken && deviceToken.length > 0 &&
+        self.authToken && self.authToken.length > 0) {
+        [[CEEDeviceTokenAPI api] uploadDeviceToken:deviceToken installationId:self.installationId]
+        .then(^(NSString * msg) {
+            NSLog(@"upload device token %@: %@", deviceToken, msg);
+        }).catch(^(NSError *error) {
+            NSLog(@"upload device token error: %@", error);
+        });
+    }
+}
+
+- (void)setInstallationId:(NSString *)installationId {
+    _installationId = [installationId copy];
+    if (self.deviceToken && self.deviceToken.length > 0 &&
+        self.authToken && self.authToken.length > 0) {
+        [[CEEDeviceTokenAPI api] uploadDeviceToken:self.deviceToken installationId:installationId]
+        .then(^(NSString * msg) {
+            NSLog(@"upload device token: %@", msg);
+        }).catch(^(NSError *error) {
+            NSLog(@"upload device token error: %@", error);
+        });
+    }
+}
+
 - (void)load {
     NSString * authToken = [[CEEDatabase db] loadAuthToken];
     [self loggedInWithAuth:authToken];
@@ -73,12 +99,16 @@
         [[CEEAPIClient client].requestSerializer setValue:[NSString stringWithFormat:@"Token %@", auth]
                                        forHTTPHeaderField:@"Authorization"];
         
-        [[CEEDeviceTokenAPI api] uploadDeviceToken:self.deviceToken installationId:self.installationId]
-        .then(^(NSString * msg) {
-            NSLog(@"upload device token: %@", msg);
-        }).catch(^(NSError *error) {
-            NSLog(@"upload device token error: %@", error);
-        });
+        if (auth && auth.length > 0 &&
+            self.deviceToken && self.deviceToken.length > 0 &&
+            self.installationId && self.installationId.length > 0) {
+            [[CEEDeviceTokenAPI api] uploadDeviceToken:self.deviceToken installationId:self.installationId]
+            .then(^(NSString * msg) {
+                NSLog(@"upload device token: %@", msg);
+            }).catch(^(NSError *error) {
+                NSLog(@"upload device token error: %@", error);
+            });
+        }
         
         return [self loadUserProfile].then(^{
             return [self addAddressBookFriends];
