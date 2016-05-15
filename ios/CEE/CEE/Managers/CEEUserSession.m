@@ -79,7 +79,7 @@
         self.authToken && self.authToken.length > 0) {
         [[CEEDeviceTokenAPI api] uploadDeviceToken:self.deviceToken installationId:installationId]
         .then(^(NSString * msg) {
-            NSLog(@"upload device token: %@", msg);
+            NSLog(@"upload device token %@: %@", self.deviceToken, msg);
         }).catch(^(NSError *error) {
             NSLog(@"upload device token error: %@", error);
         });
@@ -100,8 +100,7 @@
                                        forHTTPHeaderField:@"Authorization"];
         
         if (auth && auth.length > 0 &&
-            self.deviceToken && self.deviceToken.length > 0 &&
-            self.installationId && self.installationId.length > 0) {
+            self.deviceToken && self.deviceToken.length > 0) {
             [[CEEDeviceTokenAPI api] uploadDeviceToken:self.deviceToken installationId:self.installationId]
             .then(^(NSString * msg) {
                 NSLog(@"upload device token: %@", msg);

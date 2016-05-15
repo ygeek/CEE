@@ -169,6 +169,7 @@ class UserDeviceTokenView(APIView):
             user_token = UserDeviceToken.objects.get(user=user)
             user_token.device_token = device_token
             user_token.installation_id = installation_id
+            user_token.save()
             code = 0
             msg = 'Device Token 更新成功'
         except UserDeviceToken.DoesNotExist:
