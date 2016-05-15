@@ -22,7 +22,8 @@
                     <th>#</th>
                     <th>优惠券ID</th>
                     <th>优惠券名称</th>
-                    <th>优惠券数量</th>
+                    <th>优惠券总数量</th>
+                    <th>优惠券剩余数量</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -30,10 +31,12 @@
                 {% for lcoupon in level_coupons %}
                     <tr>
                         <th scope="row">{{ lcoupon.id }}</th>
-                        <td> {{ lcoupon.coupon_id }}</td>
-                        <td> {{ lcoupon.coupon.name }}</td>
+                        <td>{{ lcoupon.coupon_id }}</td>
+                        <td>{{ lcoupon.coupon.name }}</td>
                         <td>{{ lcoupon.amount }}</td>
+                        <td>{{ lcoupon.remain }}</td>
                         <td>
+                          <a href="{% url 'cms-edit-coupon' pk=lcoupon.coupon_id %}" class="btn btn-info btn-sm">详情</a>
                             <a href="{% url 'cms-delete-levelcoupon' story_id=story.id level_id=level.id pk=lcoupon.id %}"
                                class="btn btn-danger btn-sm">删除</a>
                         </td>
