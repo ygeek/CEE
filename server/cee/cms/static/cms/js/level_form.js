@@ -103,38 +103,41 @@
         }
     }
 
+    function doReplaceForm(form, type) {
+        $replaced.append(form);
+        fillInitialData(type);
+    }
+
     function replaceForm(type) {
         $replaced.empty();
 
         switch (type) {
             case 'dialog':
-                $replaced.append(getDialogForm());
+                doReplaceForm(getDialogForm(), type);
                 makeSingleImageUploader('img');
                 break;
             case 'video':
-                $replaced.append(getVideoForm());
+                doReplaceForm(getVideoForm(), type);
                 makeSingleImageUploader('video_key', {
                     preview: false
                 });
                 break;
             case 'number':
-                $replaced.append(getNumberForm());
+                doReplaceForm(getNumberForm(), type);
                 makeSingleImageUploader('img');
                 break;
             case 'text':
-                $replaced.append(getTextForm());
+                doReplaceForm(getTextForm(), type);
                 makeSingleImageUploader('img');
                 break;
             case 'empty':
-                $replaced.append(getEmptyForm());
+                doReplaceForm(getEmptyForm(), type);
                 makeSingleImageUploader('img');
                 break;
             case 'h5':
-                $replaced.append(getH5Form());
+                doReplaceForm(getH5Form(), type);
                 break;
         }
-
-        fillInitialData(type);
     }
 
     function getDialogForm() {

@@ -36,8 +36,10 @@
                         <td>{{ level.name }}</td>
                         <td>{{ level|level_type }}</td>
                         <td>
+                            <a href="{% url 'cms-edit-level' story_id=story.id pk=level.id %}"
+                               class="btn btn-info btn-sm">编辑</a>
                             <a href="{% url 'cms-level-coupons' story_id=story.id level_id=level.id %}"
-                               class="btn btn-info btn-sm">管理优惠卷</a>
+                               class="btn btn-success btn-sm">管理优惠卷</a>
                             {% if forloop.last %}
                                 <a href="{% url 'cms-delete-level' story_id=story.id pk=level.id %}"
                                    class="btn btn-danger btn-sm">删除</a>

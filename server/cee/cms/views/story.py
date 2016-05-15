@@ -160,6 +160,18 @@ class AddLevel(CreateView):
 
 
 @method_decorator(staff_member_required, name='dispatch')
+class EditLevel(UpdateView):
+    model = Level
+    template_name = 'cms/level_form.html'
+    form_class = LevelForm
+
+    def get_success_url(self):
+        return reverse('cms-level-list', kwargs={
+            'story_id': self.kwargs['story_id']
+        })
+
+
+@method_decorator(staff_member_required, name='dispatch')
 class DeleteLevel(DeleteView):
     model = Level
     context_object_name = 'level'
@@ -172,7 +184,6 @@ class DeleteLevel(DeleteView):
 
 
 class ItemForm(ModelForm):
-
     class Meta:
         model = Item
         fields = [
