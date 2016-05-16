@@ -110,12 +110,6 @@
         return;
     }
     
-#if DEBUG
-    VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
-    vc.phoneNumber = self.phoneField.text;
-    vc.password = self.passwordField.text;
-    [self.navigationController pushViewController:vc animated:YES];
-#else
     [SVProgressHUD show];
     [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.phoneField.text
                                    zone:@"86"
@@ -126,12 +120,12 @@
              [SVProgressHUD dismiss];
              VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
              vc.phoneNumber = self.phoneField.text;
+             vc.password = self.passwordField.text;
              [self.navigationController pushViewController:vc animated:YES];
          } else {
              [SVProgressHUD showErrorWithStatus:error.localizedDescription];
          }
     }];
-#endif
 }
 
 - (void)hasAccountPressed:(id)sender {

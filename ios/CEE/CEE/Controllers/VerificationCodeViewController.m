@@ -62,27 +62,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-#if DEBUG
-    
-#else
-    [SVProgressHUD show];
-    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
-                            phoneNumber:self.phoneNumber
-                                   zone:@"86"
-                       customIdentifier:nil
-                                 result:
-     ^(NSError *error) {
-         if (!error) {
-             [SVProgressHUD dismiss];
-         } else {
-             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-         }
-     }];
-#endif
-}
-
 - (NSAttributedString *)genMessageText {
     NSMutableAttributedString * message
         = [[NSMutableAttributedString alloc] initWithString:@"我们已发送验证短信到 "
@@ -110,22 +89,12 @@
          if (!error) {
              [SVProgressHUD dismiss];
          } else {
-             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+             [SVProgressHUD showErrorWithStatus:@"发送失败，再试一次吧！"];
          }
      }];
 }
 
 - (void)nextPressed:(id)sender {
-#if DEBUG
-    [[CEERegisterAPI api] registerWithMobile:self.phoneNumber password:self.password]
-    .then(^(NSString * authToken) {
-        return [[CEEUserSession session] loggedInWithAuth:authToken];
-    }).then(^{
-        [SVProgressHUD dismiss];
-    }).catch(^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    });
-#else
     [SVProgressHUD show];
     [SMSSDK commitVerificationCode:self.codeField.text
                        phoneNumber:self.phoneNumber
@@ -142,10 +111,9 @@
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             });
         } else {
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            [SVProgressHUD showErrorWithStatus:@"验证失败，再试一次吧！"];
         }
     }];
-#endif
 }
 
 - (void)backgroundTapped:(id)sender {
