@@ -18,6 +18,7 @@
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
 #import "CEEUserInfoAPI.h"
+#import "SettingViewController.h"
 
 
 #define kMedalNormalCellIdentifier @"kMedalNormalCellIdentifier"
@@ -107,7 +108,8 @@
 }
 
 - (void)settingPressed:(id)sender {
-    
+    SettingViewController * settingVC = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)friendsTapped:(id)sender {

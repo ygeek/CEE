@@ -151,6 +151,7 @@
 		BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325D1CBBDA5900282D3E /* WorldViewController.m */; };
 		BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532601CBBDA6A00282D3E /* StoriesViewController.m */; };
 		BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532631CBBDA9E00282D3E /* MessageViewController.m */; };
+		BBAFACB41CED563D00A8A5DE /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAFACB31CED563D00A8A5DE /* SettingViewController.m */; };
 		BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC16A01CE22EC90043930A /* Pods_CEE.framework */; };
 		BBEC16A41CE436DF0043930A /* CEELoginThirdpartyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */; };
 /* End PBXBuildFile section */
@@ -436,6 +437,8 @@
 		BBA532601CBBDA6A00282D3E /* StoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoriesViewController.m; sourceTree = "<group>"; };
 		BBA532621CBBDA9E00282D3E /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		BBA532631CBBDA9E00282D3E /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		BBAFACB21CED563D00A8A5DE /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		BBAFACB31CED563D00A8A5DE /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		BBEC16A01CE22EC90043930A /* Pods_CEE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_CEE.framework; path = "Pods/../build/Debug-iphoneos/Pods_CEE.framework"; sourceTree = "<group>"; };
 		BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELoginThirdpartyAPI.h; sourceTree = "<group>"; };
 		BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELoginThirdpartyAPI.m; sourceTree = "<group>"; };
@@ -755,6 +758,8 @@
 				BBA2F78C1CDD8DE6004A5585 /* UserFriendsViewController.m */,
 				BB91FCEA1CE73960006C79DF /* HUDGetMedalViewController.h */,
 				BB91FCEB1CE73960006C79DF /* HUDGetMedalViewController.m */,
+				BBAFACB21CED563D00A8A5DE /* SettingViewController.h */,
+				BBAFACB31CED563D00A8A5DE /* SettingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1146,6 +1151,7 @@
 				BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */,
 				BB3209301CD74A7B009D1862 /* CEEAnchor.m in Sources */,
 				BB3D83FB1CE624ED00C7057D /* CEEStartedStoriesAPI.m in Sources */,
+				BBAFACB41CED563D00A8A5DE /* SettingViewController.m in Sources */,
 				BB48E5C51CD0E4E3005150C3 /* TaskAnswerView.m in Sources */,
 				BB29EF511CCA2B7F001C25B6 /* CEEUserProfile.m in Sources */,
 				BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */,

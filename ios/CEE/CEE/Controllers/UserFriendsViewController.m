@@ -17,6 +17,7 @@
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
 #import "CEENotificationNames.h"
+#import "SettingViewController.h"
 
 
 #define kUserFriendCellIdentifier @"kUserFriendCellIdentifier"
@@ -157,7 +158,8 @@
 }
 
 - (void)settingPressed:(id)sender {
-    
+    SettingViewController * settingVC = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)friendsUpdatedNotification:(NSNotification *)notification {
