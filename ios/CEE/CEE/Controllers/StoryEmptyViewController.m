@@ -15,6 +15,7 @@
 #import "CEENotificationNames.h"
 #import "StoryLevelsRootViewController.h"
 #import "StoryItemsViewController.h"
+#import "AppearanceConstants.h"
 
 
 @interface StoryEmptyViewController ()
@@ -27,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = hexColor(0x666666);
     
     self.imageView = [[UIImageView alloc] init];
     [self.view addSubview:self.imageView];
