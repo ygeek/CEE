@@ -167,7 +167,10 @@ class CompleteMap(APIView):
             awards = []
             if affect_rows > 0:
                 try:
-                    serializer = MedalSerializer(map_.medal)
+                    medal = map_.medal
+                    user_medal, created = UserMedal.objects.get_or_create(
+                        user=request.user, medal=medal)
+                    serializer = MedalSerializer(medal)
                     awards = [
                         {
                             'type': 'medal',

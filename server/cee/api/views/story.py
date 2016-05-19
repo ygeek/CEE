@@ -101,6 +101,9 @@ class CompleteStory(APIView):
                     completed=True)
             if affect_rows > 0:  # TODO(stareven): do not check affect_rows
                 # TODO(stareven): coin change log
+                UserCoin.objects.get_or_create(
+                    defaults={'amount': 0},
+                    user=request.user);
                 UserCoin.objects.filter(user=request.user).update(
                     amount=models.F('amount') + story.coin)
                 awards = [
