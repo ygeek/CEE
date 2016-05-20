@@ -14,6 +14,9 @@ class Medal(models.Model):
                                     through='UserMedal',
                                     related_name='medals')
 
+    def __unicode__(self):
+        return '{0}: {1}'.format(self.id, self.name)
+
 
 class UserMedal(models.Model):
     user = models.ForeignKey(User, related_name='user_medals')

@@ -24,6 +24,7 @@
                     <th>城市</th>
                     <th>获得人数</th>
                     <th>通关人数</th>
+                    <th>徽章</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -37,9 +38,11 @@
                         <td>{{ map.city }}</td>
                         <td>{{ map|map_user_count }}</td>
                         <td>{{ map|map_complete_count }}</td>
+                        <td>{{ map.medal|default:'<无徽章>' }}</td>
                         <td>
                             <a href="{% url 'cms-edit-map' pk=map.id %}" class="btn btn-info btn-sm">详情</a>
                             <a href="{% url 'cms-anchor-list' map_id=map.id %}" class="btn btn-success btn-sm">管理锚点</a>
+                            <a href="{% url 'cms-edit-medal' map_id=map.id %}" class="btn btn-success btn-sm">编辑徽章</a>
                             <a href="{% url 'cms-delete-map' pk=map.id %}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>

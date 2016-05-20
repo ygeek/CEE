@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^coupons/$', views.CouponList.as_view(), name='cms-coupons'),
     url(r'^coupon/add/', views.AddCoupon.as_view(), name='cms-add-coupon'),
     url(r'^coupon/(?P<pk>[0-9]+)/edit/', views.EditCoupon.as_view(), name='cms-edit-coupon'),
+
     url(r'^maps/$', views.MapList.as_view(), name='cms-maps'),
     url(r'^map/add/$', views.AddMap.as_view(), name='cms-add-map'),
     url(r'^map/(?P<pk>[0-9]+)/edit/$', views.EditMap.as_view(), name='cms-edit-map'),
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^map/(?P<map_id>[0-9]+)/anchor/(?P<pk>[0-9]+)/edit/$', views.EditAnchor.as_view(), name='cms-edit-anchor'),
     url(r'^map/(?P<map_id>[0-9]+)/anchor/(?P<pk>[0-9]+)/delete/$', views.DeleteAnchor.as_view(),
         name='cms-delete-anchor'),
+    url(r'^map/(?P<map_id>[0-9]+)/edit_medal/$', views.EditMedal.as_view(), name='cms-edit-medal'),
 
     url(r'^stories/$', views.StoryList.as_view(), name='cms-stories'),
     url(r'^story/add/$', views.AddStory.as_view(), name='cms-add-story'),

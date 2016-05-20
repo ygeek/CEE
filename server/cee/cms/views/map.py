@@ -7,10 +7,10 @@ import json
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.forms import ModelForm
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.contrib.admin.views.decorators import staff_member_required
 
-from api.models import Map, Anchor, Story, Task
+from api.models import Map, Anchor, Story, Task, Medal
 from api.serializers import AnchorSerializer
 
 
@@ -168,3 +168,39 @@ class DeleteAnchor(DeleteView):
         return reverse('cms-anchor-list', kwargs={
             'map_id': self.kwargs['map_id']
         })
+
+
+class MedalForm(ModelForm):
+    class Meta:
+        model = Medal
+        fields = ['name', 'desc', 'icon_key']
+        labels = {
+            'name': '名称',
+            'desc': '描述',
+            'icon_key': '图标'
+        }
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class EditMedal(FormView):
+    form_class = MedalForm
+    template_name = 'cms/medal_form.html'
+    form = None
+    success_url = reverse_lazy('cms-maps')
+
+    def get_form_kwargs(self):
+        form_kwargs = super(EditMedal, self).get_form_kwargs()
+        try:
+            medal = Medal.objects.get(map_id=self.kwargs['map_id'])
+            form_kwargs['instance'] = medal
+        except Medal.DoesNotExist:
+            pass
+        return form_kwargs
+
+    def form_valid(self, form):
+        medal = form.save(commit=False)
+        if not medal.map_id:
+            medal.map_id = self.kwargs['map_id']
+        medal.save()
+        form.save_m2m()
+        return super(EditMedal, self).form_valid(form)
