@@ -1,6 +1,6 @@
 {% extends 'cms/base.html' %}
 
-{% load bootstrap3 staticfiles qiniu_tags %}
+{% load bootstrap3 staticfiles qiniu_tags story_tags %}
 
 {% block title %}新增/编辑锚点{% endblock %}
 
@@ -32,5 +32,9 @@
 {% endblock %}
 
 {% block scripts %}
+    <script>
+        window.g_stories = {{ stories | list_json | safe }};
+        window.g_tasks = {{ tasks | list_json | safe }};
+    </script>
     <script src="{% static 'cms/js/anchor_form.js' %}"></script>
 {% endblock %}

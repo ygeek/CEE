@@ -24,6 +24,9 @@ class Story(models.Model):
                                     through='UserStory',
                                     related_name='stories')
 
+    def __unicode__(self):
+        return '{0}:{1}'.format(self.name, self.city)
+
 
 class UserStory(models.Model):
     user = models.ForeignKey(User, related_name='user_stories')

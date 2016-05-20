@@ -15,6 +15,9 @@ class Task(models.Model):
                                     through='UserTask',
                                     related_name='tasks')
 
+    def __unicode__(self):
+        return '{0}:{1}'.format(self.name, self.location)
+
 
 class Choice(models.Model):
     task = models.ForeignKey(Task, related_name='choices')

@@ -1,5 +1,8 @@
 # coding=utf-8
 from __future__ import unicode_literals
+
+import json
+
 from django import template
 
 register = template.Library()
@@ -37,3 +40,15 @@ def level_type(value):
         return 'H5关卡'
     else:
         return '未知类型关卡'
+
+
+@register.filter
+def list_json(value):
+    items = value
+    result = []
+    for item in items:
+        result.append({
+            'id': item.id,
+            'text': str(item)
+        })
+    return json.dumps(result)

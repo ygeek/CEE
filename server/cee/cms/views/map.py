@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
-from api.models import Map, Anchor
+from api.models import Map, Anchor, Story, Task
 from api.serializers import AnchorSerializer
 
 
@@ -117,6 +117,8 @@ class AddAnchor(CreateView):
     def get_context_data(self, **kwargs):
         context = super(AddAnchor, self).get_context_data(**kwargs)
         context['map'] = self.get_map()
+        context['stories'] = Story.objects.all()
+        context['tasks'] = Task.objects.all()
         return context
 
     def get_success_url(self):
@@ -146,6 +148,8 @@ class EditAnchor(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(EditAnchor, self).get_context_data(**kwargs)
         context['map'] = self.get_map()
+        context['stories'] = Story.objects.all()
+        context['tasks'] = Task.objects.all()
         return context
 
     def get_success_url(self):
