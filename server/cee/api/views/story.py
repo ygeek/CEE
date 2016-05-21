@@ -21,11 +21,7 @@ class CityStoryList(APIView):
     def get(self, request, city_key):
         try:
             city = City.objects.get(key=city_key)
-            stories = city.stories.annotate(
-                completed=models.F('user_stories__completed'),
-                progress=models.F('user_stories__progress'),
-                like=models.F('user_stories__like')
-            )
+            stories = city.stories
             serializer = UserStorySerializer(stories, many=True)
             return Response({
                 'code': 0,

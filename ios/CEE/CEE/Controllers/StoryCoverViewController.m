@@ -9,6 +9,7 @@
 @import Masonry;
 @import RDVTabBarController;
 @import SDWebImage;
+@import SVProgressHUD;
 
 #import <PromiseKit/PromiseKit.h>
 
@@ -306,14 +307,23 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
-    [self updateStory];
 }
 
-- (void)updateStory {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [SVProgressHUD show];
+    [self updateStory].then(^{
+        [SVProgressHUD dismiss];
+    }).catch(^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
+}
+
+- (AnyPromise *)updateStory {
     AnyPromise * levelsPromise = [[CEEStoryLevelsAPI api] fetchLevelsWithStoryID:self.story.id];
     AnyPromise * storyPromise = [[CEEStoryDetailAPI api] fetchDetailWithStoryID:self.story.id];
     
-    PMKJoin(@[storyPromise, levelsPromise]).then(^(NSArray *results) {
+    return PMKJoin(@[storyPromise, levelsPromise]).then(^(NSArray *results) {
         self.story = results[0];
         self.levels = results[1];
         [self.infoView loadStory:self.story];

@@ -121,10 +121,9 @@
         return [[CEEStoryListAPI api] fetchStoriesWithCityKey:cityID];
     }).then(^(NSArray<CEEJSONStory> * stories){
         self.stories = stories;
+        [self.tableView reloadData];
         [UIView animateWithDuration:0.3 animations:^{
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
-        } completion:^(BOOL finished) {
-            [self.tableView reloadData];
         }];
     }).catch(^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];

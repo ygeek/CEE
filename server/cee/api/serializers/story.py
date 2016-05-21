@@ -5,9 +5,9 @@ from ..models.story import *
 class UserStorySerializer(serializers.ModelSerializer):
     tags = serializers.ListField()
     image_keys = serializers.ListField()
-    completed = serializers.BooleanField()
-    progress = serializers.IntegerField()
-    like = serializers.BooleanField()
+    completed = serializers.BooleanField(required=False)
+    progress = serializers.IntegerField(required=False)
+    like = serializers.BooleanField(required=False)
 
     class Meta:
         model = Story
