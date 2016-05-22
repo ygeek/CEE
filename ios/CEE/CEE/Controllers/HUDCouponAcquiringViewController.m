@@ -48,26 +48,13 @@
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.confirmButton.layer.masksToBounds = YES;
-    self.confirmButton.layer.cornerRadius = 10;
+    self.confirmButton.layer.cornerRadius = 10 * verticalScale();
     self.confirmButton.backgroundColor = [UIColor whiteColor];
     [self.confirmButton setTitleColor:kCEETextBlackColor forState:UIControlStateNormal];
     [self.confirmButton setTitle:@"确定" forState:UIControlStateNormal];
     self.confirmButton.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:16];
     [self.confirmButton addTarget:self action:@selector(confirmPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.confirmButton];
-    
-    [self.couponCard mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view).centerOffset(CGPointMake(0, -30));
-        make.width.mas_equalTo(334);
-        make.height.mas_equalTo(212);
-    }];
-    
-    [self.confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.couponCard.mas_bottom).offset(14);
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.width.mas_equalTo(120);
-        make.height.mas_equalTo(44);
-    }];
 }
 
 - (void)viewDidLoad {
@@ -79,6 +66,25 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.couponCard.center = CGPointMake(CGRectGetMidX(self.view.bounds),
+                                         CGRectGetMidY(self.view.bounds) - 30);
+    
+    self.couponCard.transform = CGAffineTransformScale(CGAffineTransformIdentity,
+                                                       verticalScale(),
+                                                       verticalScale());
+    
+    self.confirmButton.frame = CGRectMake(0,
+                                          0,
+                                          120 * verticalScale(),
+                                          44 * verticalScale());
+    
+    self.confirmButton.center = CGPointMake(CGRectGetMidX(self.view.bounds),
+                                            CGRectGetMaxY(self.couponCard.frame) + 14 + 44 * verticalScale() / 2);
 }
 
 - (void)confirmPressed:(id)sender {

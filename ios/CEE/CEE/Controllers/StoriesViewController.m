@@ -104,6 +104,10 @@
     self.tableView.contentInset = UIEdgeInsetsMake([RefreshingPanel defaultHeight], 0, 49, 0);
     self.tableView.contentOffset = contentOffset;
     
+    if (!self.stories) {
+        [SVProgressHUD show];
+    }
+    
     [[CEEMapManager manager] getLocation].then(^(CLPlacemark *placemark) {
         NSString * cityName = placemark.locality;
         TLCity * city = [[CEEMapManager manager] getCityWithName:cityName];
@@ -120,6 +124,9 @@
     }).then(^(NSString * cityID) {
         return [[CEEStoryListAPI api] fetchStoriesWithCityKey:cityID];
     }).then(^(NSArray<CEEJSONStory> * stories){
+        if (!self.stories) {
+            [SVProgressHUD dismiss];
+        }
         self.stories = stories;
         [self.tableView reloadData];
         [UIView animateWithDuration:0.3 animations:^{
