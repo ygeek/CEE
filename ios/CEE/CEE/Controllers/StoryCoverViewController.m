@@ -307,16 +307,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+    
+    // [SVProgressHUD show];
+    self.goButton.enabled = NO;
+    [self updateStory].then(^{
+        self.goButton.enabled = YES;
+        //[SVProgressHUD dismiss];
+    }).catch(^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [SVProgressHUD show];
-    [self updateStory].then(^{
-        [SVProgressHUD dismiss];
-    }).catch(^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    });
 }
 
 - (AnyPromise *)updateStory {
