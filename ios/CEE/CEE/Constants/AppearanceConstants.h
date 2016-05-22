@@ -41,3 +41,4 @@ UIColor* rgbaColor(NSUInteger r, NSUInteger g, NSUInteger b, NSUInteger a);
 #define kCEEYellowColor                hexColor(0xefe529)
 
 CGFloat verticalScale();
+CGFloat horizontalScale();

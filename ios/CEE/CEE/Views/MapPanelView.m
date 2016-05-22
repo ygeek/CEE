@@ -68,21 +68,21 @@
     [self addSubview:self.moreMapButton];
     
     [self.mapButtons[0] mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(22);
+        make.left.equalTo(self.mas_left).offset(22 * horizontalScale());
         make.centerY.equalTo(self.mas_centerY);
         make.width.mas_equalTo(56);
         make.height.mas_equalTo(56);
     }];
     
     [self.mapButtons[1] mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mapButtons[0]).offset(38);
+        make.left.equalTo(self.mapButtons[0].mas_right).offset(38 * horizontalScale());
         make.centerY.equalTo(self.mas_centerY);
         make.width.mas_equalTo(56);
         make.height.mas_equalTo(56);
     }];
     
     [self.mapButtons[2] mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mapButtons[1]).offset(38);
+        make.left.equalTo(self.mapButtons[1].mas_right).offset(38 * horizontalScale());
         make.centerY.equalTo(self.mas_centerY);
         make.width.mas_equalTo(56);
         make.height.mas_equalTo(56);

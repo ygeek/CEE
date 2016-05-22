@@ -34,3 +34,9 @@ CGFloat verticalScale() {
     if (height <= 568) return 0.8;
     return 1.0;
 }
+
+CGFloat horizontalScale() {
+    CGFloat width = UIScreen.mainScreen.bounds.size.width;
+    if (width <= 320) return 0.7;
+    return 1.0;
+}
