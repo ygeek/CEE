@@ -6,6 +6,12 @@
     <section class="panel">
         <header class="panel-heading clearfix">
             选择题组管理 ({{ object_list.count }})
+            <div class="pull-right">
+                <a class="btn btn-success btn-sm" href="{% url 'cms-add-task' %}">
+                    <i class="fa fa-plus-circle"></i>
+                    新增选择题组
+                </a>
+            </div>
         </header>
         <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
             <table class="table table-bordered vertical-middle">

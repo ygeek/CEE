@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 
 import json
 
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.forms import ModelForm
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Coupon
@@ -60,3 +60,11 @@ class EditCoupon(UpdateView):
     template_name = 'cms/coupon_form.html'
     success_url = reverse_lazy('cms-coupons')
     form_class = CouponForm
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class DeleteCoupon(DeleteView):
+    model = Coupon
+    context_object_name = 'coupon'
+    template_name = 'cms/coupon_confirm_delete.html'
+    success_url = reverse_lazy('cms-coupons')
