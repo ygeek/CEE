@@ -211,6 +211,8 @@
     
     [self.descView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.lineView).offset(15);
+        make.left.equalTo(self.contentView.mas_left).offset(30);
+        make.right.equalTo(self.contentView.mas_right).offset(-30);
         make.centerX.equalTo(self.contentView.mas_centerX);
     }];
     
