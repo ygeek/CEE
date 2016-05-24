@@ -146,8 +146,8 @@
     
     [self.questionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.photoView.mas_bottom).offset(10);
-        make.left.equalTo(self.containerView.mas_left);
-        make.right.equalTo(self.containerView.mas_right);
+        make.left.equalTo(self.containerView.mas_left).offset(20);
+        make.right.equalTo(self.containerView.mas_right).offset(-20);
         make.height.mas_equalTo(65);
     }];
     

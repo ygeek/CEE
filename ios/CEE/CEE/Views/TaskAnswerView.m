@@ -49,12 +49,14 @@
     [self.containerView addSubview:self.photoView];
     
     self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.numberOfLines = 3;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:18];
     self.titleLabel.textColor = kCEETextBlackColor;
     [self.containerView addSubview:self.titleLabel];
     
     self.detailLabel = [[UILabel alloc] init];
+    self.detailLabel.numberOfLines = 3;
     self.detailLabel.textAlignment = NSTextAlignmentCenter;
     self.detailLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
     self.detailLabel.textColor = kCEETextBlackColor;
@@ -100,15 +102,15 @@
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.photoView.mas_bottom).offset(56);
-        make.left.equalTo(self.containerView.mas_left);
-        make.right.equalTo(self.containerView.mas_right);
+        make.left.equalTo(self.containerView.mas_left).offset(20);
+        make.right.equalTo(self.containerView.mas_right).offset(-20);
         make.height.mas_equalTo(18);
     }];
     
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(24);
-        make.left.equalTo(self.containerView.mas_left);
-        make.right.equalTo(self.containerView.mas_right);
+        make.left.equalTo(self.containerView.mas_left).offset(20);
+        make.right.equalTo(self.containerView.mas_right).offset(-20);
         make.height.mas_equalTo(14);
     }];
     
