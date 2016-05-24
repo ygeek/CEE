@@ -7,7 +7,8 @@
 //
 
 #import "HUDBaseView.h"
+#import "CEEMap.h"
 
 @interface HUDFetchingMapView : HUDBaseView
-
+@property (nonatomic, strong) CEEJSONMap * map;
 @end

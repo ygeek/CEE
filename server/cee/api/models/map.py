@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+import geohash
 from .city import *
 
 
@@ -19,6 +20,10 @@ class Map(models.Model):
     owners = models.ManyToManyField(User,
                                     through='UserMap',
                                     related_name='maps')
+
+    def save(self, *args, **kwargs):
+        self.geohash = geohash.encode(longitude=self.longitude, latitude=self.latitude)
+        super(Map, self).save(*args, **kwargs)
 
 
 class UserMap(models.Model):

@@ -44,6 +44,8 @@
     [self addSubview:self.closeButton];
     
     self.photoView = [[UIImageView alloc] init];
+    self.photoView.contentMode = UIViewContentModeScaleAspectFill;
+    self.photoView.clipsToBounds = YES;
     [self.containerView addSubview:self.photoView];
     
     self.titleLabel = [[UILabel alloc] init];

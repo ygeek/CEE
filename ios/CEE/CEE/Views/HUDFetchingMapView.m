@@ -11,6 +11,7 @@
 #import "HUDFetchingMapView.h"
 #import "AppearanceConstants.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+Utils.h"
 
 
 @interface HUDFetchingMapView ()
@@ -36,9 +37,12 @@
         self.panelView.layer.masksToBounds = YES;
         
         self.backgroundView = [[UIImageView alloc] init];
+        self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+        self.backgroundView.clipsToBounds = YES;
         [self.panelView addSubview:self.backgroundView];
         
         self.iconView = [[UIImageView alloc] init];
+        self.iconView.contentMode = UIViewContentModeCenter;
         [self.panelView addSubview:self.iconView];
         
         self.messageLabel = [[UILabel alloc] init];
@@ -81,12 +85,14 @@
 }
 
 - (void)updateData {
-    [self loadSampleData];
+    
 }
 
-- (void)loadSampleData {
-    self.backgroundView.image = [UIImage imageWithColor:[UIColor yellowColor] size:CGSizeMake(232, 251)];
-    self.iconView.image = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(100, 100)];
+- (void)setMap:(CEEJSONMap *)map {
+    _map = map;
+    // TODO: use placeholder image
+    [self.backgroundView cee_setImageWithKey:map.summary_image_key placeholder:[UIImage imageWithColor:kCEEThemeYellowColor size:CGSizeMake(232, 251)]];
+    [self.iconView cee_setImageWithKey:map.icon_key];
 }
 
 @end

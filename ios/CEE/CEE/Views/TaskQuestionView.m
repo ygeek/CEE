@@ -46,6 +46,7 @@
     
     self.photoView = [[UIImageView alloc] init];
     self.photoView.contentMode = UIViewContentModeScaleAspectFill;
+    self.photoView.clipsToBounds = YES;
     [self.containerView addSubview:self.photoView];
     
     UIImage * locationIcon = [UIImage imageNamed:@"白定位"];

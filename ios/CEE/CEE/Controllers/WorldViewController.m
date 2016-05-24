@@ -140,15 +140,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     if (![CEEMapManager manager].currentMap) {
-        [self.fetchingMapHUD show];
-        [[CEEMapManager manager] fetchNearestMap]
-        .then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
+        [[CEEMapManager manager] queryNearestMap]
+        .then(^(CEEJSONMap *map) {
+            self.fetchingMapHUD.map = map;
+            [self.fetchingMapHUD show];
+            return [[CEEMapManager manager] fetchMapData:map];
+        }).then(^(CEEJSONMap *map, NSArray<CEEJSONAnchor *> *anchors) {
             [self loadMap:map];
             [self loadAnchors:anchors];
             [self.fetchingMapHUD dismiss];
@@ -309,6 +313,7 @@
 #pragma mark - MapPanelViewDelegate
 
 - (void)mapPressed:(CEEJSONMap *)map {
+    self.fetchingMapHUD.map = map;
     [self.fetchingMapHUD show];
 
     [[CEEMapManager manager] fetchMapData:map]
@@ -364,7 +369,8 @@
                 anchorView.anchorType = MapAnchorTypeTask;
             }
         }
-        anchorView.center = CGPointMake(anchor.dx.floatValue, anchor.dy.floatValue);
+        anchorView.center = CGPointMake(anchor.dx.floatValue / [UIScreen mainScreen].scale,
+                                        anchor.dy.floatValue / [UIScreen mainScreen].scale);
         [self.anchorViews addObject:anchorView];
         [self.mapView addSubview:anchorView];
     }
