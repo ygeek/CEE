@@ -204,7 +204,6 @@
                                       [UMSocialControllerService defaultControllerService],
                                       YES,
                                       ^(UMSocialResponseEntity * response) {
-            //获取微博用户名、uid、token等
             if (response.responseCode == UMSResponseCodeSuccess) {
                 UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:platformName];
                 resolve(snsAccount);

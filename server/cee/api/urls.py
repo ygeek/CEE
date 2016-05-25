@@ -30,6 +30,10 @@ urlpatterns = [
     url(r'^v1/user/info/$', UserInfo.as_view()),
     url(r'^v1/user/addfriends/', AddFriends.as_view()),
     url(r'^v1/user/addweibofriends/', AddWeiboFriends.as_view()),
+    url(r'v1/user/checkfriends/', CheckFriends.as_view()),
+    url(r'v1/user/checkweibofriends/', CheckWeiboFriends.as_view()),
+    url(r'v1/user/followfriend/', FollowFriend.as_view()),
+    url(r'v1/user/searchfriends/', SearchFriends.as_view()),
 
     # Map
     url(remove_space(

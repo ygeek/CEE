@@ -104,7 +104,7 @@
         if (!error) {
             [[[CEERegisterAPI alloc] init] registerWithMobile:self.phoneNumber password:self.password]
             .then(^(NSString * authToken) {
-                return [[CEEUserSession session] loggedInWithAuth:authToken];
+                return [[CEEUserSession session] loggedInWithAuth:authToken platform:kCEEPlatformMobile];
             }).then(^{
                 [SVProgressHUD dismiss];
             }).catch(^(NSError *error) {

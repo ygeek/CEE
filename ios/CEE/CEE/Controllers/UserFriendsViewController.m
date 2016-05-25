@@ -13,6 +13,7 @@
 
 #import "UserFriendsViewController.h"
 #import "UserFriendTableViewCell.h"
+#import "InviteFriendsViewController.h"
 #import "CEEUserSession.h"
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
@@ -23,7 +24,7 @@
 #define kUserFriendCellIdentifier @"kUserFriendCellIdentifier"
 
 
-@interface UserFriendsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface UserFriendsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (nonatomic, strong) UILabel * friendsNumLabel;
 @property (nonatomic, strong) UIImageView * friendsIcon;
 @property (nonatomic, strong) UITextField * inviteField;
@@ -39,6 +40,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
+    [self.view addGestureRecognizer:tapRecognizer];
     
     self.friendsNumLabel = [[UILabel alloc] init];
     self.friendsNumLabel.textAlignment = NSTextAlignmentRight;
@@ -52,11 +56,13 @@
     [self.view addSubview:self.friendsIcon];
     
     self.inviteField = [[UITextField alloc] init];
+    self.inviteField.returnKeyType = UIReturnKeySearch;
+    self.inviteField.delegate = self;
     self.inviteField.textAlignment = NSTextAlignmentCenter;
     self.inviteField.backgroundColor = hexColor(0xdcdcdc);
     self.inviteField.textColor = kCEETextBlackColor;
     self.inviteField.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:@"邀请"
+    [[NSAttributedString alloc] initWithString:@"搜索"
                                     attributes:@{NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:12],
                                                  NSForegroundColorAttributeName: hexColor(0xb4b4b4)}];
     self.inviteField.leftViewMode = UITextFieldViewModeAlways;
@@ -75,6 +81,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 110;
     [self.tableView registerClass:[UserFriendTableViewCell class] forCellReuseIdentifier:kUserFriendCellIdentifier];
+    UITapGestureRecognizer * tapRecognizer2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
+    [self.view addGestureRecognizer:tapRecognizer2];
     [self.view addSubview:self.tableView];
     
     [self.friendsIcon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,10 +118,9 @@
                                     action:@selector(backPressed:)];
     
     self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"齿轮"]
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(settingPressed:)];
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                  target:self
+                                                  action:@selector(addPressed:)];
     
     CEEUserSession * session = [CEEUserSession session];
     if (session.friends) {
@@ -134,18 +141,17 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     if (!self.friends) {
         [SVProgressHUD show];
-        CEEUserSession * session = [CEEUserSession session];
-        [session loadFriends].then(^(NSArray *friends) {
-            self.friends = friends;
-            [self update];
-            [SVProgressHUD dismiss];
-        }).catch(^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        });
     }
+    CEEUserSession * session = [CEEUserSession session];
+    [session loadFriends].then(^(NSArray *friends) {
+        [SVProgressHUD dismiss];
+        self.friends = friends;
+        [self update];
+    }).catch(^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
 }
 
 - (void)update {
@@ -157,9 +163,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)settingPressed:(id)sender {
-    SettingViewController * settingVC = [[SettingViewController alloc] init];
-    [self.navigationController pushViewController:settingVC animated:YES];
+- (void)addPressed:(id)sender {
+    InviteFriendsViewController * inviteFriendsVC = [[InviteFriendsViewController alloc] init];
+    [self.navigationController pushViewController:inviteFriendsVC animated:YES];
+}
+
+- (void)backgroundTapped:(id)sender {
+    [self.view endEditing:YES];
 }
 
 - (void)friendsUpdatedNotification:(NSNotification *)notification {
@@ -172,7 +182,6 @@
 
 #pragma mark - UITableViewDataSource
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.friends.count;
 }
@@ -182,6 +191,15 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell loadFriendInfo:self.friends[indexPath.row]];
     return cell;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    InviteFriendsViewController * inviteFriendsVC = [[InviteFriendsViewController alloc] init];
+    inviteFriendsVC.query = textField.text;
+    [self.navigationController pushViewController:inviteFriendsVC animated:YES];
+    return YES;
 }
 
 @end

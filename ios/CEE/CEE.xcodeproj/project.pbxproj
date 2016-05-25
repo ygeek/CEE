@@ -68,7 +68,13 @@
 		BB3D83F51CE57E0B00C7057D /* CEEDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83F41CE57E0B00C7057D /* CEEDeviceTokenAPI.m */; };
 		BB3D83F81CE6227300C7057D /* CEECompletedMapCountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83F71CE6227300C7057D /* CEECompletedMapCountAPI.m */; };
 		BB3D83FB1CE624ED00C7057D /* CEEStartedStoriesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */; };
-		BB3D83FE1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */; };
+		BB3D83FE1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3D83FD1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.m */; };
+		BB4184181CF525A600E9B983 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184171CF525A600E9B983 /* AboutViewController.m */; };
+		BB41841B1CF539F000E9B983 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB41841A1CF539F000E9B983 /* IntroViewController.m */; };
+		BB41841E1CF5681500E9B983 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB41841D1CF5681500E9B983 /* InviteFriendsViewController.m */; };
+		BB4184211CF56CF000E9B983 /* InviteFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184201CF56CF000E9B983 /* InviteFriendTableViewCell.m */; };
+		BB4184241CF5893700E9B983 /* CEEFollowFriendAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184231CF5893700E9B983 /* CEEFollowFriendAPI.m */; };
+		BB4184271CF5A80500E9B983 /* CEESearchFriendAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184261CF5A80400E9B983 /* CEESearchFriendAPI.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -139,7 +145,7 @@
 		BBA2F79F1CDED5CC004A5585 /* CEEMessagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F79E1CDED5CC004A5585 /* CEEMessagesManager.m */; };
 		BBA2F7A21CDF3A22004A5585 /* CEEMessageListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7A11CDF3A22004A5585 /* CEEMessageListAPI.m */; };
 		BBA2F7A51CDF3A44004A5585 /* CEEMessageReadAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */; };
-		BBA2F7A81CE0AC7F004A5585 /* CEEAddFriendsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7A71CE0AC7F004A5585 /* CEEAddFriendsAPI.m */; };
+		BBA2F7A81CE0AC7F004A5585 /* CEECheckFriendsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7A71CE0AC7F004A5585 /* CEECheckFriendsAPI.m */; };
 		BBA2F7AB1CE0D1CD004A5585 /* ProgressBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA2F7AA1CE0D1CD004A5585 /* ProgressBatteryView.m */; };
 		BBA532351CBBC56500282D3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532341CBBC56500282D3E /* main.m */; };
 		BBA532381CBBC56500282D3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532371CBBC56500282D3E /* AppDelegate.m */; };
@@ -281,8 +287,20 @@
 		BB3D83F71CE6227300C7057D /* CEECompletedMapCountAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECompletedMapCountAPI.m; sourceTree = "<group>"; };
 		BB3D83F91CE624ED00C7057D /* CEEStartedStoriesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEStartedStoriesAPI.h; sourceTree = "<group>"; };
 		BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEStartedStoriesAPI.m; sourceTree = "<group>"; };
-		BB3D83FC1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAddWeiboFriendsAPI.h; sourceTree = "<group>"; };
-		BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAddWeiboFriendsAPI.m; sourceTree = "<group>"; };
+		BB3D83FC1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEECheckWeiboFriendsAPI.h; sourceTree = "<group>"; };
+		BB3D83FD1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECheckWeiboFriendsAPI.m; sourceTree = "<group>"; };
+		BB4184161CF525A600E9B983 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		BB4184171CF525A600E9B983 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		BB4184191CF539F000E9B983 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		BB41841A1CF539F000E9B983 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		BB41841C1CF5681500E9B983 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
+		BB41841D1CF5681500E9B983 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
+		BB41841F1CF56CF000E9B983 /* InviteFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendTableViewCell.h; sourceTree = "<group>"; };
+		BB4184201CF56CF000E9B983 /* InviteFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendTableViewCell.m; sourceTree = "<group>"; };
+		BB4184221CF5893700E9B983 /* CEEFollowFriendAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEFollowFriendAPI.h; sourceTree = "<group>"; };
+		BB4184231CF5893700E9B983 /* CEEFollowFriendAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEFollowFriendAPI.m; sourceTree = "<group>"; };
+		BB4184251CF5A80400E9B983 /* CEESearchFriendAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEESearchFriendAPI.h; sourceTree = "<group>"; };
+		BB4184261CF5A80400E9B983 /* CEESearchFriendAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEESearchFriendAPI.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -414,8 +432,8 @@
 		BBA2F7A11CDF3A22004A5585 /* CEEMessageListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMessageListAPI.m; sourceTree = "<group>"; };
 		BBA2F7A31CDF3A44004A5585 /* CEEMessageReadAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEMessageReadAPI.h; sourceTree = "<group>"; };
 		BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEMessageReadAPI.m; sourceTree = "<group>"; };
-		BBA2F7A61CE0AC7F004A5585 /* CEEAddFriendsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEAddFriendsAPI.h; sourceTree = "<group>"; };
-		BBA2F7A71CE0AC7F004A5585 /* CEEAddFriendsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEAddFriendsAPI.m; sourceTree = "<group>"; };
+		BBA2F7A61CE0AC7F004A5585 /* CEECheckFriendsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEECheckFriendsAPI.h; sourceTree = "<group>"; };
+		BBA2F7A71CE0AC7F004A5585 /* CEECheckFriendsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECheckFriendsAPI.m; sourceTree = "<group>"; };
 		BBA2F7A91CE0D1CD004A5585 /* ProgressBatteryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBatteryView.h; sourceTree = "<group>"; };
 		BBA2F7AA1CE0D1CD004A5585 /* ProgressBatteryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBatteryView.m; sourceTree = "<group>"; };
 		BBA532301CBBC56500282D3E /* CEE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -563,8 +581,8 @@
 				BBA2F7A11CDF3A22004A5585 /* CEEMessageListAPI.m */,
 				BBA2F7A31CDF3A44004A5585 /* CEEMessageReadAPI.h */,
 				BBA2F7A41CDF3A44004A5585 /* CEEMessageReadAPI.m */,
-				BBA2F7A61CE0AC7F004A5585 /* CEEAddFriendsAPI.h */,
-				BBA2F7A71CE0AC7F004A5585 /* CEEAddFriendsAPI.m */,
+				BBA2F7A61CE0AC7F004A5585 /* CEECheckFriendsAPI.h */,
+				BBA2F7A71CE0AC7F004A5585 /* CEECheckFriendsAPI.m */,
 				BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */,
 				BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */,
 				BB3D83F31CE57E0B00C7057D /* CEEDeviceTokenAPI.h */,
@@ -573,14 +591,18 @@
 				BB3D83F71CE6227300C7057D /* CEECompletedMapCountAPI.m */,
 				BB3D83F91CE624ED00C7057D /* CEEStartedStoriesAPI.h */,
 				BB3D83FA1CE624ED00C7057D /* CEEStartedStoriesAPI.m */,
-				BB3D83FC1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.h */,
-				BB3D83FD1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m */,
+				BB3D83FC1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.h */,
+				BB3D83FD1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.m */,
 				BB91FCE41CE70F95006C79DF /* CEEMapCompleteAPI.h */,
 				BB91FCE51CE70F95006C79DF /* CEEMapCompleteAPI.m */,
 				BB91FCED1CE7438D006C79DF /* CEEStoryLikeAPI.h */,
 				BB91FCEE1CE7438D006C79DF /* CEEStoryLikeAPI.m */,
 				BB91FCF01CE743A3006C79DF /* CEEStoryDislikeAPI.h */,
 				BB91FCF11CE743A3006C79DF /* CEEStoryDislikeAPI.m */,
+				BB4184221CF5893700E9B983 /* CEEFollowFriendAPI.h */,
+				BB4184231CF5893700E9B983 /* CEEFollowFriendAPI.m */,
+				BB4184251CF5A80400E9B983 /* CEESearchFriendAPI.h */,
+				BB4184261CF5A80400E9B983 /* CEESearchFriendAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -760,6 +782,12 @@
 				BB91FCEB1CE73960006C79DF /* HUDGetMedalViewController.m */,
 				BBAFACB21CED563D00A8A5DE /* SettingViewController.h */,
 				BBAFACB31CED563D00A8A5DE /* SettingViewController.m */,
+				BB4184161CF525A600E9B983 /* AboutViewController.h */,
+				BB4184171CF525A600E9B983 /* AboutViewController.m */,
+				BB4184191CF539F000E9B983 /* IntroViewController.h */,
+				BB41841A1CF539F000E9B983 /* IntroViewController.m */,
+				BB41841C1CF5681500E9B983 /* InviteFriendsViewController.h */,
+				BB41841D1CF5681500E9B983 /* InviteFriendsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -883,6 +911,8 @@
 				BBA2F78F1CDD8E97004A5585 /* UserFriendTableViewCell.m */,
 				BBA2F7A91CE0D1CD004A5585 /* ProgressBatteryView.h */,
 				BBA2F7AA1CE0D1CD004A5585 /* ProgressBatteryView.m */,
+				BB41841F1CF56CF000E9B983 /* InviteFriendTableViewCell.h */,
+				BB4184201CF56CF000E9B983 /* InviteFriendTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1041,6 +1071,7 @@
 				BB48E5BC1CD07682005150C3 /* EmptyMapCollectionViewCell.m in Sources */,
 				BB3209331CD764A6009D1862 /* CEEAcquiredMapsAPI.m in Sources */,
 				BB6AD31F1CC3309100A1E0F7 /* StoryTagView.m in Sources */,
+				BB4184241CF5893700E9B983 /* CEEFollowFriendAPI.m in Sources */,
 				BB29EF4E1CC9E474001C25B6 /* CEEUploadTokenAPI.m in Sources */,
 				BB6103B81CC68D5000350809 /* CEELoginAPI.m in Sources */,
 				BBEC16A41CE436DF0043930A /* CEELoginThirdpartyAPI.m in Sources */,
@@ -1061,9 +1092,11 @@
 				BB3209121CD4E580009D1862 /* CEEStory.m in Sources */,
 				BB29EF431CC90A3F001C25B6 /* TLCityHeaderView.m in Sources */,
 				BBA2F7811CDD6E82004A5585 /* CEEUserInfoAPI.m in Sources */,
-				BB3D83FE1CE6D44E00C7057D /* CEEAddWeiboFriendsAPI.m in Sources */,
+				BB3D83FE1CE6D44E00C7057D /* CEECheckWeiboFriendsAPI.m in Sources */,
+				BB4184181CF525A600E9B983 /* AboutViewController.m in Sources */,
 				BB3209541CD9FC58009D1862 /* HUDNetworkErrorViewController.m in Sources */,
 				BB29EF5A1CCA5D7A001C25B6 /* CEEFetchUserProfileAPI.m in Sources */,
+				BB4184211CF56CF000E9B983 /* InviteFriendTableViewCell.m in Sources */,
 				BB3209891CDC2055009D1862 /* StoryItemCollectionViewCell.m in Sources */,
 				BB6103BB1CC7295F00350809 /* CEEAppearanceManager.m in Sources */,
 				BB91FCF21CE743A3006C79DF /* CEEStoryDislikeAPI.m in Sources */,
@@ -1086,9 +1119,11 @@
 				BB3209451CD9B0CF009D1862 /* UserProfileView.m in Sources */,
 				BB6103A11CC5088100350809 /* RegisterViewController.m in Sources */,
 				BB48E5BF1CD09D91005150C3 /* TaskViewController.m in Sources */,
+				BB41841B1CF539F000E9B983 /* IntroViewController.m in Sources */,
+				BB4184271CF5A80500E9B983 /* CEESearchFriendAPI.m in Sources */,
 				BB91FCEF1CE7438D006C79DF /* CEEStoryLikeAPI.m in Sources */,
 				BBA2F7841CDD6ECD004A5585 /* CEEUserInfo.m in Sources */,
-				BBA2F7A81CE0AC7F004A5585 /* CEEAddFriendsAPI.m in Sources */,
+				BBA2F7A81CE0AC7F004A5585 /* CEECheckFriendsAPI.m in Sources */,
 				BB3209151CD4E6D8009D1862 /* CEECity.m in Sources */,
 				BB32097A1CDB94B5009D1862 /* CEETriangleView.m in Sources */,
 				BB3D83F51CE57E0B00C7057D /* CEEDeviceTokenAPI.m in Sources */,
@@ -1163,6 +1198,7 @@
 				BB29EF4B1CC9DF68001C25B6 /* CEESaveUserProfileAPI.m in Sources */,
 				BB32096D1CDA2219009D1862 /* CEEStoriesManager.m in Sources */,
 				BB3209861CDC13D8009D1862 /* CEEStoryItemsAPI.m in Sources */,
+				BB41841E1CF5681500E9B983 /* InviteFriendsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

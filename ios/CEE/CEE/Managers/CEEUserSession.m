@@ -17,10 +17,11 @@
 #import "CEEAPIClient.h"
 #import "CEEFetchUserProfileAPI.h"
 #import "CEEFriendListAPI.h"
+#import "CEEFollowFriendAPI.h"
 #import "CEEDeviceTokenAPI.h"
 
-#import "CEEAddFriendsAPI.h"
-#import "CEEAddWeiboFriendsAPI.h"
+#import "CEECheckFriendsAPI.h"
+#import "CEECheckWeiboFriendsAPI.h"
 #import "CEENotificationNames.h"
 #import "CEESDKManager.h"
 
@@ -88,12 +89,13 @@
 
 - (void)load {
     NSString * authToken = [[CEEDatabase db] loadAuthToken];
-    [self loggedInWithAuth:authToken];
+    NSString * platform = [[CEEDatabase db] loadPlatform];
+    [self loggedInWithAuth:authToken platform:platform];
 }
 
-- (AnyPromise *)loggedInWithAuth:(NSString *)auth {
+- (AnyPromise *)loggedInWithAuth:(NSString *)auth platform:(NSString *)platform {
     NSLog(@"auth token: %@", auth);
-    [[CEEDatabase db] saveAuthToken:auth];
+    [[CEEDatabase db] saveAuthToken:auth platform:platform];
     self.authToken = auth;
     if (auth && auth.length > 0) {
         [[CEEAPIClient client].requestSerializer setValue:[NSString stringWithFormat:@"Token %@", auth]
@@ -109,7 +111,9 @@
             });
         }
         
-        return [self loadUserProfile].then(^{
+        return [self loadUserProfile];
+        /*
+        .then(^{
             return [self addAddressBookFriends];
         }).then(^(NSNumber * addCount){
             if (addCount.integerValue > 0) {
@@ -118,6 +122,7 @@
                                                                   userInfo:nil];
             }
         });
+         */
     } else {
         [[CEEAPIClient client].requestSerializer clearAuthorizationHeader];
         return [AnyPromise promiseWithValue:nil];
@@ -165,20 +170,20 @@
     self.authorizationFailed = YES;
 }
 
-- (AnyPromise *)addAddressBookFriends {
+- (AnyPromise *)checkAddressBookFriends {
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
         return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
             ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error){
                 CFErrorRef *error1 = NULL;
                 ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error1);
-                resolve([self addFriendsFromAddressBook:addressBook]);
+                resolve([self checkFriendsFromAddressBook:addressBook]);
             });
         }];
     } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
         CFErrorRef *error = NULL;
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
-        return [self addFriendsFromAddressBook:addressBook];
+        return [self checkFriendsFromAddressBook:addressBook];
     } else {
         return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
             resolve([NSError errorWithDomain:kCEEErrorDomain
@@ -188,7 +193,7 @@
     }
 }
 
-- (AnyPromise *)addFriendsFromAddressBook:(ABAddressBookRef)addressBook {
+- (AnyPromise *)checkFriendsFromAddressBook:(ABAddressBookRef)addressBook {
     CFIndex numberOfPeople = ABAddressBookGetPersonCount(addressBook);
     CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(addressBook);
     
@@ -211,7 +216,14 @@
         }
     }
     
-    return [[CEEAddFriendsAPI api] addMobiles:mobiles];
+    return [[CEECheckFriendsAPI api] checkMobiles:mobiles];
+}
+
+- (AnyPromise *)checkWeiboFriends {
+    return [[CEESDKManager sharedInstance] requestWeiboFriends]
+    .then(^(NSDictionary * friendsData) {
+        return [[CEECheckWeiboFriendsAPI api] checkWeiboFriends:@[]];
+    });
 }
 
 - (AnyPromise *)addWeiboFriends {
@@ -219,6 +231,10 @@
     .then(^(NSDictionary * friendsData) {
         return [[CEEAddWeiboFriendsAPI api] addWeiboFriends:@[]];
     });
+}
+
+- (AnyPromise *)followFriend:(NSNumber *)uid {
+    return [[CEEFollowFriendAPI api] followFriendWithID:uid];
 }
 
 @end

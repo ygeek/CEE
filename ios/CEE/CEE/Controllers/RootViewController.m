@@ -24,6 +24,8 @@
 #import "HUDCouponAcquiringViewController.h"
 #import "HUDNewMapViewController.h"
 #import "CEEMessagesManager.h"
+#import "CEEDatabase.h"
+#import "IntroViewController.h"
 
 
 @interface RootViewController ()
@@ -171,6 +173,14 @@
                   [self dismissUserProfileForm];
               }
           }];
+        
+        if (![[CEEDatabase db] splashShowed]) {
+            [[CEEDatabase db] setSplashShowed:YES];
+            IntroViewController * introVC = [[IntroViewController alloc] init];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                                object:self
+                                                              userInfo:@{kCEEHUDKey: introVC}];
+        }
     }
 }
 

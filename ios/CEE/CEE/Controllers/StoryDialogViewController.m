@@ -51,7 +51,7 @@
     self.textBoxView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4];
     
     self.textLabel = [[UILabel alloc] init];
-    self.textLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:25];
+    self.textLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:18];
     self.textLabel.textColor = kCEETextBlackColor;
     self.textLabel.numberOfLines = 10;
     self.textLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 40 - 36;
@@ -145,7 +145,7 @@
 
 - (void)reloadData {
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 35;
+    paragraphStyle.lineSpacing = 18 * verticalScale();
     
     NSString * content = nil;
     if (self.sayer && self.sayer.length > 0) {

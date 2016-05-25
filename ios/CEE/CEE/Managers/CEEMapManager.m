@@ -156,13 +156,10 @@
 }
 
 - (BOOL)openNavigationAppToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
-    if ([self openGaodeNavigationToLatitude:latitude longitude:longitude]) {
-        return YES;
-    }
     if ([self openBaiduNavigationToLatitude:latitude longitude:longitude]) {
         return YES;
     }
-    if ([self openGoogleNavigationToLatitude:latitude longitude:longitude]) {
+    if ([self openGaodeNavigationToLatitude:latitude longitude:longitude]) {
         return YES;
     }
     if ([self openAppleNavigationToLatitude:latitude longitude:longitude]) {
@@ -202,16 +199,6 @@
                             @"cee://",
                             coordinate.latitude,
                             coordinate.longitude]
-                           stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-}
-
-- (BOOL)openGoogleNavigationToLatitude:(CGFloat)latitude longitude:(CGFloat)longitude {
-    NSString *urlString = [[NSString stringWithFormat:@"comgooglemaps://?x-source=%@&x-success=%@&saddr=&daddr=%f,%f&directionsmode=driving",
-                            @"城市彩蛋",
-                            @"cee://",
-                            latitude,
-                            longitude]
                            stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }

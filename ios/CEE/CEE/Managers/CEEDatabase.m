@@ -10,6 +10,8 @@
 
 
 NSString * const kAuthTokenKey = @"AUTH_TOKEN";
+NSString * const kPlatformKey = @"PLATFORM";
+NSString * const kSplashShowedKey = @"SPLASH_SHOWED";
 
 
 @implementation CEEDatabase
@@ -23,8 +25,9 @@ NSString * const kAuthTokenKey = @"AUTH_TOKEN";
     return instance;
 }
 
-- (void)saveAuthToken:(NSString *)authToken {
+- (void)saveAuthToken:(NSString *)authToken platform:(NSString *)platform {
     [[NSUserDefaults standardUserDefaults] setObject:authToken forKey:kAuthTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:platform forKey:kPlatformKey];
 }
 
 - (void)clearAuthToken {
@@ -33,6 +36,18 @@ NSString * const kAuthTokenKey = @"AUTH_TOKEN";
 
 - (NSString *)loadAuthToken {
     return [[NSUserDefaults standardUserDefaults] objectForKey:kAuthTokenKey];
+}
+
+- (NSString *)loadPlatform {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kPlatformKey];
+}
+
+- (BOOL)splashShowed {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kSplashShowedKey];
+}
+
+- (void)setSplashShowed:(BOOL)showed {
+    [[NSUserDefaults standardUserDefaults] setBool:showed forKey:kSplashShowedKey];
 }
 
 @end

@@ -14,10 +14,16 @@
 
 + (instancetype)db;
 
-- (void)saveAuthToken:(NSString *)authToken;
+- (void)saveAuthToken:(NSString *)authToken platform:(NSString *)platform;
 
 - (void)clearAuthToken;
 
 - (NSString *)loadAuthToken;
+
+- (NSString *)loadPlatform;
+
+- (BOOL)splashShowed;
+
+- (void)setSplashShowed:(BOOL)showed;
 
 @end

@@ -87,20 +87,16 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (!self.isAppeared) {
-        self.isAppeared = YES;
-        [[CEEUserInfoAPI api] fetchUserInfo].then(^(CEEJSONUserInfo * userInfo) {
-            self.userInfo = userInfo;
-            [UIView transitionWithView:self.collectionView
-                              duration:0.3
-                               options:UIViewAnimationOptionTransitionCrossDissolve
-                            animations:^{
-                                [self.collectionView reloadData];
-                            } completion:nil];
-        });
-    } else {
-        [self.collectionView reloadData];
-    }
+    self.isAppeared = YES;
+    [[CEEUserInfoAPI api] fetchUserInfo].then(^(CEEJSONUserInfo * userInfo) {
+        self.userInfo = userInfo;
+        [UIView transitionWithView:self.collectionView
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self.collectionView reloadData];
+                        } completion:nil];
+    });
 }
 
 - (void)backPressed:(id)sender {

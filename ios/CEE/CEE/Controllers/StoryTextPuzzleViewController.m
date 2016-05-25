@@ -56,7 +56,7 @@
     [self.contentView addSubview:self.imageView];
     
     self.messageLabel = [[UILabel alloc] init];
-    self.messageLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:18];
+    self.messageLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:12];
     self.messageLabel.textColor = kCEETextBlackColor;
     self.messageLabel.textAlignment = NSTextAlignmentCenter;
     self.messageLabel.numberOfLines = 4;
@@ -100,14 +100,14 @@
         make.top.equalTo(self.contentView.mas_top).offset(70);
         make.left.equalTo(self.contentView.mas_left).offset(20);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.height.mas_equalTo(350 * verticalScale());
+        make.height.mas_equalTo(300 * verticalScale());
     }];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top);
         make.left.equalTo(self.contentView.mas_left).offset(20);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.height.mas_equalTo(406 * verticalScale());
+        make.height.mas_equalTo(356 * verticalScale());
     }];
     
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {

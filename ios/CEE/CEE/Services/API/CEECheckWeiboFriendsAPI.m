@@ -6,7 +6,34 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-#import "CEEAddWeiboFriendsAPI.h"
+#import "CEECheckWeiboFriendsAPI.h"
+
+
+@implementation CEECheckWeiboFriendsRequest
+
+@end
+
+
+@implementation CEECheckWeiboFriendsResponse
+
+@end
+
+
+@implementation CEECheckWeiboFriendsAPI
+
+- (AnyPromise *)checkWeiboFriends:(NSArray<NSString *> *)uids {
+    CEECheckWeiboFriendsRequest * request = [[CEECheckWeiboFriendsRequest alloc] init];
+    request.uids = [uids componentsJoinedByString:@","];
+    return [self promisePOST:@"/api/v1/user/checkweibofriends/" withRequest:request].then(^(CEECheckWeiboFriendsResponse * response) {
+        return response.friends;
+    });
+}
+
+- (Class)responseSuccessClass {
+    return [CEECheckWeiboFriendsResponse class];
+}
+
+@end
 
 
 @implementation CEEAddWeiboFriendsRequest

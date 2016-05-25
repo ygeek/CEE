@@ -66,6 +66,7 @@ class FriendInfoSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id',
+            'username',
             'nickname',
             'coin',
             'medals',

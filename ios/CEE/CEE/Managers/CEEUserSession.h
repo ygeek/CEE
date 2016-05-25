@@ -13,6 +13,11 @@
 #import "CEEUserProfile.h"
 #import "CEEFriendInfo.h"
 
+#define kCEEPlatformMobile @"mobile"
+#define kCEEPlatformWeibo  @"weibo"
+#define kCEEPlatformWeixin @"weixin"
+#define kCEEPlatformQQ     @"qq"
+
 
 @interface CEEUserSession : NSObject
 
@@ -25,10 +30,12 @@
 @property (nonatomic, strong) NSString * installationId;
 @property (nonatomic, assign) BOOL isFetchingUserProfile;
 @property (nonatomic, assign) BOOL authorizationFailed;
+@property (nonatomic, strong) NSMutableArray<CEEJSONFriendInfo *> * mobileFriends;
+@property (nonatomic, strong) NSMutableArray<CEEJSONFriendInfo *> * weiboFriends;
 
 - (void)load;
 
-- (AnyPromise *)loggedInWithAuth:(NSString *)auth;
+- (AnyPromise *)loggedInWithAuth:(NSString *)auth platform:(NSString *)platform;
 
 - (AnyPromise *)loadUserProfile;
 
@@ -36,8 +43,12 @@
 
 - (void)onUnauthorized;
 
-- (AnyPromise *)addAddressBookFriends;
+- (AnyPromise *)checkAddressBookFriends;
+
+- (AnyPromise *)checkWeiboFriends;
 
 - (AnyPromise *)addWeiboFriends;
+
+- (AnyPromise *)followFriend:(NSNumber *)uid;
 
 @end

@@ -11,6 +11,8 @@
 @import SVProgressHUD;
 
 #import "SettingViewController.h"
+#import "AboutViewController.h"
+#import "IntroViewController.h"
 #import "AppearanceConstants.h"
 #import "CEEUserSession.h"
 
@@ -149,10 +151,16 @@
     
     self.aboutCell = [[SettingCell alloc] init];
     self.aboutCell.titleLabel.text = @"关于我们";
+    [self.aboutCell addTarget:self
+                       action:@selector(aboutPressed:)
+             forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.aboutCell];
     
     self.introCell = [[SettingCell alloc] init];
     self.introCell.titleLabel.text = @"intro";
+    [self.introCell addTarget:self
+                       action:@selector(introPressed:)
+             forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.introCell];
     
     self.feedbackCell = [[SettingCell alloc] init];
@@ -252,6 +260,28 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         [[CEEUserSession session] onUnauthorized];
     }];
+}
+
+- (void)aboutPressed:(id)sender {
+    AboutViewController * aboutVC = [[AboutViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
+- (void)introPressed:(id)sender {
+    IntroViewController * introVC = [[IntroViewController alloc] init];
+    [self presentViewController:introVC animated:YES completion:nil];
+}
+
+- (void)feedbackPressed:(id)sender {
+    
+}
+
+- (void)supportPressed:(id)sender {
+    
+}
+
+- (void)recommendPressed:(id)sender {
+    
 }
 
 @end

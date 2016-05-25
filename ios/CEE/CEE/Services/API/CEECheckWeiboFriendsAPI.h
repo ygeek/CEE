@@ -7,6 +7,25 @@
 //
 
 #import "CEEBaseAPI.h"
+#import "CEEFriendInfo.h"
+
+@interface CEECheckWeiboFriendsRequest : JSONModel
+@property (nonatomic, strong) NSString * uids;
+@end
+
+
+@interface CEECheckWeiboFriendsResponse: CEEBaseResponse
+@property (nonatomic, strong) NSArray<CEEJSONFriendInfo> * friends;
+@end
+
+
+@interface CEECheckWeiboFriendsAPI : CEEBaseAPI
+
+- (AnyPromise *)checkWeiboFriends:(NSArray<NSString *> *)uids;
+
+@end
+
+
 
 @interface CEEAddWeiboFriendsRequest : JSONModel
 @property (nonatomic, strong) NSString * uids;
