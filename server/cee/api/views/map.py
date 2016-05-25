@@ -127,24 +127,24 @@ class CompleteMap(APIView):
                 FROM `api_anchor`
                     JOIN `api_task`
                         ON `api_anchor`.`ref_id`=`api_task`.`id`
+                        AND `type`='task'
+                        AND `map_id`=%(map_id)s
                     LEFT JOIN `api_usertask`
                         ON `api_anchor`.`ref_id`=`api_usertask`.`task_id`
-                WHERE `type`='task'
-                  AND `map_id`=%(map_id)s
-                  AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
-                  AND IFNULL(`completed`, 0)=0
+                        AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
+                WHERE IFNULL(`completed`, 0)=0
             '''
             story_sql = '''
                 SELECT COUNT(*) AS `remains`
                 FROM `api_anchor`
                     JOIN `api_story`
                         ON `api_anchor`.`ref_id`=`api_story`.`id`
+                        AND `type`='story'
+                        AND `map_id`=%(map_id)s
                     LEFT JOIN `api_userstory`
                         ON `api_anchor`.`ref_id`=`api_userstory`.`story_id`
-                WHERE `type`='story'
-                  AND `map_id`=%(map_id)s
-                  AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
-                  AND IFNULL(`completed`, 0)=0
+                        AND IFNULL(`user_id`, %(user_id)s)=%(user_id)s
+                WHERE IFNULL(`completed`, 0)=0
             '''
             kwargs = {
                 'map_id': map_id,

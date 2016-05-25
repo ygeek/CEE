@@ -75,6 +75,7 @@
 		BB4184211CF56CF000E9B983 /* InviteFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184201CF56CF000E9B983 /* InviteFriendTableViewCell.m */; };
 		BB4184241CF5893700E9B983 /* CEEFollowFriendAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184231CF5893700E9B983 /* CEEFollowFriendAPI.m */; };
 		BB4184271CF5A80500E9B983 /* CEESearchFriendAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184261CF5A80400E9B983 /* CEESearchFriendAPI.m */; };
+		BB4184341CF5CB6400E9B983 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4184331CF5CB6400E9B983 /* FeedbackViewController.m */; };
 		BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */; };
 		BB48E5B61CD06BB4005150C3 /* AcquiredMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B51CD06BB4005150C3 /* AcquiredMapsViewController.m */; };
 		BB48E5B91CD07664005150C3 /* AcquiredMapCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5B81CD07664005150C3 /* AcquiredMapCollectionViewCell.m */; };
@@ -301,6 +302,8 @@
 		BB4184231CF5893700E9B983 /* CEEFollowFriendAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEFollowFriendAPI.m; sourceTree = "<group>"; };
 		BB4184251CF5A80400E9B983 /* CEESearchFriendAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEESearchFriendAPI.h; sourceTree = "<group>"; };
 		BB4184261CF5A80400E9B983 /* CEESearchFriendAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEESearchFriendAPI.m; sourceTree = "<group>"; };
+		BB4184321CF5CB6400E9B983 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		BB4184331CF5CB6400E9B983 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		BB48E5B11CD05141005150C3 /* HUDFetchingMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDFetchingMapView.h; sourceTree = "<group>"; };
 		BB48E5B21CD05141005150C3 /* HUDFetchingMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDFetchingMapView.m; sourceTree = "<group>"; };
 		BB48E5B41CD06BB4005150C3 /* AcquiredMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquiredMapsViewController.h; sourceTree = "<group>"; };
@@ -788,6 +791,8 @@
 				BB41841A1CF539F000E9B983 /* IntroViewController.m */,
 				BB41841C1CF5681500E9B983 /* InviteFriendsViewController.h */,
 				BB41841D1CF5681500E9B983 /* InviteFriendsViewController.m */,
+				BB4184321CF5CB6400E9B983 /* FeedbackViewController.h */,
+				BB4184331CF5CB6400E9B983 /* FeedbackViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1079,6 +1084,7 @@
 				BB3209181CD4E7D7009D1862 /* CEEStoryListAPI.m in Sources */,
 				BB48E5D11CD465E3005150C3 /* HUDStoryFetchingViewController.m in Sources */,
 				BB3209581CDA17FF009D1862 /* CEEStoryLevelsAPI.m in Sources */,
+				BB4184341CF5CB6400E9B983 /* FeedbackViewController.m in Sources */,
 				BB29EF601CCC6E2B001C25B6 /* MapPanelView.m in Sources */,
 				BB6103C81CC7E13000350809 /* CEEMapManager.m in Sources */,
 				BB29EF481CC9D966001C25B6 /* CEERegisterAPI.m in Sources */,

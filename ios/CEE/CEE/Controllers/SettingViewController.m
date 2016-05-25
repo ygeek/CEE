@@ -13,6 +13,7 @@
 #import "SettingViewController.h"
 #import "AboutViewController.h"
 #import "IntroViewController.h"
+#import "FeedbackViewController.h"
 #import "AppearanceConstants.h"
 #import "CEEUserSession.h"
 
@@ -165,10 +166,16 @@
     
     self.feedbackCell = [[SettingCell alloc] init];
     self.feedbackCell.titleLabel.text = @"意见反馈";
+    [self.feedbackCell addTarget:self
+                          action:@selector(feedbackPressed:)
+                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.feedbackCell];
     
     self.supportCell = [[SettingCell alloc] init];
     self.supportCell.titleLabel.text = @"给予支持";
+    [self.supportCell addTarget:self
+                         action:@selector(supportPressed:)
+               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.supportCell];
     
     self.recommendCell = [[SettingCell alloc] init];
@@ -273,15 +280,19 @@
 }
 
 - (void)feedbackPressed:(id)sender {
-    
+    FeedbackViewController * feedbackVC = [[FeedbackViewController alloc] init];
+    [self.navigationController pushViewController:feedbackVC animated:YES];
 }
 
 - (void)supportPressed:(id)sender {
-    
+    NSString * appStoreID = @"1112396023";
+    NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%@";
+    NSURL * theUrl = [NSURL URLWithString:[NSString stringWithFormat:iOS7AppStoreURLFormat, appStoreID]];
+    [[UIApplication sharedApplication] openURL:theUrl];
 }
 
 - (void)recommendPressed:(id)sender {
-    
+    // TODO: 微信分享
 }
 
 @end
