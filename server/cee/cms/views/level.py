@@ -20,9 +20,11 @@ class LevelCouponForm(ModelForm):
         fields = [
             'coupon',
             'amount',
+            'remain',
         ]
         labels = {
-            'amount': '优惠券数量',
+            'amount': '优惠券总数量',
+            'remain': '优惠券剩余数量',
         }
 
 
