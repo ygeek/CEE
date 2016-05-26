@@ -175,7 +175,7 @@
     MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
     MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil]];
     return [MKMapItem openMapsWithItems:@[currentLocation, toLocation]
-                   launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,
+                   launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking,
                                    MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
 }
 
@@ -183,7 +183,7 @@
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = latitude;
     coordinate.longitude = longitude;
-    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",
+    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=walking&coord_type=gcj02",
                             coordinate.latitude,
                             coordinate.longitude]
                            stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

@@ -131,7 +131,7 @@
 - (void)setupUMeng {
     [UMSocialData setAppKey:@"57351fd4e0f55a603c0021a6"];
     
-    [UMSocialWechatHandler setWXAppId:@"wx6d9b7471e7a25729" appSecret:@"50aa01e44d915a2379a9b4836b7f3473" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wx6d9b7471e7a25729" appSecret:@"9f28abd749e52d37b736501ca7246304" url:@"http://www.umeng.com/social"];
     
     [UMSocialQQHandler setQQWithAppId:@"1105325484" appKey:@"KdMa9TCSESYNVEXk" url:@"http://www.umeng.com/social"];
     

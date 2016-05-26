@@ -10,6 +10,8 @@
 @import Masonry;
 @import SVProgressHUD;
 
+#import <UMengSocialCOM/UMSocial.h>
+
 #import "SettingViewController.h"
 #import "AboutViewController.h"
 #import "IntroViewController.h"
@@ -119,7 +121,7 @@
 
 
 
-@interface SettingViewController ()
+@interface SettingViewController () <UMSocialUIDelegate>
 @property (nonatomic, strong) UIImageView * titleView;
 @property (nonatomic, strong) SettingCell * aboutCell;
 @property (nonatomic, strong) SettingCell * introCell;
@@ -180,6 +182,9 @@
     
     self.recommendCell = [[SettingCell alloc] init];
     self.recommendCell.titleLabel.text = @"推荐给朋友";
+    [self.recommendCell addTarget:self
+                           action:@selector(recommendPressed:)
+                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.recommendCell];
     
     self.clearCacheCell = [[ClearCacheCell alloc] init];
@@ -293,6 +298,20 @@
 
 - (void)recommendPressed:(id)sender {
     // TODO: 微信分享
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"57351fd4e0f55a603c0021a6"
+                                      shareText:@"跟我一起来玩『城市彩蛋』吧！https://itunes.apple.com/cn/app/cee-cheng-shi-cai-dan/id1112396023?l=zh&ls=1&mt=8"
+                                     shareImage:[UIImage imageNamed:@"AppIcon"]
+                                shareToSnsNames:@[UMShareToWechatSession, UMShareToWechatTimeline]
+                                       delegate:self];
+}
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response {
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess) {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 @end
