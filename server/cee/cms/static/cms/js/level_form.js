@@ -114,7 +114,7 @@
         switch (type) {
             case 'dialog':
                 doReplaceForm(getDialogForm(), type);
-                makeSingleImageUploader('img');
+                makeSingleImageUploader('img', {buttonLabel: '上传 1242x2208'});
                 break;
             case 'video':
                 doReplaceForm(getVideoForm(), type);
@@ -132,7 +132,7 @@
                 break;
             case 'empty':
                 doReplaceForm(getEmptyForm(), type);
-                makeSingleImageUploader('img');
+                makeSingleImageUploader('img', {buttonLabel: '上传 1242x2208'});
                 break;
             case 'h5':
                 doReplaceForm(getH5Form(), type);

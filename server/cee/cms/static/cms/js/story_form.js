@@ -1,8 +1,8 @@
 (function () {
     makeListEditor('tags');
 
-    makeSingleImageUploader('tour_image_key');
-    makeSingleImageUploader('hud_image_key');
+    makeSingleImageUploader('tour_image_key', {buttonLabel: '上传 750x300'});
+    makeSingleImageUploader('hud_image_key', {buttonLabel: '上传 696x753'});
 
 
     var QINIU_DOMAIN = '7xt08d.com1.z0.glb.clouddn.com';

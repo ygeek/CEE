@@ -92,5 +92,5 @@ function makeItemContentEditor()
 (function(){
     makeItemContentEditor();
     //makeDictEditor('desc');
-    makeSingleImageUploader('icon');
+    makeSingleImageUploader('icon', {buttonLabel: '上传 276x213'});
 })();

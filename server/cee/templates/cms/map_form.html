@@ -25,7 +25,7 @@
     <script src="{% static 'cms/assets/qiniu/qiniu.min.js' %}"></script>
     <script>
         makeSingleImageUploader('image_key');
-        makeSingleImageUploader('icon_key');
-        makeSingleImageUploader('summary_image_key');
+        makeSingleImageUploader('icon_key', {buttonType: '上传 128x128'});
+        makeSingleImageUploader('summary_image_key', {buttonType: '上传 696x753'});
     </script>
 {% endblock %}

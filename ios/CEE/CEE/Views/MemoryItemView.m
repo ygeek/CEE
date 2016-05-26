@@ -59,9 +59,9 @@
 - (void)loadLevel:(CEEJSONLevel *)level {
     NSString * type = level.content[@"type"];
     if ([type isEqualToString:@"dialog"]) {
-        self.iconView.image = [UIImage imageNamed:@"记忆-播放"];
-    } else if ([type isEqualToString:@"video"]) {
         self.iconView.image = [UIImage imageNamed:@"记忆-对话"];
+    } else if ([type isEqualToString:@"video"]) {
+        self.iconView.image = [UIImage imageNamed:@"记忆-播放"];
     }
     self.nameLabel.text = level.name;
 }
