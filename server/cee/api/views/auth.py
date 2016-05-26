@@ -7,6 +7,7 @@ import uuid
 import time
 import datetime
 import logging
+import requests
 
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
@@ -53,6 +54,40 @@ class Register(APIView):
             return Response({
                 'code': -1,
                 'msg': msg,
+            })
+
+
+class ResetPassword(APIView):
+    permission_classes = ()
+
+    def post(self, request):
+        username = request.data['username']
+        password = request.data['password']
+        code = request.data['code']
+        response = requests.post('https://webapi.sms.mob.com/sms/verify',
+                                 data={'appkey': '11e838894b027',
+                                       'phone': username,
+                                       'zone': '86',
+                                       'code': code})
+        if response.status_code == 200 and response.json().get('status') == 200:
+            try:
+                user = User.objects.get(username=username)
+                user.set_password(password)
+                user.save()
+                token = get_token(user)
+                return Response({
+                    'code': 0,
+                    'auth': unicode(token.key),
+                })
+            except User.DoesNotExist:
+                return Response({
+                    'code': -2,
+                    'msg': '没有这个用户'
+                })
+        else:
+            return Response({
+                'code': -1,
+                'msg': '短信验证失败'
             })
 
 

@@ -16,6 +16,7 @@
 #import "AppearanceConstants.h"
 #import "ThirdPartyLoginButton.h"
 #import "RegisterViewController.h"
+#import "ForgetViewController.h"
 #import "CEESDKManager.h"
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
@@ -93,6 +94,11 @@
 
 - (void)registerPressed:(id)sender {
     [self.navigationController pushViewController:[[RegisterViewController alloc] init] animated:YES];
+}
+
+- (void)findPasswordPressed:(id)sender {
+    ForgetViewController * forgetVC = [[ForgetViewController alloc] init];
+    [self.navigationController pushViewController:forgetVC animated:YES];
 }
 
 - (void)loginPressed:(id)sender {
@@ -293,6 +299,7 @@
                                                    /*NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)*/
                                                    }];
     [self.findPasswordButton setAttributedTitle:attributedFindPassword forState:UIControlStateNormal];
+    [self.findPasswordButton addTarget:self action:@selector(findPasswordPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     self.findPasswordUnderline = [[UIView alloc] init];
     self.findPasswordUnderline.backgroundColor = kCEETextBlackColor;

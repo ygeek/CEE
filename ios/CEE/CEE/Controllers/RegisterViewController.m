@@ -17,6 +17,7 @@
 #import "UIImage+Utils.h"
 #import "AppearanceConstants.h"
 #import "ThirdPartyLoginButton.h"
+#import "ForgetViewController.h"
 #import "VerificationCodeViewController.h"
 #import "CEEUserSession.h"
 #import "CEEDatabase.h"
@@ -110,26 +111,19 @@
         return;
     }
     
-    [SVProgressHUD show];
-    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.phoneField.text
-                                   zone:@"86"
-                       customIdentifier:nil
-                                 result:
-     ^(NSError *error) {
-         if (!error) {
-             [SVProgressHUD dismiss];
-             VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
-             vc.phoneNumber = self.phoneField.text;
-             vc.password = self.passwordField.text;
-             [self.navigationController pushViewController:vc animated:YES];
-         } else {
-             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-         }
-    }];
+    VerificationCodeViewController * vc = [[VerificationCodeViewController alloc] init];
+    vc.phoneNumber = self.phoneField.text;
+    vc.password = self.passwordField.text;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)hasAccountPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)findPasswordPressed:(id)sender {
+    ForgetViewController * forgetVC = [[ForgetViewController alloc] init];
+    [self.navigationController pushViewController:forgetVC animated:YES];
 }
 
 - (void)keyboardWillChangeFrameNotification:(NSNotification *)notification {
@@ -260,7 +254,7 @@
                                                    /*NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)*/
                                                    }];
     [self.findPasswordButton setAttributedTitle:attributedFindPassword forState:UIControlStateNormal];
-    
+    [self.findPasswordButton addTarget:self action:@selector(findPasswordPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     self.findPasswordUnderline = [[UIView alloc] init];
     self.findPasswordUnderline.backgroundColor = kCEETextBlackColor;

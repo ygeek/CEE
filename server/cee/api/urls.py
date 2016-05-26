@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^v1/auth/$', views.obtain_auth_token),
     url(r'^v1/hello/$', Hello.as_view()),
     url(r'^v1/register/$', Register.as_view()),
+    url(r'^v1/resetpassword/$', ResetPassword.as_view()),
     url(r'^v1/login/$', Login.as_view()),
     url(r'^v1/login/thirdparty/$', LoginThirdParty.as_view()),
     url(r'^v1/devicetoken/$', UserDeviceTokenView.as_view()),

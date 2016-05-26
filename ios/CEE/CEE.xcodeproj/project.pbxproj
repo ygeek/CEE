@@ -159,6 +159,8 @@
 		BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532601CBBDA6A00282D3E /* StoriesViewController.m */; };
 		BBA532641CBBDA9E00282D3E /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532631CBBDA9E00282D3E /* MessageViewController.m */; };
 		BBAFACB41CED563D00A8A5DE /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAFACB31CED563D00A8A5DE /* SettingViewController.m */; };
+		BBEB52A21CF6056F008C3EF0 /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */; };
+		BBEB52A51CF67BA9008C3EF0 /* CEEResetPasswordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB52A41CF67BA9008C3EF0 /* CEEResetPasswordAPI.m */; };
 		BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC16A01CE22EC90043930A /* Pods_CEE.framework */; };
 		BBEC16A41CE436DF0043930A /* CEELoginThirdpartyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */; };
 /* End PBXBuildFile section */
@@ -460,6 +462,10 @@
 		BBA532631CBBDA9E00282D3E /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		BBAFACB21CED563D00A8A5DE /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		BBAFACB31CED563D00A8A5DE /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		BBEB52A01CF6056F008C3EF0 /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
+		BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
+		BBEB52A31CF67BA9008C3EF0 /* CEEResetPasswordAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEResetPasswordAPI.h; sourceTree = "<group>"; };
+		BBEB52A41CF67BA9008C3EF0 /* CEEResetPasswordAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEResetPasswordAPI.m; sourceTree = "<group>"; };
 		BBEC16A01CE22EC90043930A /* Pods_CEE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_CEE.framework; path = "Pods/../build/Debug-iphoneos/Pods_CEE.framework"; sourceTree = "<group>"; };
 		BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELoginThirdpartyAPI.h; sourceTree = "<group>"; };
 		BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELoginThirdpartyAPI.m; sourceTree = "<group>"; };
@@ -606,6 +612,8 @@
 				BB4184231CF5893700E9B983 /* CEEFollowFriendAPI.m */,
 				BB4184251CF5A80400E9B983 /* CEESearchFriendAPI.h */,
 				BB4184261CF5A80400E9B983 /* CEESearchFriendAPI.m */,
+				BBEB52A31CF67BA9008C3EF0 /* CEEResetPasswordAPI.h */,
+				BBEB52A41CF67BA9008C3EF0 /* CEEResetPasswordAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -793,6 +801,8 @@
 				BB41841D1CF5681500E9B983 /* InviteFriendsViewController.m */,
 				BB4184321CF5CB6400E9B983 /* FeedbackViewController.h */,
 				BB4184331CF5CB6400E9B983 /* FeedbackViewController.m */,
+				BBEB52A01CF6056F008C3EF0 /* ForgetViewController.h */,
+				BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1161,12 +1171,14 @@
 				BB48E5B31CD05141005150C3 /* HUDFetchingMapView.m in Sources */,
 				BB32093C1CD83707009D1862 /* CEETaskCompleteAPI.m in Sources */,
 				BBA2F7991CDE0C0C004A5585 /* CEEStoryCompleteAPI.m in Sources */,
+				BBEB52A21CF6056F008C3EF0 /* ForgetViewController.m in Sources */,
 				BB3209641CDA204A009D1862 /* StoryH5ViewController.m in Sources */,
 				BBA2F7931CDDF37C004A5585 /* CEECompleteStoryLevelAPI.m in Sources */,
 				BB91FCE61CE70F95006C79DF /* CEEMapCompleteAPI.m in Sources */,
 				BB91FCEC1CE73960006C79DF /* HUDGetMedalViewController.m in Sources */,
 				BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */,
 				BB32091B1CD6C9C2009D1862 /* CEECouponConsumeAPI.m in Sources */,
+				BBEB52A51CF67BA9008C3EF0 /* CEEResetPasswordAPI.m in Sources */,
 				BB29EF451CC90A3F001C25B6 /* TLCityPickerSearchResultController.m in Sources */,
 				BBA2F79C1CDE2005004A5585 /* CEEMessage.m in Sources */,
 				BB48E5C21CD09E3E005150C3 /* TaskQuestionView.m in Sources */,

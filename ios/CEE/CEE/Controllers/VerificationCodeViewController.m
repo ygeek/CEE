@@ -29,6 +29,10 @@
 @property (nonatomic, strong) UIButton * nextButton;
 @property (nonatomic, strong) UIButton * switchButton;
 @property (nonatomic, strong) UIView * switchUnderline;
+@property (nonatomic, assign) BOOL isCodeSent;
+
+@property (nonatomic, assign) NSInteger countdown;
+@property (nonatomic, strong) NSTimer * countdownTimer;
 @end
 
 @implementation VerificationCodeViewController
@@ -37,6 +41,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.isCodeSent = NO;
     
     [self setupContentScrollView];
     [self setupMessageLabel];
@@ -55,6 +60,10 @@
                                              selector:@selector(keyboardWillChangeFrameNotification:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
+    
+    [RACObserve(self, isCodeSent) subscribeNext:^(NSNumber * isSent) {
+        self.messageLabel.attributedText = [self genMessageText];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,9 +71,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.countdownTimer invalidate];
+    self.countdownTimer = nil;
+}
+
 - (NSAttributedString *)genMessageText {
+    NSString * str = self.isCodeSent ? @"我们已发送验证短信到 " : @"准备发送验证码到 ";
     NSMutableAttributedString * message
-        = [[NSMutableAttributedString alloc] initWithString:@"我们已发送验证短信到 "
+        = [[NSMutableAttributedString alloc] initWithString:str
                                                  attributes:@{NSForegroundColorAttributeName: kCEETextBlackColor,
                                                               NSFontAttributeName: [UIFont fontWithName:kCEEFontNameRegular size:15]}];
     [message appendAttributedString:
@@ -88,10 +104,31 @@
      ^(NSError *error) {
          if (!error) {
              [SVProgressHUD dismiss];
+             
+             [self.requireCodeButton setTitle:@"60" forState:UIControlStateDisabled];
+             self.requireCodeButton.enabled = NO;
+             self.countdown = 60;
+             self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                    target:self
+                                                                  selector:@selector(timerFired:)
+                                                                  userInfo:nil
+                                                                   repeats:YES];
          } else {
+             self.isCodeSent = YES;
              [SVProgressHUD showErrorWithStatus:@"发送失败，再试一次吧！"];
          }
      }];
+}
+
+- (void)timerFired:(NSTimer *)timer {
+    if (self.countdown > 0) {
+        self.countdown--;
+        [self.requireCodeButton setTitle:@(self.countdown).stringValue forState:UIControlStateDisabled];
+    } else {
+        self.requireCodeButton.enabled = YES;
+        [self.countdownTimer invalidate];
+        self.countdownTimer = nil;
+    }
 }
 
 - (void)nextPressed:(id)sender {
