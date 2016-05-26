@@ -89,7 +89,7 @@
         make.top.equalTo(self.view.mas_top).offset(67);
         make.width.mas_equalTo(23);
         make.height.mas_equalTo(23);
-        make.centerX.equalTo(self.view.mas_left).offset(37 + 46);
+        make.centerX.equalTo(self.view.mas_left).offset((37 + 46) * horizontalScale());
     }];
     
     [self.friendsNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,7 +100,7 @@
     [self.inviteField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.friendsIcon.mas_right).offset(16);
         make.centerY.equalTo(self.friendsIcon.mas_centerY);
-        make.right.equalTo(self.view.mas_right).offset(-71);
+        make.right.equalTo(self.view.mas_right).offset(-71 * horizontalScale());
         make.height.mas_equalTo(20);
     }];
     
