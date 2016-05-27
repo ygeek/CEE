@@ -14,11 +14,13 @@
 
 + (instancetype)db;
 
-- (void)saveAuthToken:(NSString *)authToken platform:(NSString *)platform;
+- (void)saveAuthToken:(NSString *)authToken username:(NSString *)username platform:(NSString *)platform;
 
 - (void)clearAuthToken;
 
 - (NSString *)loadAuthToken;
+
+- (NSString *)loadUsername;
 
 - (NSString *)loadPlatform;
 

@@ -98,7 +98,7 @@
         [self.tableView reloadData];
     } else {
         [SVProgressHUD show];
-        AnyPromise * mobilePromise = [[CEEUserSession session] checkAddressBookFriends]
+        [[CEEUserSession session] checkAddressBookFriends]
         .then(^(NSArray<CEEJSONFriendInfo *> *mobileFriends) {
             [CEEUserSession session].mobileFriends = [mobileFriends mutableCopy];
             for (CEEJSONFriendInfo * friendInfo in [CEEUserSession session].mobileFriends) {

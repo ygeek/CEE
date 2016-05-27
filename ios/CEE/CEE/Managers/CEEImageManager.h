@@ -21,4 +21,12 @@
 
 - (AnyPromise *)downloadImageForKey:(NSString *)key;
 
+- (AnyPromise *)downloadImageForURL:(NSString *)url;
+
+- (AnyPromise *)downloadHeadForUsername:(NSString *)username withURL:(NSString *)url;
+
+- (UIImage *)checkHeadForUsername:(NSString *)username;
+
+- (NSString *)headImagePathForUsername:(NSString *)username;
+
 @end

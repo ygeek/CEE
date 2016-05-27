@@ -99,7 +99,7 @@
     [SVProgressHUD show];
      [[[CEEResetPasswordAPI alloc] init] resetUsername:self.phoneField.text password:self.passwordField.text code:self.codeField.text]
      .then(^(NSString * authToken) {
-         return [[CEEUserSession session] loggedInWithAuth:authToken platform:kCEEPlatformMobile];
+         return [[CEEUserSession session] loggedInWithAuth:authToken username:self.phoneField.text platform:kCEEPlatformMobile];
      }).then(^{
          [SVProgressHUD dismiss];
      }).catch(^(NSError *error) {

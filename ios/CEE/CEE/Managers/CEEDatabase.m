@@ -10,6 +10,7 @@
 
 
 NSString * const kAuthTokenKey = @"AUTH_TOKEN";
+NSString * const kUsernameKey = @"USERNAME";
 NSString * const kPlatformKey = @"PLATFORM";
 NSString * const kSplashShowedKey = @"SPLASH_SHOWED";
 
@@ -25,17 +26,24 @@ NSString * const kSplashShowedKey = @"SPLASH_SHOWED";
     return instance;
 }
 
-- (void)saveAuthToken:(NSString *)authToken platform:(NSString *)platform {
+- (void)saveAuthToken:(NSString *)authToken username:(NSString *)username platform:(NSString *)platform {
     [[NSUserDefaults standardUserDefaults] setObject:authToken forKey:kAuthTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:kUsernameKey];
     [[NSUserDefaults standardUserDefaults] setObject:platform forKey:kPlatformKey];
 }
 
 - (void)clearAuthToken {
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kAuthTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kUsernameKey];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kPlatformKey];
 }
 
 - (NSString *)loadAuthToken {
     return [[NSUserDefaults standardUserDefaults] objectForKey:kAuthTokenKey];
+}
+
+- (NSString *)loadUsername {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kUsernameKey];
 }
 
 - (NSString *)loadPlatform {

@@ -23,6 +23,7 @@
 
 + (instancetype)session;
 
+@property (nonatomic, copy) NSString * username;
 @property (nonatomic, copy) NSString * authToken;
 @property (nonatomic, strong) CEEJSONUserProfile * userProfile;
 @property (nonatomic, strong) NSArray<CEEJSONFriendInfo *> * friends;
@@ -35,7 +36,7 @@
 
 - (void)load;
 
-- (AnyPromise *)loggedInWithAuth:(NSString *)auth platform:(NSString *)platform;
+- (AnyPromise *)loggedInWithAuth:(NSString *)auth username:(NSString *)username platform:(NSString *)platform;
 
 - (AnyPromise *)loadUserProfile;
 

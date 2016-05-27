@@ -184,12 +184,14 @@ class LoginThirdParty(APIView):
             return Response({
                 'code': 0,
                 'auth': token.key,
+                'username': user.username,
                 'user': data,
             })
         except UserProfile.DoesNotExist:
             return Response({
                 'code': 0,
                 'auth': token.key,
+                'username': user.username,
             })
 
 
@@ -270,6 +272,7 @@ class UserProfileView(APIView):
             user_profile.birthday = birthday
             user_profile.mobile = mobile
             user_profile.location = location
+            user_profile.save()
             code = 0
             msg = '个人信息更新成功'
         except UserProfile.DoesNotExist:

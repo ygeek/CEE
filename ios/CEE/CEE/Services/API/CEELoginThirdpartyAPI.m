@@ -26,7 +26,7 @@
     request.access_token = accessToken;
     
     return [self promisePOST:@"/api/v1/login/thirdparty/" withRequest:request].then(^(CEELoginThirdpartyResponse * response) {
-        return PMKManifold(response.auth, response.user);
+        return PMKManifold(response.auth, response.username, response.user);
     });
 }
 

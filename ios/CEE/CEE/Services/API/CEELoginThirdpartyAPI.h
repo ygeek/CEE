@@ -23,6 +23,7 @@
 
 @interface CEELoginThirdpartyResponse : CEEBaseResponse
 @property (nonatomic, strong) NSString * auth;
+@property (nonatomic, strong) NSString * username;
 @property (nonatomic, strong) CEEJSONUserInfo<Optional> * user;
 @end
 

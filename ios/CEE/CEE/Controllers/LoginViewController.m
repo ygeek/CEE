@@ -116,7 +116,7 @@
     [SVProgressHUD show];
     [[CEELoginAPI api] loginWithUsername:self.phoneField.text password:self.passwordField.text]
     .then(^(NSString *authToken) {
-         return [[CEEUserSession session] loggedInWithAuth:authToken platform:kCEEPlatformMobile];
+        return [[CEEUserSession session] loggedInWithAuth:authToken username:self.phoneField.text platform:kCEEPlatformMobile];
     }).then(^{
         [SVProgressHUD dismiss];
     }).catch(^(NSError *error) {
@@ -125,8 +125,8 @@
 }
 
 - (void)loginQQPressed:(id)sender {
-    [[CEESDKManager sharedInstance] loginQQInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
-        [[CEEUserSession session] loggedInWithAuth:authToken platform:kCEEPlatformQQ];
+    [[CEESDKManager sharedInstance] loginQQInViewController:self].then(^(NSString * authToken, NSString * username, CEEJSONUserProfile * userProfile){
+        [[CEEUserSession session] loggedInWithAuth:authToken username:username platform:kCEEPlatformQQ];
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;
         }
@@ -136,8 +136,9 @@
 }
 
 - (void)loginWechatPressed:(id)sender {
-    [[CEESDKManager sharedInstance] loginWeixinInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
-        [[CEEUserSession session] loggedInWithAuth:authToken platform:kCEEPlatformWeixin];
+    [[CEESDKManager sharedInstance] loginWeixinInViewController:self]
+    .then(^(NSString * authToken, NSString * username, CEEJSONUserProfile * userProfile){
+        [[CEEUserSession session] loggedInWithAuth:authToken username:username platform:kCEEPlatformWeixin];
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;
         }
@@ -147,8 +148,8 @@
 }
 
 - (void)loginWeiboPressed:(id)sender {
-    [[CEESDKManager sharedInstance] loginWeiboInViewController:self].then(^(NSString * authToken, CEEJSONUserProfile * userProfile){
-        [[CEEUserSession session] loggedInWithAuth:authToken platform:kCEEPlatformWeibo];
+    [[CEESDKManager sharedInstance] loginWeiboInViewController:self].then(^(NSString * authToken, NSString * username, CEEJSONUserProfile * userProfile){
+        [[CEEUserSession session] loggedInWithAuth:authToken username:username platform:kCEEPlatformWeibo];
         if (userProfile) {
             [CEEUserSession session].userProfile = userProfile;
         }

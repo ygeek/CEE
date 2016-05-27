@@ -31,7 +31,7 @@
 
 
 #import "CEESDKManager.h"
-
+#import "CEEImageManager.h"
 #import "CEELoginThirdPartyAPI.h"
 
 
@@ -219,9 +219,18 @@
               snsAccount.usid,
               snsAccount.accessToken,
               snsAccount.iconURL);
+        
         return [[CEELoginThirdpartyAPI api] loginWithUid:snsAccount.usid
                                                 platform:ceePlatform
-                                             accessToken:snsAccount.accessToken];
+                                             accessToken:snsAccount.accessToken]
+        .then(^(NSString * auth, NSString * username, CEEJSONUserInfo * user) {
+            return [[CEEImageManager manager] downloadHeadForUsername:username withURL:snsAccount.iconURL].then(^{
+                return PMKManifold(auth, username, user);
+            }).catch(^(NSError *error) {
+                NSLog(@"download head icon error: %@", error);
+                return PMKManifold(auth, username, user);
+            });
+        });
     });
 }
 

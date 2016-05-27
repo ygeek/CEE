@@ -52,6 +52,7 @@
                               if (shouldRelogin.boolValue) {
                                   [[CEEDatabase db] clearAuthToken];
                                   self.authToken = nil;
+                                  self.username = nil;
                                   self.userProfile = nil;
                                   self.authorizationFailed = NO;
                                   [[CEEAPIClient client].requestSerializer clearAuthorizationHeader];
@@ -89,14 +90,16 @@
 
 - (void)load {
     NSString * authToken = [[CEEDatabase db] loadAuthToken];
+    NSString * username = [[CEEDatabase db] loadUsername];
     NSString * platform = [[CEEDatabase db] loadPlatform];
-    [self loggedInWithAuth:authToken platform:platform];
+    [self loggedInWithAuth:authToken username:username platform:platform];
 }
 
-- (AnyPromise *)loggedInWithAuth:(NSString *)auth platform:(NSString *)platform {
+- (AnyPromise *)loggedInWithAuth:(NSString *)auth username:(NSString *)username platform:(NSString *)platform {
     NSLog(@"auth token: %@", auth);
-    [[CEEDatabase db] saveAuthToken:auth platform:platform];
+    [[CEEDatabase db] saveAuthToken:auth username:username platform:platform];
     self.authToken = auth;
+    self.username = username;
     if (auth && auth.length > 0) {
         [[CEEAPIClient client].requestSerializer setValue:[NSString stringWithFormat:@"Token %@", auth]
                                        forHTTPHeaderField:@"Authorization"];

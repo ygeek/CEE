@@ -7,7 +7,9 @@
 //
 
 @import Masonry;
+@import SVProgressHUD;
 @import OAStackView;
+@import DZNPhotoPickerController;
 
 #import "UserProfileViewController.h"
 #import "UserFriendsViewController.h"
@@ -18,7 +20,9 @@
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
 #import "CEEUserInfoAPI.h"
+#import "CEEUploadManager.h"
 #import "SettingViewController.h"
+#import "CEESaveUserProfileAPI.h"
 
 
 #define kMedalNormalCellIdentifier @"kMedalNormalCellIdentifier"
@@ -26,7 +30,11 @@
 #define kMedalHeaderIdentifier     @"kMedalHeaderIdentifier"
 
 
-@interface UserProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface UserProfileViewController () <UICollectionViewDelegate,
+                                         UICollectionViewDataSource,
+                                         UINavigationControllerDelegate,
+                                         UIImagePickerControllerDelegate>
+@property (nonatomic, strong) UserProfileView * profileView;
 @property (nonatomic, strong) UICollectionView * collectionView;
 @property (nonatomic, strong) CEEJSONUserInfo * userInfo;
 @property (nonatomic, assign) BOOL isAppeared;
@@ -113,6 +121,52 @@
     [self.navigationController pushViewController:friendsVC animated:YES];
 }
 
+- (void)headTapped:(id)sender {
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    picker.cropMode = DZNPhotoEditorViewControllerCropModeCircular;
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    UIImage * headImage = (UIImage *)[info objectForKey:UIImagePickerControllerEditedImage];
+    if (headImage) {
+        [SVProgressHUD show];
+        [[CEEUploadManager manager] uploadPNG:[headImage imageScaleToWidth:200]]
+        .then(^(NSString * key) {
+            CEEJSONUserProfile * userProfile = [CEEUserSession session].userProfile;
+            CEESaveUserProfileRequest * request = [[CEESaveUserProfileRequest alloc] init];
+            request.nickname = userProfile.nickname;
+            request.head_img_key = key;
+            request.sex = userProfile.sex;
+            request.location = userProfile.location;
+            if (userProfile.birthday) {
+                request.birthday = @([userProfile.birthday timeIntervalSince1970]);
+            }
+            return [[CEESaveUserProfileAPI api] saveUserProfile:request].then(^{
+                return key;
+            });
+        }).then(^(NSString * key) {
+            [CEEUserSession session].userProfile.head_img_key = key;
+            [self.profileView.headImageView cee_setImageWithKey:key];
+            [SVProgressHUD dismiss];
+        }).catch(^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        });
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -139,28 +193,33 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UserProfileView * profileView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                                           withReuseIdentifier:kMedalHeaderIdentifier
-                                                                                  forIndexPath:indexPath];
+        if (!self.profileView) {
+            self.profileView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                  withReuseIdentifier:kMedalHeaderIdentifier
+                                                                         forIndexPath:indexPath];
+            UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headTapped:)];
+            self.profileView.headImageView.userInteractionEnabled = YES;
+            [self.profileView.headImageView addGestureRecognizer:tapRecognizer];
+        }
         CEEJSONUserProfile * profile = [CEEUserSession session].userProfile;
         UIImage * defaultHead = [UIImage imageNamed:@"cee-头像"];
         if (profile.head_img_key && profile.head_img_key.length > 0) {
-            [profileView.headImageView cee_setImageWithKey:profile.head_img_key
-                                               placeholder:defaultHead];
+            [self.profileView.headImageView cee_setImageWithKey:profile.head_img_key
+                                                    placeholder:defaultHead];
         } else {
-            profileView.headImageView.image = defaultHead;
+            self.profileView.headImageView.image = defaultHead;
         }
-        profileView.nicknameLabel.text = profile.nickname;
-        profileView.coinLabel.text = self.userInfo.coin.stringValue ?: @"0";
-        profileView.friendsLabel.text = self.userInfo.friend_num.stringValue ?: @"0";
+        self.profileView.nicknameLabel.text = profile.nickname;
+        self.profileView.coinLabel.text = self.userInfo.coin.stringValue ?: @"0";
+        self.profileView.friendsLabel.text = self.userInfo.friend_num.stringValue ?: @"0";
         
-        profileView.friendsLabel.userInteractionEnabled = YES;
-        if (profileView.friendsLabel.gestureRecognizers.count == 0) {
+        self.profileView.friendsLabel.userInteractionEnabled = YES;
+        if (self.profileView.friendsLabel.gestureRecognizers.count == 0) {
             UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(friendsTapped:)];
-            [profileView.friendsLabel addGestureRecognizer:tapRecognizer];
+            [self.profileView.friendsLabel addGestureRecognizer:tapRecognizer];
         }
         
-        return profileView;
+        return self.profileView;
     }
     return nil;
 }

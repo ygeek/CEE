@@ -71,4 +71,40 @@
     });
 }
 
+- (AnyPromise *)downloadImageForURL:(NSString *)url {
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
+        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url]
+                                                        options:SDWebImageRetryFailed
+                                                       progress:
+         ^(NSInteger receivedSize, NSInteger expectedSize) {
+             NSLog(@"download image %@: %ld/%ld", url, receivedSize, expectedSize);
+         } completed:
+         ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+             resolve(image ?: error);
+         }];
+    }];
+}
+
+- (AnyPromise *)downloadHeadForUsername:(NSString *)username withURL:(NSString *)url {
+    return [self downloadImageForURL:url].thenInBackground(^(UIImage * image) {
+        NSString *filePath = [self headImagePathForUsername:username];
+        [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
+        return image;
+    });
+}
+
+- (UIImage *)checkHeadForUsername:(NSString *)username {
+    NSString * filePath = [self headImagePathForUsername:username];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        return [UIImage imageWithContentsOfFile:filePath];
+    } else {
+        return nil;
+    }
+}
+
+- (NSString *)headImagePathForUsername:(NSString *)username {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", username]];
+}
+
 @end

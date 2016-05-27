@@ -24,6 +24,7 @@
 #import "CEEUserSession.h"
 #import "UIImage+Utils.h"
 #import "CEEUploadManager.h"
+#import "CEEImageManager.h"
 
 #define kLocatingText @"定位中"
 
@@ -85,11 +86,15 @@
                                           target:self
                                           action:@selector(backPressed:)];
    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChangeFrameNotification:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
+    
+    UIImage * headImage = [[CEEImageManager manager] checkHeadForUsername:[CEEUserSession session].username];
+    if (headImage) {
+        self.photo = headImage;
+    }
     
     @weakify(self)
     [RACObserve(self, sex) subscribeNext:^(NSString * sex) {
