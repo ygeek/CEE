@@ -22,6 +22,13 @@
     });
 }
 
+- (AnyPromise *)fetchFriendMedals:(NSNumber *)friendId {
+    NSString * url = [NSString stringWithFormat:@"/api/v1/user/medals/%@/", friendId];
+    return [self promiseGET:url withParams:nil].then(^(CEEMedalListResponse *response) {
+        return response.medals;
+    });
+}
+
 - (Class)responseSuccessClass {
     return [CEEMedalListResponse class];
 }

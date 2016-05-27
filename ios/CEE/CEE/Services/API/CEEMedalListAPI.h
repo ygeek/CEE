@@ -19,4 +19,7 @@
 
 - (AnyPromise *)fetchMedals;
 
+- (AnyPromise *)fetchFriendMedals:(NSNumber *)friendId;
+
 @end
+

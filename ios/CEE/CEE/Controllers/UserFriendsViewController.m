@@ -19,6 +19,8 @@
 #import "AppearanceConstants.h"
 #import "CEENotificationNames.h"
 #import "SettingViewController.h"
+#import "FriendProfileViewController.h"
+#import "CEEMedalListAPI.h"
 
 
 #define kUserFriendCellIdentifier @"kUserFriendCellIdentifier"
@@ -82,6 +84,7 @@
     self.tableView.rowHeight = 110;
     [self.tableView registerClass:[UserFriendTableViewCell class] forCellReuseIdentifier:kUserFriendCellIdentifier];
     UITapGestureRecognizer * tapRecognizer2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
+    [tapRecognizer2 setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapRecognizer2];
     [self.view addSubview:self.tableView];
     
@@ -191,6 +194,23 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell loadFriendInfo:self.friends[indexPath.row]];
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CEEJSONFriendInfo * friendInfo = self.friends[indexPath.row];
+    [SVProgressHUD show];
+    [[CEEMedalListAPI api] fetchFriendMedals:friendInfo.id].then(^(NSArray *medals) {
+        FriendProfileViewController * vc = [[FriendProfileViewController alloc] init];
+        vc.friendInfo = friendInfo;
+        vc.medals = medals;
+        [self.navigationController pushViewController:vc animated:YES];
+        [SVProgressHUD dismiss];
+    }).catch(^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    });
 }
 
 #pragma mark - UITextFieldDelegate

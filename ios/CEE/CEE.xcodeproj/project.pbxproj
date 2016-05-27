@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB07D13A1CF8918D00D5E0A3 /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07D1391CF8918D00D5E0A3 /* JSONValueTransformer+NSDate.m */; };
+		BB07D13D1CF8993C00D5E0A3 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB07D13C1CF8993C00D5E0A3 /* FriendProfileViewController.m */; };
 		BB29EF401CC90A3F001C25B6 /* CityData.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB29EF341CC90A3F001C25B6 /* CityData.plist */; };
 		BB29EF411CC90A3F001C25B6 /* TLCity.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF361CC90A3F001C25B6 /* TLCity.m */; };
 		BB29EF421CC90A3F001C25B6 /* TLCityGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29EF381CC90A3F001C25B6 /* TLCityGroupCell.m */; };
@@ -171,6 +172,8 @@
 		7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.debug.xcconfig"; sourceTree = "<group>"; };
 		BB07D1381CF8918D00D5E0A3 /* JSONValueTransformer+NSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSDate.h"; sourceTree = "<group>"; };
 		BB07D1391CF8918D00D5E0A3 /* JSONValueTransformer+NSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSDate.m"; sourceTree = "<group>"; };
+		BB07D13B1CF8993C00D5E0A3 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
+		BB07D13C1CF8993C00D5E0A3 /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
 		BB29EF341CC90A3F001C25B6 /* CityData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CityData.plist; sourceTree = "<group>"; };
 		BB29EF351CC90A3F001C25B6 /* TLCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCity.h; sourceTree = "<group>"; };
 		BB29EF361CC90A3F001C25B6 /* TLCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCity.m; sourceTree = "<group>"; };
@@ -808,6 +811,8 @@
 				BB4184331CF5CB6400E9B983 /* FeedbackViewController.m */,
 				BBEB52A01CF6056F008C3EF0 /* ForgetViewController.h */,
 				BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */,
+				BB07D13B1CF8993C00D5E0A3 /* FriendProfileViewController.h */,
+				BB07D13C1CF8993C00D5E0A3 /* FriendProfileViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1154,6 +1159,7 @@
 				BBA2F7A21CDF3A22004A5585 /* CEEMessageListAPI.m in Sources */,
 				BB6103A71CC5199100350809 /* FillProfileViewController.m in Sources */,
 				BB29EF631CCC6E3A001C25B6 /* MapAnchorView.m in Sources */,
+				BB07D13D1CF8993C00D5E0A3 /* FriendProfileViewController.m in Sources */,
 				BB32091E1CD6CC86009D1862 /* HUDCouponCodeViewController.m in Sources */,
 				BB61039B1CC478C200350809 /* LoginViewController.m in Sources */,
 				BB3D83F81CE6227300C7057D /* CEECompletedMapCountAPI.m in Sources */,

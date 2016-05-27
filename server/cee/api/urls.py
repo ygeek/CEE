@@ -27,6 +27,7 @@ urlpatterns = [
 
     # User(open)
     url(r'^v1/user/medals/$', UserMedalList.as_view()),
+    url(r'^v1/user/medals/(?P<friend_id>\d+)/$', FriendMedalList.as_view()),
     url(r'^v1/user/friends/$', UserFriendList.as_view()),
     url(r'^v1/user/info/$', UserInfo.as_view()),
     url(r'^v1/user/addfriends/', AddFriends.as_view()),
