@@ -114,6 +114,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.selectedIndex = 2;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(networkErrorNotification:)
                                                  name:kCEENetworkErrorNotificationName

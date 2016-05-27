@@ -9,6 +9,7 @@
 @import ReactiveCocoa;
 @import Masonry;
 @import SVProgressHUD;
+@import JTSImageViewController;
 
 
 #import "StoryTextPuzzleViewController.h"
@@ -53,6 +54,10 @@
     [self.contentView addSubview:self.backgroundView];
     
     self.imageView = [[UIImageView alloc] init];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer * imageTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    [self.imageView addGestureRecognizer:imageTapRecognizer];
     [self.contentView addSubview:self.imageView];
     
     self.messageLabel = [[UILabel alloc] init];
@@ -199,6 +204,23 @@
 
 - (void)backgroundTapped:(id)sender {
     [self.view endEditing:YES];
+}
+
+- (void)imageTapped:(id)sender {
+    // Create image info
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = self.imageView.image;
+    imageInfo.referenceRect = self.imageView.frame;
+    imageInfo.referenceView = self.imageView.superview;
+    
+    // Setup view controller
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+    
+    // Present the view controller.
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOffscreen];
 }
 
 - (void)keyboardWillChangeFrameNotification:(NSNotification *)notification {

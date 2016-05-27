@@ -112,10 +112,10 @@
         [self.view layoutIfNeeded];
         if (!maps || maps.count == 0) {
             self.panelOffset.offset(96);
-            self.contentScrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+            self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         } else {
             self.panelOffset.offset(-49);
-            self.contentScrollView.contentInset = UIEdgeInsetsMake(64, 0, 96, 0);
+            self.contentScrollView.contentInset = UIEdgeInsetsMake(0, 0, 96, 0);
         }
         [UIView promiseWithDuration:0.3
                               delay:0

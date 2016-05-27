@@ -31,5 +31,6 @@ target 'CEE' do
     pod 'OAStackView'
     pod 'UMengSocialCOM'
     pod 'mailcore2-ios'
+    pod 'JTSImageViewController'
 end
 

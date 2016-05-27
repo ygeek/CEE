@@ -24,6 +24,7 @@ PODS:
   - DZNPhotoPickerController/Editor (2.0)
   - HappyDNS (0.2.3)
   - JSONModel (1.2.0)
+  - JTSImageViewController (1.5.1)
   - mailcore2-ios (0.6.4)
   - Masonry (1.0.0)
   - MOBFoundation_IDFA (1.5.1)
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - AVOSCloudIM
   - DZNPhotoPickerController/Editor (from `https://github.com/nightfade/DZNPhotoPickerController.git`)
   - JSONModel
+  - JTSImageViewController
   - mailcore2-ios
   - Masonry
   - MOBFoundation_IDFA
@@ -132,6 +134,7 @@ SPEC CHECKSUMS:
   DZNPhotoPickerController: 1a9b83a53a2f35094e35c163417ab0aeb8653fd1
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+  JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   mailcore2-ios: 3ff0be2fa553d4da9c11d39c11d51863c768f24f
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MOBFoundation_IDFA: f5d3d1f89166f60c6985e34b7d90e6fb5d58fb61

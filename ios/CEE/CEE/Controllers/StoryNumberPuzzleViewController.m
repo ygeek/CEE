@@ -9,6 +9,7 @@
 @import Masonry;
 @import ReactiveCocoa;
 @import SVProgressHUD;
+@import JTSImageViewController;
 
 
 #import "StoryNumberPuzzleViewController.h"
@@ -36,6 +37,10 @@
     [self.view addSubview:self.backgroundView];
    
     self.imageView = [[UIImageView alloc] init];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    [self.imageView addGestureRecognizer:tapRecognizer];
     [self.view addSubview:self.imageView];
     
     self.messageLabel = [[UILabel alloc] init];
@@ -121,6 +126,23 @@
 
 - (void)backPressed:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imageTapped:(id)sender {
+    // Create image info
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = self.imageView.image;
+    imageInfo.referenceRect = self.imageView.frame;
+    imageInfo.referenceView = self.imageView.superview;
+    
+    // Setup view controller
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
+    
+    // Present the view controller.
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOffscreen];
 }
 
 - (void)archivePressed:(id)sender {
