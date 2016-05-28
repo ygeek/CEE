@@ -15,4 +15,5 @@ class UserMapSerializer(serializers.ModelSerializer):
                   'icon_key',
                   'summary_image_key',
                   'city',
+                  'published',
                   'completed')

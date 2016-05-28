@@ -17,6 +17,7 @@ class Map(models.Model):
     summary_image_key = models.CharField(max_length=100)
     city = models.ForeignKey(City,
                              related_name='maps')
+    published = models.BooleanField(default=False)
     owners = models.ManyToManyField(User,
                                     through='UserMap',
                                     related_name='maps')

@@ -21,7 +21,7 @@ class CityStoryList(APIView):
     def get(self, request, city_key):
         try:
             city = City.objects.get(key=city_key)
-            stories = city.stories
+            stories = city.stories if request.user.is_staff else city.stories.filter(published=True)
             serializer = UserStorySerializer(stories, many=True)
             return Response({
                 'code': 0,

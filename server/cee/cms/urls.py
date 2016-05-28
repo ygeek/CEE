@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^maps/$', views.MapList.as_view(), name='cms-maps'),
     url(r'^map/add/$', views.AddMap.as_view(), name='cms-add-map'),
     url(r'^map/(?P<pk>[0-9]+)/edit/$', views.EditMap.as_view(), name='cms-edit-map'),
+    url(r'^map/(?P<map_id>[0-9]+)/publish/$', views.PublishMap.as_view(), name='cms-publish-map'),
+    url(r'^map/(?P<map_id>[0-9]+)/withdraw/$', views.WithdrawMap.as_view(), name='cms-withdraw-map'),
     url(r'^map/(?P<pk>[0-9]+)/delete/$', views.DeleteMap.as_view(), name='cms-delete-map'),
     url(r'^map/(?P<map_id>[0-9]+)/anchors/$', views.AnchorList.as_view(), name='cms-anchor-list'),
     url(r'^map/(?P<map_id>[0-9]+)/anchor/add/$', views.AddAnchor.as_view(), name='cms-add-anchor'),
@@ -30,6 +32,8 @@ urlpatterns = [
     url(r'^stories/$', views.StoryList.as_view(), name='cms-stories'),
     url(r'^story/add/$', views.AddStory.as_view(), name='cms-add-story'),
     url(r'^story/(?P<pk>[0-9]+)/edit/$', views.EditStory.as_view(), name='cms-edit-story'),
+    url(r'^story/(?P<story_id>[0-9]+)/publish/$', views.PublishStory.as_view(), name='cms-publish-story'),
+    url(r'^story/(?P<story_id>[0-9]+)/withdraw/$', views.WithdrawStory.as_view(), name='cms-withdraw-story'),
     url(r'^story/(?P<pk>[0-9]+)/delete/$', views.DeleteStory.as_view(), name='cms-delete-story'),
 
     url(r'^story/(?P<story_id>[0-9]+)/items/$', views.ItemList.as_view(), name='cms-item-list'),

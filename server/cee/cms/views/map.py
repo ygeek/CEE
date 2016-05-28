@@ -4,10 +4,11 @@ from __future__ import unicode_literals
 
 import json
 
+from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.forms import ModelForm
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView, FormView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Map, Anchor, Story, Task, Medal
@@ -58,6 +59,32 @@ class EditMap(UpdateView):
     template_name = 'cms/map_form.html'
     success_url = reverse_lazy('cms-maps')
     form_class = MapForm
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class PublishMap(View):
+    def get(self, request, map_id):
+        map_id = int(map_id)
+        try:
+            map_ = Map.objects.get(id=map_id)
+            map_.published = True
+            map_.save()
+        except Map.DoesNotExist:
+            pass
+        return redirect('cms-maps')
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class WithdrawMap(View):
+    def get(self, request, map_id):
+        map_id = int(map_id)
+        try:
+            map_ = Map.objects.get(id=map_id)
+            map_.published = False
+            map_.save()
+        except Map.DoesNotExist:
+            pass
+        return redirect('cms-maps')
 
 
 @method_decorator(staff_member_required, name='dispatch')

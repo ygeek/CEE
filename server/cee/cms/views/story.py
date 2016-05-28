@@ -2,11 +2,13 @@
 
 from __future__ import unicode_literals
 
+from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.db import transaction
 from django.forms import ModelForm, ChoiceField
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
 from api.models import Story, Level, StoryLevel, Item, StoryItem
@@ -69,6 +71,32 @@ class EditStory(UpdateView):
     template_name = 'cms/story_form.html'
     success_url = reverse_lazy('cms-stories')
     form_class = StoryForm
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class PublishStory(View):
+    def get(self, request, story_id):
+        story_id = int(story_id)
+        try:
+            story = Story.objects.get(id=story_id)
+            story.published = True
+            story.save()
+        except Story.DoesNotExist:
+            pass
+        return redirect('cms-stories')
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class WithdrawStory(View):
+    def get(self, request, story_id):
+        story_id = int(story_id)
+        try:
+            story = Story.objects.get(id=story_id)
+            story.published = False
+            story.save()
+        except Story.DoesNotExist:
+            pass
+        return redirect('cms-stories')
 
 
 @method_decorator(staff_member_required, name='dispatch')

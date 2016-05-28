@@ -24,6 +24,7 @@ class UserStorySerializer(serializers.ModelSerializer):
             'image_keys',
             'tour_image_key',
             'hud_image_key',
+            'published',
             'completed',
             'progress',
             'like',

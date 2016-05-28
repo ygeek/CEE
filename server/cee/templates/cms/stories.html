@@ -41,6 +41,11 @@
                             <a href="{% url 'cms-edit-story' pk=story.id %}" class="btn btn-info btn-sm">详情</a>
                             <a href="{% url 'cms-level-list' story_id=story.id %}" class="btn btn-success btn-sm">管理关卡</a>
                             <a href="{% url 'cms-item-list' story_id=story.id %}" class="btn btn-warning btn-sm">管理道具</a>
+                            {% if story.published %}
+                                <a href="{% url 'cms-withdraw-story' story_id=story.id %}" class="btn btn-warning btn-sm">撤回故事</a>
+                            {% else %}
+                                <a href="{% url 'cms-publish-story' story_id=story.id %}" class="btn btn-info btn-sm">发布故事</a>
+                            {% endif %}
                             <a href="{% url 'cms-delete-story' pk=story.id %}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>

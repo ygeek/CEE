@@ -81,7 +81,7 @@ class NearestMap(APIView):
         if city_key is not None:
             sql += "AND `city_id`='%s'\n" % city_key
         sql += 'LIMIT 1'
-        maps = list(Map.objects.raw(sql))
+        maps = filter(lambda m: m.published or user.is_staff, list(Map.objects.raw(sql)))
         if not maps: return None
         map_ = maps[0]
         user_map, created = UserMap.objects.get_or_create(

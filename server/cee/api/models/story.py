@@ -20,6 +20,7 @@ class Story(models.Model):
     image_keys = JsonField()
     tour_image_key = models.CharField(max_length=100)
     hud_image_key = models.CharField(max_length=100)
+    published = models.BooleanField(default=False)
     owners = models.ManyToManyField(User,
                                     through='UserStory',
                                     related_name='stories')
