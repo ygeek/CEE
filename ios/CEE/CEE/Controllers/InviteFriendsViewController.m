@@ -185,7 +185,7 @@
     
     cell.friendInfo = friendInfo;
     [cell.iconView cee_setImageWithKey:friendInfo.head_img_key placeholder:[UIImage imageNamed:@"cee-头像"]];
-    cell.nameLabel.text = friendInfo.nickname ?: friendInfo.username;
+    cell.nameLabel.text = friendInfo.nickname ?: @"无名氏"; //friendInfo.username;
     cell.detailLabel.text = friendInfo.comment;
     [cell.followButton removeTarget:nil
                              action:NULL

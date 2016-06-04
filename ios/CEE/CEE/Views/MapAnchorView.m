@@ -65,16 +65,16 @@ NSString * const kAnchorTypeNameTask = @"task";
     _anchorType = anchorType;
     switch (anchorType) {
         case MapAnchorTypeTask:
-            self.iconView.image = [UIImage imageNamed:@"地图定位"];
+            self.iconView.image = [UIImage new]; //[UIImage imageNamed:@"地图定位"];
             break;
         case MapAnchorTypeStory:
-            self.iconView.image = [UIImage imageNamed:@"地图定位_story"];
+            self.iconView.image = [UIImage new]; //[UIImage imageNamed:@"地图定位_story"];
             break;
         case MapAnchorTypeTaskFinished:
-            self.iconView.image = [UIImage imageNamed:@"地图定位_黑"];
+            self.iconView.image = [UIImage new]; //[UIImage imageNamed:@"地图定位_黑"];
             break;
         case MapAnchorTypeStoryFinished:
-            self.iconView.image = [UIImage imageNamed:@"黑色story"];
+            self.iconView.image = [UIImage new]; //[UIImage imageNamed:@"黑色story"];
             break;
         default:
             break;
