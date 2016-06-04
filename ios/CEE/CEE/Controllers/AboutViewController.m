@@ -78,7 +78,7 @@
     self.weixinCell.textLabel.text = @"关注微信";
     self.weixinCell.textLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:12];
     self.weixinCell.textLabel.textColor = kCEETextLightBlackColor;
-    self.weixinCell.detailTextLabel.text = @"ABCDEFG";
+    self.weixinCell.detailTextLabel.text = @"@ceeapp";
     self.weixinCell.detailTextLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:14];
     self.weixinCell.detailTextLabel.textColor = kCEETextLightBlackColor;
     
@@ -174,7 +174,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://ceeapp.cn"]];
+    }
 }
-
 
 @end
