@@ -102,7 +102,7 @@
         .then(^(NSArray<CEEJSONFriendInfo *> *mobileFriends) {
             [CEEUserSession session].mobileFriends = [mobileFriends mutableCopy];
             for (CEEJSONFriendInfo * friendInfo in [CEEUserSession session].mobileFriends) {
-                friendInfo.comment = friendInfo.username;
+                friendInfo.comment = @"来自通讯录"; //friendInfo.username;
             }
             [self.users addObjectsFromArray:[CEEUserSession session].mobileFriends];
             //return [[CEEUserSession session] loadFriends];
