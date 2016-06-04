@@ -29,6 +29,7 @@
 #import "CEEStoryDetailAPI.h"
 #import "CEEMessagesManager.h"
 #import "ProgressBatteryView.h"
+#import "StoryMemoryViewController.h"
 
 
 @interface StoryCoverViewController () <UIScrollViewDelegate>
@@ -394,13 +395,30 @@
     [[CEEStoriesManager manager] downloadStoryWithID:self.story.id]
     .then(^(NSArray * levelsAndItems) {
         [hud dismissViewControllerAnimated:YES completion:^{
-            StoryLevelsRootViewController * levelsRoot = [[StoryLevelsRootViewController alloc] init];
-            levelsRoot.story = self.story;
-            levelsRoot.levels = levelsAndItems[0];
-            levelsRoot.items = levelsAndItems[1];
-            [levelsRoot nextLevel];
-            [[CEEMessagesManager manager] notifyRunningStory:self.story];
-            [self.rdv_tabBarController presentViewController:levelsRoot animated:YES completion:nil];
+            if (self.story.completed.boolValue) {
+                StoryMemoryViewController * memoryVC = [[StoryMemoryViewController alloc] init];
+                
+                NSMutableArray<CEEJSONLevel *> * memoryLevels = [NSMutableArray array];
+                for (CEEJSONLevel * level in levelsAndItems[0]) {
+                    NSString * type = level.content[@"type"];
+                    if ([type isEqualToString:@"dialog"] ||
+                        [type isEqualToString:@"video"]) {
+                        [memoryLevels addObject:level];
+                    }
+                }
+                
+                memoryVC.levels = memoryLevels;
+                UINavigationController * navVC = [[UINavigationController alloc] initWithRootViewController:memoryVC];
+                [self.rdv_tabBarController presentViewController:navVC animated:YES completion:nil];
+            } else {
+                StoryLevelsRootViewController * levelsRoot = [[StoryLevelsRootViewController alloc] init];
+                levelsRoot.story = self.story;
+                levelsRoot.levels = levelsAndItems[0];
+                levelsRoot.items = levelsAndItems[1];
+                [levelsRoot nextLevel];
+                [[CEEMessagesManager manager] notifyRunningStory:self.story];
+                [self.rdv_tabBarController presentViewController:levelsRoot animated:YES completion:nil];
+            }
         }];
     });
 }
