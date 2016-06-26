@@ -11,6 +11,7 @@ from .story import *
 from .qiniu import *
 from .level import *
 from .task import *
+from .medal import *
 
 def index(request):
     return render(request, "cms/index.html")

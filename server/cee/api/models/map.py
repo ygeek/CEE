@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import geohash
 from .city import *
+from .medal import *
 
 
 class Map(models.Model):
@@ -21,6 +22,10 @@ class Map(models.Model):
     owners = models.ManyToManyField(User,
                                     through='UserMap',
                                     related_name='maps')
+    medal = models.ForeignKey(Medal,
+                              null=True,
+                              blank=True,
+                              related_name='map')
 
     def save(self, *args, **kwargs):
         self.geohash = geohash.encode(longitude=self.longitude, latitude=self.latitude)

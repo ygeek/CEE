@@ -42,7 +42,6 @@
                         <td>
                             <a href="{% url 'cms-edit-map' pk=map.id %}" class="btn btn-info btn-sm">详情</a>
                             <a href="{% url 'cms-anchor-list' map_id=map.id %}" class="btn btn-success btn-sm">管理锚点</a>
-                            <a href="{% url 'cms-edit-medal' map_id=map.id %}" class="btn btn-success btn-sm">编辑徽章</a>
                             {% if map.published %}
                                 <a href="{% url 'cms-withdraw-map' map_id=map.id %}" class="btn btn-warning btn-sm">撤回地图</a>
                             {% else %}
