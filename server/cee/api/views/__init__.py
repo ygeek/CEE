@@ -19,6 +19,7 @@ from .level import *
 from .item import *
 from .userInfo import *
 from .message import *
+from .activity import *
 
 
 class Hello(APIView):

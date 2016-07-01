@@ -71,4 +71,9 @@ urlpatterns = [
     url(r'^medal/add/$', views.AddMedal.as_view(), name='cms-add-medal'),
     url(r'^medal/(?P<pk>[0-9]+)/edit/$', views.EditMedal.as_view(), name='cms-edit-medal'),
     url(r'^medal/(?P<pk>[0-9]+)/delete/$', views.DeleteMedal.as_view(), name='cms-delete-medal'),
+
+    url(r'^login_awards/$', views.LoginAwardList.as_view(), name='cms-login-awards'),
+    url(r'^login_award/add/$', views.AddLoginAward.as_view(), name='cms-add-login-award'),
+    url(r'^login_award/(?P<pk>[0-9]+)/edit/$', views.EditLoginAward.as_view(), name='cms-edit-login-award'),
+    url(r'^login_award/(?P<pk>[0-9]+)/delete/$', views.DeleteLoginAward.as_view(), name='cms-delete-login-award'),
 ]

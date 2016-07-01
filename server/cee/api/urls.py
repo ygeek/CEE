@@ -30,12 +30,12 @@ urlpatterns = [
     url(r'^v1/user/medals/(?P<friend_id>\d+)/$', FriendMedalList.as_view()),
     url(r'^v1/user/friends/$', UserFriendList.as_view()),
     url(r'^v1/user/info/$', UserInfo.as_view()),
-    url(r'^v1/user/addfriends/', AddFriends.as_view()),
-    url(r'^v1/user/addweibofriends/', AddWeiboFriends.as_view()),
-    url(r'v1/user/checkfriends/', CheckFriends.as_view()),
-    url(r'v1/user/checkweibofriends/', CheckWeiboFriends.as_view()),
-    url(r'v1/user/followfriend/', FollowFriend.as_view()),
-    url(r'v1/user/searchfriends/', SearchFriends.as_view()),
+    url(r'^v1/user/addfriends/$', AddFriends.as_view()),
+    url(r'^v1/user/addweibofriends/$', AddWeiboFriends.as_view()),
+    url(r'v1/user/checkfriends/$', CheckFriends.as_view()),
+    url(r'v1/user/checkweibofriends/$', CheckWeiboFriends.as_view()),
+    url(r'v1/user/followfriend/$', FollowFriend.as_view()),
+    url(r'v1/user/searchfriends/$', SearchFriends.as_view()),
 
     # Map
     url(remove_space(
@@ -82,6 +82,9 @@ urlpatterns = [
         ConsumeCoupon.as_view()),
 
     # Message
-    url(r'^v1/messages/(?P<timestamp>\d+)/', UserMessageList.as_view()),
-    url(r'^v1/message/(?P<message_id>\d+)/read/', UserMessageMarkRead.as_view()),
+    url(r'^v1/messages/(?P<timestamp>\d+)/$', UserMessageList.as_view()),
+    url(r'^v1/message/(?P<message_id>\d+)/read/$', UserMessageMarkRead.as_view()),
+
+    # Activity
+    url(r'^v1/login_awards/$', LoginAwards.as_view()),
 ]

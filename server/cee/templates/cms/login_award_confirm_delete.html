@@ -1,0 +1,19 @@
+{% extends 'cms/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}确认删除活动{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading">
+            确认删除活动
+        </header>
+        <div class="panel-body">
+            <form action="" method="post">{% csrf_token %}
+                <p>确定要删除活动："{{ login_award.id }}: {{ login_award.desc }}"？</p>
+                <input class="btn btn-danger" type="submit" value="确定"/>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'cms/base.html' %}
+
+{% block title %}活动{% endblock %}
+
+{% block content %}
+    <section class="panel">
+        <header class="panel-heading clearfix">
+            活动管理 ({{ object_list.count }})
+            <div class="pull-right">
+                <a href="{% url 'cms-add-login-award' %}" class="btn btn-success btn-sm">
+                    <i class="fa fa-plus-circle"></i>
+                    新增活动
+                </a>
+            </div>
+        </header>
+        <div class="table-responsive" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>活动说明</th>
+                    <th>奖励金币数量</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for login_award in login_awards %}
+                    <tr>
+                        <th scope="row">{{ login_award.id }}</th>
+                        <td>{{ login_award.desc }}</td>
+                        <td>{{ login_award.coin }}</td>
+                        <td>{{ login_award.gmt_start }}</td>
+                        <td>{{ login_award.gmt_end }}</td>
+                        <td>
+                            <a href="{% url 'cms-edit-login-award' pk=login_award.id %}" class="btn btn-info btn-sm">详情</a>
+                            <a href="{% url 'cms-delete-login-award' pk=login_award.id %}" class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="text-center">
+                {% include 'cms/pagninator.html' %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
