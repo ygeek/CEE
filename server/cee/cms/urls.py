@@ -66,4 +66,9 @@ urlpatterns = [
     url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/option/add/$', views.AddOption.as_view(), name='cms-add-option'),
     url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/option/(?P<pk>[0-9]+)/edit/$', views.EditOption.as_view(), name='cms-edit-option'),
     url(r'^task/(?P<task_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/option/(?P<pk>[0-9]+)/delete/$', views.DeleteOption.as_view(), name='cms-delete-option'),
+
+    url(r'^medals/$', views.MedalList.as_view(), name='cms-medals'),
+    url(r'^medal/add/$', views.AddMedal.as_view(), name='cms-add-medal'),
+    url(r'^medal/(?P<pk>[0-9]+)/edit/$', views.EditMedal.as_view(), name='cms-edit-medal'),
+    url(r'^medal/(?P<pk>[0-9]+)/delete/$', views.DeleteMedal.as_view(), name='cms-delete-medal'),
 ]

@@ -29,6 +29,7 @@ class TaskForm(ModelForm):
             'location',
             'coin',
             'award_image_key',
+            'medal',
         ]
         labels = {
             'name': '名称',
@@ -36,6 +37,7 @@ class TaskForm(ModelForm):
             'location': '位置',
             'coin': '金币',
             'award_image_key': '奖励图',
+            'medal': '徽章',
         }
 
 

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from .anchor import Anchor
+from .medal import *
 
 
 class Task(models.Model):
@@ -14,6 +15,11 @@ class Task(models.Model):
     owners = models.ManyToManyField(User,
                                     through='UserTask',
                                     related_name='tasks')
+    medal = models.ForeignKey(Medal,
+                              null=True,
+                              blank=True,
+                              related_name='task')
+
 
     def __unicode__(self):
         return '{0}:{1}'.format(self.name, self.location)

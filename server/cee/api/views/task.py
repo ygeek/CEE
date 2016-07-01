@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 from ..models.auth import *
 from ..models.task import *
 from ..serializers.task import *
+from ..serializers.medal import *
 
 
 class TaskDetail(APIView):
@@ -54,6 +55,7 @@ class CompleteTask(APIView):
             affect_rows = UserTask.objects.filter(
                 user=request.user, task=task, completed=False).update(
                     completed=True)
+            awards = []
             if affect_rows > 0: # TODO(stareven): do not check affect_rows
                 # TODO(stareven): coin change log
                 UserCoin.objects.get_or_create(
@@ -61,14 +63,23 @@ class CompleteTask(APIView):
                     user=request.user);
                 UserCoin.objects.filter(user=request.user).update(
                     amount=models.F('amount') + task.coin)
-                awards = [
-                    {
-                        'type': 'coin',
-                        'detail': {
-                            'amount': task.coin,
-                        }
+                awards.append({
+                    'type': 'coin',
+                    'detail': {
+                        'amount': task.coin,
                     }
-                ]
+                })
+                try:
+                    medal = task.medal
+                    user_medal, created = UserMedal.objects.get_or_create(
+                        user=request.user, medal=medal)
+                    serializer = MedalSerializer(medal)
+                    awards.append({
+                        'type': 'medal',
+                        'detail': serializer.data,
+                    })
+                except Medal.DoesNotExist:
+                    pass
             else:
                 awards = []
             return Response({
