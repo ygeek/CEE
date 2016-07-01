@@ -10,6 +10,8 @@ class Task(models.Model):
     name = models.CharField(max_length=30, unique=True)
     desc = models.TextField()
     location = models.TextField()
+    detail_location = models.TextField(null=True, blank=True)
+    phone = models.TextField(null=True, blank=True)
     coin = models.IntegerField()
     award_image_key = models.CharField(max_length=100)
     owners = models.ManyToManyField(User,

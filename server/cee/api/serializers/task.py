@@ -38,5 +38,7 @@ class UserTaskSerializer(serializers.ModelSerializer):
                   'name',
                   'desc',
                   'location',
+                  'detail_location',
+                  'phone',
                   'choices',
                   'completed')
