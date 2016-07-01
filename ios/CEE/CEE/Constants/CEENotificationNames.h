@@ -21,6 +21,7 @@
 #define kCEEHUDPresentNotificationName      @"kCEEHUDPresentNotificationName"
 #define kCEEHUDDismissNotificationName      @"kCEEHUDDismissNotificationName"
 #define kCEEFoundNewMapNotificationName  @"kCEEFoundNewMapNotificationName"
+#define kCEEDismissStoryCoverNOtificationName @"kCEEDismissStoryCoverNOtificationName"
 
 #define kCEEEventNameKey           @"kCEEEventKey"
 #define kCEEStoryCompleteAwardsKey @"kCEEStoryCompleteAwardsKey"

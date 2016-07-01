@@ -175,6 +175,18 @@
     }
 }
 
+- (void)loadFailedTemplate {
+    [self.picView cee_setImageWithKey:nil];
+    NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
+    NSAttributedString * moneyAttrStr =
+    [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%@", @(0)]
+                                    attributes:@{NSForegroundColorAttributeName: hexColor(0xdfaa4a),
+                                                 NSFontAttributeName:[UIFont fontWithName:kCEEFontNameRegular size:21]}];
+    NSMutableAttributedString * result = [[NSMutableAttributedString alloc] initWithAttributedString:coinAttrStr];
+    [result appendAttributedString:moneyAttrStr];
+    self.moneyLabel.attributedText = result;
+}
+
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey {
     CEEJSONAward * award = awards.firstObject;
     

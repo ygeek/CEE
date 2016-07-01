@@ -91,20 +91,32 @@
 }
 
 - (void)confirmPressed:(id)sender {
-    if ([self.task.choices[self.currentIndex] answer].integerValue != self.questionView.selectedIndex) {
-        self.everWrong = YES;
+    self.currentIndex++;
+    if (self.currentIndex >= self.task.choices.count) {
+        if (!self.everWrong) {
+            [self.delegate task:self.task completedInController:self];
+        } else {
+            [self.delegate task:self.task failedInController:self];
+        }
+    } else {
+        if ([self.task.choices[self.currentIndex] answer].integerValue != self.questionView.selectedIndex) {
+            self.everWrong = YES;
+        }
+        
+        [UIView transitionWithView:self.containerView
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        animations:^{
+                            [self loadChoiceAtIndex:self.currentIndex];
+                            /*
+                             [self.questionView removeFromSuperview];
+                             [self.containerView addSubview:self.answerView];
+                             [self.answerView mas_makeConstraints:^(MASConstraintMaker *make) {
+                             make.edges.equalTo(self.containerView);
+                             }];
+                             */
+                        } completion:NULL];
     }
-    
-    [UIView transitionWithView:self.containerView
-                      duration:0.3
-                       options:UIViewAnimationOptionTransitionFlipFromRight
-                    animations:^{
-                        [self.questionView removeFromSuperview];
-                        [self.containerView addSubview:self.answerView];
-                        [self.answerView mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.edges.equalTo(self.containerView);
-                        }];
-                    } completion:NULL];
 }
 
 - (void)nextPressed:(id)sender {

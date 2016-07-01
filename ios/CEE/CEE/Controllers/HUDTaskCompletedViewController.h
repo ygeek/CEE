@@ -19,4 +19,6 @@
 
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey;
 
+- (void)loadFailedTemplate;
+
 @end

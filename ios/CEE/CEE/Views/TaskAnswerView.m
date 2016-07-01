@@ -97,7 +97,7 @@
         make.top.equalTo(self.containerView.mas_top);
         make.left.equalTo(self.containerView.mas_left);
         make.right.equalTo(self.containerView.mas_right);
-        make.height.mas_equalTo(144);
+        make.height.mas_equalTo(180);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

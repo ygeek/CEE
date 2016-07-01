@@ -47,7 +47,8 @@
 @interface WorldViewController () <HUDViewDelegate,
                                    TaskViewControllerDelegate,
                                    MapPanelViewDelegate,
-                                   AcquiredMapsViewControllerDelegate>
+                                   AcquiredMapsViewControllerDelegate,
+                                   UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * contentScrollView;
 @property (nonatomic, strong) UIImageView * mapView;
 @property (nonatomic, strong) NSMutableArray<MapAnchorView *> * anchorViews;
@@ -68,6 +69,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.contentScrollView = [[UIScrollView alloc] init];
+    self.contentScrollView.delegate = self;
     self.contentScrollView.delaysContentTouches = NO;
     self.contentScrollView.bounces = NO;
     self.contentScrollView.showsVerticalScrollIndicator = NO;
@@ -188,6 +190,10 @@
 - (void)setupMapImage:(UIImage *)image {
     self.mapView.image = image;
     self.contentScrollView.contentSize = self.mapView.image.size;
+    CGFloat zoomScale = [UIScreen mainScreen].bounds.size.width / self.contentScrollView.contentSize.width;
+    self.contentScrollView.minimumZoomScale = zoomScale;
+    self.contentScrollView.maximumZoomScale = zoomScale;
+    self.contentScrollView.zoomScale = zoomScale;
 }
 
 - (void)anchorPressed:(MapAnchorView *)anchorView {
@@ -249,6 +255,12 @@
     }
 }
 
+#pragma mark - UIScrollView
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.mapView;
+}
+
 #pragma mark - HUDViewDelegate
 
 - (void)HUDOverlayViewTouched:(HUDBaseView *)view {
@@ -307,7 +319,13 @@
 }
 
 - (void)task:(CEEJSONTask *)task failedInController:(TaskViewController *)controller {
-    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:^{
+        HUDTaskCompletedViewController * vc = [[HUDTaskCompletedViewController alloc] init];
+        [vc loadFailedTemplate];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                            object:self
+                                                          userInfo:@{kCEEHUDKey: vc}];
+    }];
 }
 
 #pragma mark - MapPanelViewDelegate

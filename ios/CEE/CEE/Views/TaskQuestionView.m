@@ -116,8 +116,8 @@
 - (void)setupLayout {
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
-        make.width.mas_equalTo(232);
-        make.height.mas_equalTo(360);
+        make.width.mas_equalTo(280);
+        make.height.mas_equalTo(400);
     }];
     
     [self.closeButtonBG mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,16 +183,16 @@
             [optionButton mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.questionLabel.mas_bottom).offset(10);
                 make.centerX.equalTo(self.containerView.mas_centerX);
-                make.width.mas_equalTo(180);
-                make.height.mas_equalTo(20);
+                make.width.mas_equalTo(240);
+                make.height.mas_equalTo(30);
             }];
         } else {
             UIButton * prevButton = self.optionButtons[i - 1];
             [optionButton mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(prevButton.mas_bottom).offset(12);
                 make.centerX.equalTo(self.containerView.mas_centerX);
-                make.width.mas_equalTo(180);
-                make.height.mas_equalTo(20);
+                make.width.mas_equalTo(240);
+                make.height.mas_equalTo(30);
             }];
         }
     }

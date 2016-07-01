@@ -203,6 +203,8 @@
 }
 
 - (void)storyCompleteNotification:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEDismissStoryCoverNOtificationName object:self];
+    
     HUDTaskCompletedViewController * vc = [[HUDTaskCompletedViewController alloc] init];
     NSArray * awards = notification.userInfo[kCEEStoryCompleteAwardsKey];
     CEEJSONStory * story = notification.userInfo[kCEEStoryCompleteStoryKey];

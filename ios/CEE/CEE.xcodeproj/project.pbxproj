@@ -93,6 +93,7 @@
 		BB48E5D81CD4BB46005150C3 /* CEECouponListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5D71CD4BB46005150C3 /* CEECouponListAPI.m */; };
 		BB48E5DB1CD4BE25005150C3 /* CEECoupon.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5DA1CD4BE25005150C3 /* CEECoupon.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
+		BB55A9881D24CE4A0065AFDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB55A9871D24CE4A0065AFDE /* Images.xcassets */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
 		BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039D1CC47B2000350809 /* ThirdPartyLoginButton.m */; };
@@ -155,7 +156,6 @@
 		BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA5323F1CBBC56500282D3E /* Assets.xcassets */; };
 		BBA532511CBBD0F500282D3E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5324D1CBBD0F500282D3E /* RootViewController.m */; };
 		BBA532541CBBD11100282D3E /* CEESDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532531CBBD11100282D3E /* CEESDKManager.m */; };
-		BBA532581CBBD5DB00282D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */; };
 		BBA5325B1CBBDA4A00282D3E /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */; };
 		BBA5325E1CBBDA5900282D3E /* WorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA5325D1CBBDA5900282D3E /* WorldViewController.m */; };
 		BBA532611CBBDA6A00282D3E /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA532601CBBDA6A00282D3E /* StoriesViewController.m */; };
@@ -343,6 +343,7 @@
 		BB48E5DA1CD4BE25005150C3 /* CEECoupon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEECoupon.m; sourceTree = "<group>"; };
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
+		BB55A9871D24CE4A0065AFDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
 		BB6103971CC46E5300350809 /* RefreshingPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingPanel.m; sourceTree = "<group>"; };
 		BB6103991CC478C200350809 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -457,7 +458,6 @@
 		BBA5324D1CBBD0F500282D3E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		BBA532521CBBD11100282D3E /* CEESDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEESDKManager.h; sourceTree = "<group>"; };
 		BBA532531CBBD11100282D3E /* CEESDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEESDKManager.m; sourceTree = "<group>"; };
-		BBA532571CBBD5DB00282D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBA532591CBBDA4A00282D3E /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		BBA5325A1CBBDA4A00282D3E /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
 		BBA5325C1CBBDA5900282D3E /* WorldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldViewController.h; sourceTree = "<group>"; };
@@ -698,7 +698,6 @@
 				BB6103C91CC8570B00350809 /* Libs */,
 				BB6103AB1CC6301300350809 /* Services */,
 				BB6AD2EF1CC228C500A1E0F7 /* Utils */,
-				BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */,
 				BBA5324A1CBBD0F500282D3E /* Constants */,
 				BBA5324B1CBBD0F500282D3E /* Controllers */,
 				BBA5324E1CBBD0F500282D3E /* Managers */,
@@ -708,6 +707,7 @@
 				BBA532371CBBC56500282D3E /* AppDelegate.m */,
 				BBA5323F1CBBC56500282D3E /* Assets.xcassets */,
 				BBA532441CBBC56500282D3E /* Info.plist */,
+				BB55A9871D24CE4A0065AFDE /* Images.xcassets */,
 				BBA532331CBBC56500282D3E /* Supporting Files */,
 			);
 			path = CEE;
@@ -1006,13 +1006,13 @@
 				BB6AD2FB1CC24F7300A1E0F7 /* SourceHanSansCN-Heavy.otf in Resources */,
 				BB6AD2FA1CC24F7300A1E0F7 /* SourceHanSansCN-ExtraLight.otf in Resources */,
 				BBA532401CBBC56500282D3E /* Assets.xcassets in Resources */,
+				BB55A9881D24CE4A0065AFDE /* Images.xcassets in Resources */,
 				BB6AD2EE1CC2287200A1E0F7 /* Localizable.strings in Resources */,
 				BB6AD2FE1CC24F7300A1E0F7 /* SourceHanSansCN-Normal.otf in Resources */,
 				BB6AD2FF1CC24F7300A1E0F7 /* SourceHanSansCN-Regular.otf in Resources */,
 				BB6AD3071CC265CD00A1E0F7 /* Gobold-Regular.ttf in Resources */,
 				BB6AD2FC1CC24F7300A1E0F7 /* SourceHanSansCN-Light.otf in Resources */,
 				BB6AD2FD1CC24F7300A1E0F7 /* SourceHanSansCN-Medium.otf in Resources */,
-				BBA532581CBBD5DB00282D3E /* LaunchScreen.storyboard in Resources */,
 				BB29EF651CCC7098001C25B6 /* map-sample.png in Resources */,
 				BB6AD2F91CC24F7300A1E0F7 /* SourceHanSansCN-Bold.otf in Resources */,
 				BB29EF401CC90A3F001C25B6 /* CityData.plist in Resources */,
@@ -1234,17 +1234,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		BBA532561CBBD5DB00282D3E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BBA532571CBBD5DB00282D3E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		BBA532451CBBC56500282D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1333,6 +1322,7 @@
 			baseConfigurationReference = 7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Daiwei (G5H4ZSYAX7)";
 				ENABLE_BITCODE = NO;
@@ -1353,6 +1343,7 @@
 			baseConfigurationReference = F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aftertech Inc. (4F97F65324)";
 				ENABLE_BITCODE = NO;

@@ -28,6 +28,7 @@
 #import "StoryLevelsRootViewController.h"
 #import "CEEStoryDetailAPI.h"
 #import "CEEMessagesManager.h"
+#import "CEENotificationNames.h"
 #import "ProgressBatteryView.h"
 #import "StoryMemoryViewController.h"
 
@@ -300,6 +301,11 @@
     [self.distanceIcon cee_setImageWithKey:self.story.tour_image_key];
     self.distanceTitleLabel.text = @"行程：";
     self.distanceLabel.text = [NSString stringWithFormat:@"%.1fKM", self.story.distance.floatValue];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(storyCompletedNotification:)
+                                                 name:kCEEDismissStoryCoverNOtificationName
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -323,6 +329,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)storyCompletedNotification:(NSNotification *)notification {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (AnyPromise *)updateStory {

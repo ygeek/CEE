@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIImageView * imageView;
 @property (nonatomic, strong) UIView * textBoxView;
 @property (nonatomic, strong) UILabel * textLabel;
-@property (nonatomic, strong) UIButton * skipButton;
+// @property (nonatomic, strong) UIButton * skipButton;
 @end
 
 
@@ -44,6 +44,10 @@
 }
 
 - (void)commonInit {
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skipPressed:)];
+    self.view.userInteractionEnabled = YES;
+    [self.view addGestureRecognizer:tapRecognizer];
+    
     self.imageView = [[UIImageView alloc] init];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
@@ -56,15 +60,17 @@
     self.textLabel.numberOfLines = 10;
     self.textLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 40 - 36;
     
+    /*
     self.skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.skipButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [self.skipButton setTitle:@"skip" forState:UIControlStateNormal];
     self.skipButton.titleLabel.font = [UIFont fontWithName:kCEEFontNameRegular size:25];
     [self.skipButton addTarget:self action:@selector(skipPressed:) forControlEvents:UIControlEventTouchUpInside];
+     */
     
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.textBoxView];
-    [self.view addSubview:self.skipButton];
+    // [self.view addSubview:self.skipButton];
     [self.textBoxView addSubview:self.textLabel];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,12 +83,14 @@
         make.right.equalTo(self.view.mas_right).offset(-20);
     }];
     
+    /*
     [self.skipButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(50);
         make.height.mas_equalTo(25);
         make.right.equalTo(self.textBoxView.mas_right);
         make.bottom.equalTo(self.textBoxView.mas_top).offset(-5);
     }];
+     */
 }
 
 - (void)viewDidLoad {

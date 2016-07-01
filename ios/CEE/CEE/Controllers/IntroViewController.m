@@ -40,8 +40,9 @@
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     self.imageViews = [NSMutableArray array];
-    for (NSString * imgName in @[@"对话1", @"对话2"]) {
-        UIImageView * imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgName]];
+    for (NSString * imgName in @[@"Intro1", @"Intro2", @"Intro3", @"Intro4"]) {
+        NSString * imgFullName = [NSString stringWithFormat:@"%@-%ld-%ld", imgName, @(screenSize.width).integerValue, @(screenSize.height).integerValue];
+        UIImageView * imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgFullName]];
         imgView.frame = CGRectMake(screenSize.width * self.imageViews.count, 0, screenSize.width, screenSize.height);
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         [self.imageViews addObject:imgView];
