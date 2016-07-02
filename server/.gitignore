@@ -90,7 +90,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
-# migrations
-migrations/
-!migrations/__init__.py
