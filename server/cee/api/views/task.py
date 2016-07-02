@@ -28,6 +28,17 @@ class TaskDetail(APIView):
                 task.completed = False
             else:
                 task.completed = user_task.completed
+                UserCoin.objects.get_or_create(
+                    defaults={'amount': 0},
+                    user=request.user)
+                affect_rows = UserCoin.objects.filter(
+                    user=request.user, amount__gte=100).update(
+                        amount=models.F('amount') - 100)
+                if affect_rows == 0:
+                    return Response({
+                        'code': -3,
+                        'msg': '金币不足',
+                    })
             serializer = UserTaskSerializer(task)
             return Response({
                 'code': 0,
