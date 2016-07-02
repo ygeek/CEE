@@ -21,4 +21,6 @@
 
 - (void)loadFailedTemplate;
 
+- (void)loadCoin:(NSNumber *)coin andMessage:(NSString *)message;
+
 @end

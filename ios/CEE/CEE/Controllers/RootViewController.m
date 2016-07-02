@@ -26,6 +26,7 @@
 #import "CEEMessagesManager.h"
 #import "CEEDatabase.h"
 #import "IntroViewController.h"
+#import "CEELoginAwardsAPI.h"
 
 
 @interface RootViewController ()
@@ -176,6 +177,18 @@
               }
           }];
         
+        @weakify(self)
+        [[RACSignal combineLatest:@[tokenSignal, profileSignal]
+                           reduce:
+          ^id(NSString * token, CEEJSONUserProfile * profile) {
+              return @(token && profile);
+          }] subscribeNext:^(NSNumber * loginCompleted) {
+              @strongify(self)
+              if (loginCompleted.boolValue) {
+                  [self fetchLoginAwards];
+              }
+          }];
+        
         if (![[CEEDatabase db] splashShowed]) {
             [[CEEDatabase db] setSplashShowed:YES];
             IntroViewController * introVC = [[IntroViewController alloc] init];
@@ -193,6 +206,23 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)fetchLoginAwards {
+    [[CEELoginAwardsAPI api] fetchLoginAwards].then(^(NSArray<CEEJSONAward *> *awards) {
+        
+        for (CEEJSONAward * award in awards) {
+            if ([award.type isEqualToString:@"coin"]) {
+                HUDTaskCompletedViewController * vc = [[HUDTaskCompletedViewController alloc] init];
+                [vc loadAwards:@[award] andImageKey:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                                    object:self
+                                                                  userInfo:@{kCEEHUDKey: vc}];
+            }
+        }
+    }).catch(^(NSError *error) {
+        NSLog(@"fetch login awards error: %@", error);
+    });
 }
 
 - (void)networkErrorNotification:(NSNotification *)notification {

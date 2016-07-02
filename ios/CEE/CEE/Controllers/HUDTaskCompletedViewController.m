@@ -189,8 +189,8 @@
 }
 
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey {
-    self.messageLabel.text = @"恭喜任务达成！";
     CEEJSONAward * award = awards.firstObject;
+    self.messageLabel.text = award.detail[@"desc"] ?: @"恭喜任务达成！";
     
     [self.picView cee_setImageWithKey:imageKey];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
@@ -211,6 +211,19 @@
     } else {
         self.heartButton.hidden = YES;
     }
+}
+
+- (void)loadCoin:(NSNumber *)coin andMessage:(NSString *)message {
+    self.messageLabel.text = message;
+    [self.picView cee_setImageWithKey:nil];
+    NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
+    NSAttributedString * moneyAttrStr =
+    [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%@", coin]
+                                    attributes:@{NSForegroundColorAttributeName: hexColor(0xdfaa4a),
+                                                 NSFontAttributeName:[UIFont fontWithName:kCEEFontNameRegular size:21]}];
+    NSMutableAttributedString * result = [[NSMutableAttributedString alloc] initWithAttributedString:coinAttrStr];
+    [result appendAttributedString:moneyAttrStr];
+    self.moneyLabel.attributedText = result;
 }
 
 - (void)updateHeartWithStory:(CEEJSONStory *)story {
