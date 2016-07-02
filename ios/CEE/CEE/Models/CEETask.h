@@ -41,6 +41,8 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * desc;
 @property (nonatomic, strong) NSString * location;
+@property (nonatomic, strong) NSString<Optional> * detail_location;
+@property (nonatomic, strong) NSString<Optional> * phone;
 @property (nonatomic, strong) NSArray<CEEJSONChoice> * choices;
 @property (nonatomic, strong) NSNumber * completed;
 @end

@@ -6,6 +6,7 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
+@import ReactiveCocoa;
 @import Masonry;
 
 #import "TaskViewController.h"
@@ -15,6 +16,7 @@
 #import "UIImage+Utils.h"
 #import "CEETask.h"
 #import "UIImageView+Utils.h"
+#import "HUDAddressViewController.h"
 
 
 @interface TaskViewController ()
@@ -91,32 +93,34 @@
 }
 
 - (void)confirmPressed:(id)sender {
-    self.currentIndex++;
-    if (self.currentIndex >= self.task.choices.count) {
-        if (!self.everWrong) {
-            [self.delegate task:self.task completedInController:self];
-        } else {
-            [self.delegate task:self.task failedInController:self];
-        }
-    } else {
-        if ([self.task.choices[self.currentIndex] answer].integerValue != self.questionView.selectedIndex) {
-            self.everWrong = YES;
-        }
-        
-        [UIView transitionWithView:self.containerView
-                          duration:0.3
-                           options:UIViewAnimationOptionTransitionFlipFromRight
-                        animations:^{
-                            [self loadChoiceAtIndex:self.currentIndex];
-                            /*
-                             [self.questionView removeFromSuperview];
-                             [self.containerView addSubview:self.answerView];
-                             [self.answerView mas_makeConstraints:^(MASConstraintMaker *make) {
-                             make.edges.equalTo(self.containerView);
-                             }];
-                             */
-                        } completion:NULL];
+    if ([self.task.choices[self.currentIndex] answer].integerValue != self.questionView.selectedIndex) {
+        self.everWrong = YES;
     }
+    
+    self.currentIndex++;
+ 
+     if (self.currentIndex >= self.task.choices.count) {
+         if (!self.everWrong) {
+             [self.delegate task:self.task completedInController:self];
+         } else {
+             [self.delegate task:self.task failedInController:self];
+         }
+         return;
+     }
+ 
+    [UIView transitionWithView:self.containerView
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{
+                        [self loadChoiceAtIndex:self.currentIndex];
+                        /*
+                         [self.questionView removeFromSuperview];
+                         [self.containerView addSubview:self.answerView];
+                         [self.answerView mas_makeConstraints:^(MASConstraintMaker *make) {
+                         make.edges.equalTo(self.containerView);
+                         }];
+                         */
+                    } completion:NULL];
 }
 
 - (void)nextPressed:(id)sender {
@@ -146,11 +150,21 @@
     [self.delegate task:self.task failedInController:self];
 }
 
+- (void)locationPressed {
+    HUDAddressViewController * vc = [[HUDAddressViewController alloc] init];
+    [vc loadTask: self.task];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)loadChoiceAtIndex:(NSInteger)index {
     CEEJSONChoice * choice = self.task.choices[index];
     [self.questionView.photoView cee_setImageWithKey:choice.image_key];
     self.questionView.questionLabel.text = choice.desc;
-    [self.questionView setLocation:self.task.location];
+    @weakify(self)
+    [self.questionView setLocation:self.task.location withBlock:^{
+        @strongify(self)
+        [self locationPressed];
+    }];
     
     NSArray * options = [choice.options sortedArrayUsingComparator:^NSComparisonResult(CEEJSONOption *obj1, CEEJSONOption *obj2) {
         if (obj1.order.integerValue < obj2.order.integerValue) {

@@ -176,6 +176,7 @@
 }
 
 - (void)loadFailedTemplate {
+    self.messageLabel.text = @"任务失败！";
     [self.picView cee_setImageWithKey:nil];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
     NSAttributedString * moneyAttrStr =
@@ -188,6 +189,7 @@
 }
 
 - (void)loadAwards:(NSArray<CEEJSONAward *> *)awards andImageKey:(NSString *)imageKey {
+    self.messageLabel.text = @"恭喜任务达成！";
     CEEJSONAward * award = awards.firstObject;
     
     [self.picView cee_setImageWithKey:imageKey];

@@ -94,6 +94,7 @@
 		BB48E5DB1CD4BE25005150C3 /* CEECoupon.m in Sources */ = {isa = PBXBuildFile; fileRef = BB48E5DA1CD4BE25005150C3 /* CEECoupon.m */; };
 		BB4D856C1CC3502A00754484 /* StoryInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4D856B1CC3502A00754484 /* StoryInfoView.m */; };
 		BB55A9881D24CE4A0065AFDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB55A9871D24CE4A0065AFDE /* Images.xcassets */; };
+		BB55A98B1D2795D80065AFDE /* HUDAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB55A98A1D2795D80065AFDE /* HUDAddressViewController.m */; };
 		BB6103981CC46E5300350809 /* RefreshingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6103971CC46E5300350809 /* RefreshingPanel.m */; };
 		BB61039B1CC478C200350809 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039A1CC478C200350809 /* LoginViewController.m */; };
 		BB61039E1CC47B2000350809 /* ThirdPartyLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61039D1CC47B2000350809 /* ThirdPartyLoginButton.m */; };
@@ -344,6 +345,8 @@
 		BB4D856A1CC3502A00754484 /* StoryInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryInfoView.h; sourceTree = "<group>"; };
 		BB4D856B1CC3502A00754484 /* StoryInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryInfoView.m; sourceTree = "<group>"; };
 		BB55A9871D24CE4A0065AFDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BB55A9891D2795D80065AFDE /* HUDAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDAddressViewController.h; sourceTree = "<group>"; };
+		BB55A98A1D2795D80065AFDE /* HUDAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDAddressViewController.m; sourceTree = "<group>"; };
 		BB6103961CC46E5300350809 /* RefreshingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingPanel.h; sourceTree = "<group>"; };
 		BB6103971CC46E5300350809 /* RefreshingPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingPanel.m; sourceTree = "<group>"; };
 		BB6103991CC478C200350809 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -813,6 +816,8 @@
 				BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */,
 				BB07D13B1CF8993C00D5E0A3 /* FriendProfileViewController.h */,
 				BB07D13C1CF8993C00D5E0A3 /* FriendProfileViewController.m */,
+				BB55A9891D2795D80065AFDE /* HUDAddressViewController.h */,
+				BB55A98A1D2795D80065AFDE /* HUDAddressViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1200,6 +1205,7 @@
 				BBA2F7871CDD74D8004A5585 /* CEEFriendInfo.m in Sources */,
 				BBA2F7961CDE0300004A5585 /* CEEStoryDetailAPI.m in Sources */,
 				BB6AD31C1CC32FED00A1E0F7 /* StoryDifficultyView.m in Sources */,
+				BB55A98B1D2795D80065AFDE /* HUDAddressViewController.m in Sources */,
 				BB32095E1CDA2022009D1862 /* StoryNumberPuzzleViewController.m in Sources */,
 				BB3209611CDA2033009D1862 /* StoryTextPuzzleViewController.m in Sources */,
 				BB3209361CD78B82009D1862 /* CEETask.m in Sources */,

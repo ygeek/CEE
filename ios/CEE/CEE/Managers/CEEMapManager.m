@@ -90,6 +90,10 @@
     .then(^(CLLocation * location) {
         return [[CEENearestMapAPI api] queryNearestMapWithLongitude:location.coordinate.longitude
                                                            latitude:location.coordinate.latitude];
+    }).catch(^(NSError *error){
+        NSLog(@"location error: %@", error);
+        return [[CEENearestMapAPI api] queryNearestMapWithLongitude:116.31
+                                                           latitude:38.99];
     });
 }
 

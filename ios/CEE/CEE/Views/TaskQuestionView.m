@@ -62,6 +62,9 @@
     self.locationLabel = [[UILabel alloc] init];
     self.locationLabel.textAlignment = NSTextAlignmentCenter;
     [self.containerView addSubview:self.locationLabel];
+    self.locationLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationPressed)];
+    [self.locationLabel addGestureRecognizer:tapRecognizer];
     
     self.questionLabel = [[UILabel alloc] init];
     self.questionLabel.textAlignment = NSTextAlignmentCenter;
@@ -164,6 +167,12 @@
     }];
 }
 
+- (void)locationPressed {
+    if (self.locationBlock) {
+        self.locationBlock();
+    }
+}
+
 - (void)optionButtonPressed:(UIButton *)button {
     self.selectedIndex = [self.optionButtons indexOfObject:button];
 }
@@ -198,7 +207,9 @@
     }
 }
 
-- (void)setLocation:(NSString *)location {
+- (void)setLocation:(NSString *)location withBlock:(dispatch_block_t)block {
+    self.locationBlock = block;
+    
     NSAttributedString * attachment = [NSAttributedString attributedStringWithAttachment:self.locationAttachment];
     NSAttributedString * locationAttriStr =
     [[NSAttributedString alloc] initWithString:location

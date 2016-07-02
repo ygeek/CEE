@@ -21,7 +21,8 @@
 @property (nonatomic, strong) NSMutableArray<UIButton *> * optionButtons;
 
 @property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, copy) dispatch_block_t locationBlock;
 
 - (void)loadOptions:(NSArray<NSString *> *)options;
-- (void)setLocation:(NSString *)location;
+- (void)setLocation:(NSString *)location withBlock:(dispatch_block_t)block;
 @end
