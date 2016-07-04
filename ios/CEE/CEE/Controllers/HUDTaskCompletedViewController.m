@@ -177,7 +177,7 @@
 
 - (void)loadFailedTemplate {
     self.messageLabel.text = @"任务失败！";
-    [self.picView cee_setImageWithKey:nil];
+    [self.picView cee_setImageWithKey:nil placeholder:[UIImage imageNamed:@"任务完成背景"]];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
     NSAttributedString * moneyAttrStr =
     [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%@", @(0)]
@@ -192,7 +192,7 @@
     CEEJSONAward * award = awards.firstObject;
     self.messageLabel.text = award.detail[@"desc"] ?: @"恭喜任务达成！";
     
-    [self.picView cee_setImageWithKey:imageKey];
+    [self.picView cee_setImageWithKey:imageKey placeholder:[UIImage imageNamed:@"任务完成背景"]];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
     NSAttributedString * moneyAttrStr =
     [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%@", (award ? award.detail[@"amount"] : @(0))]
@@ -215,7 +215,7 @@
 
 - (void)loadCoin:(NSNumber *)coin andMessage:(NSString *)message {
     self.messageLabel.text = message;
-    [self.picView cee_setImageWithKey:nil];
+    [self.picView cee_setImageWithKey:nil placeholder:[UIImage imageNamed:@"任务完成背景"]];
     NSAttributedString * coinAttrStr = [NSAttributedString attributedStringWithAttachment:self.coinAttachment];
     NSAttributedString * moneyAttrStr =
     [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+%@", coin]

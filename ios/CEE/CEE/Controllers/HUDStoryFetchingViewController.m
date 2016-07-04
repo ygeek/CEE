@@ -95,7 +95,7 @@
 }
 
 - (void)loadStory:(CEEJSONStory *)story {
-    [self.picView cee_setImageWithKey:story.hud_image_key];
+    [self.picView cee_setImageWithKey:story.hud_image_key placeholder:[UIImage imageNamed:@"正在分配故事背景"]];
 }
 
 @end

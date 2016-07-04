@@ -1,0 +1,53 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/meng/.nvm/versions/node/v5.10.0/bin/node',
+1 verbose cli   '/Users/meng/.nvm/versions/node/v5.10.0/bin/npm',
+1 verbose cli   'search',
+1 verbose cli   'babel' ]
+2 info using npm@3.8.3
+3 info using node@v5.10.0
+4 verbose config Skipping project config: /Users/meng/.npmrc. (matches userconfig)
+5 silly mapToRegistry name -/all
+6 silly mapToRegistry using default registry
+7 silly mapToRegistry registry https://registry.npmjs.org/
+8 silly mapToRegistry data Result {
+8 silly mapToRegistry   raw: '-/all',
+8 silly mapToRegistry   scope: null,
+8 silly mapToRegistry   name: null,
+8 silly mapToRegistry   rawSpec: '-/all',
+8 silly mapToRegistry   spec: '/Users/meng/ygeek/CEE-repo/-/all',
+8 silly mapToRegistry   type: 'local' }
+9 silly mapToRegistry uri https://registry.npmjs.org/-/all
+10 info updateIndex /Users/meng/.npm/registry.npmjs.org/-/all/.cache.json
+11 verbose correctMkdir /Users/meng/.npm correctMkdir not in flight; initializing
+12 verbose updateIndex Cached search data present with timestamp 1434578329841
+13 silly update-index fetching https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1434578329841
+14 verbose request uri https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1434578329841
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 18:00:08
+17 verbose request id 1faf529029cb900a
+18 http request GET https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1434578329841
+19 info retry will retry, error on last attempt: Error: read ENETDOWN
+20 info attempt registry request try #2 at 22:38:24
+21 http request GET https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1434578329841
+22 info retry will retry, error on last attempt: Error: read ENETDOWN
+23 info attempt registry request try #3 at 02:12:23
+24 http request GET https://registry.npmjs.org/-/all/since?stale=update_after&startkey=1434578329841
+25 verbose stack Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+25 verbose stack     at errnoException (dns.js:26:10)
+25 verbose stack     at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)
+26 verbose cwd /Users/meng/ygeek/CEE-repo
+27 error Darwin 15.3.0
+28 error argv "/Users/meng/.nvm/versions/node/v5.10.0/bin/node" "/Users/meng/.nvm/versions/node/v5.10.0/bin/npm" "search" "babel"
+29 error node v5.10.0
+30 error npm  v3.8.3
+31 error code ENOTFOUND
+32 error errno ENOTFOUND
+33 error syscall getaddrinfo
+34 error network getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+35 error network This is most likely not a problem with npm itself
+35 error network and is related to network connectivity.
+35 error network In most cases you are behind a proxy or have bad network settings.
+35 error network
+35 error network If you are behind a proxy, please make sure that the
+35 error network 'proxy' config is set properly.  See: 'npm help config'
+36 verbose exit [ 1, true ]
