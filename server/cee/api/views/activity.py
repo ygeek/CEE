@@ -25,6 +25,9 @@ class LoginAwards(APIView):
                 user=request.user,
                 award=award)
             if created:
+                UserCoin.objects.get_or_create(
+                    defaults={'amount': 0},
+                    user=request.user)
                 UserCoin.objects.filter(user=request.user).update(
                     amount=models.F('amount') + award.coin)
                 awards.append({
