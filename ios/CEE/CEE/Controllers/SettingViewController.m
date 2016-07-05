@@ -15,6 +15,7 @@
 #import "SettingViewController.h"
 #import "AboutViewController.h"
 #import "IntroViewController.h"
+#import "CEENotificationNames.h"
 #import "FeedbackViewController.h"
 #import "AppearanceConstants.h"
 #import "CEEUserSession.h"
@@ -281,7 +282,9 @@
 
 - (void)introPressed:(id)sender {
     IntroViewController * introVC = [[IntroViewController alloc] init];
-    [self presentViewController:introVC animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDPresentNotificationName
+                                                        object:self
+                                                      userInfo:@{kCEEHUDKey: introVC}];
 }
 
 - (void)feedbackPressed:(id)sender {

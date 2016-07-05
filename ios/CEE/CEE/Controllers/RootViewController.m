@@ -274,9 +274,9 @@
 }
 
 - (void)HUDDismissNotification:(NSNotification *)notification {
-    self.presentedHUD = nil;
     UIViewController * vc = notification.userInfo[kCEEHUDKey];
     [vc dismissViewControllerAnimated:YES completion:^{
+        self.presentedHUD = nil;
         if (self.presentHUDQueue.count > 0) {
             UIViewController * next = [self.presentHUDQueue firstObject];
             [self.presentHUDQueue removeObjectAtIndex:0];
@@ -303,17 +303,19 @@
 }
 
 - (void)presentUserProfileForm {
+    UIViewController * rootVC = [UIApplication sharedApplication].delegate.window.rootViewController;
     if (!self.isPresentingUserProfile) {
         self.isPresentingUserProfile = YES;
         FillProfileViewController * vc = [[FillProfileViewController alloc] init];
-        [self presentViewController:vc animated:YES completion:nil];
+        [rootVC presentViewController:vc animated:YES completion:nil];
     }
 }
 
 - (void)dismissUserProfileForm {
+    UIViewController * rootVC = [UIApplication sharedApplication].delegate.window.rootViewController;
     if (self.isPresentingUserProfile) {
         self.isPresentingUserProfile = NO;
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [rootVC dismissViewControllerAnimated:NO completion:nil];
     }
 }
 

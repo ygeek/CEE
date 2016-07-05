@@ -9,6 +9,7 @@
 @import Masonry;
 
 #import "IntroViewController.h"
+#import "CEENotificationNames.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * imagesScrollView;
@@ -41,7 +42,7 @@
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     self.imageViews = [NSMutableArray array];
     for (NSString * imgName in @[@"Intro1", @"Intro2", @"Intro3", @"Intro4"]) {
-        NSString * imgFullName = [NSString stringWithFormat:@"%@-%ld-%ld", imgName, @(screenSize.width).integerValue, @(screenSize.height).integerValue];
+        NSString * imgFullName = [NSString stringWithFormat:@"%@-%ld-%ld", imgName, (long)@(screenSize.width).integerValue, (long)@(screenSize.height).integerValue];
         UIImageView * imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgFullName]];
         imgView.frame = CGRectMake(screenSize.width * self.imageViews.count, 0, screenSize.width, screenSize.height);
         imgView.contentMode = UIViewContentModeScaleAspectFill;
@@ -87,7 +88,9 @@
     self.pageControl.currentPage = page;
     
     if (scrollView.contentOffset.x > scrollView.bounds.size.width * (self.imageViews.count - 1)) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCEEHUDDismissNotificationName
+                                                            object:self
+                                                          userInfo:@{kCEEHUDKey: self}];
     }
 }
 
