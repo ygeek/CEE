@@ -152,6 +152,14 @@
 }
 
 - (void)reloadData {
+    if ([self.text stringByTrimmingCharactersInSet:
+         [NSCharacterSet whitespaceCharacterSet]].length == 0) {
+        self.textBoxView.hidden = YES;
+        return;
+    } else {
+        self.textBoxView.hidden = NO;
+    }
+    
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 18 * verticalScale();
     
