@@ -9,7 +9,7 @@
         '<div class="col-md-9"><input class="form-control" type="number" name="<%=name%>" required></div>');
 
     var textareaTemplate = _.template('<div class="col-md-3"><%=label%></div>' +
-        '<div class="col-md-9"><textarea class="form-control" name="<%=name%>" rows="5" required/></div>');
+        '<div class="col-md-9"><textarea class="form-control" name="<%=name%>" rows="5" /></div>');
 
     var content;
     try {

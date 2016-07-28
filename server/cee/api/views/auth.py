@@ -171,7 +171,7 @@ class LoginThirdParty(APIView):
             user = account.user
         except ThirdPartyAccount.DoesNotExist:
             fake_username = '{0}_{1}'.format(platform, hashlib.sha1(uid).hexdigest())
-            fake_email = '{0}@cee_{1}.com'.format(fake_username, platform)
+            fake_email = '{0}@cee{1}.com'.format(fake_username, platform)
             user = User.objects.create_user(username=fake_username, email=fake_email, password=unicode(uuid.uuid1()))
             ThirdPartyAccount.objects.create(uid=uid, platform=platform, user=user)
 
