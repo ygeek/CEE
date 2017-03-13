@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export HOME=/home/cee
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -25,7 +26,7 @@ export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
 
-echo "Starting $NAME as `whoami`"
+echo "Starting $NAME as `whoami` at $HOME"
 
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)

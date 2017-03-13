@@ -987,6 +987,7 @@
 				TargetAttributes = {
 					BBA5322F1CBBC56500282D3E = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 4F97F65324;
 					};
 				};
 			};
@@ -1337,6 +1338,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Daiwei (G5H4ZSYAX7)";
+				DEVELOPMENT_TEAM = 4F97F65324;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1347,6 +1349,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aftertech.CEE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "49cf2449-922b-418a-a555-50bfab52cad9";
+				PROVISIONING_PROFILE_SPECIFIER = ios_development;
 			};
 			name = Debug;
 		};
@@ -1358,6 +1362,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aftertech Inc. (4F97F65324)";
+				DEVELOPMENT_TEAM = 4F97F65324;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1368,6 +1373,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aftertech.CEE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4482ec33-d255-4e87-85a8-50b2544e1c23";
+				PROVISIONING_PROFILE_SPECIFIER = "CEE App Store";
 			};
 			name = Release;
 		};

@@ -1,7 +1,7 @@
 from fabric.api import *
 
 env.user = 'cee'
-env.hosts = ['101.201.48.167']
+env.hosts = ['101.37.71.164']
 env.shell = '/bin/bash -l -i -c'
 
 
