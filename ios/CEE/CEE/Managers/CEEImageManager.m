@@ -62,7 +62,7 @@
                                                             options:SDWebImageRetryFailed
                                                            progress:
              ^(NSInteger receivedSize, NSInteger expectedSize) {
-                 NSLog(@"download image %@: %ld/%ld", key, receivedSize, expectedSize);
+                 NSLog(@"download image %@: %ld/%ld", key, (long)receivedSize, (long)expectedSize);
              } completed:
              ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                  resolve(image ?: error);
@@ -77,7 +77,7 @@
                                                         options:SDWebImageRetryFailed
                                                        progress:
          ^(NSInteger receivedSize, NSInteger expectedSize) {
-             NSLog(@"download image %@: %ld/%ld", url, receivedSize, expectedSize);
+             NSLog(@"download image %@: %ld/%ld", url, (long)receivedSize, (long)expectedSize);
          } completed:
          ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
              resolve(image ?: error);
