@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 
 #import "CEEMessage.h"

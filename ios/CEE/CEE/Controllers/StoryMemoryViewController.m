@@ -7,9 +7,7 @@
 //
 
 @import Masonry;
-
-#import <PromiseKit/PromiseKit.h>
-
+@import PromiseKit;
 
 #import "StoryMemoryViewController.h"
 #import "StoryDialogViewController.h"

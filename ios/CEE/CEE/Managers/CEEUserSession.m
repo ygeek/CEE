@@ -157,7 +157,7 @@
         return self.userProfile;
     }).catch(^(NSError *error) {
         NSLog(@"Fetch User profile Error: %@", error);
-    }).finally(^{
+    }).always(^{
         self.isFetchingUserProfile = NO;
     });
 }

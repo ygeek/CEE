@@ -10,9 +10,7 @@
 @import AVFoundation;
 @import Masonry;
 @import ReactiveCocoa;
-
-
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "StoryVideoViewController.h"
 #import "StoryLevelsRootViewController.h"

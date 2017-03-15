@@ -12,9 +12,7 @@
 @import RDVTabBarController;
 @import SVProgressHUD;
 @import ReactiveCocoa;
-
-
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "WorldViewController.h"
 #import "AcquiredMapsViewController.h"

@@ -7,8 +7,7 @@
 //
 
 @import JSONModel;
-
-#import <PromiseKit/AnyPromise.h>
+@import PromiseKit;
 
 #import "CEEBaseAPI.h"
 

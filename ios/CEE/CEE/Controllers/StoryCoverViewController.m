@@ -10,8 +10,7 @@
 @import RDVTabBarController;
 @import SDWebImage;
 @import SVProgressHUD;
-
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "StoryCoverViewController.h"
 #import "CEEStory.h"

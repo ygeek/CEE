@@ -7,8 +7,7 @@
 //
 
 @import Masonry;
-
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "MapPanelView.h"
 #import "AppearanceConstants.h"

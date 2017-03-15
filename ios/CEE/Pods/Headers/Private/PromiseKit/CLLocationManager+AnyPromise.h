@@ -1,1 +1,0 @@
-../../../PromiseKit/Categories/CoreLocation/CLLocationManager+AnyPromise.h

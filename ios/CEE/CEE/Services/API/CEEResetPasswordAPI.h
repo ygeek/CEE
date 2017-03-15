@@ -6,7 +6,7 @@
 //  Copyright © 2016年 ygeek. All rights reserved.
 //
 
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "CEEBaseAPI.h"
 

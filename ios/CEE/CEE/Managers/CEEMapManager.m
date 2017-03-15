@@ -9,7 +9,7 @@
 @import CoreLocation;
 @import MapKit;
 
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "CEEMapManager.h"
 #import "TLCity.h"

@@ -81,7 +81,7 @@
     [SVProgressHUD dismiss];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [SVProgressHUD dismiss];
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"加载失败"
                                                                     message:@"好像加载失败啦，需要重新加载吗？"

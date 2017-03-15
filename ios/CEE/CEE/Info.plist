@@ -70,7 +70,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wechat</string>
@@ -128,10 +128,20 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>需要蓝牙连接</string>
+	<key>NSCameraUsageDescription</key>
+	<string>扫描需要相机访问权限</string>
+	<key>NSContactsUsageDescription</key>
+	<string>需要访问联系人</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>请开启定位功能</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>请开启定位功能</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>需要访问麦克风</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>设置头像需要相册访问权限</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SourceHanSansCN-Bold.otf</string>
@@ -158,7 +168,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>privacy - location usage description</key>
-	<string>请开启定位功能</string>
 </dict>
 </plist>

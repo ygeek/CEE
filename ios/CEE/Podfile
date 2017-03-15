@@ -1,9 +1,9 @@
 # Uncomment this line to define a global platform for your project
 platform :ios, '8.0'
-# Uncomment this line if you're using Swift
 use_frameworks!
 
 target 'CEE' do
+    swift_version = "3.0"
     pod 'Realm'
     pod 'Realm+JSON'
     pod 'Masonry'
@@ -26,8 +26,8 @@ target 'CEE' do
     pod 'SVProgressHUD'
     pod 'DZNPhotoPickerController/Editor', :git => 'https://github.com/nightfade/DZNPhotoPickerController.git'
     pod "Qiniu", :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetworking-3.x'
-    pod 'PromiseKit'
-    pod "PromiseKit/CoreLocation"
+    pod "PromiseKit", "~> 4.1.7"
+    pod "PromiseKit/CoreLocation", "~> 4.1.7"
     pod 'OAStackView'
     pod 'UMengSocialCOM'
     pod 'mailcore2-ios'

@@ -8,8 +8,7 @@
 
 @import Masonry;
 @import SVProgressHUD;
-
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "UserFriendsViewController.h"
 #import "UserFriendTableViewCell.h"

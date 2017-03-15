@@ -165,13 +165,13 @@
 		BBAFACB41CED563D00A8A5DE /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAFACB31CED563D00A8A5DE /* SettingViewController.m */; };
 		BBEB52A21CF6056F008C3EF0 /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */; };
 		BBEB52A51CF67BA9008C3EF0 /* CEEResetPasswordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB52A41CF67BA9008C3EF0 /* CEEResetPasswordAPI.m */; };
-		BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC16A01CE22EC90043930A /* Pods_CEE.framework */; };
 		BBEC16A41CE436DF0043930A /* CEELoginThirdpartyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */; };
+		EC1C1D04C0D4099A7583EA48 /* Pods_CEE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD2EBD5EB493AE7427BD32E /* Pods_CEE.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6F33B289AB3942036A5E07CD /* Pods_CEE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CEE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.debug.xcconfig"; sourceTree = "<group>"; };
+		6E9CC9FAFDC8227CED7AD2A1 /* Pods-CEE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.debug.xcconfig"; sourceTree = "<group>"; };
+		7F3C0B6B3D1C05EE06F61EF5 /* Pods-CEE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.release.xcconfig"; sourceTree = "<group>"; };
 		BB07D1381CF8918D00D5E0A3 /* JSONValueTransformer+NSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSDate.h"; sourceTree = "<group>"; };
 		BB07D1391CF8918D00D5E0A3 /* JSONValueTransformer+NSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSDate.m"; sourceTree = "<group>"; };
 		BB07D13B1CF8993C00D5E0A3 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
@@ -478,10 +478,9 @@
 		BBEB52A11CF6056F008C3EF0 /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		BBEB52A31CF67BA9008C3EF0 /* CEEResetPasswordAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEResetPasswordAPI.h; sourceTree = "<group>"; };
 		BBEB52A41CF67BA9008C3EF0 /* CEEResetPasswordAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEResetPasswordAPI.m; sourceTree = "<group>"; };
-		BBEC16A01CE22EC90043930A /* Pods_CEE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_CEE.framework; path = "Pods/../build/Debug-iphoneos/Pods_CEE.framework"; sourceTree = "<group>"; };
 		BBEC16A21CE436DF0043930A /* CEELoginThirdpartyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEELoginThirdpartyAPI.h; sourceTree = "<group>"; };
 		BBEC16A31CE436DF0043930A /* CEELoginThirdpartyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEELoginThirdpartyAPI.m; sourceTree = "<group>"; };
-		F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEE.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEE/Pods-CEE.release.xcconfig"; sourceTree = "<group>"; };
+		EAD2EBD5EB493AE7427BD32E /* Pods_CEE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CEE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,9 +488,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBEC16A11CE22EC90043930A /* Pods_CEE.framework in Frameworks */,
 				BB6103C51CC7E10C00350809 /* MapKit.framework in Frameworks */,
 				BB6103C31CC7E0FF00350809 /* CoreLocation.framework in Frameworks */,
+				EC1C1D04C0D4099A7583EA48 /* Pods_CEE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,21 +500,11 @@
 		776D73916CBD9193D6B0A815 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBEC16A01CE22EC90043930A /* Pods_CEE.framework */,
 				BB6103C41CC7E10C00350809 /* MapKit.framework */,
 				BB6103C21CC7E0FF00350809 /* CoreLocation.framework */,
-				6F33B289AB3942036A5E07CD /* Pods_CEE.framework */,
+				EAD2EBD5EB493AE7427BD32E /* Pods_CEE.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		88ABD1A048EDE3AD129BFD87 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */,
-				F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		BB29EF331CC90A3F001C25B6 /* TLCityPicker */ = {
@@ -687,8 +676,8 @@
 			children = (
 				BBA532321CBBC56500282D3E /* CEE */,
 				BBA532311CBBC56500282D3E /* Products */,
-				88ABD1A048EDE3AD129BFD87 /* Pods */,
 				776D73916CBD9193D6B0A815 /* Frameworks */,
+				EBF1C40ACD09E9931168EF4A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -952,6 +941,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		EBF1C40ACD09E9931168EF4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E9CC9FAFDC8227CED7AD2A1 /* Pods-CEE.debug.xcconfig */,
+				7F3C0B6B3D1C05EE06F61EF5 /* Pods-CEE.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -959,13 +957,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BBA532471CBBC56500282D3E /* Build configuration list for PBXNativeTarget "CEE" */;
 			buildPhases = (
-				33888C8D8201236DB7A4B186 /* Check Pods Manifest.lock */,
+				15505A027AB0B25FC7A5DB4F /* [CP] Check Pods Manifest.lock */,
 				BBA5322C1CBBC56500282D3E /* Sources */,
 				BBA5322D1CBBC56500282D3E /* Frameworks */,
 				BBA5322E1CBBC56500282D3E /* Resources */,
-				AA22637EAE614B66D6BCE3DF /* Embed Pods Frameworks */,
-				C288A9B4A5C4195B969572C5 /* Copy Pods Resources */,
 				BBA532551CBBD22300282D3E /* ShellScript */,
+				016AE38E8BFB30279F534855 /* [CP] Embed Pods Frameworks */,
+				E7051D2C76BFA2DE574FD13C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -982,12 +980,14 @@
 		BBA532281CBBC56500282D3E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = ygeek;
 				TargetAttributes = {
 					BBA5322F1CBBC56500282D3E = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 4F97F65324;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1033,34 +1033,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33888C8D8201236DB7A4B186 /* Check Pods Manifest.lock */ = {
+		016AE38E8BFB30279F534855 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AA22637EAE614B66D6BCE3DF /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CEE/Pods-CEE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		15505A027AB0B25FC7A5DB4F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BBA532551CBBD22300282D3E /* ShellScript */ = {
@@ -1076,14 +1076,14 @@
 			shellPath = /bin/sh;
 			shellScript = "leancloud upload_symbol \\\n-f \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\" \\\n-i \"jqkXh6wD9aecX74oeOVz9CtN-gzGzoHsz\" \\\n-k \"wflBBpW9pcnMkPXf5Xjuk510\"";
 		};
-		C288A9B4A5C4195B969572C5 /* Copy Pods Resources */ = {
+		E7051D2C76BFA2DE574FD13C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1251,6 +1251,7 @@
 		BBA532451CBBC56500282D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1261,8 +1262,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1295,6 +1298,7 @@
 		BBA532461CBBC56500282D3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1305,8 +1309,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1332,49 +1338,49 @@
 		};
 		BBA532481CBBC56500282D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FB126723455BB0F0F8BE026 /* Pods-CEE.debug.xcconfig */;
+			baseConfigurationReference = 6E9CC9FAFDC8227CED7AD2A1 /* Pods-CEE.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Daiwei (G5H4ZSYAX7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4F97F65324;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CEE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aftertech.CEE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49cf2449-922b-418a-a555-50bfab52cad9";
-				PROVISIONING_PROFILE_SPECIFIER = ios_development;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		BBA532491CBBC56500282D3E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8BCF04570751620B227FDFA /* Pods-CEE.release.xcconfig */;
+			baseConfigurationReference = 7F3C0B6B3D1C05EE06F61EF5 /* Pods-CEE.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aftertech Inc. (4F97F65324)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4F97F65324;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CEE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aftertech.CEE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4482ec33-d255-4e87-85a8-50b2544e1c23";
-				PROVISIONING_PROFILE_SPECIFIER = "CEE App Store";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

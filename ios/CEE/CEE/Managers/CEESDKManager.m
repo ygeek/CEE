@@ -170,11 +170,11 @@
     
     return [self _loginPlatform:platformType].then(^(SSDKUser * user) {
         NSString * uid = user.uid;
-        NSString * nickname = user.nickname;
-        SSDKCredential * credential = user.credential;
+//        NSString * nickname = user.nickname;
+//        SSDKCredential * credential = user.credential;
         NSString * token = user.credential.token;
-        NSString * icon = user.icon;
-        SSDKGender * gender = user.gender;
+//        NSString * icon = user.icon;
+//        SSDKGender * gender = user.gender;
         
         return [[CEELoginThirdpartyAPI api] loginWithUid:uid
                                                 platform:platformName

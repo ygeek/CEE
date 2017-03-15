@@ -8,8 +8,7 @@
 
 @import SVProgressHUD;
 @import RDVTabBarController;
-
-#import <PromiseKit/PromiseKit.h>
+@import PromiseKit;
 
 #import "StoryLevelsRootViewController.h"
 #import "StoryDialogViewController.h"

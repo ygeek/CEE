@@ -10,7 +10,7 @@
 @import JSONModel;
 
 #import <Foundation/Foundation.h>
-#import <PromiseKit/AnyPromise.h>
+@import PromiseKit;
 
 @class AFHTTPSessionManager;
 
